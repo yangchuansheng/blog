@@ -1,0 +1,15 @@
+[submodule "themes/blowfish"]
+	path = themes/blowfish
+	url = https://github.com/nunocoracao/blowfish.git
+	branch = main
+[submodule "themes/icons"]
+	path = themes/icons
+	url = https://github.com/hugomods/icons.git
+	branch = main
+[submodule "themes/twbs-icons"]
+	path = themes/twbs-icons
+	url = https://github.com/twbs/icons.git
+	branch = main
+[submodule "themes/hugo-notice"]
+	path = themes/hugo-notice
+	url = https://github.com/martignoni/hugo-notice.git

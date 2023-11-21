@@ -1,0 +1,379 @@
+---
+keywords:
+- Firefox
+- Chrome
+- userChrome
+- userContent
+- Photon
+- styloaix
+- stylus
+- user.js
+- Violentmonkey
+title: "Firefox 浏览器个性化定制指南"
+date: 2022-04-30T09:19:37+08:00
+lastmod: 2022-04-30T09:19:37+08:00
+description: 本文给大家介绍了 Firefox 浏览器的优势，并使用 userChrome.css、userContent.css 和 userChrome.js 来对 Firefox 浏览器进行定制。
+draft: false
+author: 米开朗基杨
+hideToc: false
+enableToc: true
+enableTocContent: false
+tocFolding: false
+tocLevels: ["h2", "h3", "h4"]
+tags:
+- Firefox
+categories: share
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/Mozilla-Foundation-accepts-Dogecoin-DOGE-users-threaten-to-stop-using.jpg
+---
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-cnfjg.png)
+
+Firefox 和 Chrome 分别是当今世界最流行的浏览器之一，虽然这两款浏览器都有各自的优势，但随着时间的推移，Firefox 的受欢迎程度在逐渐下降，开始走下坡路。这无可厚非，并不是 Firefox 不行了，而是 Chrome 太强了，背靠 Google 顶级大厂，无缝整合 Google 服务，界面极度简洁，它就像一个十足精美的篮子，你往里面放的鸡蛋越多，它就越好用。
+
+所以，先说结论，Firefox 几乎不可能在短时间内超过 Chrome 浏览器。
+
+然而，但是，作为用户，我们需要换个角度去思考，**任何一个市场如果一家独大，那么这个家伙最终很可能会变成〖恶龙〗**，想必大家对 Chrome 收集用户隐私的丑闻也有所耳闻。**只有互相竞争才能尽最大可能避免〖恶龙〗的诞生，竞争越激烈，用户越受益，你们可长点心吧。**
+
+如果你喜欢 Firefox，或者不希望 Chrome 变成最终的〖恶龙〗，请在你的电脑上为 Firefox 留下一席之地，哪怕是作为备用浏览器也行啊。而且 Firefox 是完全开源的，开源抑制垄断，Firefox 还你自由。
+
+## Firefox 的优势
+
+现在切回 Firefox 的视角，Firefox 背后的团队是 Mozilla 基金会，与 Google 这种世界上“最伟大”的公司相比，简直是不值一提。但 Firefox 既然能和 Chrome 在同一个牌桌上同台竞技，它必然是有过人之处的。
+
+Mozilla 基金会对计算机领域最大的贡献是 Rust 编程语言，而 Firefox 从 57 版本开始便使用基于 Rust 编程语言开发的渲染引擎 [Servo](https://en.wikipedia.org/wiki/Servo_(software))，Rust 自家人编写的渲染引擎，值得信赖😂。而 Chrome 的 Blink 引擎是用 C++ 写的。C++ 语言如同 C 语言，很容易因为内存使用方面的问题而导致安全漏洞（比如：缓冲区溢出、野指针 ...）。这个缺点是编程语言本身导致的。Rust 一方面可以达到与 C/C++ 相当的性能，另一方面又更加安全，避免了 C/C++ 在内存和多线程方面的弊端。
+
+另外，我觉得 Firefox 最大的一个〖杀手锏〗就是**高度可定制化**，你可以凭借自己的想象力把 Firefox 浏览器改造成自己想要的任意形态，而 **Chrome 却只能限定在一个可控范围内进行扩展和定制，就是画个圈圈，你只能在这个圈内自由活动**。如果你不太理解什么是改造成任意形态，我可以举个例子，比如我可以将 Firefox 的 about 界面 Logo 替换成任意图片：
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-29-20-14-RzmddG.png)
+
+Chrome 有这个可能吗？
+
+再比如我可以将 Firefox 的地址栏做成如下炫酷的特效，还可以将标签页的样式改造成如下的“花里胡哨”的样式：
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-29-22-49-agMPpf.png)
+
+Chrome 有这本事吗？
+
+现在你应该理解我的意思了吧，Chrome 在很多地方进行了限制，束缚了我们的手脚，让你的扩展只能在有限的范围内进行定制。
+
+如果你想掌握对浏览器绝对的控制权，喜欢折腾，Firefox 无疑是最好的选择。当然，如果你喜欢开箱即用，没有什么定制化的需求，那选择 Chrome 是极好的。但是，我还是要强调一句，即使你选择了 Chrome，为了避免〖恶龙〗的诞生，还是希望你能把 Firefox 作为备用浏览器。
+
+好了，废话就扯这么多，还是直接进入主题吧，**本文将会手把手教大家如何任意定制全宇宙最强浏览器 Firefox**。
+
+----
+
+Firefox 浏览器的个性化大致有五种方式，一种是与其他浏览器一样，通过浏览器默认的选项和主题进行定制，不过能修改的程度有限；一种是通过扩展对功能进行拓展；还有两种是通过油猴脚本和 stylus 之类的扩展再结合自定义 CSS 来对网页样式进行自定义。这四种方式 Chrome 浏览器也可以做到，并没有什么特别之处，我也不打算重点介绍，放到后面再讲。
+
+Firefox 最顶级的个性化方式就是用户样式和用户脚本来定制。什么意思呢？
+
++ 用户样式可以理解为 stylus 这一类扩展的加强版，CSS 样式可修改的范围是整个浏览器的任何角落，并不局限于〖网页〗这个范围内。但用户样式只能修改已有的元素，不能创建新功能。
++ 用户脚本可以理解为油猴脚本的加强版，脚本可修改的范围是整个浏览器的任何角落，并不局限于〖网页〗这个范围内。
+
+结合用户样式与用户脚本，我们可以直接利用 CSS 进行界面样式的自定义，并使用一些受支持的 JavaScript 脚本实现 Firefox 界面上尚未实现的功能，以此来实现对 Firefox 的任意魔改。这些内容是使用 Firefox 的 `userChrome.css`、`userContent.css` 以及 `userChrome.js` 等来进行定义的。
+
+## 自定义用户样式
+
+Firefox 自 69 版本以后，为了更快的启动速度，默认不会去寻找定义样式的 `userChrome.css` 和 `userContent.css`，我们需要手动开启这一功能。在 Firefox 的地址栏访问 `about:config`，忽略警告，在接下来的界面搜索 `toolkit.legacyUserProfileCustomizations.stylesheets`，并将这一项目设置为 true，如下图：
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-00-28-cueVKu.png)
+
+之后，我们找到 Firefox Profile 的根目录，我们需要在那里创建定义样式的 `userChrome.css`。在 Firefox 的地址栏访问 `about:support`，选择下方的 Profile Folder，点击 Open Folder。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-00-33-63s4XI.png)
+
+之后打开的文件夹即为 Firefox Profile 根目录。在这里，我们需要创建一个名叫 `chrome` 的文件夹，接下来的所有自定义样式都需要放入这一文件夹之中。
+
+> "Chrome" refers to the user interface of the web browser, which is what  Google Chrome was named after. —— Chrome 这一单词代指浏览器的用户界面，也是 Google Chrome 浏览器名称的由来。因此，这里的 chrome 与 Google Chrome 浏览器完全没有关系。
+
+之后我们就可以在 chrome 文件夹内自行创建 `userChrome.css` 和 `userContent.css` 这两个样式定义文件，在其中进行自定义即可。
+
+那么 userChrome.css 与 userContent.css 这两个文件有啥区别呢？
+
++ `userChrome.css` 是专门用来定制 Firefox〖自身的界面〗（比如 Firefox 自己的“地址栏、搜索栏、快捷菜单、滚动条 ......”）
++ `userContent.css` 是专门用来定制 Firefox 浏览的网站的界面（如果你对我博客的某些界面效果不爽，就可以用它来定制）。说白了，userContent.css 可以实现和 stylus 这一类扩展同样的功能，唯一的区别在于 userContent.css 还可以定制 Firefox 内置页面和扩展页面的样式（比如内置的新标签页）。
+
+例如，如果你想像文章开头截图那样将 about 界面的 Logo 替换成别的图片，只需在 userChrome.css 中添加这么一段 CSS 样式：
+
+```css
+@-moz-document url("chrome://browser/content/aboutDialog.xhtml") {
+  /* change logo png, svg, even gif anims */
+  #leftBox {
+    background-image: url("https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/20210505152049.png") !important;
+    background-position: left !important;
+    background-repeat: no-repeat !important;
+    font-family: Roboto, "LXGW WenKai", sans-serif !important;
+  }
+}
+```
+
+然后重启 Firefox 浏览器，即可看到 Logo 替换生效了。
+
+当然，如果所有的样式都要我们自己从零开始写，那也太劝退了，毕竟大多数人是不懂 CSS 的，有没有别人写好的样式可以直接拿来用呢？还是有很多的，比如：
+
++ [Photon Australis](https://github.com/wilfredwee/photon-australis) : 模仿 Chrome 设计风格的 Firefox 主题，将 Firefox 标签页的样式打磨得和 Chrome 圆角标签页近乎一致。
+
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-12-55-BuK4Wp.png)
+
++ [FlyingFox](https://github.com/akshat46/FlyingFox) : 我认为这是最精美的 Firefox 主题，这也是我目前正在使用的主题。
+
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-00-ov5mOh.png)
+
++ [FirefoxCSS-Store](https://github.com/FirefoxCSS-Store/FirefoxCSS-Store.github.io) : 从名字就能看出来，这是一个 Firefox userchrome 主题商店，包含了各种主题任你挑选。
+
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-03-wrA7kV.jpg)
+
++ [firefox-csshacks](https://github.com/MrOtherGuy/firefox-csshacks) : 这个仓库包含了各种特定的样式，其中 chrome 文件夹包含了 userChrome.css 的样式，content 文件夹包含了 userContent.css 的样式。
+
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-16-8Jwi0L.jpg)
+
++ [FirefoxCSS on Reddit](https://www.reddit.com/r/FirefoxCSS/) : 这是全球最大的 Firefox 样式分享社区，你可以在这里自由讨论、提问、分享自己的样式，或者拿走别人的样式。
+
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-23-JWJUmU.jpg)
+
+感兴趣的小伙伴可以自己下载体验一番。
+
+细心的小伙伴应该能发现这里有个问题，所有的样式必须要保存并重启浏览器之后才能看到它的效果，无法实时调试，这对于高级玩家来说是很不友好的，我们需要的是能够实时调试任意样式。这就需要用到自定义用户脚本了。
+
+## 自定义用户脚本
+
+在定义样式的基础之上，我们还可以借助于 JavaScript 实现 Firefox 尚未实现的一些功能：比如前文提到的实时调试样式。
+
+在 Firefox 72+ 之后，用 JavaScript 添加附加功能的步骤稍微有些繁琐。可以参考 [xiaoxiaoflood/firefox-scripts](https://github.com/xiaoxiaoflood/firefox-scripts) 这个仓库的方法，
+
+1. 先下载压缩包 [fx-folder.zip](https://raw.githubusercontent.com/xiaoxiaoflood/firefox-scripts/master/fx-folder.zip) 进行解压，得到这么几个文件：
+
+```bash
+$ tree fx-folder
+fx-folder
+├── config.js
+└── defaults
+    └── pref
+        └── config-prefs.js
+
+2 directories, 2 files
+```
+
+2. macOS 用户接下来可以右键点击〖**访达**〗（左下角的笑脸图标），选择〖**前往文件夹**〗，输入路径地址：`/Applications/Firefox.app/Contents/MacOS`。然后将解压出来的文件全部拷贝到这个文件夹里。
+
+   Windows 用户需要将解压出来的文件全部拷贝到 Firefox 的安装路径下（比如 **C:\Program Files\Mozilla Firefox**）。
+
+3. 下载压缩包 [utils_scripts_only.zip](https://raw.githubusercontent.com/xiaoxiaoflood/firefox-scripts/master/utils_scripts_only.zip) 进行解压，将解压出来的文件全部拷贝到前文所述的 chrome 文件夹中（例如，我的路径是 **/Users/carson/Library/Application Support/Firefox/Profiles/pntdm1l9.default-release/chrome**）。
+
+4. 重启 Firefox 浏览器。
+
+现在你就可以在 chrome 文件夹根目录创建自定义脚本来实现任意功能了。
+
+## 使用自定义脚本管理自定义样式
+
+例如，如果你想实时调试自定义样式，可以使用 [xiaoxiaoflood/firefox-scripts](https://github.com/xiaoxiaoflood/firefox-scripts) 仓库里的 StyloaiX 脚本，它比 userChrome.css 和 userContent.css 更方便，因为它拥有一个强大的编辑器，还能即时预览、错误检查、代码自动补全，而且无需重启浏览器即可启用和禁用样式。你只需要下载压缩包 [styloaix.zip](https://raw.githubusercontent.com/xiaoxiaoflood/firefox-scripts/master/chrome/styloaix.zip)，然后将解压出来的文件全部拷贝到 chrome 目录中：
+
+```bash
+chrome
+├── styloaix.uc.js
+└── utils
+    └── styloaix
+        ├── 16.png
+        ├── 16w.png
+        ├── autocomplete.js
+        ├── edit.css
+        ├── edit.js
+        └── edit.xhtml
+...
+```
+
+重启 Firefox 浏览器就可以看到浏览器的工具栏中多了一个扩展的图标，实际上这不是一个浏览器扩展，而是通过 JavaScript 实现的。
+
+<img style="width: 400px" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-14-47-abcd.png" />
+
+现在我们就可以编写自定义样式并实时调试了，方法很简单，点击上述 StyloaiX 图标，然后依次选择 〖New Style〗--> 〖Blank Style〗。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-06-qAN44a.png)
+
+然后就会打开一个编辑器的界面。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-08-E2Tp1Q.png)
+
+然后就可以在里面调试样式了。比如我想对扩展界面进行自定义，就可以选择〖New Style〗--> 〖For this page〗，打开编辑器后会自动帮你设置 CSS 样式的生效页面。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-13-uaTRnw.png)
+
+往里面加入如下的 CSS 内容：
+
+```css
+@-moz-document url("about:addons") {
+
+  /* Remove this if it causes horizontal scrolling problems */  
+  @media (min-width:720px) {
+    #main {
+      max-width: unset !important;
+      padding-right: 28px !important;
+    }  
+
+    addon-list>section,
+    recommended-addon-list {
+      padding: 1em !important;
+      display: grid !important;
+      grid-template-areas: "hd hd""cd cd" !important;
+      grid-template-columns: 1fr 1fr !important;
+      column-gap: 1em !important;  
+    }  
+
+    addon-card .card-contents {
+      width: unset !important;
+      white-space: initial !important;
+    }  
+
+    .card-heading-image {
+      max-width: calc(100% + 32px) !important;
+    }  
+
+    section>h2 {
+      grid-area: hd !important;
+    }  
+
+    addon-card {
+      padding-bottom: 0px !important;
+      padding-top: 0px !important;
+      grid-area: auto !important;
+    }  
+
+    addon-card .addon-description {
+      max-height: 3em !important;
+      scrollbar-width: thin !important;
+      color: white !important;
+      text-align: inherit !important;
+    }  
+
+    .stack.inline-options-stack {
+      background-color: #17171E !important;
+      color: white !important;
+      font-size: 14px !important;
+      border: none !important;
+    }  
+
+    addon-card .addon-description {
+      height: 3em !important;
+      scrollbar-color: #1e90ff #000000 !important;
+      scrollbar-width: thin !important;
+    }
+  }  
+
+  .addon-badge-recommended,
+  .addon-badge-private-browsing-allowed {
+    transform: scale(0.85) !important;
+    margin-bottom: 0px !important;
+  }  
+
+  #page-options panel-list {
+    background-color: #17171E !important;
+    font-size: 14px !important;
+    border: none !important;
+    color: white !important;
+  }
+
+}
+```
+
+样式会立即生效，将扩展列表改为双栏显示。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-21-uZTpAs.png)
+
+调试好了确认无误后，只需给该样式命名然后保存即可。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-24-Mtlr2g.png)
+
+如果你临时不想用这个样式了，可以点击 StyloaiX 图标，然后直接点击样式名，就会取消选中该样式，前面的图标会从〖打✅的圆〗变成〖空心圆〗。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-32-XlKBk4.png)
+
+StyloaiX 的牛逼之处在于它可以渲染任何样式，不管是 userChrome 还是 userContent，甚至可以直接使用它来替代 stylus 等扩展。
+
+## 使用自定义脚本管理自定义脚本
+
+好了，体会到了自定义用户脚本的强大之处后，我们来看看它还能实现什么神奇的功能，比如使用自定义脚本来管理自定义脚本？？？哈哈哈
+
+什么意思呢？默认情况下自定义脚本放到 chrome 目录重启后就会生效，要想让它不生效，只能删了它，或者重命名后缀，这也太不优雅了。我们可以想办法像 StyloaiX 一样随时启用或禁用自定义脚本，不需要删除脚本或者重命名后缀。
+
+还是使用 [xiaoxiaoflood/firefox-scripts](https://github.com/xiaoxiaoflood/firefox-scripts) 这个仓库提供的方法，下载脚本 [rebuild_userChrome.uc.js](https://raw.githubusercontent.com/xiaoxiaoflood/firefox-scripts/master/chrome/rebuild_userChrome.uc.js)，然后将其拷贝到 chrome 文件夹中，重启浏览器之后就可以看到浏览器的工具栏中又多了一个扩展的图标。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-55-gFAgRB.png)
+
+每一个脚本都有 6 种不同的操作方法，我就不解释了，大家应该都能看懂。
+
+> ⚠️注意：虽然使用该方法可以随时〖启用 / 禁用〗自定义脚本，但是某些脚本受浏览器的限制必须要重启浏览器才能生效，具体需要自己测试。
+
+## 使用自定义脚本管理浏览器扩展
+
+除了上面的玩法之外，我们还可以使用自定义脚本管理浏览器的扩展，虽然某些浏览器扩展也可以实现这个功能，但是使用自定义脚本更省资源，也更高效。这就需要用到另外一个大佬的仓库 [aminomancer/uc.css.js](https://github.com/aminomancer/uc.css.js)，直接下载脚本 [extensionOptionsPanel.uc.js](https://github.com/aminomancer/uc.css.js/blob/master/JS/extensionOptionsPanel.uc.js)，然后将其拷贝到 chrome 文件夹的根目录，重启浏览器之后就可以看到浏览器的工具栏中又多了一个扩展的图标。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-17-15-S4d5cC.png)
+
+现在你可以在同一个界面中管理所有的扩展，包括启用、禁用、设置、卸载等等。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-17-16-krpUNM.png)
+
+关于自定义脚本的内容我就讲这么多，玩法太多，我就不一一列举了，这篇文章只是提供一个方向，感兴趣的玩家可以自己去探索。除了前面提到的两个仓库之外，最后我再提供一些别人写好的脚本资源：
+
++ [FirefoxTaskMonitor](https://github.com/garywill/FirefoxTaskMonitor) : 实时显示每个标签页和每个扩展的 CPU 和内存使用状况。
++ [Aris-t2/CustomJSforFx](https://github.com/Aris-t2/CustomJSforFx)
++ [FirefoxCSS on Reddit](https://www.reddit.com/r/FirefoxCSS/) : 前面提到过，这里除了可以分享样式，还可以分享脚本。
++ [Firefox 扩展、插件、脚本和样式](https://www.firefox.net.cn/thread-5) : Firefox 中文社区的某个版块。
+
+如果大家对我的 Firefox 样式和脚本比较感兴趣，可以扫码关注公众号：
+
+<img style="width: 300px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200813101211.png" />
+
+后台发送暗号：**firefox**，即可获取我的所有样式和脚本。下载压缩包之后将解压出来的文件全部拷贝到 chrome 文件夹中即可，如果说有重复，则覆盖它。
+
+## 更多自定义选项
+
+### 配置选项
+
+〖配置选项〗也叫〖首选项〗，即 Preferences。通俗地说就是：Firefox 提供了一大堆可供用户定制的参数。通过修改这些参数，可以对 Firefox 进行全方位定制。通常我们在浏览器地址栏输入 `about:config` 然后敲回车，就可以看到所有的配置选项。
+
+例如，如果想改变滚动体的样式，可以打开 **about:config**，输入 **widget.non-native-theme.scrollbar.style**，默认值为 **0**，也就是自动匹配当前系统。我们可以指定某个具体的样式，推荐用 **1 和 5**，这两个最好看。
+
++ 0 ：**平台默认**滚动条样式
++ 1 ：**macOS** 滚动条样式
++ 2 ：**GTK** 滚动条样式
++ 3 ：**Android** 滚动条样式
++ 4 ：**Windows 10** 滚动条样式
++ 5 ：**Windows 11** 滚动条样式
+
+配置选项的定制方法本文就不作具体说明，具体可参考这篇文章：[扫盲 Firefox 定制——从“user.js”到“omni.ja”](https://program-think.blogspot.com/2019/07/Customize-Firefox.html)。
+
+user.js 的完整参数可参考 [arkenfox/user.js](https://github.com/arkenfox/user.js) 这个仓库。
+
+----
+
+**下面再介绍两个对浏览器进行个性化的方法，不过不是 Firefox 专属的功能，Chrome 浏览器也是通用的。**
+
+### 油猴脚本
+
+油猴脚本，正式的叫法是用户脚本（user script）。之所以叫做〖油猴〗，是因为第一个制作这个浏览器扩展的作者 Aaron Boodman  起名叫做 Greasymonkey，中文直译就是〖油腻的猴子〗；后面其他脚本开发的时候，基本都在沿用 Greasymonkey  的一些基本规范，这些脚本也就统称为〖油猴脚本〗了。
+
+油猴脚本与前文所述的自定义用户脚本不同，它只能对网站的功能进行扩展，无法对浏览器本身动刀。
+
+目前支持油猴脚本的浏览器扩展有 [Greasemonkey](https://addons.mozilla.org/zh-CN/firefox/addon/greasemonkey/)、[Tampermonkey](https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/) 和 [Violentmonkey](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey/)，个人推荐使用 Violentmonkey，也就是暴力猴。安装好扩展之后，可以到 [Greasyfork](https://greasyfork.org/zh-CN) 这个网站中去安装自己感兴趣的脚本。例如，很多人看到我的屏幕后都会问我是怎么上 Google 的，问的人太多了我就很烦，所以当我们使用[这个脚本](https://greasyfork.org/zh-CN/scripts/372883-%E6%8A%8Agoogle%E6%90%9C%E7%B4%A2%E4%BC%AA%E8%A3%85%E6%88%90%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2)把 Google 的 Logo 换成百度，他们就不会问那么多问题了！
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-19-07-3GQALg.png)
+
+### 自定义网页样式
+
+如果你不喜欢某些网站的样式，也可以自己动手给网站自定义样式，原理还是通过 CSS 来实现。目前支持给网站自定义样式的扩展有 [Stylish](https://addons.mozilla.org/zh-CN/firefox/addon/stylish/)、[xStyle](https://addons.mozilla.org/zh-CN/firefox/addon/xstyle/) 和 [Stylus](https://addons.mozilla.org/zh-CN/firefox/addon/styl-us/)，个人推荐使用 Stylus，其他两款扩展都停止开发了，不推荐使用。
+
+安装好扩展之后，可以到 [userstyles.org](https://userstyles.org/) 这个网站中去安装自己感兴趣的样式。例如，我可以使用[这个样式](https://userstyles.org/styles/204545/github-ph-logo-design)将 GitHub 的 Logo 改成 **PornHub** 的风格。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-19-22-1qRfTh.jpg)
+
+如果 userstyles.org 中提供的样式不能满足你的需求，你也可以自己编写样式，一切皆有可能。
+
+## 总结
+
+本文给大家介绍了 Firefox 浏览器的优势，并使用自定义样式和自定义脚本来对 Firefox 浏览器进行定制，制作属于我们自己的专属浏览器。总的来说，Firefox 就是一张纸，它什么都没有，但每个人都可以培养只属于自己的浏览器。**Chrome 都是千篇一律，但 FireFox 各有各的不同。**
+
+## 参考资料
+
++ [用下面这些方法，为自己高度定制一个 Firefox 浏览器](https://sspai.com/post/58605)
++ [扫盲 Firefox 定制——从“user.js”到“omni.ja”](https://program-think.blogspot.com/2019/07/Customize-Firefox.html)
++ [油猴使用指南 01：传说中的「油猴」与用户脚本](https://sspai.com/post/68574)
