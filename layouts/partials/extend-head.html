@@ -44,3 +44,13 @@ webpushr('setup',{'key':'BHIaDYldZcXlQt38kYXgH48NQZFQkowuo14rNhiIvrGEP5kFU5lb5h-
   gtag('js', new Date());
   gtag('config', 'G-0VHVXWXJMQ');
 </script>
+
+<!--顶部阅读进度条-->
+<div class="top-scroll-bar" style="height: 5px; background-color: blue; width: 0; position: fixed; top: 0; z-index: 100;"></div>
+<script type="text/javascript">
+$(document).ready(function () {
+  $(window).scroll(function(){
+    $(".top-scroll-bar").attr("style", "width: " + ($(this).scrollTop() / ($(document).height() - $(this).height()) * 100) + "%; display: block;");
+  });
+})
+</script>

@@ -1,3 +1,12 @@
+* {
+  cursor: url(/img/mouse.cur), default !important;
+}
+
+a,
+span {
+  cursor: url(/img/20201203142116.cur), pointer !important;
+}
+
 /* jetbrains-mono-regular */
 @font-face {
   font-family: "JetBrains Mono";
@@ -139,10 +148,26 @@ ul > li::marker {
   color: rgba(var(--color-neutral-100), 1) !important;
 }
 
+/* katex 样式 */
 .katex {
+  font-size: 1em !important;
+}
+.katex-display > .katex {
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
+}
+
+/* 顶部阅读进度条 */
+.top-scroll-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  width: 0;
+  height: 3px;
+  background: #ef3982;
 }
 
 .logo_cursor {
