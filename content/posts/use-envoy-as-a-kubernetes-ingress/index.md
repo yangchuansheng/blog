@@ -5,7 +5,7 @@ subtitle: "一种全新的 Ingress 实现方式——Envoy"
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["envoy", "kubernetes", "contour"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-080723.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

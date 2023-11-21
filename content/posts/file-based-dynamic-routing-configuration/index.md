@@ -12,7 +12,7 @@ date: 2019-12-23T13:05:09+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service mesh"
+categories: service-mesh
 tags: ["envoy", "lede"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191204132153.webp"
 ---

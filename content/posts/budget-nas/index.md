@@ -46,9 +46,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/20
 
 我还录制了一个视频，欢迎观看：
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-	<iframe class="lazyload" data-src="//player.bilibili.com/player.html?aid=769951687&bvid=BV1Hr4y137CG&cid=742963050&page=1&high_quality=1&danmaku=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV1Hr4y137CG >}}
 
 ## 背景
 

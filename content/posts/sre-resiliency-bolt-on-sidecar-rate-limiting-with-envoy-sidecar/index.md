@@ -5,7 +5,7 @@ date: 2018-11-01T17:55:47+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service mesh"
+categories: service-mesh
 tags: ["envoy", "service mesh"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/blog-rate-limits-v2.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

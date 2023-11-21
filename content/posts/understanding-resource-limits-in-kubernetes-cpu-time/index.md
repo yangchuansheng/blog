@@ -5,7 +5,7 @@ date: 2018-11-10T13:32:30+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/VAOaON.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

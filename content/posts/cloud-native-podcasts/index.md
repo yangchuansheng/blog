@@ -20,7 +20,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - kubernetes
 - podcast
-categories: kubernetes
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-20-2wpZVR.webp
 ---
 

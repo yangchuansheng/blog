@@ -10,7 +10,7 @@ date: 2019-12-28T15:47:03+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service mesh"
+categories: service-mesh
 tags: ["envoy", "gfw"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191228184723.png"
 ---

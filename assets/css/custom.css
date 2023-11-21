@@ -2,7 +2,7 @@
   cursor: url(/img/cursor/2078-blue-pointer-cursor.svg), default !important;
 }
 
-a, a:hover, a:focus, img, svg, a span, svg path, a span p, .thumbnail_card, .cursor-pointer, button, .icon {
+a, a:hover, a:focus, img, svg, a span, svg path, a span p, .thumbnail_card, .cursor-pointer, button, .icon, a h6 {
   cursor: url(/img/cursor/2078-blue-pointer-pointer.svg), pointer !important;
 }
 
@@ -78,10 +78,16 @@ pre {
   padding-top: 30px;
 }
 
+
+
+/* 列表样式 */
+section div {
+  counter-reset: listitem; /* 重置计数器 */
+}
+
 section div ol {
   list-style-type: none !important; /* 移除默认的数字 */
   padding-left: 0.325em !important; /* 移除默认的内边距 */
-  counter-reset: listitem; /* 重置计数器 */
 }
 
 section div ol li {
@@ -146,6 +152,7 @@ ul > li::marker {
 .dark ul > li::marker {
   color: rgba(var(--color-neutral-100), 1) !important;
 }
+
 
 /* katex 样式 */
 .katex {

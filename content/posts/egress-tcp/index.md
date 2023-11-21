@@ -5,7 +5,7 @@ date: 2018-11-23T14:18:48+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service mesh"
+categories: service-mesh
 tags: ["istio", "service mesh", "kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/EKPE9QoWkAEtYWt.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

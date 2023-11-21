@@ -19,7 +19,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - kubernetes
 - lvs
-categories: kubernetes
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210607013921.png
 ---
 

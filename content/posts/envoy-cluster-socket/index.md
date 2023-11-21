@@ -16,7 +16,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - envoy
 - service mesh
-categories: "service mesh"
+categories: service-mesh
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200426205419.png
 ---
 

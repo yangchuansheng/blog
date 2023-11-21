@@ -4,7 +4,7 @@ subtitle: "浅析 KubeRBS 的原理和使用方法"
 date: 2018-11-28T11:43:54+08:00
 draft: false
 author: 米开朗基杨
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/0_Djiqa1Rs5VBdIy4O.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
@@ -66,6 +66,4 @@ metadata:
 
 你可以通过下面的小视频看到 KubeRBS 的运行状况：
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//player.bilibili.com/player.html?aid=77800178&cid=133102047&page=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV12J411z7X6 >}}

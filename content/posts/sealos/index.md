@@ -15,7 +15,7 @@ weight: 99
 draft: false
 author: fanux
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes", "Sealos"]
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-14-23-26-Tseg6K.jpg
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-12-00-33-Ua8sIL.jpg

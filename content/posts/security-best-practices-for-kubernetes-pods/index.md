@@ -16,7 +16,7 @@ enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - kubernetes
-categories: kubernetes
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201130153130.jpg
 ---
 

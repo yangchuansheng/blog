@@ -5,7 +5,7 @@ date: 2018-08-01T20:59:11+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service mesh"
+categories: service-mesh
 tags: ["istio", "service mesh"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203193659.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

@@ -12,7 +12,7 @@ date: 2020-02-22T17:06:49+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes","oam","operator"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200223122350.webp"
 ---

@@ -12,7 +12,7 @@ Lastmod: 2020-03-26T00:14:06+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service mesh"
+categories: service-mesh
 tags: ["istio", "service mesh"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191215002051.webp"
 ---

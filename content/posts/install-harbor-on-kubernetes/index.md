@@ -17,7 +17,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - harbor
 - kubernetes
-categories: kubernetes
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210107115844.jpg
 ---
 

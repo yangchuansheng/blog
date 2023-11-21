@@ -33,11 +33,9 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/20
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-03-12-14-52-2glypD.jpg
 ---
 
-> 原文地址：[https://zuofeng59556.github.io/my-blog/pages/quickStart/chatGPT/](https://zuofeng59556.github.io/my-blog/pages/quickStart/chatGPT/)
+> 原文地址：[https://3min.cloud/chatgpt](https://3min.cloud/chatgpt/)
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-	<iframe class="lazyload" data-src="//player.bilibili.com/player.html?aid=993456200&bvid=BV1cx4y1K7B2&cid=1051415582&page=1&high_quality=1&danmaku=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV1cx4y1K7B2 >}}
 
 OpenAI 已经公布了 ChatGPT 正式版 API，背后的新模型是 gpt-3.5-turbo，这是 OpenAI 目前最先进的模型，响应速度更快，价格更便宜。
 
@@ -254,4 +252,3 @@ parentMessageId.value = res.id;
 ---
 
 + 项目源码：**https://github.com/zuoFeng59556/chatGPT**
-+ 示例网站：**https://jyf6wk-chat-gpt.site.laf.dev/**

@@ -12,7 +12,7 @@ date: 2019-01-30T18:45:42+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["etcd", "kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/etcd.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

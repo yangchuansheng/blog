@@ -18,6 +18,13 @@ buildFuture = false
 [build]
   noJSConfigInAssets = true
 
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      hardWraps = true
+      unsafe = true
+      xHTML = true
+
 [imaging]
   anchor = 'Center'
 

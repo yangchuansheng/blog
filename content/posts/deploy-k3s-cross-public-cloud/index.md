@@ -16,7 +16,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - k3s
 - WireGuard
-categories: kubernetes
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200615100550.png
 ---
 

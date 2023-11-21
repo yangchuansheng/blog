@@ -10,7 +10,7 @@ date: 2019-07-05T22:11:46+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-07-06-071216.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
@@ -122,12 +122,8 @@ spec:
 
 本视频主要演示了 SDS 是如何高效地进行证书轮换，以及 Citadel 是如何独立于其他 Istio 组件工作的。
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//player.bilibili.com/player.html?aid=57974442&cid=101153167&page=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV1p4411c7mB >}}
 
 **使用 Envoy，Cilium 和 BPF 进行透明混沌测试** : 混沌测试主要用来在分布式系统上做对照实验，引入混沌：服务器崩溃、硬盘异常、网络连接中断等，从而帮助建立对系统承受不可避免的故障的能力的信心。目前大部分的混沌测试都是手动完成的，本视频演示了如何将 Envoy 和 Cilium、BPF 结合使用，以完全透明的方式将服务不可用性、延迟和随机限速等混乱引入 Kubernetes 集群。
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//player.bilibili.com/player.html?aid=57954809&cid=101128194&page=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV1u4411c7Fp >}}

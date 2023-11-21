@@ -4,7 +4,7 @@ subtitle: "提高 Envoy 管理界面的安全性"
 date: 2018-10-25T16:34:20+08:00
 draft: false
 author: 米开朗基杨
-categories: "service mesh"
+categories: service-mesh
 tags: ["envoy", "service mesh"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1_NBS4fR_SmLnuGgp45YC6Hg.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

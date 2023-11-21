@@ -4,7 +4,7 @@ subtitle: "记一次 mTLS 趟坑经历"
 date: 2018-10-11T15:59:54+08:00
 draft: false
 author: 米开朗基杨
-categories: "service mesh"
+categories: service-mesh
 tags: ["istio", "service mesh"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/error-503.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

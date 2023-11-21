@@ -4,7 +4,7 @@ date: 2018-09-26T17:43:00+08:00
 subtitle: "通过 Envoy 反向代理 hugo 静态页面"
 draft: false
 author: 米开朗基杨
-categories: "service mesh"
+categories: service-mesh
 tags: ["envoy", "service mesh", "hugo"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203153032.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

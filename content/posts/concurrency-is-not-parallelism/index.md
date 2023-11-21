@@ -94,7 +94,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-55d2f2e700747.
 + 演讲视频：
 
 
-{{< bilibili 74617832 >}}
+{{< bilibili BV1bE411B75U >}}
 
 参考链接
 

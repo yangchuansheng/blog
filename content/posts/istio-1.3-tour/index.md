@@ -9,11 +9,11 @@ date: 2019-09-25T13:00:34+08:00
 draft: false
 author: 米开朗基杨
 toc: flase 
-categories: "service mesh"
+categories: service-mesh
 tags: ["istio", "service mesh", "kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-istio-1.3-tour.webp"
 ---
 
 <!--more-->
 
-{{< bilibili 68855878 >}}
+{{< bilibili BV1AJ411u7wB >}}

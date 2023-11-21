@@ -4,7 +4,7 @@ subtitle: "Kube-controller-manager 调优"
 date: 2018-06-15T14:02:11Z
 draft: false
 author: 米开朗基杨
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204130017.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]

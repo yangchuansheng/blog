@@ -12,7 +12,7 @@ draft: false
 author: 米开朗基杨
 toc: true
 weight: 100
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191204132152.webp"
 ---

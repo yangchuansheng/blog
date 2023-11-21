@@ -16,7 +16,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - kubernetes
 - minecraft
-categories: kubernetes
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20201008232412.png
 ---
 
@@ -135,4 +135,4 @@ $ kubectl create cm kubeconfig --from-file=/root/.kube/config
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20201008224856.png)
 
-{{< bilibili 372470420 >}}
+{{< bilibili BV1jZ4y1L7HH >}}

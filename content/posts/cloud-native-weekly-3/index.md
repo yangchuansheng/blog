@@ -10,7 +10,7 @@ date: 2019-07-21T21:25:34+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-07-21-0_iYMUwPiX5y-9wavN.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
@@ -19,8 +19,6 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 本文首发于：微信公众号「云原生实验室」，公众号ID：cloud_native_yang。
 
 这是云原生周报第 3 期，主要分享云原生社区最新开源项目和相关资讯。
-
-如果你有什么优秀项目和资讯，欢迎向我投稿，投稿邮箱：yangchuansheng33@gmail.com。如果你想与大牛一起探讨云原生相关技术问题，可以添加我的微信后拉你进入云原生交流群，我的微信号是：yangchuansheng572887。
 
 ## <span id="inline-toc">1.</span> 开源项目推荐
 
@@ -101,9 +99,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 只有大气磅礴的 BGM，才配得上史诗级的《权力的游戏》。So，只有大气磅礴的 BGM，才配得上云原生时代的操作系统。
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//player.bilibili.com/player.html?aid=60142775&cid=104725583&page=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV1ct411J7w1 >}}
 
 ## <span id="inline-toc">4.</span> 电子书推荐
 

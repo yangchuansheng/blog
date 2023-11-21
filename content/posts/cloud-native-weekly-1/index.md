@@ -10,7 +10,7 @@ date: 2019-06-27T16:12:50+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "kubernetes"
+categories: cloud-native
 tags: ["kubernetes"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-06-27-D2pZj7NX0AAMG97.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
@@ -70,9 +70,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 8. 内核集成容器特性的年度进展 : 本视频主要介绍了近几年尝试在内核中直接集成容器特性的工作进展，并通过代码来展示其中的大部分原理。
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-  <iframe src="//player.bilibili.com/player.html?aid=57551145&cid=100467758&page=1" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"> </iframe>
-</div>
+{{< bilibili BV1Dx411X7oj >}}
 
 ## <span id="inline-toc">4.</span> 电子书推荐
 
