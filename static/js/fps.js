@@ -49,11 +49,11 @@ $(function(){
             // 检测操作系统
             if (userAgent.includes("Win")) os = "Windows";
             else if (userAgent.includes("Mac")) os = "macOS";
-            else if (userAgent.includes("X11")) os = "UNIX";
             else if (userAgent.includes("Linux") && !userAgent.includes("Android")) os = "Linux";
             else if (userAgent.includes("Android")) os = "Android";
             else if (userAgent.includes("like Mac") && userAgent.includes("iPhone")) os = "iPhone";
             else if (userAgent.includes("like Mac") && userAgent.includes("iPad")) os = "iPad";
+            else if (userAgent.includes("X11") && !userAgent.includes("Linux")) os = "UNIX";
 
             // 检测浏览器
             if(userAgent.includes("Chrome") && !userAgent.includes("Edg")) browser = "Chrome";

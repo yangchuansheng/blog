@@ -650,6 +650,7 @@ ul > li::marker {
   clear: both;
 }
 
+/* shortcode details */
 .details {
   background-color: rgba(var(--color-neutral-300), 0.5);
   border-color: rgba(var(--color-neutral-300), 1);

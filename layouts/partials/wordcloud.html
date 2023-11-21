@@ -1,0 +1,75 @@
+<style>
+  #wordcloud {
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+  }
+
+  .word {
+      position: relative;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      padding: 7px 14px;
+      display: inline-block;
+      margin: 4px;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+      text-decoration: none; /* Assuming each word is a link */
+  }
+
+  /* 角标样式 */
+  .badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 2px 5px;
+      font-size: 0.7em;
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+  }
+
+  /* 多种颜色 */
+  .color-1 { color: rgba(var(--color-primary-700), 1); .dark & { color: #8be9fd; }}
+  .color-2 { color: rgba(var(--color-neutral-700), 1); .dark & { color: rgba(var(--color-neutral-200), 1); }}
+  .color-3 { color: #8B4513; .dark & { color: #ffb86c; }}
+  .color-4 { color: #00668c; .dark & { color: #cee8ff; }}
+  .color-5 { color: #313d44; .dark & { color: #bd93f9; }}
+  /* ... 更多颜色 ... */
+  }
+
+  /* Different sizes based on count (example) */
+  .word.size-1 { font-size: 1.0em; }
+  .word.size-2 { font-size: 1.2em; }
+  .word.size-3 { font-size: 1.4em; }
+  .word.size-4 { font-size: 1.6em; }
+  .word.size-5 { font-size: 1.8em; }
+</style>
+
+{{ define "wordcloud-element" }}
+  {{ $key := .Key }}
+  {{ $value := .Value }}
+  {{ $title := $value.Page.Title }}
+  {{ $count := len $value.Pages }}
+  {{ $colorClass := printf "color-%d" (add 1 (mod (len $key) 5)) }}
+  {{ $size := cond (ge $count 10) "5" (cond (ge $count 8) "4" (cond (ge $count 6) "3" (cond (ge $count 4) "2" "1"))) }}
+  <span class="word {{ $colorClass }} size-{{ $size }}">
+    <a href="{{ if eq $value.Page.Type "tags" }}/tags/{{ else }}/categories/{{ end }}{{ $key | urlize }}">{{ $title }}</a>
+    <span class="badge">{{ $count }}</span>
+  </span>
+{{ end }}
+
+<div id="wordcloud">
+  {{ if eq .Kind "taxonomy" }}
+    {{ if eq .Type "tags" }}
+      {{/* 生成标签词云 */}}
+      {{ range $key, $value := .Site.Taxonomies.tags }}
+        {{ template "wordcloud-element" dict "Key" $key "Value" $value }}
+      {{ end }}
+    {{ else if eq .Type "categories" }}
+      {{/* 生成分类词云 */}}
+      {{ range $key, $value := .Site.Taxonomies.categories }}
+        {{ template "wordcloud-element" dict "Key" $key "Value" $value }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+</div>
