@@ -93,3 +93,57 @@
     </a>
   </div>
 </div>
+
+
+<!-- 鼠标点击特效 -->
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', (event) => {
+    var a = ["Docker", "Kubernetes", "Prometheus", "Sealos","FastGPT", "Envoy", "eBPF", "Laf", "Webassembly", "WireGuard", "Tailscale", "Cloud Native"];
+    var a_idx = 0; // Move a_idx outside of the click event handler
+
+    document.body.addEventListener('click', function(e) {
+        var text = a[a_idx];
+        a_idx = (a_idx + 1) % a.length; // Update a_idx on each click
+
+        var span = document.createElement('span');
+        span.textContent = text;
+        span.style.cssText = `
+            z-index: 9999;
+            top: ${e.pageY - 20}px;
+            left: ${e.pageX}px;
+            position: absolute;
+            font-weight: bold;
+            color: ${randomColor()};
+            opacity: 1;
+            transition: opacity 1.5s;
+        `;
+
+        document.body.appendChild(span);
+
+        // Animation
+        var start = null;
+        var duration = 1500; // ms
+        var startY = e.pageY - 20;
+        var endY = startY - 160;
+
+        function frame(time) {
+            if (start === null) start = time;
+            var progress = (time - start) / duration;
+            
+            if (progress < 1) {
+                span.style.top = startY - progress * (startY - endY) + 'px';
+                requestAnimationFrame(frame);
+            } else {
+                span.remove(); // Remove the span after the animation
+            }
+        }
+
+        requestAnimationFrame(frame);
+    });
+});
+
+function randomColor() {
+    var colors = ["#FFDA65", "#00BFFF", "#cb80ff", "#acc2ef", "#87CEEB", "#FFB6C1"];
+    return colors[Math.floor(Math.random() * colors.length)];
+}
+</script>

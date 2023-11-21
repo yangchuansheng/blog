@@ -167,7 +167,10 @@ ul > li::marker {
   display: none;
   width: 0;
   height: 3px;
-  background: #ef3982;
+  background: rgba(var(--color-primary-600), 1);
+  .dark & {
+    background: rgba(var(--color-primary-400), 1);
+  }
 }
 
 .logo_cursor {
