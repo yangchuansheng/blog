@@ -1,0 +1,38 @@
+<div class="tabs">
+  {{ range .Params }}
+    <button class="tablinks" onclick="openTab(event, '{{ . }}')">{{ . }}</button>
+  {{ end }}
+</div>
+
+{{ .Inner | markdownify | emojify }}
+
+<script>
+function openTab(evt, tabName) {
+  // 获取所有的 tabcontent 和 tablinks 元素
+  var i, tabcontent, tablinks;
+
+  // 隐藏所有的 tabcontent
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // 移除所有 tablinks 的 "active" 类
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].classList.remove("active");
+  }
+
+  // 显示当前选中的 tabcontent 并添加 "active" 类到对应的 tablinks
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.classList.add("active");
+}
+
+// 页面加载时激活第一个标签页
+document.addEventListener("DOMContentLoaded", function() {
+  // 默认激活第一个标签页
+  if (document.getElementsByClassName("tablinks").length > 0) {
+    document.getElementsByClassName("tablinks")[0].click();
+  }
+});
+</script>

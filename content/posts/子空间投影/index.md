@@ -5,16 +5,18 @@ date: 2016-06-04T17:18:59Z
 draft: false 
 author: 米开朗基杨
 categories: "math"
-tags: ["math"]
+tags: ["vector", "matrix"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191207222759.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 libraries:
 - katex
 ---
 
+{{< katex >}}
+
 **为了弄明白子空间投影是怎么一回事，我们遵循从低维到高维的规律，先从二维开始讲起。**
 
-## <span id="inline-toc">1.</span> 二维空间
+## 1. 二维空间
 
 ------
 
@@ -42,13 +44,13 @@ $$p = xa = a\frac{a^Tb}{a^Ta}\tag{2}$$
 
 $$p = Pb\tag{3}$$
 
-我们把这个矩阵P称为$\color{red}{投影矩阵}$。
+我们把这个矩阵P称为**投影矩阵**。
 
 比较式(2)和式(3)，立即可以知道：
 
-$$\color{red}{P = \frac{a \cdot a^T}{a^T \cdot a}}\tag{4}$$
+$${P = \frac{a \cdot a^T}{a^T \cdot a}}\tag{4}$$
 
-## <span id="inline-toc">2.</span> 三维空间
+## 2. 三维空间
 ------
 
 为了让你们能够有一个直观的认识，我仍然用我高超的画艺画了一幅美图：
@@ -104,6 +106,6 @@ $$p = Pb\tag{11}$$
 
 比较式(10)和式(11)，立即可以得到：
 
-$$\color{red}{P = A(A^TA)^{-1}A^T}\tag{12}$$
+$${P = A(A^TA)^{-1}A^T}\tag{12}$$
 
 这就是投影矩阵的表达式！

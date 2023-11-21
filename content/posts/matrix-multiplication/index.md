@@ -11,14 +11,16 @@ draft: false
 author: 米开朗基杨
 toc: true
 categories: "math"
-tags: ["math"]
+tags: ["vector", "matrix"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/matrix-revolutions.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 libraries:
 - katex
 ---
 
-我在 2016 年的时候写过一篇关于[向量的叉乘与行列式](https://icloudnative.io/posts/%E5%90%91%E9%87%8F%E7%9A%84%E5%8F%89%E4%B9%98%E4%B8%8E%E8%A1%8C%E5%88%97%E5%BC%8F/)的文章，没想到过去这么久了广大网友呼声还这么高，基于很多大学生的需求，我决定帮你们啃下难啃的高数和线性代数，让你们从根本上理解这两门课，而不是只知道背公式。到时候别忘了给我发红包哦~~~
+{{< katex >}}
+
+我在 2016 年的时候写过一篇关于[向量的叉乘与行列式](/posts/%E5%90%91%E9%87%8F%E7%9A%84%E5%8F%89%E4%B9%98%E4%B8%8E%E8%A1%8C%E5%88%97%E5%BC%8F/)的文章，没想到过去这么久了广大网友呼声还这么高，基于很多大学生的需求，我决定帮你们啃下难啃的高数和线性代数，让你们从根本上理解这两门课，而不是只知道背公式。到时候别忘了给我发红包哦~~~
 
 今天我们来讲讲矩阵的乘法。当然了，我告诉你的肯定不是大学教科书上那些填鸭式的云里雾里的计算规则，你可能将规则背下来了，但完全不理解为什么会这样。别怕，我将会在这篇文章中为你带来矩阵乘法的全新体验。
 
@@ -90,9 +92,9 @@ $$\vec{c\_i} = A \cdot \vec{b\_i} = \vec{a\_1} \cdot b\_{1i} + \vec{a\_2} \cdot 
 
 至此我们得到了一个优美的结论：
 
-{{< notice note >}}
+{{< alert >}}
 矩阵 $C$ 中的每一列都是矩阵 $A$ 中所有列的线性组合。
-{{< /notice >}}
+{{< /alert >}}
 
 到这里你应该能领悟为什么矩阵 $C$ 的行数与矩阵 $A$ 的行数相同了，也就是**矩阵 $C$ 的列向量与矩阵 $A$ 的列向量大小相同。**
 
@@ -126,9 +128,9 @@ $$\vec{c\_j} = \vec{a\_j} \cdot B = a\_{j1} \cdot \vec{b\_1} + a\_{j2} \cdot \ve
 
 又得到了一个结论：
 
-{{< notice note >}}
+{{< alert >}}
 矩阵 $C$ 中的每一行都是矩阵 $B$ 中所有行的线性组合。
-{{< /notice >}}
+{{< /alert >}}
 
 现在你应该能领悟为什么矩阵 $C$ 的列数与矩阵 $B$ 的列数相同了，也就是**矩阵 $C$ 的行向量与矩阵 $B$ 的行向量大小相同。**
 
@@ -152,9 +154,9 @@ $$C = \vec{a\_1} \cdot \vec{b\_1} + \vec{a\_2} \cdot \vec{b\_2} + \cdots + \vec{
 
 结论：
 
-{{< notice note >}}
+{{< alert >}}
 矩阵 $C$ 等于矩阵 $A$ 中各列与矩阵 $B$ 中各行乘积之和。
-{{< /notice >}}
+{{< /alert >}}
 
 举个例子，设矩阵 $A = \begin{bmatrix} 2 & 7 \\\ 3 & 8 \\\ 4 & 9 \end{bmatrix}$，矩阵 $B = \begin{bmatrix} 1 & 6 \\\ 0 & 0 \end{bmatrix}$，那么：
 

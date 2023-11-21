@@ -1,0 +1,11 @@
+{{- $title := .Get "title" | default "" -}}
+{{- $closed := eq (.Get "closed") "true" | default false -}}
+
+<details class="details rounded"  {{ if not $closed }}open{{ end }}>
+  <summary class="p-1 rounded">
+    <strong>{{ $title | markdownify | emojify }}</strong>
+  </summary>
+  <div class="mt-3">
+    {{ .InnerDeindent | markdownify | emojify }}
+  </div>
+</details>

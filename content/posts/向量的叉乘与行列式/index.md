@@ -5,19 +5,17 @@ date: 2016-12-03T23:59:48Z
 draft: False
 toc: true
 categories: "math"
-tags: ["math"]
-img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/mario_kart_vector.png"
+tags: ["vector", "matrix"]
+img: "https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-11-21-13-15-eTcNGs.jpg"
 libraries:
 - katex
 ---
 
-<!--more-->
+{{< katex >}}
 
 **为了循序渐进，先从二维开始讲起，然后过渡到三维**
 
-## <span id="inline-toc">1.</span> 二维空间
-
-------
+## 1. 二维空间
 
 我们从一个五边形的面积开始说起
 
@@ -31,7 +29,7 @@ libraries:
 
 现在，我们把正五边形分割成三个三角形，再把三角形的面积加起来，就得到了五边形的面积。
 
-那么问题来了 :** 怎样求三角形的面积？**
+那么问题来了：**怎样求三角形的面积？**
 
 ![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E4%B8%89%E8%A7%92%E5%BD%A2.png)
 
@@ -149,9 +147,7 @@ $$
 
 > 向量$\vec{A}$与向量$\vec{B}$的行列式的绝对值表示一个以$\vec{A}$和$\vec{B}$为边构成的平行四边形的面积
 
-## <span id="inline-toc">2.</span> 三维空间
-
-------
+## 2. 三维空间
 
 在空间中，从简单的开始，我们可以做两件事情：
 
@@ -193,7 +189,7 @@ $$
 
 其中，$\hat{i}$,$\hat{j}$,$\hat{k}$分别为三维空间中的三个坐标轴上的单位向量。
 
-我们把$\vec{A}\times\vec{B}$称为向量$\vec{A}$与$\vec{B}$的<font size=4>$\color{blue}{叉乘！}$</font>
+我们把$\vec{A}\times\vec{B}$称为向量$\vec{A}$与$\vec{B}$的**叉乘**！
 
 如果你仔细观察，你会发现，这个行列式的第二行和第三行分别是向量$\vec{A}$和$\vec{B}$的坐标，但是第一行却是三个单位向量，这意味着后面两行的元素都是数值，而第一行的元素都是向量。这意味着什么？这不是常理上的行列式，如果你尝试在计算器中这样计算，它会显示这是错误的，向量不该出现在这里。
 
@@ -210,7 +206,7 @@ $$
 $$
 </p>
 
-你发现了什么？没错，我们得到的结果不是一个数，而是一个<font size=4>$\color{blue}{向量}$</font>，这就是向量叉乘的定义。
+你发现了什么？没错，我们得到的结果不是一个数，而是一个**向量**，这就是向量叉乘的定义。
 
 那么问题在于，这样定义有什么好处呢？这种怪异计算的几何意义在哪里？为什么我们要费心去这样做？
 
@@ -353,7 +349,7 @@ V=det(\vec{A},\vec{B},\vec{C})=\vec{C}\cdot(\vec{A}\times\vec{B}) \tag{9}
 $$
 </p>
 
-$\vec{C}\cdot(\vec{A}\times\vec{B})$ 称为向量的<font size=4>$\color{blue}{混合积}$</font>。
+$\vec{C}\cdot(\vec{A}\times\vec{B})$ 称为向量的**混合积**。
 
 现在可以得出结论：
 

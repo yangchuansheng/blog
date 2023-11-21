@@ -1,0 +1,636 @@
+/* jetbrains-mono-regular */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: regular;
+  src: url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.eot"); /* IE9 Compat Modes */
+  src: local("JetBrains Mono"), local("JetBrainsMono-Normal"),
+    url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.svg#JetBrainsMono")
+      format("svg"); /* Legacy iOS */
+}
+
+/*
+html {
+  font-family: JetBrains Mono, LXGW WenKai Screen, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial,
+    noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol,
+    noto color emoji;
+}
+*/
+
+article {
+  font-family: JetBrains Mono, LXGW WenKai Screen, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial,
+    noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol,
+    noto color emoji;
+}
+
+#TableOfContents,
+header {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif,
+    apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, liberation mono, courier new, monospace;
+  font-size: 1em;
+}
+
+.prose .chroma:before {
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: " ";
+  height: 12px;
+  left: 12px;
+  margin-top: -20px;
+  position: absolute;
+  width: 12px;
+  z-index: 1;
+}
+
+.prose .chroma {
+  padding-top: 30px;
+}
+
+section div ol {
+  list-style-type: none !important; /* 移除默认的数字 */
+  padding-left: 0.325em !important; /* 移除默认的内边距 */
+  counter-reset: listitem; /* 重置计数器 */
+}
+
+section div ol li {
+  position: relative; /* 设置相对定位，为伪元素定位做准备 */
+  margin-left: 20px; /* 留出空间放置圆圈和数字 */
+}
+
+section div ol li::before {
+  position: absolute; /* 绝对定位，使得伪元素脱离正常文档流，可以自由定位 */
+  left: -1.5rem; /* 向左移动1.5rem，通常用于将圆形标记放置在列表项内容的左侧 */
+  top: 0.24rem; /* 从顶部向下移动0.24rem，用于垂直居中圆形标记 */
+  box-sizing: initial; /* 设置盒模型的计算方式，这里使用浏览器的默认设置 */
+  height: 0.75rem; /* 圆形标记的高度 */
+  width: 1.25rem; /* 圆形标记的宽度 */
+  border-radius: 9999px; /* 设置极大的边框半径来创建圆形 */
+  background-color: rgba(
+    var(--color-neutral-400),
+    0.4
+  ); /* 设置背景色，使用rgba颜色值，透明度为0.4 */
+  padding: 0.25rem 0; /* 设置内边距，垂直方向为0.25rem，水平方向为0 */
+  text-align: center; /* 文本居中，确保数字在圆形标记中居中对齐 */
+  font-size: 0.75rem; /* 字体大小设置为0.75rem */
+  line-height: 1rem; /* 行高设置为1rem */
+  font-weight: 500; /* 字体加粗程度，500为中等加粗 */
+  line-height: 1; /* 行高设置为1，这里可能是一个重复设置，通常以最后一个为准 */
+  color: rgba(
+    var(--color-neutral-700),
+    1
+  ); /* 设置字体颜色，使用rgba颜色值，透明度为1 */
+  counter-increment: listitem; /* 使用CSS计数器，每次列表项出现时增加计数器listitem的值 */
+  content: counter(
+    listitem
+  ); /* 在伪元素中显示计数器listitem的值，即列表项的序号 */
+}
+
+.dark section div ol li::before {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.24rem;
+  box-sizing: initial;
+  height: 0.75rem;
+  width: 1.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(var(--color-neutral-500), 1);
+  padding: 0.25rem 0;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  --tw-text-opacity: 1;
+  color: rgba(var(--color-neutral-100), 1);
+  counter-increment: listitem;
+  content: counter(listitem);
+}
+
+ul > li::marker {
+  color: rgba(var(--color-neutral-700), 1) !important;
+}
+
+.dark ul > li::marker {
+  color: rgba(var(--color-neutral-100), 1) !important;
+}
+
+.katex {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.logo_cursor {
+  display: inline-block;
+  width: 10px;
+  height: 0.3rem;
+  background: #fe5186;
+  margin-left: 2px;
+  margin-bottom: -3px;
+  animation: cursor 1s infinite;
+}
+
+.wrapper__left {
+  position: fixed;
+  top: 8.5%;
+  left: -0.5rem;
+  height: 100vh;
+  width: calc((100vw - 960px) / 2.5);
+}
+
+@media (max-width: 600px) {
+  .wrapper__left {
+    display: none;
+  }
+}
+
+.join-us {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  background: rgba(var(--color-neutral-500), 0.3);
+  background-size: cover;
+  box-shadow: 0 8px 16px rgba(36, 46, 66, 0.05),
+    0 4px 8px rgba(36, 46, 66, 0.06);
+  border-radius: 4px;
+  height: 400px;
+  /*width: 92%;*/
+  /*margin: auto;*/
+  left: 3%;
+  right: 3%;
+  top: 0;
+  bottom: 0;
+}
+
+.join-us .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.join-us .modalImage {
+  margin-top: 5%;
+  display: inline-block;
+}
+
+.join-us h2 {
+  font-weight: 500;
+  font-size: 1.43vw;
+  line-height: 22px;
+}
+
+.join-us a {
+  color: rgba(var(--color-primary-600), 1);
+  text-decoration: none;
+  text-decoration-color: currentcolor;
+  font-weight: 500;
+  /* 暗模式样式 */
+  .dark & {
+    color: rgba(var(--color-primary-400), 1);
+  }
+}
+
+.join-us .title {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.join-us > p {
+  margin: 8px 14px 0;
+  text-align: left;
+  font-size: 0.87vw;
+  line-height: 24px;
+  color: rgba(var(--color-neutral-700), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.join-us > div {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  font-size: 0;
+}
+
+.join-us > div p {
+  font-size: 12px;
+  color: rgba(var(--color-neutral-700), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.join-us .slack {
+  margin-left: 0px;
+}
+
+.join-us .slack img {
+  margin-top: 25%;
+}
+
+.join-us .slack p {
+  width: 110%;
+  text-align: center;
+  background: #059669;
+  border: 1px solid #479e88;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-top: 20%;
+  font-size: 0.7vw;
+}
+
+.join-us .slack p a {
+  line-height: 28px;
+  color: #ffffff;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.join-us .slack p a::after {
+  display: none;
+}
+
+.join-us .wechat {
+  margin-left: 48px;
+}
+
+.join-us .wechat img {
+  margin-top: 17%;
+}
+
+.join-us .wechat p {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-top: 20%;
+  font-size: 0.7vw;
+}
+
+.button_left {
+  font-family: inherit;
+  background: #2ca0d9;
+  color: white;
+  padding: 0.35em 0;
+  font-size: 14px;
+  border: none;
+  border-radius: 0.7em;
+  letter-spacing: 0.08em;
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 2.4em;
+  padding-left: 2.8em;
+  padding-right: 0.9em;
+  margin: 5% auto;
+}
+
+.button_left .icon_left {
+  background: #fff;
+  height: 1.6em;
+  width: 1.6em;
+  border-radius: 2em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0.4em;
+  transition: all 0.5s;
+  margin-top: 2.7%;
+}
+
+.icon_left svg {
+  /*margin-left: 0.4em;*/
+  transition: all 0.5s;
+  color: #2ca0d9;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.button_left:hover .icon_left svg {
+  transform: rotate(360deg);
+}
+
+.button_left:hover .icon_left {
+  width: calc(100% - 0.85rem);
+  border-radius: 0.5em;
+}
+.button_left a {
+  margin-top: -30px;
+  color: #ffffff;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.button_left a::after {
+  display: none;
+}
+
+.busuanzi {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 250px;
+}
+
+.busuanzi__item {
+  padding: 0.125rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.busuanzi__item--label {
+  font-size: 12.8px;
+  padding: 0.125rem 0;
+  font-style: italic;
+}
+
+.busuanzi__item--number {
+  font-size: 16.8px;
+  font-weight: 700;
+}
+
+/* 徽章样式 */
+.github-badge {
+  display: inline-block;
+  border-radius: 4px;
+  text-shadow: none;
+  font-size: 12px;
+  color: #fff;
+  line-height: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.github-badge .badge-subject {
+  display: inline-block;
+  background-color: #4d4d4d;
+  padding: 4px 4px 4px 6px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.github-badge .badge-value {
+  display: inline-block;
+  padding: 4px 6px 4px 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.github-badge .bg-brightgreen {
+  background-color: #4dc820 !important;
+}
+.github-badge .bg-orange {
+  background-color: #ffa500 !important;
+}
+.github-badge .bg-yellow {
+  background-color: #d8b024 !important;
+}
+.github-badge .bg-blueviolet {
+  background-color: #8833d7 !important;
+}
+.github-badge .bg-pink {
+  background-color: #f26bae !important;
+}
+.github-badge .bg-red {
+  background-color: #e05d44 !important;
+}
+.github-badge .bg-blue {
+  background-color: #007ec6 !important;
+}
+.github-badge .bg-lightgrey {
+  background-color: #9f9f9f !important;
+}
+.github-badge .bg-grey,
+.github-badge .bg-gray {
+  background-color: #555 !important;
+}
+.github-badge .bg-lightgrey,
+.github-badge .bg-lightgray {
+  background-color: #9f9f9f !important;
+}
+
+/* 评论区样式 */
+
+.comment-list .comment-item-content p {
+  color: rgba(var(--color-neutral-700), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.comment-list .comment-item-header .comment-item-name[href^="javascript"] {
+  color: #0095dd !important;
+}
+
+.comment-header .comment-header-item {
+  color: rgba(var(--color-neutral-700), 1);
+  border-bottom: 2px solid rgba(var(--color-primary-600), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+    border-bottom: 2px solid rgba(var(--color-primary-400), 1);
+  }
+}
+
+.comment-list .comment-item-header .comment-item-time,
+.comment-list .comment-item-footer .comment-item-reply,
+.comment-list .comment-item-footer .comment-item-edit,
+.comment-list .comment-item-footer .comment-item-delete,
+.comment-list .comment-item-header .comment-item-pname .icon,
+.comment-list .comment-item-header .comment-item-pname {
+  .dark & {
+    color: rgba(var(--color-neutral-400), 1);
+    fill: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-header .comment-header-item:last-child:hover {
+  color: rgba(var(--color-primary-600), 1) !important;
+  .dark & {
+    color: rgba(var(--color-primary-400), 1) !important;
+  }
+}
+
+.comment-navbar .comment-recommend {
+  .dark & {
+    border: 1px solid rgba(var(--color-neutral-400), 1);
+    color: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-navbar .comment-recommend .icon {
+  .dark & {
+    fill: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-related .comment-related-title,
+.comment-related .related-list .related-item-desc {
+  .dark & {
+    color: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-related .comment-related-forumname {
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.comment-related .related-list .related-item-link {
+  color: rgba(var(--color-neutral-600), 1) !important;
+  .dark & {
+    color: rgba(var(--color-neutral-200), 1) !important;
+  }
+}
+
+#fixed-box {
+  position: fixed;
+  z-index: 9999;
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.feedback-btn-wrapper {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  margin: 6rem 2rem;
+}
+#feedback-btn {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0.7rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  user-select: none;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  background-color: #4d698e;
+  transition: filter 0.4s ease;
+}
+
+#feedback-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+#feedback-btn span {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* shotcode tabs 样式 */
+
+/* 标签按钮默认状态的样式 */
+.tablinks {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: 0.3s;
+  font-size: 17px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+/* 标签按钮激活时和悬停时的样式 */
+.tablinks.active,
+.tablinks:hover {
+  background-color: rgba(var(--color-neutral-200), 0.5);
+  border: 1px solid rgba(var(--color-neutral-300), 0.5);
+  border-bottom: none;
+  text-decoration-line: none;
+  .dark & {
+    background-color: rgba(var(--color-neutral-600), 0.5);
+    border: 1px solid rgba(var(--color-neutral-700), 0.2);
+    border-bottom: none;
+  }
+}
+
+/* 样式化标签页内容 (tabcontent) */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  background: rgba(var(--color-neutral-200), 0.5);
+  border: 1px solid rgba(var(--color-neutral-300), 0.5);
+  border-top: none;
+  .dark & {
+    background-color: rgba(var(--color-neutral-600), 0.5);
+    border: 1px solid rgba(var(--color-neutral-700), 0.2);
+    border-top: none;
+  }
+}
+
+/* 清除浮动 */
+.tabs:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.details {
+  background-color: rgba(var(--color-neutral-300), 0.5);
+  border-color: rgba(var(--color-neutral-300), 1);
+  color: var(--text-default);
+  padding: 0.5rem !important;
+  margin-bottom: 1.5rem !important;
+  margin-top: 1.5rem !important;
+  .dark & {
+    background-color: rgba(var(--color-neutral-900), 0.5);
+    border-color: rgba(var(--color-neutral-900), 1);
+  }
+}

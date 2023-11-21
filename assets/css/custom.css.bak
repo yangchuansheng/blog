@@ -1,0 +1,361 @@
+/* jetbrains-mono-regular */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: regular;
+  src: url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.eot"); /* IE9 Compat Modes */
+  src: local("JetBrains Mono"), local("JetBrainsMono-Normal"),
+    url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.woff2")
+      format("woff2"),
+    /* Super Modern Browsers */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.woff")
+      format("woff"),
+    /* Modern Browsers */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.ttf")
+      format("truetype"),
+    /* Safari, Android, iOS */
+      url("//lib.baomitu.com/fonts/jetbrains-mono/jetbrains-mono-regular.svg#JetBrainsMono")
+      format("svg"); /* Legacy iOS */
+}
+
+html {
+  font-family: JetBrains Mono, LXGW WenKai Screen;
+}
+code,
+kbd,
+samp,
+pre {
+  font-family: JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, liberation mono, courier new, monospace;
+  font-size: 1em;
+}
+
+.prose .chroma:before {
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: " ";
+  height: 12px;
+  left: 12px;
+  margin-top: -20px;
+  position: absolute;
+  width: 12px;
+  z-index: 1;
+}
+
+.prose .chroma {
+  padding-top: 30px;
+}
+
+.logo_cursor {
+  display: inline-block;
+  width: 10px;
+  height: 0.3rem;
+  background: #fe5186;
+  margin-left: 2px;
+  margin-bottom: -3px;
+  animation: cursor 1s infinite;
+}
+
+.wrapper__left {
+  position: fixed;
+  top: 8.5%;
+  left: -0.5rem;
+  height: 100vh;
+  width: calc((100vw - 960px) / 2.5);
+}
+
+@media (max-width: 600px) {
+  .wrapper__left {
+    display: none;
+  }
+}
+
+.join-us {
+  position: absolute;
+  z-index: 10;
+  text-align: center;
+  background: rgba(var(--color-neutral-500), 0.3);
+  background-size: cover;
+  box-shadow: 0 8px 16px rgba(36, 46, 66, 0.05),
+    0 4px 8px rgba(36, 46, 66, 0.06);
+  border-radius: 4px;
+  height: 400px;
+  /*width: 92%;*/
+  /*margin: auto;*/
+  left: 3%;
+  right: 3%;
+  top: 0;
+  bottom: 0;
+}
+
+.join-us .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.join-us .modalImage {
+  margin-top: 5%;
+  display: inline-block;
+}
+
+.join-us h2 {
+  font-weight: 500;
+  font-size: 1.43vw;
+  line-height: 22px;
+}
+
+.join-us a {
+  color: rgba(var(--color-primary-600), 1);
+  text-decoration: none;
+  text-decoration-color: currentcolor;
+  font-weight: 500;
+  /* 暗模式样式 */
+  .dark & {
+    color: rgba(var(--color-primary-400), 1);
+  }
+}
+
+.join-us .title {
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.join-us > p {
+  margin: 8px 14px 0;
+  text-align: left;
+  font-size: 0.87vw;
+  line-height: 24px;
+  color: rgba(var(--color-neutral-700), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.join-us > div {
+  margin-top: 4px;
+  display: flex;
+  justify-content: center;
+  font-size: 0;
+}
+
+.join-us > div p {
+  font-size: 12px;
+  color: rgba(var(--color-neutral-700), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.join-us .slack {
+  margin-left: 0px;
+}
+
+.join-us .slack img {
+  margin-top: 25%;
+}
+
+.join-us .slack p {
+  width: 110%;
+  text-align: center;
+  background: #059669;
+  border: 1px solid #479e88;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-top: 20%;
+  font-size: 0.7vw;
+}
+
+.join-us .slack p a {
+  line-height: 28px;
+  color: #ffffff;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.join-us .slack p a::after {
+  display: none;
+}
+
+.join-us .wechat {
+  margin-left: 48px;
+}
+
+.join-us .wechat img {
+  margin-top: 17%;
+}
+
+.join-us .wechat p {
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 2px;
+  margin-top: 20%;
+  font-size: 0.7vw;
+}
+
+.button_left {
+  font-family: inherit;
+  background: #2ca0d9;
+  color: white;
+  padding: 0.35em 0;
+  font-size: 14px;
+  border: none;
+  border-radius: 0.7em;
+  letter-spacing: 0.08em;
+  position: relative;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 2.4em;
+  padding-left: 2.8em;
+  padding-right: 0.9em;
+  margin: 5% auto;
+}
+
+.button_left .icon_left {
+  background: #fff;
+  height: 1.6em;
+  width: 1.6em;
+  border-radius: 2em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0.4em;
+  transition: all 0.5s;
+  margin-top: 2.7%;
+}
+
+.icon_left svg {
+  /*margin-left: 0.4em;*/
+  transition: all 0.5s;
+  color: #2ca0d9;
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.button_left:hover .icon_left svg {
+  transform: rotate(360deg);
+}
+
+.button_left:hover .icon_left {
+  width: calc(100% - 0.85rem);
+  border-radius: 0.5em;
+}
+.button_left a {
+  margin-top: -30px;
+  color: #ffffff;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.button_left a::after {
+  display: none;
+}
+
+.busuanzi {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  width: 250px;
+}
+
+.busuanzi__item {
+  padding: 0.125rem;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  -ms-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  -ms-flex-grow: 1;
+  flex-grow: 1;
+}
+
+.busuanzi__item--label {
+  font-size: 12.8px;
+  padding: 0.125rem 0;
+  font-style: italic;
+}
+
+.busuanzi__item--number {
+  font-size: 16.8px;
+  font-weight: 700;
+}
+
+/* 徽章样式 */
+.github-badge {
+  display: inline-block;
+  border-radius: 4px;
+  text-shadow: none;
+  font-size: 12px;
+  color: #fff;
+  line-height: 15px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.github-badge .badge-subject {
+  display: inline-block;
+  background-color: #4d4d4d;
+  padding: 4px 4px 4px 6px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.github-badge .badge-value {
+  display: inline-block;
+  padding: 4px 6px 4px 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.github-badge .bg-brightgreen {
+  background-color: #4dc820 !important;
+}
+.github-badge .bg-orange {
+  background-color: #ffa500 !important;
+}
+.github-badge .bg-yellow {
+  background-color: #d8b024 !important;
+}
+.github-badge .bg-blueviolet {
+  background-color: #8833d7 !important;
+}
+.github-badge .bg-pink {
+  background-color: #f26bae !important;
+}
+.github-badge .bg-red {
+  background-color: #e05d44 !important;
+}
+.github-badge .bg-blue {
+  background-color: #007ec6 !important;
+}
+.github-badge .bg-lightgrey {
+  background-color: #9f9f9f !important;
+}
+.github-badge .bg-grey,
+.github-badge .bg-gray {
+  background-color: #555 !important;
+}
+.github-badge .bg-lightgrey,
+.github-badge .bg-lightgray {
+  background-color: #9f9f9f !important;
+}

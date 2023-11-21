@@ -5,12 +5,14 @@ date: 2016-06-04T13:28:25Z
 draft: false
 author: 米开朗基杨
 categories: "math"
-tags: ["math"]
-img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191205104713.png"
+tags: ["vector", "matrix"]
+img: "https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-21-13-34-15XA2O.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 libraries:
 - katex
 ---
+
+{{< katex >}}
 
 曾经看过国内各种关于讲解最小二乘法的教科书，但都是一大堆枯燥的推导公式，看起来很高深的样子，其实根本不知道它在说些什么！传授知识本来就应该告诉你这个东西到底是什么，它到底是干嘛的，就应该把复杂的问题简单化，可国内大多数教科书都是反其道而行，全是看起来很牛逼的样子，学生看了却什么也不懂。今天我就用最通俗易懂的方式，从线性代数和线性空间的角度告诉你什么是最小二乘法。
 
@@ -39,7 +41,7 @@ $$
 $$AX = B\tag{3}$$
 
 
-其中，$A = \begin{bmatrix} 1 & 1 \\\1 & 2 \\\1 & 3 \end{bmatrix}$，$X = \begin{bmatrix} C & D \end{bmatrix}$，$B = \begin{bmatrix} 1 \\\2 \\\3 \end{bmatrix}$。
+其中，\\(A = \begin{bmatrix} 1 & 1 \\\1 & 2 \\\1 & 3 \end{bmatrix}\\)，\\(X = \begin{bmatrix} C & D \end{bmatrix}\\)，\\(B = \begin{bmatrix} 1 \\\2 \\\3 \end{bmatrix}\\)。
 
 &emsp;&emsp;A的列向量线性无关，所以它们构成了列空间的一组基，但列空间不包括向量B，所以方程无解。那么最优解是什么呢？
 我们将AX与B之间的差值相加，得到：
@@ -75,7 +77,7 @@ $$A\hat{X} = p\tag{7}$$
 
 $$p = PB\tag{8}$$
 
-如果不懂什么是投影矩阵，可以参考我的另一篇文章[子空间投影](http://icloudnative.io/posts/子空间投影/)，在此不作赘述。
+如果不懂什么是投影矩阵，可以参考我的另一篇文章[子空间投影](/posts/子空间投影/)，在此不作赘述。
 通过投影矩阵的知识我们知道投影矩阵P的表达式为
 
 $$P = A(A^TA)^{-1}A^T\tag{9}$$
