@@ -1,10 +1,9 @@
 * {
-  cursor: url(/img/mouse.cur), default !important;
+  cursor: url(/img/cursor/2078-blue-pointer-cursor.svg), default !important;
 }
 
-a,
-span {
-  cursor: url(/img/20201203142116.cur), pointer !important;
+a, a:hover, a:focus, img, svg, a span, svg path, a span p, .thumbnail_card, .cursor-pointer, button, .icon {
+  cursor: url(/img/cursor/2078-blue-pointer-pointer.svg), pointer !important;
 }
 
 /* jetbrains-mono-regular */
