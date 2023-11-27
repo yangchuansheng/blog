@@ -8,6 +8,20 @@ showLikes: false
 
 作为 Microsoft、Google、Intel、NVIDIA、Qualcomm、中国电信、阿里巴巴集团、百度、腾讯、京东、哔哩哔哩、招商银行、台湾华硕股份、深圳万普拉斯科技、中国证监局、国家电网、中国铁路局等数十家国内外企业的投资人之一，并且保持着长期稳定的贸易与投资关系，每年助力企业产生数百亿的交易额的同时，为人低调。
 
+{{< typeit 
+  tag=h2
+  speed=100
+  breakLines=false
+  loop=true
+>}}
+Long Live Sealos!
+Long Live FastGPT!
+Long Live Laf!
+Long Live Cloud Native!
+Long Live Kubernetes!
+{{< /typeit >}}
+
+
 {{< timeline >}}
 
 {{< timelineItem icon="github" header="Sealos 云操作系统" badge="云原生" >}}

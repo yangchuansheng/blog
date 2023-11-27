@@ -1,0 +1,14 @@
+{{ $recentArticles := 5 }}
+{{ $recentArticles = .Site.Params.homepage.showRecentItems }}
+
+{{- /* change */ -}}
+{{ $pinnedArticles := where .Site.RegularPages "Params.pinned" true }}
+
+<section class="w-full grid gap-4 sm:grid-cols-2 md:grid-cols-3">
+  {{ range $pinnedArticles }}
+    {{ partial "article-link/card.html" . }}
+  {{ end }}
+  {{ range first $recentArticles (.Paginate (where (where .Site.RegularPages "Params.pinned" "!=" true) "Type" "in" .Site.Params.mainSections)).Pages.ByLastmod.Reverse }}
+    {{ partial "article-link/card.html" . }}
+  {{ end }}
+</section>
