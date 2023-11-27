@@ -11,12 +11,11 @@ date: 2018-12-17T16:05:24+08:00
 draft: false
 author: 米开朗基杨
 categories: service-mesh
-tags: ["istio", "service mesh"]
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/EKgExxzUcAABNfM.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
-
-<!--more-->
 
 众所周知，当我们讨论 Istio 时，性能并不是它最大的痛点，最大的痛点是有时候会出现一些莫名其妙的问题，而我们根本不知道问题出在哪里，也无从下手，在很多方面它仍然是一个谜。你可能已经看过它的官方文档，有的人可能已经尝试使用了，但你真的理解它了吗？
 

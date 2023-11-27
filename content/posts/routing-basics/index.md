@@ -1,19 +1,25 @@
 ---
+keywords:
+- envoy
+- envoy proxy
+- HTTP
 title: "Envoy 基础教程：HTTP 路由解析"
 subtitle: "通过 HTTP 路由规则来切换流量"
 date: 2018-06-29T09:57:33Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service-mesh"
-tags: ["envoy"]
+categories:
+- cloud-native
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203203731.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-本文将更详细地讨论 Envoy 的 HTTP 路由，如果你已经看过了我的上篇文章：[在你的笔记本上运行 Envoy](https://icloudnative.io/posts/run-envoy-on-your-laptop/)，现在就可以更深入地了解如何在静态文件中配置路由（Route）、集群（Cluster）和监听器（Listener）了。
+本文将更详细地讨论 Envoy 的 HTTP 路由，如果你已经看过了我的上篇文章：[在你的笔记本上运行 Envoy](/posts/run-envoy-on-your-laptop/)，现在就可以更深入地了解如何在静态文件中配置路由（Route）、集群（Cluster）和监听器（Listener）了。
 
-## <span id="inline-toc">1.</span> 相关组件
+## 相关组件
 
 ----
 
@@ -29,7 +35,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 <span id="inline-blue">监听器</span> 是可以接受来自下游客户端的连接的命名网络位置（例如，端口，unix域套接字等）。Envoy 公开一个或多个下游主机连接的侦听器。同样，监听器可以通过静态定义，也可以通过监听器发现服务（LDS）动态获取。
 
-## <span id="inline-toc">2.</span> 配置路由
+## 配置路由
 
 ----
 
@@ -75,7 +81,7 @@ clusters:
           port_value: 80
 ```
 
-## <span id="inline-toc">3.</span> 配置监听器
+## 配置监听器
 
 ----
 
@@ -113,7 +119,7 @@ listeners:
             config: {}
 ```
 
-## <span id="inline-toc">4.</span> 动态发现路由、集群和监听器
+## 动态发现路由、集群和监听器
 
 ----
 
@@ -121,7 +127,7 @@ listeners:
 
 现在你已经了解了如何配置基本的路由、集群和监听器，下一节我们将学习如何在增量部署中设置更复杂的流量切换和过滤规则。
 
-## <span id="inline-toc">5.</span> 参考
+## 参考
 
 ----
 

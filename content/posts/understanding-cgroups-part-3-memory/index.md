@@ -4,6 +4,7 @@ keywords:
 - cgroup
 - linux
 - systemd
+- linux cgroup
 title: "Linux Cgroup 入门教程：内存"
 subtitle: "通过 cgroup 控制内存的使用"
 description: 本文将通过具体的示例来演示如何通过 cgroup 来限制内存的使用。
@@ -11,8 +12,10 @@ date: 2019-07-25T22:41:11+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "cgroup"]
+categories:
+- Linux
+tags:
+- Cgroup
 series:
 - Linux Cgroup 入门系列
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-07-26-andrey-konstantinov-Jk8tUzZ0O6E-unsplash.jpg"
@@ -21,13 +24,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 该系列文章总共分为三篇：
 
-+ [Linux Cgroup 入门教程：基本概念](https://icloudnative.io/posts/understanding-cgroups-part-1-basics/)
-+ [Linux Cgroup 入门教程：CPU](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)
-+ [Linux Cgroup 入门教程：内存](https://icloudnative.io/posts/understanding-cgroups-part-3-memory/)
++ [Linux Cgroup 入门教程：基本概念](/posts/understanding-cgroups-part-1-basics/)
++ [Linux Cgroup 入门教程：CPU](/posts/understanding-cgroups-part-2-cpu/)
++ [Linux Cgroup 入门教程：内存](/posts/understanding-cgroups-part-3-memory/)
 
-通过[上篇文章](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)的学习，我们学会了如何查看当前 cgroup 的信息，如何通过操作 `/sys/fs/cgroup` 目录来动态设置 cgroup，也学会了如何设置 CPU shares 和 CPU quota 来控制 `slice` 内部以及不同 `slice` 之间的 CPU 使用时间。本文将把重心转移到内存上，通过具体的示例来演示如何通过 cgroup 来限制内存的使用。
+通过[上篇文章](/posts/understanding-cgroups-part-2-cpu/)的学习，我们学会了如何查看当前 cgroup 的信息，如何通过操作 `/sys/fs/cgroup` 目录来动态设置 cgroup，也学会了如何设置 CPU shares 和 CPU quota 来控制 `slice` 内部以及不同 `slice` 之间的 CPU 使用时间。本文将把重心转移到内存上，通过具体的示例来演示如何通过 cgroup 来限制内存的使用。
 
-## <span id="inline-toc">1.</span> 寻找走失内存
+## 寻找走失内存
 
 ----
 
@@ -108,7 +111,7 @@ $ cat memory.failcnt
 
 从上面的结果可以看出，当物理内存不够时，就会触发 memory.failcnt 里面的数量加 1，但此时进程不一定会被杀死，内核会尽量将物理内存中的数据移动到 swap 空间中。
 
-## <span id="inline-toc">2.</span> 关闭 swap
+## 关闭 swap
 
 ----
 
@@ -158,11 +161,11 @@ $ session optional pam_exec.so seteuid /usr/local/bin/tom-noswap.sh
 
 现在再使用 tom 用户登录，就会发现 `memory.swappiness` 的值变成了 0。
 
-{{< notice note >}}
+{{< alert >}}
 这里需要注意一个前提：至少有一个用户 tom 的登录会话，且通过 `systemctl set-property user-1000.slice MemoryLimit=200M` 命令设置了 limit，`/sys/fs/cgroup/memory/user.slice/user-1000.slice` 目录才会存在。所以上面的所有操作，一定要保证至少保留一个用户 tom 的登录会话。
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">3.</span> 控制内存使用
+## 控制内存使用
 
 ----
 
@@ -195,7 +198,7 @@ stress: FAIL: [30150] (451) failed run completed in 0s
 
 由此可见 cgroup 对内存的限制奏效了，stress 进程的内存使用量超出了限制，触发了 oom-killer，进而杀死进程。
 
-## <span id="inline-toc">4.</span> 更多文档
+## 更多文档
 
 ----
 

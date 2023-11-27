@@ -4,6 +4,7 @@ keywords:
 - alertmanager
 - victoriametrics
 - prometheusrule
+- Grafana
 title: "Prometheus Operator 教程：根据服务维度对 Prometheus 分片"
 date: 2020-08-05T14:32:04+08:00
 lastmod: 2020-08-05T14:32:04+08:00
@@ -15,8 +16,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- prometheus
-categories: monitoring
+- Prometheus
+categories: 
+- Monitoring
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805191357.png
 ---
 

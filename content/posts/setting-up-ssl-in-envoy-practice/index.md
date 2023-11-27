@@ -1,11 +1,21 @@
 ---
+keywords:
+- service mesh
+- envoy
+- 服务网格
+- SSL
+- TLS
 title: "Envoy 基础教程：开启 TLS 验证实战"
 date: 2018-09-26T17:43:00+08:00
 subtitle: "通过 Envoy 反向代理 hugo 静态页面"
 draft: false
 author: 米开朗基杨
-categories: service-mesh
-tags: ["envoy", "service mesh", "hugo"]
+categories: 
+- cloud-native
+- Blog
+tags:
+- Envoy
+- Hugo
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203153032.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -18,9 +28,9 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 而 [Envoy](https://www.envoyproxy.io/) 是一款现代化的，高性能，小体积的边缘及服务代理，浑身散发出一股时尚潮流的气息。作为一名斜杠青年，在经过一定地了解后，我果断入了 Envoy 的坑。
 
-关于如何为 Envoy 开启证书验证可以参考我之间的文章：[为 Envoy 启用证书验证](https://icloudnative.io/posts/setting-up-ssl-in-envoy/)。本文将直接进入实战部分，通过 Envoy 来反向代理我的博客静态页面，并且加密客户端和 Envoy 代理之间的所有流量。
+关于如何为 Envoy 开启证书验证可以参考我之间的文章：[为 Envoy 启用证书验证](/posts/setting-up-ssl-in-envoy/)。本文将直接进入实战部分，通过 Envoy 来反向代理我的博客静态页面，并且加密客户端和 Envoy 代理之间的所有流量。
 
-## <span id="inline-toc">1.</span> 方案架构
+## 方案架构
 
 ----
 
@@ -34,7 +44,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 但本文需要开启 TLS 验证，如果前端代理开启了 TLS 验证，那么必须配合服务 Envoy 使用，否则验证将无法通过。
 
-## <span id="inline-toc">2.</span> 部署服务 Envoy
+## 部署服务 Envoy
 
 ----
 
@@ -122,7 +132,7 @@ admin:
 + ① `8080` : 服务 Envoy 的监听端口。
 + ② `80` : hugo 静态页面的监听端口。
 
-## <span id="inline-toc">3.</span> 部署前端代理
+## 部署前端代理
 
 ----
 
@@ -239,7 +249,7 @@ admin:
 + ③ : TLS 监听器支持 `ALPN`。HTTP 连接管理器使用这个信息（以及协议接口）来确定客户端使用的是 `HTTP/1.1` 还是 `HTTP/2`。
 + ④ : 网站使用的证书。可以通过 [Let's Encrypt](https://letsencrypt.org/) 申请免费的证书。
 
-其他配置详细说明请参考：[为 Envoy 启用证书验证](https://icloudnative.io/posts/setting-up-ssl-in-envoy/)。
+其他配置详细说明请参考：[为 Envoy 启用证书验证](/posts/setting-up-ssl-in-envoy/)。
 
 准备好所有配置以后，我们就可以通过以下命令来启动所有服务了：
 

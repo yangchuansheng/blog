@@ -4,6 +4,7 @@ keywords:
 - cgroup
 - linux
 - systemd
+- linux cgroup
 title: "Linux Cgroup 入门教程：CPU"
 subtitle: "控制 CPU 的相对使用时间和绝对使用时间"
 description: 通过具体的示例来演示如何通过 cgroup 来限制 CPU 的使用以及不同的 cgroup 设置对性能的影响。
@@ -11,8 +12,10 @@ date: 2019-05-31T17:21:52+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "cgroup"]
+categories: 
+- Linux
+tags:
+- Cgroup
 series:
 - Linux Cgroup 入门系列
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-06-06-D2oVA1hX0AIc3gM.png"
@@ -21,13 +24,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 该系列文章总共分为三篇：
 
-+ [Linux Cgroup 入门教程：基本概念](https://icloudnative.io/posts/understanding-cgroups-part-1-basics/)
-+ [Linux Cgroup 入门教程：CPU](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)
-+ [Linux Cgroup 入门教程：内存](https://icloudnative.io/posts/understanding-cgroups-part-3-memory/)
++ [Linux Cgroup 入门教程：基本概念](/posts/understanding-cgroups-part-1-basics/)
++ [Linux Cgroup 入门教程：CPU](/posts/understanding-cgroups-part-2-cpu/)
++ [Linux Cgroup 入门教程：内存](/posts/understanding-cgroups-part-3-memory/)
 
 上篇文章主要介绍了 cgroup 的一些基本概念，包括其在 `CentOS` 系统中的默认设置和控制工具，并以 CPU 为例阐述 cgroup 如何对资源进行控制。这篇文章将会通过具体的示例来演示如何通过 cgroup 来限制 `CPU` 的使用以及不同的 cgroup 设置对性能的影响。
 
-## <span id="inline-toc">1.</span> 查看当前 cgroup 信息
+## 查看当前 cgroup 信息
 
 ----
 
@@ -129,19 +132,19 @@ $ systemctl restart sshd
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163252.png)
 
-{{< notice note >}}
+{{< alert >}} 
 开启资源使用量统计功能可能会增加系统的负载，因为资源统计也要消耗 CPU 和内存，大多数情况下使用 `top` 命令来查看就足够了。当然了，这是 Linux 系统嘛，一切的控制权都在你自己手里，你想怎么做就怎么做。
-{{< /notice >}}
+{{< /alert >}} 
 
-## <span id="inline-toc">2.</span> 分配 CPU 相对使用时间
+## 分配 CPU 相对使用时间
 
 ----
 
 通过上篇文章的学习我们知道了 CPU `shares` 可以用来设置 CPU 的相对使用时间，接下来我们就通过实践来验证一下。
 
-{{< notice note >}}
+{{< alert >}} 
 下面所做的实验都是在单核 CPU 的系统上进行的，多核与单核的情况完全不同，文末会单独讨论。
-{{< /notice >}}
+{{< /alert >}} 
 
 测试对象是 1 个 service 和两个普通用户，其中用户 `tom` 的 UID 是 1000，可以通过以下命令查看：
 
@@ -202,7 +205,7 @@ $ systemctl set-property user-1000.slice CPUShares=256
 
 上面我们已经提到，这种场景下 `user.slice` 和 `system.slice` 会各获得 `50%` 的 CPU 使用时间。用户 tom 的 CPU shares 是 `256`，而用户 jack 的 CPU shares 是 `1024`，因此用户 jack 获得的 CPU 使用时间是用户 tom 的 `4` 倍。
 
-## <span id="inline-toc">3.</span> 分配 CPU 绝对使用时间
+## 分配 CPU 绝对使用时间
 
 ----
 
@@ -222,7 +225,7 @@ $ systemctl set-property user-1000.slice CPUQuota=5%
 
 如果某个非核心服务很消耗 CPU 资源，你可以通过这种方法来严格限制它对 CPU 资源的使用，防止对系统中其他重要的服务产生影响。
 
-## <span id="inline-toc">4.</span> 动态设置 cgroup
+## 动态设置 cgroup
 
 ----
 
@@ -259,11 +262,11 @@ $ cat foo.service/cpu.shares
 2048
 ```
 
-{{< notice note >}}
+{{< alert >}} 
 理论上我们可以在 `/sys/fs/cgroup` 目录中动态改变 cgroup 的配置，但我不建议你在生产环境中这么做。如果你想通过实验来深入理解 cgroup，可以多折腾折腾这个目录。
-{{< /notice >}}
+{{< /alert >}} 
 
-## <span id="inline-toc">5.</span> 如果是多核 CPU 呢？
+## 如果是多核 CPU 呢？
 
 ----
 
@@ -285,7 +288,7 @@ $ systemctl set-property foo.service CPUQuota=200%
 
 至于进程最后能不能完全使用两个 CPU 核，就要看它自身的设计支持不支持了。
 
-## <span id="inline-toc">6.</span> 总结
+## 总结
 
 ----
 

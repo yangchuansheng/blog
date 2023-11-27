@@ -11,8 +11,10 @@ date: 2019-11-03T23:23:19-05:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "capabilities"]
+categories:
+- Linux
+tags:
+- Capabilities
 series:
 - Linux Capabilities 入门系列
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-linux-capabilities-in-practice.webp"
@@ -20,15 +22,15 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-linux-capabili
 
 该系列文章总共分为三篇：
 
-+ [Linux Capabilities 入门教程：概念篇](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)
-+ [Linux Capabilities 入门教程：基础实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-1/)
-+ [Linux Capabilities 入门教程：进阶实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-2/)
++ [Linux Capabilities 入门教程：概念篇](/posts/linux-capabilities-why-they-exist-and-how-they-work/)
++ [Linux Capabilities 入门教程：基础实战篇](/posts/linux-capabilities-in-practice-1/)
++ [Linux Capabilities 入门教程：进阶实战篇](/posts/linux-capabilities-in-practice-2/)
 
-[上篇文章](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)介绍了 Linux capabilities 的诞生背景和基本原理，本文将会通过具体的示例来展示如何查看和设置文件的 capabilities。
+[上篇文章](/posts/linux-capabilities-why-they-exist-and-how-they-work/)介绍了 Linux capabilities 的诞生背景和基本原理，本文将会通过具体的示例来展示如何查看和设置文件的 capabilities。
 
 Linux 系统中主要提供了两种工具来管理 capabilities：`libcap` 和 `libcap-ng`。`libcap` 提供了 `getcap` 和 `setcap` 两个命令来分别查看和设置文件的 capabilities，同时还提供了 `capsh` 来查看当前 shell 进程的 capabilities。`libcap-ng` 更易于使用，使用同一个命令 `filecap` 来查看和设置 capabilities。
 
-## <span id="inline-toc">1.</span> libcap
+## libcap
 
 ----
 
@@ -212,7 +214,7 @@ $ setcap CAP_CHOWN,CAP_DAC_OVERRIDE+ep file1
 $ setcap -r filename
 ```
 
-## <span id="inline-toc">2.</span> libcap-ng
+## libcap-ng
 
 ----
 
@@ -280,13 +282,13 @@ $ filecap /usr/bin/tac dac_override
 $ filecap /full/path/to/file none
 ```
 
-## <span id="inline-toc">3.</span> 总结
+## 总结
 
 ----
 
 本文通过两种工具演示了如何对可执行文件的 capabilities 进行管理，并以 docker 为例，展现了 `no_new_privs` 的强大之处。如果条件允许，推荐大家以后尽量用 capabilities 来替代完整的 root 权限或者设置 SUID 标识。
 
-## <span id="inline-toc">4.</span> 参考资料
+## 参考资料
 
 ----
 

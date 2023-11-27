@@ -21,7 +21,7 @@ categories: Network
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201231104851.jpg
 ---
 
-前段时间 [ipfire](https://www.ipfire.org) 的 Michael Tremer 写过一篇文章叫[《Why not WireGuard》](https://icloudnative.io/posts/why-not-wireguard/)，随后不久，[Tailscale](https://tailscale.com) 的大佬 [Avery Pennarun](https://twitter.com/apenwarr) 也写了一篇文章来和 Michael Tremer 叫板，文章的标题就很挑衅：[《Why not "Why not WireGuard?"》](https://tailscale.com/blog/why-not-why-not-wireguard/)，整篇文章的风格就是针对 Michael Tremer 的观点逐一反驳，老刺激了。咱也不知道谁对谁错，咱也不敢问，端个小板凳看戏就是了。
+前段时间 [ipfire](https://www.ipfire.org) 的 Michael Tremer 写过一篇文章叫[《Why not WireGuard》](/posts/why-not-wireguard/)，随后不久，[Tailscale](https://tailscale.com) 的大佬 [Avery Pennarun](https://twitter.com/apenwarr) 也写了一篇文章来和 Michael Tremer 叫板，文章的标题就很挑衅：[《Why not "Why not WireGuard?"》](https://tailscale.com/blog/why-not-why-not-wireguard/)，整篇文章的风格就是针对 Michael Tremer 的观点逐一反驳，老刺激了。咱也不知道谁对谁错，咱也不敢问，端个小板凳看戏就是了。
 
 以下是这篇文章的译文。
 

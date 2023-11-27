@@ -2,6 +2,7 @@
 keywords:
 - 米开朗基杨
 - macvlan
+- linux
 title: "Macvlan 网络方案实践"
 subtitle: "通过实验来验证 Macvlan Bridge 模式的连通性"
 description: 通过实验来验证 Macvlan Bridge 模式的连通性。
@@ -9,15 +10,15 @@ date: 2019-04-01T10:20:04+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: Network
-tags: ["macvlan"]
+categories: 
+- network
+tags:
+- Macvlan
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/docker_networking-banner1.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-通过[上篇文章](https://icloudnative.io/posts/netwnetwork-virtualization-macvlan/)的学习，我们已经知道 Macvlan 四种模式的工作原理，其中最常用的就是 Bridge 模式，本文我们将通过实验来验证 Macvlan Bridge 模式的连通性。
+通过[上篇文章](/posts/netwnetwork-virtualization-macvlan/)的学习，我们已经知道 Macvlan 四种模式的工作原理，其中最常用的就是 Bridge 模式，本文我们将通过实验来验证 Macvlan Bridge 模式的连通性。
 
 Macvlan 是 linux 内核比较新的特性，可以通过以下方法判断当前系统是否支持：
 
@@ -29,7 +30,7 @@ $ lsmod | grep macvlan
 
 如果第一个命令报错，或者第二个命令没有返回，则说明当前系统不支持 Macvlan，需要升级系统或者升级内核。
 
-## <span id="inline-toc">1.</span> 各个 Linux 发行版对 Macvlan 的支持
+## 各个 Linux 发行版对 Macvlan 的支持
 
 ----
 
@@ -47,7 +48,7 @@ Macvlan 对 Kernel 版本依赖：`Linux kernel v3.9–3.19` and `4.0+`。几个
 + [List of ubuntu versions with corresponding linux kernel version](http://askubuntu.com/questions/517136/list-of-ubuntu-versions-with-corresponding-linux-kernel-version)
 + [Red Hat Enterprise Linux Release Dates](https://access.redhat.com/articles/3078)
 
-## <span id="inline-toc">2.</span> 实验环境
+## 实验环境
 
 ----
 
@@ -60,7 +61,7 @@ Macvlan 对 Kernel 版本依赖：`Linux kernel v3.9–3.19` and `4.0+`。几个
 
 我的本地操作系统为 MacOS，IP 为 `10.8.0.241`，网关为 `10.8.0.1`。
 
-## <span id="inline-toc">3.</span> 连通性测试
+## 连通性测试
 
 ----
 
@@ -203,9 +204,9 @@ Request timeout for icmp_seq 0
 $ ip netns exec ns1 ip route add default via 192.168.1.1 dev mac1
 ```
 
-{{< notice note >}}
+{{< alert >}}
 如果你想开发 Macvlan cni 插件，这个地方需要注意一下，每次给 Pod 分配好 IP 以后要添加一条默认路由指向网关，不然无法跨三层通信。
-{{< /notice >}}
+{{< /alert >}}
 
 ### ns1 --> ens160
 
@@ -218,9 +219,9 @@ PING 192.168.179.9 (192.168.179.9) 56(84) bytes of data.
 2 packets transmitted, 0 received, 100% packet loss, time 999ms
 ```
 
-这里就遇到了我在[上一篇文章](https://icloudnative.io/posts/netwnetwork-virtualization-macvlan/#span-id-inline-toc-1-span-macvlan-简介)开头提到的问题。到目前为止，整个实验的拓扑结构如下：
+这里就遇到了我在[上一篇文章](/posts/netwnetwork-virtualization-macvlan/#span-id-inline-toc-1-span-macvlan-简介)开头提到的问题。到目前为止，整个实验的拓扑结构如下：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/dmYya2.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-12-pBrsLq.jpg)
 
 其实也很好解决，额外创建一个 Macvlan 子接口，并把 ens160 的 IP 分给这个子接口，最后还要修改默认路由。
 
@@ -236,9 +237,9 @@ $ ip addr del 192.168.179.9/16 dev ens160 && \
   ip route add default via 192.168.1.1 dev mac0 &
 ```
 
-{{< notice note >}}
+{{< alert >}}
 这里一定不能 Down 掉 <code>ens160</code>，否则所有的子接口都将无法工作。
-{{< /notice >}}
+{{< /alert >}}
 
 现在就能 ping 通了：
 

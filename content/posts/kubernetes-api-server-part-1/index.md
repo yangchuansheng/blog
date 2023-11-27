@@ -11,19 +11,9 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/MasterCloudNativeI
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
+> 原文地址：[Kubernetes API Server, Part I](https://medium.com/@dominik.tornow/kubernetes-api-server-part-i-3fbaf2138a31)
 
-<p id="div-border-left-red">
-<strong>原文地址：</strong><a href="https://medium.com/@dominik.tornow/kubernetes-api-server-part-i-3fbaf2138a31" target="_blank">Kubernetes API Server, Part I</a>
-<br />
-<strong>作者：</strong></strong><a href="https://medium.com/@chenopis" target="_blank">Andrew Chen</a>，<a href="https://medium.com/@dominik.tornow" target="_blank">Dominik Tornow</a>
-<br />
-<strong>译者：</strong>米开朗基杨
-</p>
-
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/t4siPv.jpg)
-
-<center><p id=small>概念架构</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/t4siPv.jpg "概念架构")
 
 `Kubernetes` 是一个用于在一组节点（通常称之为集群）上托管容器化应用程序的容器编排引擎。本系列教程旨在通过系统建模的方法帮助大家更好地理解 `Kubernetes` 及其基本概念。
 
@@ -39,29 +29,21 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 本文主要讲述第一部分的内容。
 
-## <span id="inline-toc">1.</span> 前言——什么是 API Server {#the-term-apiserver}
-
-----
+## 前言——什么是 API Server
 
 “API Server” 这个术语很宽泛，涉及了太多的概念，本文将尝试使用 `API Server`，`Kubernetes API` 和 `Kubernetes 对象存储` 这三个不同的术语来明确表示各个概念。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxc8pwh73mj30tu0fr3zn.jpg)
-
-<center><p id=small>图 1：API Server，Kubernetes API 和 Kubernetes 对象存储</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxc8pwh73mj30tu0fr3zn.jpg "图 1：API Server，Kubernetes API 和 Kubernetes 对象存储")
 
 + <span id=inline-purple>Kubernetes API</span> 表示处理读取和写入请求以及相应地查询或修改 Kubernetes 对象存储的组件。
 + <span id=inline-purple>Kubernetes 对象存储</span> 表示持久化的 Kubernetes 对象集合。
 + <span id=inline-purple>API Server</span> 表示 Kubernetes API 和 Kubernetes 对象存储的并集。
 
-## <span id="inline-toc">2.</span> API Server 详解 {#the-apiserver}
-
-----
+## API Server 详解
 
 **Kubernetes API Server** 是 Kubernetes 的核心组件。从概念上来看，Kubernetes API Server 就是 Kubernetes 的数据库，它将集群的状态表示为一组 **Kubernetes 对象**，例如 `Pod`、`ReplicaSet` 和 `Deployment` 都属于 Kubernetes 对象。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxchxltk62j30hp03jaa8.jpg)
-
-<center><p id=small>图 2：Kubernetes API Server & Kubernetes 对象</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxchxltk62j30hp03jaa8.jpg "图 2：Kubernetes API Server & Kubernetes 对象")
 
 Kubernetes API Server 存在多个版本，每一个版本都是它在不同时间段的快照，类似于 git 仓库：
 
@@ -70,9 +52,7 @@ Kubernetes API Server 存在多个版本，每一个版本都是它在不同时�
 
 但实际上 Kubernetes API Server 在实现上会限制快照的时间长度，并且默认情况下会在 5 分钟后丢弃快照。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxciw5ywkkj30um044gm9.jpg)
-
-<center><p id=small>图 3：Kubernetes API Server & 版本</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxciw5ywkkj30um044gm9.jpg "图 3：Kubernetes API Server & 版本")
 
 Kubernetes API Server 暴露了一个不支持事务性语义的 CRUD （`Create/Read/Update/Delete`）接口：
 
@@ -86,32 +66,23 @@ Kubernetes API Server 暴露了一个不支持事务性语义的 CRUD （`Create
 + <span id=inline-purple>过期读取（Stale reads）</span> 指的是读取请求针对的不是最新版本的现象，因此会产生“过期”响应。
 + <span id=inline-purple>无序读取（Out-of-order reads）</span> 指的是在两个连续的读取请求中，第一个请求读取的是较高版本，而第二个请求读取的是较低版本，因此会产生无序响应。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxcjti2wl0j31jk0aoac9.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcjti2wl0j31jk0aoac9.jpg "图 4：读取")
 
-<center><p id=small>图 4：读取</p></center>
-
-### 防护 token 和新鲜度 token {#fencing-and-freshness-tokens}
+### 防护 token 和新鲜度 token
 
 客户端可以使用属性 `rev` 作为用于写入操作的防护 token（`fencing tokens`），以此来抵消丢失的事务性语义。或者作为用于读取操作的新鲜度 token（`freshness tokens`），以此来抵消丢失的 `read-last-write` 语义。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxckathpzcj31f40azdhw.jpg)
-
-<center><p id=small>图 5：防护 token</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxckathpzcj31f40azdhw.jpg "图 5：防护 token")
 
 在执行写入操作时，客户端使用 `rev` 或 `mod` 作为防护 token。客户端指定期望的 `rev` 或 `mod` 值，但只有当前 `rev` 或 `mod` 值等于期望值时，API Server 才会处理该请求。这一过程被称为乐观锁定（optimistic locking）。
 
 > 图 5 中客户端期望的 `rev` 值为 n，而当前的 `rev` 值为 n+1，与期望不符，因此 API Server 不处理该请求，`rev` 值仍然保持为 n+1。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxckvkwm1ij31jk0ao40u.jpg)
-
-<center><p id=small>图 6：新鲜度 token</p></center>
-
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxckvkwm1ij31jk0ao40u.jpg "图 6：新鲜度 token")
 
 在执行读取操作时，客户端使用 `rev` 或 `mod` 作为新鲜度 token，该 token 用来确保读取请求返回的结果不早于新鲜度 token 的值指定的结果。
 
-## <span id="inline-toc">3.</span> 架构规范 {#structural-specification}
-
-----
+## 架构规范
 
 ```als
 sig Server {objects : set Object, rev : Int}
@@ -136,18 +107,14 @@ fact {
 + 对象由其 kind，name 和 namespace 三元组来标识。
 + API Server 中任何两个不同的 Kubernetes 对象都不可能具有相同的 kind，name 和 namespace 三元组。
 
-## <span id="inline-toc">4.</span> 行为规范 {#behavioral-specification}
-
-----
+## 行为规范
 
 从概念上来看，Kubernetes API Server 提供了写入接口和读取接口。
 其中写入接口将所有更改状态的命令组合在一起，读取接口将所有查询状态的命令组合在一起。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxcli4vrpsj31bc0dajsu.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcli4vrpsj31bc0dajsu.jpg "图 7：写入和读取接口")
 
-<center><p id=small>图 7：写入和读取接口</p></center>
-
-### 写入接口 {#the-write-interface}
+### 写入接口
 
 写入接口提供创建、更新和删除对象的命令。
 
@@ -175,9 +142,7 @@ fact {
 
 此外，每个命令都会生成一个事件。**Event** 表示命令执行的持久化可查询记录。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/006tNbRwgy1fxcltkebzkj30yu0e4abl.jpg)
-
-<center><p id=small>图 8：API Server，命令和事件</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcltkebzkj30yu0e4abl.jpg "图 8：API Server，命令和事件")
 
 **图 8** 描述了 API Server 的一系列命令和结果状态转换。总共分为三层结构，从下往上依次表示为 API Server，命令和事件。
 
@@ -187,7 +152,7 @@ Kubernetes API Server 的设计和实现方式保证了 API Server 在任何时�
 state = reduce(apply, events, {})
 ```
 
-#### 创建命令 {#create-command}
+#### 创建命令
 
 ```als
 sig Create extends Command {toCreate : one Object}
@@ -219,7 +184,7 @@ fact {
 
 + 每个创建命令都会生成一个持久且可查询的 `Created Event`，event 的 `object` 字段引用创建的 Kubernetes 对象。
 
-#### 更新命令 {#update-command}
+#### 更新命令
 
 ```als
 sig Update extends Command {old : one Object, new : one Object, mod : Int}
@@ -253,7 +218,7 @@ fact {
 
 + 每个更新命令都会生成一个持久且可查询的 Updated Event，event 的 object 字段引用新的 Kubernetes 对象。
 
-#### 删除命令 {#delete-command}
+#### 删除命令
 
 ```als
 sig Delete extends Command {toDelete : one Object, mod : Int}
@@ -285,11 +250,11 @@ fact {
 
 + 每个删除命令都会生成一个持久且可查询的 Deleted Event，event 的 object 字段引用已删除的 Kubernetes 对象。
 
-### 读取接口 {#the-read-interface}
+### 读取接口
 
 Kubernetes API 读取接口提供两个字接口，一个接口与对象相关，另一个与事件相关。
 
-#### 对象相关的子接口 {#object-related-interface}
+#### 对象相关的子接口
 
 对象相关的子接口提供读取对象和对象列表的命令。
 
@@ -310,7 +275,7 @@ fact {
 + 读取对象的请求接收 kind、name 和 namespace 三元组，同时也会接收用作新鲜度 token 的 `min` 参数。
 + API Server 至少在由 `min` 指定的 API Server 的版本处返回匹配的 Kubernetes 对象。
 
-#### 事件相关的子接口 {#event-related-interface}
+#### 事件相关的子接口
 
 事件相关的子接口提供命令以读取关于对象和对象列表的事件。
 
@@ -340,7 +305,7 @@ fact {
 + Watch List 对象的请求接收 kind、name 和 namespace 三元组，同时也会接收用作新鲜度 token 的 min 参数。
 + API Server 从指定的 API Server 版本开始返回所有匹配的事件。
 
-#### 例子 {#example}
+#### 例子
 
 对象相关的子接口与事件相关的子接口一起组成了 Kubernetes 中广泛使用的有效查询机制，例如在 Kubernetes 控制器中就用到了这种机制。
 
@@ -356,16 +321,12 @@ for e in request-watch-list(kind="pods", namespace="default", rev)
 
 这种实现机制可以确保客户端的状态与 API Server 的状态保持最终一致性。
 
-## <span id="inline-toc">5.</span> 总结 {#conclusion}
-
-----
+## 总结
 
 本文描述了 Kubernetes API Server 的架构和行为。设计和实现一个适当的客户端的关键部分是正确使用  Kubernetes API Server 的版本和 Kubernetes 对象的版本作为防护 token 和新鲜度 token。
 
 下一篇文章将会为大家介绍 Kubernetes API 和 Kubernetes 对象存储。
 
-## <span id="inline-toc">6.</span> 后记 {#about-this-post}
-
-----
+## 后记
 
 本系列文章是 CNCF，Google 和 SAP 之间合作努力的结果，旨在促进大家对 Kubernetes 及其基本概念的理解。

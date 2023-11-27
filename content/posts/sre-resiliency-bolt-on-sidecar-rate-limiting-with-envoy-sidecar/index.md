@@ -1,4 +1,8 @@
 ---
+keywords:
+- service mesh
+- envoy
+- 服务网格
 title: "Envoy 基础教程：对应用进行速率限制"
 subtitle: "使用速率限制服务来减轻客户端对 API 资源的消耗"
 date: 2018-11-01T17:55:47+08:00
@@ -6,24 +10,17 @@ draft: false
 author: 米开朗基杨
 toc: true
 categories: service-mesh
-tags: ["envoy", "service mesh"]
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/blog-rate-limits-v2.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-<p id="div-border-left-red">
-<strong>原文地址：</strong><a href="https://medium.com/dm03514-tech-blog/sre-resiliency-bolt-on-sidecar-rate-limiting-with-envoy-sidecar-5381bd4a1137" target="_blank">https://medium.com/dm03514-tech-blog/sre-resiliency-bolt-on-sidecar-rate-limiting-with-envoy-sidecar-5381bd4a1137</a>
-<br />
-<strong>作者：</strong>dm03514
-<br />
-<strong>译者：</strong>米开朗基杨
-</p>
+> 原文链接：[SRE: Resiliency: Bolt on Rate Limiting using Envoy](https://medium.com/dm03514-tech-blog/sre-resiliency-bolt-on-sidecar-rate-limiting-with-envoy-sidecar-5381bd4a1137)
 
 速率限制是缓解级联故障和防止耗尽共享资源的一种简单有效的方法。`Envoy` 是一个功能丰富的代理，可以为任何服务轻松添加速率限制的功能。本文将介绍在不更改应用程序本身配置的前提下如何配置 `Envoy` 来强制对应用进行速率限制。
 
-## <span id="inline-toc">1.</span> 问题
+## 问题
 
 ----
 
@@ -31,7 +28,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 对 `API` 的使用进行约束的常用方法是启用速率限制。与基于 IP 的速率限制或者 web 框架提供的应用级别速率限制不同，Envoy 允许在 `HTTP` 层实现快速，高性能和可靠的全局速率限制。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/RgKVkq.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/RgKVkq.jpg)
 
 上图中左侧的 `Service Client` 代表使用率特别高的客户端。在运行期间，它可以使负载均衡后端的所有服务实例流量饱和，并使其他更高优先级的客户端丢弃其请求。
 
@@ -47,15 +44,15 @@ $ make load-test
 echo "GET http://localhost:8080/slow" | vegeta attack -rate=500 -duration=0 | tee results.bin | vegeta report
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/0lUjJX.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/0lUjJX.jpg)
 
 在模拟后台作业期间，对 API 资源 `/slow` 的访问速率达到了每秒 `3500` 个请求，影响到了其他端点和客户端。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/a0lsWP.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/a0lsWP.jpg)
 
 为了解决这个问题，下面的解决方案将使用 Envoy 强制限制请求速率为 `500个请求/秒`。但首先...
 
-## <span id="inline-toc">2.</span> Envoy 是什么？
+## Envoy 是什么？
 
 ----
 
@@ -67,7 +64,7 @@ Envoy 的 [官方文档](https://www.envoyproxy.io/) 和 ` Matt Klein` 的文章
 
 > Envoy 是一款由 ` Lyft` 开源的，使用 C++ 编写的高性能分布式代理，专为单体服务和应用而设计。它也被作为大型微服务框架 [Istio](https://istio.io/) service mesh 的通信总线和通用数据平面。通过借鉴 NGINX、HAProxy、硬件负载均衡器和云负载均衡器等解决方案，Envoy 作为一个独立的进程与应用程序一起运行，并通过与平台无关的方式提供一些高级特性，从而形成一个对应用透明的通信网格。当基础设施中的所有服务流量通过 Envoy 网格流动时，通过一致的可观察性，调整整体性能和添加更多底层特性，一旦发生网络和应用程序故障，能够很容易定位出问题的根源。
 
-## <span id="inline-toc">3.</span> 解决方案
+## 解决方案
 
 ----
 
@@ -87,7 +84,7 @@ Envoy 的 [官方文档](https://www.envoyproxy.io/) 和 ` Matt Klein` 的文章
 
 第一步是将 Envoy 配置为处于批处理作业客户端和 API 负载均衡器之间，客户端向 API 发起的所有请求都会首先经过 Envoy 的处理。首先需要让 Envoy 知道如何连接 API，然后再更新批处理作业的配置，使该客户端向 Envoy 发出请起，而不是直接向 API 发出请求。配置完之后的最终状态如下图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1t4fwm.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/1t4fwm.jpg)
 
 此步骤仅通过 Envoy 来对 API 流量进行路由，尚未对应用进行速率限制。为了达到限速的目的，我们还需要做一些额外的配置：
 
@@ -179,11 +176,11 @@ $ make load-test LOAD_TEST_TARGET=http://localhost:10000 LOAD_TEST_RATE=500
 echo "GET http://localhost:10000/slow" | vegeta attack -rate=500 -duration=0 | tee results.bin | vegeta report
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/vucp1T.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/vucp1T.jpg)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/nqODKP.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/nqODKP.jpg)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/JE0hom.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/JE0hom.jpg)
 
 上图显示 Envoy 现在正在接收客户端发送给 API 的所有请求，并将它们发送到上游的负载均衡器！
 
@@ -191,7 +188,7 @@ echo "GET http://localhost:10000/slow" | vegeta attack -rate=500 -duration=0 | t
 
 此步骤将配置运行 Lyft 开源的全局 [速率限制](https://github.com/lyft/ratelimit) 服务。运行该服务非常简单，只需要克隆它的代码仓库，修改一部分配置文件，然后通过 `docker-compose` 启动就行了。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/mVfHPN.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/mVfHPN.jpg)
 
 首先克隆 [Ratelimit 代码仓库](https://github.com/lyft/ratelimit)并修改配置文件，更新 `domain` 字段以及 `descriptor` 字段的 `key` 和 `value`：
 
@@ -220,7 +217,7 @@ $ docker-compose down && docker-compose up
 
 最后一步是配置 Envoy 使用全局速率限制服务，以强制执行速率限制并降低对 API 的请求速率。配置生效后，Envoy 将会检查每个传入连接的速率限制，并根据上面的配置过滤掉一部分请求（限制最多 500 个请求/秒）。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/CTswvz.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/CTswvz.jpg)
 
 开启了速率限制的 Envoy 配置文件如下所示：
 
@@ -342,25 +339,25 @@ Error Set:
 
 通过 Envoy 暴露的速率限制指标（`envoy_cluster_ratelimit_over_limit`）或（`4xx` 响应）的速率来绘制仪表板，可以看到相应的可视化图表：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/h6cYkM.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/h6cYkM.jpg)
 
 通过可视化 API 服务实际看到的请求数量，可以证明请求速率在 `500个请求/秒` 上下波动，这正是我们所期望的！
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/FHBjiF.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/FHBjiF.jpg)
 
 再查看一下 Envoy 传出的 API 连接，可以看到传出请求速率也在 `500个请求/秒` 上下波动！
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/F0WQMW.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/F0WQMW.jpg)
 
 实验成功！
 
-## <span id="inline-toc">4.</span> 总结
+## 总结
 
 ----
 
 希望通过本文的讲解能让你明白配置 Envoy 以减轻贪婪客户端对 API 资源的消耗是多么简单。我发现这种模式非常有用，因为弹性能力是为应用开发更多功能的基础。在 Envoy 横空出世之前，应用程序级别的重试、延迟注入、速率限制和熔断都要通过应用程序本身的代码逻辑来实现。Envoy 将这些功能从应用程序中剥离出来，并让运维管理人员能够配置和启用这些功能，无需对应用程序本身作任何修改。Envoy 完全颠覆了我们对服务弹性能力的认知，希望你读这篇文章时能和我写这篇文章时一样兴奋！
 
-## <span id="inline-toc">5.</span> 参考资料
+## 参考资料
 
 ----
 

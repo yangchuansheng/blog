@@ -1,4 +1,10 @@
 ---
+keywords:
+- Cgroup
+- linux cgroup
+- kubernetes
+- cpu
+- cpuset
 title: "深入理解 Kubernetes 资源限制：CPU"
 subtitle: "剖析 CPU 资源限制背后的 cgroup 实现原理"
 date: 2018-11-10T13:32:30+08:00
@@ -6,32 +12,26 @@ draft: false
 author: 米开朗基杨
 toc: true
 categories: cloud-native
-tags: ["kubernetes"]
+tags:
+- Cgroup
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/VAOaON.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<p id="div-border-left-red">
-<strong>原文地址：</strong><a href="https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-cpu-time-9eff74d3161b" target="_blank">Understanding resource limits in kubernetes: cpu time</a>
-<br />
-<strong>作者：</strong><a href="https://medium.com/@betz.mark?source=post_header_lockup" target="_blank">Mark Betz</a>
-<br />
-<strong>译者：</strong>米开朗基杨
-</p>
+> 原文链接：[Understanding resource limits in kubernetes: cpu time](https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-cpu-time-9eff74d3161b)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/VAOaON.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/VAOaON.jpg)
 
 建议先阅读下面的系列文章：
 
-+ [Linux Cgroup 入门教程：基本概念](https://icloudnative.io/posts/understanding-cgroups-part-1-basics/)
-+ [Linux Cgroup 入门教程：CPU](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)
-+ [Linux Cgroup 入门教程：内存](https://icloudnative.io/posts/understanding-cgroups-part-3-memory/)
++ [Linux Cgroup 入门教程：基本概念](/posts/understanding-cgroups-part-1-basics/)
++ [Linux Cgroup 入门教程：CPU](/posts/understanding-cgroups-part-2-cpu/)
++ [Linux Cgroup 入门教程：内存](/posts/understanding-cgroups-part-3-memory/)
 
 在关于 Kubernetes 资源限制的系列文章的[第一篇文章](https://mp.weixin.qq.com/s/j2FfqUHSRTzczNcfPuwRQw)中，我讨论了如何使用 [ResourceRequirements](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.12/#resourcerequirements-v1-core) 对象来设置 Pod 中容器的内存资源限制，以及如何通过容器运行时和 linux control group（`cgroup`）来实现这些限制。我还谈到了 Requests 和 Limits 之间的区别，其中 `Requests` 用于在调度时通知调度器 Pod 需要多少资源才能调度，而 `Limits` 用来告诉 Linux 内核什么时候你的进程可以为了清理空间而被杀死。在这篇文章中，我会继续仔细分析 CPU 资源限制。想要理解这篇文章所说的内容，不一定要先阅读上一篇文章，但我建议那些工程师和集群管理员最好还是先阅读完第一篇，以便全面掌控你的集群。
 
-## <span id="inline-toc">1.</span> CPU 限制
-
-----
+## CPU 限制
 
 正如我在上一篇文章中提到的，`CPU` 资源限制比内存资源限制更复杂，原因将在下文详述。幸运的是 `CPU` 资源限制和内存资源限制一样都是由 `cgroup` 控制的，上文中提到的思路和工具在这里同样适用，我们只需要关注他们的不同点就行了。首先，让我们将 CPU 资源限制添加到之前示例中的 yaml：
 
@@ -75,13 +75,13 @@ $ docker inspect f2321226620e --format '{{.HostConfig.CpuShares}}'
 
 > shares 用来设置 CPU 的相对值，并且是针对所有的 CPU（内核），默认值是 1024，假如系统中有两个 cgroup，分别是 A 和 B，A 的 shares 值是 1024，B 的 shares 值是 512，那么 A 将获得 1024/(1204+512)=66% 的 CPU 资源，而 B 将获得 33% 的 CPU 资源。shares 有两个特点：
 >  
-> <li>如果 A 不忙，没有使用到 66% 的 CPU 时间，那么剩余的 CPU 时间将会被系统分配给 B，即 B 的 CPU 使用率可以超过 33%。</li>
-> <li>如果添加了一个新的 cgroup C，且它的 shares 值是 1024，那么 A 的限额变成了 1024/(1204+512+1024)=40%，B 的变成了 20%。</li>
-> <br />
+> + 如果 A 不忙，没有使用到 66% 的 CPU 时间，那么剩余的 CPU 时间将会被系统分配给 B，即 B 的 CPU 使用率可以超过 33%。
+> + 如果添加了一个新的 cgroup C，且它的 shares 值是 1024，那么 A 的限额变成了 1024/(1204+512+1024)=40%，B 的变成了 20%。
+>
 > 从上面两个特点可以看出：
 >
-> <li>在闲的时候，shares 基本上不起作用，只有在 CPU 忙的时候起作用，这是一个优点。</li>
-> <li>由于 shares 是一个绝对值，需要和其它 cgroup 的值进行比较才能得到自己的相对限额，而在一个部署很多容器的机器上，cgroup 的数量是变化的，所以这个限额也是变化的，自己设置了一个高的值，但别人可能设置了一个更高的值，所以这个功能没法精确的控制 CPU 使用率。</li>
+> + 在闲的时候，shares 基本上不起作用，只有在 CPU 忙的时候起作用，这是一个优点。
+> + 由于 shares 是一个绝对值，需要和其它 cgroup 的值进行比较才能得到自己的相对限额，而在一个部署很多容器的机器上，cgroup 的数量是变化的，所以这个限额也是变化的，自己设置了一个高的值，但别人可能设置了一个更高的值，所以这个功能没法精确的控制 CPU 使用率。
 
 与配置内存资源限制时 Docker 配置容器进程的内存 cgroup 的方式相同，设置 CPU 资源限制时 Docker 会配置容器进程的 `cpu,cpuacct` cgroup：
 
@@ -177,9 +177,7 @@ $ echo 50000 > cpu.cfs_period_us /* period = 50ms */
 
 最后我还想告诉你们的是：为每个 pod 都手动配置这些参数是挺麻烦的事情，kubernetes 提供了 `LimitRange` 资源，可以让我们配置某个 namespace 默认的 request 和 limit 值。
 
-## <span id="inline-toc">2.</span> 默认限制
-
-----
+## 默认限制
 
 通过上文的讨论大家已经知道了忽略资源限制会对 Pod 产生负面影响，因此你可能会想，如果能够配置某个 namespace 默认的 request 和 limit 值就好了，这样每次创建新 Pod 都会默认加上这些限制。Kubernetes 允许我们通过 [LimitRange](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.11/#limitrange-v1-core) 资源对每个命名空间设置资源限制。要创建默认的资源限制，需要在对应的命名空间中创建一个 `LimitRange` 资源。下面是一个例子：
 
@@ -238,9 +236,7 @@ spec:
 
 以上就是我对 Kubernetes 资源限制的全部见解，希望能对你有所帮助。如果你想了解更多关于 Kubernetes 中资源的 limits 和 requests、以及 linux cgroup 和内存管理的更多详细信息，可以查看我在文末提供的参考链接。
 
-## <span id="inline-toc">3.</span> 参考资料
-
-----
+## 参考资料
 
 + [Understanding Linux Container Scheduling](https://engineering.squarespace.com/blog/2017/understanding-linux-container-scheduling)
 + [Managing Compute Resources for Containers](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/)

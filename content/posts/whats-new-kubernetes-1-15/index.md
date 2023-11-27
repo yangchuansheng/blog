@@ -23,7 +23,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 >
 > 这里是具体的特性介绍，例如改进了什么，为什么要这么做，有的特性还会有简单的使用范例。
 
-## <span id="inline-toc">1.</span> 亮点更新
+## 亮点更新
 
 ----
 
@@ -32,7 +32,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 + [Execution hooks 的推出](https://sysdig.com/blog/whats-new-kubernetes-1-15/#962)
 + [新的 Scheduling Framework](https://sysdig.com/blog/whats-new-kubernetes-1-15/#624)
 
-## <span id="inline-toc">2.</span> 核心功能
+## 核心功能
 
 ----
 
@@ -81,7 +81,7 @@ Mutating 和 Validating Admission Webhook 已经成为扩展 API 的主流选择
 
 下图显示了 Pod 在新的 Scheduling framework 中的调度过程：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-07-17-055446.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-17-055446.jpg)
 
 关于该特性的更多信息请查阅[官方设计文档](https://github.com/kubernetes/enhancements/blob/master/keps/sig-scheduling/20180409-scheduling-framework.md)。
 
@@ -190,7 +190,7 @@ Pod Disruption Budget (PDB) 是一种 Kubernetes API，用于限制在同一时�
 
 使用 PDB 后，就可以允许管理员在不降低服务的可用性和性能的前提下操作 Kubernetes 的工作负载。
 
-## <span id="inline-toc">3.</span> 自定义资源
+## 自定义资源
 
 ----
 
@@ -263,7 +263,7 @@ spec:
 
 这里有一个实现[自定义资源之间相互转换的 webhook server](https://github.com/kubernetes/kubernetes/blob/v1.13.0/test/images/crd-conversion-webhook/main.go) 的示例，大家可以作为参考。
 
-## <span id="inline-toc">4.</span> 配置管理
+## 配置管理
 
 ----
 
@@ -300,7 +300,7 @@ Kubernetes 可以通过多个控制平面来提供高可用性。kubeadm 工具�
 
 这个版本的 kubeadm 将会自动复制其中需要的证书，减少人为干预的需求，目前的做法是使用一个暂时加密的秘钥来确保证书在传输过程中的安全性，更多细节可以参考 [KEP](https://github.com/kubernetes/enhancements/blob/master/keps/sig-cluster-lifecycle/kubeadm/0015-kubeadm-join-control-plane.md) 文档。
 
-## <span id="inline-toc">5.</span> 云提供商
+## 云提供商
 
 ----
 
@@ -331,7 +331,7 @@ metadata:
 
 如果你的集群已经开启了和云服务商的整合，Finalizer 将会附加到任何包含 `type=LoadBalancer` 字段的 Kubernetes Service，当这类 Service 即将被删除时，Finalizer 会先将 Serivce 的删除动作给冻结住，直接确保 Load Balancer 资源被清除后，才会将 Service 真正删除。
 
-## <span id="inline-toc">6.</span> 存储
+## 存储
 
 ----
 
@@ -420,13 +420,13 @@ volumeMounts:
   subPathExpr: $(POD_NAME)
 ```
 
-## <span id="inline-toc">7.</span> 总结
+## 总结
 
 ----
 
 本文除了告知读者 Kubernetes 1.15 有什么新特性之外，更重要的在于提供了一个机会去了解 Kubernetes 这么庞大的系统在跟第三方整合或是某个组件的性能遇到瓶颈时该怎么解决，为我们以后设计架构时提供了参考依据。
 
-## <span id="inline-toc">8.</span> 参考资料
+## 参考资料
 
 ----
 

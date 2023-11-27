@@ -4,15 +4,18 @@ keywords:
 - prometheus
 - histogram
 - quantile
-title: "一文搞懂 Prometheus 的直方图"
+title: "Prometheus Histogram 深入解读"
 subtitle: "histogram 的工作原理和分位数的计算方法"
 description: 本文主要介绍了 histogram 的工作原理以及分位数的计算方法。
 date: 2019-08-06T14:25:12+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "monitoring"
-tags: ["prometheus","histogram"]
+categories:
+- monitoring
+tags:
+- Prometheus
+- Histogram
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-06-1_vHViQvX0Jx-tosNZIHOMhw.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -27,11 +30,11 @@ Prometheus 中提供了四种指标类型（参考：[Prometheus 的指标类型
 
 假设我们想监控某个应用在一段时间内的响应时间，最后监控到的样本的响应时间范围为 0s~10s。现在我们将样本的值域划分为不同的区间，即不同的 `bucket`，每个 bucket 的宽度是 0.2s。那么第一个 bucket 表示响应时间小于等于 0.2s 的请求数量，第二个 bucket 表示响应时间大于 0.2s 小于等于 0.4s 的请求数量，以此类推。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-05-074440.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-05-074440.jpg)
 
 Prometheus 的 histogram 是一种累积直方图，与上面的区间划分方式是有差别的，它的划分方式如下：还假设每个 bucket 的宽度是 0.2s，那么第一个 bucket 表示响应时间小于等于 0.2s 的请求数量，第二个 bucket 表示响应时间小于等于 0.4s 的请求数量，以此类推。也就是说，**每一个 bucket 的样本包含了之前所有 bucket 的样本**，所以叫累积直方图。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-05-075037.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-05-075037.jpg)
 
 ## 2. 为什么是累积直方图？
 
@@ -97,7 +100,7 @@ example_latency_seconds_bucket{le="1.0"} / ignoring (le) example_latency_seconds
 
 Prometheus 通过 `histogram_quantile` 函数来计算分位数（quantile），而且是一个预估值，并不完全准确，因为这个函数是假定每个区间内的样本分布是线性分布来计算结果值的。预估的准确度取决于 bucket 区间划分的粒度，粒度越大，准确度越低。以下图为例：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-05-111619.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-05-111619.jpg)
 
 假设有 `10000` 个样本，第 `9501` 个样本落入了第 8 个 bucket。第 8 个 bucket 总共有 `368` 个样本，其中第 `9501` 个样本在该 bucket 中属于第 `93` 个样本。
 
@@ -109,7 +112,7 @@ return bucketStart + (bucketEnd-bucketStart)*float64(rank/count)
 
 我们可以计算（quantile=0.95）的样本值为：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-05-112356.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-05-112356.png)
 
 这个值已经很接近精确的分位数值了。关于 histogram_quantile 函数的详细使用方式，请参考：[PromQL 内置函数](https://icloudnative.io/prometheus/3-prometheus/functions.html#histogramquantile)。
 

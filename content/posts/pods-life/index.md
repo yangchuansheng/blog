@@ -1,19 +1,26 @@
 ---
+keywords:
+- 云原生
+- cloud native
+- kubernetes
+- pod
 title: "Kubernetes 中 Pod 的生命周期管理"
 subtitle: "探究 Pod 的启动关闭流程以及快速 DEBUG"
 date: 2018-05-03T12:08:01Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["kubernetes"]
+categories: 
+- cloud-native
+tags:
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204204256.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
 本文我们将从实践者的角度仔细研究整个pod生命周期，包括如何影响启动和关闭行为，并通过实践来理解对应用程序健康状况的检查。
 
-## <span id="inline-toc">1.</span> Pod 的生命周期
+## Pod 的生命周期
 
 ----
 ### Pod phase
@@ -34,8 +41,7 @@ Pod 相位的数量和含义是严格指定的。除了本文档中列举的状�
 
 下图是 Pod 的生命周期示意图，从图中可以看到 Pod 状态的变化。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/fcachl.jpg)
-<center>图片 - Pod的生命周期示意图</center>
+![Pod的生命周期示意图](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/fcachl.jpg "Pod的生命周期示意图")
 
 ### Pod 状态
 
@@ -45,7 +51,7 @@ Pod 有一个 PodStatus 对象，其中包含一个 [PodCondition](https://githu
 
 如果想知道究竟发生了什么，可以通过命令 `kubectl describe pod/$PODNAME` 查看输出信息的 `Events` 条目。通过 Events 条目可以看到一些具体的信息，比如正在拉取容器镜像，Pod 已经被调度，或者某个 container 处于 unhealthy 状态。
 
-## <span id="inline-toc">2.</span> Pod 的启动关闭流程
+## Pod 的启动关闭流程
 
 ----
 
@@ -119,8 +125,7 @@ $ cat /tmp/loap/timing
 
 `/tmp/loap/timing` 文件的内容很好地体现了 Pod 的启动和关闭流程，具体过程如下：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/AOQgQj.jpg)
-<center>图片 - Pod 的启动和关闭流程</center>
+![Pod 的启动和关闭流程](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/AOQgQj.jpg "Pod 的启动和关闭流程")
 
 1. 首先启动一个 Infra 容器（又叫 Pause 容器），用来和 Pod 中的其他容器共享 linux 命名空间，并开启 init 进程。（上图中忽略了这一步）
 2. 然后启动 Init 容器，它是一种专用的容器，在应用程序容器启动之前运行，用来对 Pod 进行一些初始化操作，并包括一些应用镜像中不存在的实用工具和安装脚本。
@@ -128,11 +133,11 @@ $ cat /tmp/loap/timing
 4. 7 秒之后开始启动 [liveness 和 readiness 探针](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/)。
 5. 11 秒之后，通过手动杀掉 Pod，`pre-stop hook` 执行，优雅删除期限过期后（默认是 30 秒），应用程序容器停止。实际的 Pod 终止过程要更复杂，具体参考 [Pod 的终止](https://jimmysong.io/kubernetes-handbook/concepts/pod.html)。
 
-{{< notice note >}}
+{{< alert >}}
 必须主动杀掉 Pod 才会触发 <code>pre-stop hook</code>，如果是 Pod 自己 Down 掉，则不会执行 <code>pre-stop hook</code>。
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">3.</span> 如何快速 DEBUG
+## 如何快速 DEBUG
 
 ----
 
@@ -170,7 +175,7 @@ $ kubectl get pod termination-demo -o go-template='{{range .status.containerStat
 0
 ```
 
-## <span id="inline-toc">4.</span> 参考
+## 参考
 
 ----
 

@@ -24,12 +24,12 @@ tags:
 - DevOps
 - Argo CD
 - Kubernetes
-categories: GitOps
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-46-tnIQ1t.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-18-VYVeCS.png
 ---
 
-在上一篇『[GitOps 介绍](https://icloudnative.io/posts/what-is-gitops/)』中，我介绍了什么是 GitOps，包括 GitOps 的原则和优势，以及 GitOps 与 DevOps 的区别。本文将介绍用于实施 GitOps 的工具 Argo CD。
+在上一篇『[GitOps 介绍](/posts/what-is-gitops/)』中，我介绍了什么是 GitOps，包括 GitOps 的原则和优势，以及 GitOps 与 DevOps 的区别。本文将介绍用于实施 GitOps 的工具 Argo CD。
 
 Argo CD 是以 Kubernetes 作为基础设施，遵循声明式 GitOps 理念的持续交付（continuous delivery, CD）工具，支持多种配置管理工具，包括 ksonnet/jsonnet、kustomize 和 Helm 等。它的配置和使用非常简单，并且自带一个简单易用的可视化界面。
 
@@ -39,7 +39,7 @@ Argo CD 是以 Kubernetes 作为基础设施，遵循声明式 GitOps 理念的�
 
 ## 传统 CD 工作流
 
-从上篇文章『[GitOps 介绍](https://icloudnative.io/posts/what-is-gitops/)』可以知道，目前大多数 CI/CD 工具都使用基于 Push 的部署模式，例如 Jenkins、CircleCI 等。这种模式一般都会在 CI 流水线运行完成后执行一个命令（比如 kubectl）将应用部署到目标环境中。
+从上篇文章『[GitOps 介绍](/posts/what-is-gitops/)』可以知道，目前大多数 CI/CD 工具都使用基于 Push 的部署模式，例如 Jenkins、CircleCI 等。这种模式一般都会在 CI 流水线运行完成后执行一个命令（比如 kubectl）将应用部署到目标环境中。
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-12-coPxwT.jpg)
 

@@ -13,8 +13,10 @@ date: 2019-11-17T13:54:43-05:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["docker"]
+categories:
+- cloud-native
+tags:
+- Docker
 series:
 - Docker 镜像制作系列
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-2019-07-09-1_ItqXfSouNVV3yoePD4pCug.webp"
@@ -26,9 +28,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-2019-07-09-1_I
 
 不过值得庆幸的是，`Docker 19.03` 引入了一个新的实验性插件，该插件使得跨平台构建 Docker 镜像比以往更加容易了。在介绍这个新特性之前，我们先来了解一下跨 CPU 架构构建程序的基础知识。
 
-## <span id="inline-toc">1.</span> 跨 CPU 架构编译程序的方法
-
-----
+## 跨 CPU 架构编译程序的方法
 
 先来快速回顾一下当前跨 CPU 架构编译程序的不同方法。
 
@@ -70,9 +70,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-2019-07-09-1_I
 
 但引入了新的实验性插件之后，构建多平台架构的 Docker 镜像就比以前容易多了，至于这个插件到底是啥，下文会详细介绍。
 
-## <span id="inline-toc">2.</span> 构建多平台 Docker 镜像
-
-----
+## 构建多平台 Docker 镜像
 
 利用 Docker 19.03 引入的插件 [buildx](https://github.com/docker/buildx)，可以很轻松地构建多平台 Docker 镜像。buildx 是 `docker build ...` 命令的下一代替代品，它利用 [BuildKit](https://github.com/moby/buildkit) 的全部功能扩展了 `docker build` 的功能。
 
@@ -103,19 +101,19 @@ github.com/docker/buildx v0.3.1-tp-docker 6db68d029599c6710a32aa7adcba8e5a344795
 
 ### 启用 binfmt_misc
 
-{{< notice note >}}
+{{< alert >}}
 如果你使用的是 Docker 桌面版（MacOS 和 Windows），默认已经启用了 `binfmt_misc`，可以跳过这一步。
-{{< /notice >}}
+{{< /alert >}}
 
 如果你使用的是 Linux，需要手动启用 `binfmt_misc`。大多数 Linux 发行版都很容易启用，不过还有一个更容易的办法，直接运行一个特权容器，容器里面写好了设置脚本：
 
 ```bash
-🐳 → docker run --rm --privileged docker/binfmt:66f9012c56a8316f9244ffd7622d7c21c1f6f28d
+🐳 → docker run --privileged --rm tonistiigi/binfmt --install all
 ```
 
-{{< notice note >}}
+{{< alert >}}
 建议将 Linux 内核版本升级到 4.x 以上，特别是 CentOS 用户，你可能会遇到错误。
-{{< /notice >}}
+{{< /alert >}}
 
 验证是 binfmt_misc 否开启：
 
@@ -227,9 +225,9 @@ CMD ["./hello"]
 🐳 → docker buildx build -t yangchuansheng/hello-arch --platform=linux/arm,linux/arm64,linux/amd64 . --push
 ```
 
-{{< notice note >}}
+{{< alert >}}
 需要提前通过 `docker login` 命令登录认证 Docker Hub。
-{{< /notice >}}
+{{< /alert >}}
 
 现在就可以通过 `docker pull mirailabs/hello-arch` 拉取刚刚创建的镜像了，Docker 将会根据你的 CPU 架构拉取匹配的镜像。
 
@@ -285,17 +283,13 @@ Hello, amd64!
 
 So cool！
 
-## <span id="inline-toc">3.</span> 总结
-
-----
+## 总结
 
 回顾一下，本文带大家了解了在不同的 CPU 架构上运行软件的挑战性，以及 `buildx` 如何帮助我们解决了其中的一些挑战。使用 `buildx`，我们无需对 Dockerfile 进行任何修改，就可以创建支持多种 CPU 架构的 Docker 镜像，然后将其推送到 Docker Hub。任何安装了 Docker 的系统都可以拉取到与它的 CPU 架构相对应的镜像。
 
 未来 buildx 可能会成为 `docker build` 命令的一部分，最终所有上面提到的功能都会变成默认的功能，下沉到基础设施中交叉编译程序的做法将会变成远古时代的愚蠢行为。
 
-## <span id="inline-toc">4.</span> 参考资料
-
-----
+## 参考资料
 
 + [Building Multi-Arch Images for Arm and x86 with Docker Desktop](https://engineering.docker.com/2019/04/multi-arch-images/)
 + [Getting started with Docker for Arm on Linux](https://engineering.docker.com/2019/06/getting-started-with-docker-for-arm-on-linux/)

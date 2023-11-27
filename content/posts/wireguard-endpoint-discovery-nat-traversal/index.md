@@ -33,12 +33,12 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20
 
 利用 WireGuard 我们可以实现很多非常奇妙的功能，比如跨公有云组建 Kubernetes 集群，本地直接访问公有云 `Kubernetes` 集群中的 Pod IP 和 Service IP，在家中没有公网 IP 的情况下直连家中的设备，等等。
 
-如果你是第一次听说 WireGuard，建议你花点时间看看我之前写的 WireGuard [工作原理](https://icloudnative.io/posts/wireguard-docs-theory/)。然后可以参考下面两篇文章来快速上手：
+如果你是第一次听说 WireGuard，建议你花点时间看看我之前写的 WireGuard [工作原理](/posts/wireguard-docs-theory/)。然后可以参考下面两篇文章来快速上手：
 
-+ [WireGuard 快速安装教程](https://icloudnative.io/posts/wireguard-install/)
-+ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)
++ [WireGuard 快速安装教程](/posts/wireguard-install/)
++ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](/posts/configure-wireguard-using-wg-gen-web/)
 
-如果遇到某些细节不太明白的，再去参考 [WireGuard 配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)。
+如果遇到某些细节不太明白的，再去参考 [WireGuard 配置详解](/posts/wireguard-docs-practice/)。
 
 本文将探讨 WireGuard 使用过程中遇到的一个重大难题：**如何使两个位于 NAT 后面（且没有指定公网出口）的客户端之间直接建立连接。**
 

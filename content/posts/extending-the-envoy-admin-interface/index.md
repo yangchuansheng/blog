@@ -1,26 +1,28 @@
 ---
+keywords:
+- service mesh
+- envoy
+- 服务网格
 title: "Envoy 基础教程：扩展 Envoy 的管理界面"
 subtitle: "提高 Envoy 管理界面的安全性"
 date: 2018-10-25T16:34:20+08:00
 draft: false
 author: 米开朗基杨
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1_NBS4fR_SmLnuGgp45YC6Hg.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<p id="div-border-left-red">
-<strong>原文地址：</strong><a href="https://medium.com/@mitchfriedman5/extending-the-envoy-admin-interface-6ce2ad220842" target="_blank">Extending the Envoy Admin Interface</a>
-<br />
-<strong>译者：</strong>米开朗基杨
-</p>
+> 原文链接：[Extending the Envoy Admin Interface](https://medium.com/@mitchfriedman5/extending-the-envoy-admin-interface-6ce2ad220842)
 
 [Envoy](https://www.envoyproxy.io/) 是一个动态可配置的高性能现代化代理工具，现在几乎所有的 IT 潮男都用它来构建服务网格。Envoy 有许多吸引人的功能，其中包括对网络流量的高级可观察性。Envoy 可以通过好几种方式来暴露数据，其中最主要的是 `stats` 和 `tracing`：stats 由内置的 [statsd ](https://www.envoyproxy.io/docs/envoy/latest/api-v2/config/metrics/v2/stats.proto#config-metrics-v2-statsdsink) 模块提供，方便集成诸如 prometheus 等监控方案。开启了 [tracing](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/tracing) 可以方便集成 Open Tracing 系统，追踪请求。然而 Envoy 管理界面本身却很少被提及到。
 
 最近，我看到某些公司在讨论将由 `Haproxy` 驱动的数据平面替换为 Envoy。如果你以前使用过 Haproxy，应该熟悉 Haproxy 的管理界面 UI（稍微有点过时了），它会暴露出后端服务列表、健康状态、活动状态和每个服务的统计信息。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/haproxy-admin.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/haproxy-admin.png)
 
 每当添加新的后端服务或修改 [ACL](https://www.haproxy.com/documentation/aloha/10-0/traffic-management/lb-layer7/acls/) 时，如果出现了故障，我就会用此管理界面 UI 来调试网络。例如，在任何给定时间，很容易确定集群中的单个故障后端，以及哪些后端服务运行状况不佳。
 
@@ -47,7 +49,7 @@ admin:
 
 启动 Envoy 进程后，你就可以在浏览器中通过 URL `<public_ip>:5000` 访问 Envoy 的管理界面了。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/envoy-admin.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/envoy-admin.png)
 
 现在有一个小问题——你会注意到，如果你尝试构建一个从远程 Envoy 实例（`<public_ip>:5000`）中提取数据的网站，你将看到浏览器（不禁用任何安全设置）不会允许我们获取数据，因为远程 Envoy 实例的端点不包含正确的 `CORS`（跨域资源共享） 响应头（如文档中所述，以防止 `CSRF` 攻击）。
 
@@ -97,9 +99,9 @@ static_resources:
 
 如你所见，我已经确保路由仅匹配 `/clusters` 和 `/config_dump`，这样就不会造成潜在的危险。此外，由于我们已经将其作为我们的控制平面驱动的动态配置文件实现，因此我们可以根据是开发环境还是生产环境来更改这些路径的匹配方式（比如在开发环境中可以公开管理界面的所有端点，但在生产环境中不能这么做）。
 
-{{< notice note >}}
+{{< alert >}}
 注意，因为我们使用的是 <code>Listener</code>，所以我们应该使用 <code>HTTPs</code>，我会将其作为读者的练习。
-{{< /notice >}}
+{{< /alert >}}
 
 前面我没有提到如何使用 `/config_dump` 端点导的数据（Haproxy 的 UI 可以通过 `/clusters` 端点的信息来构建等效的数据），因为我不太清楚我想要构建什么。由于 Envoy 的配置实在是太复杂了（即使不使用动态控制平面，只使用静态配置文件），以至于其他使用者很难确定每个 Envoy 实例的配置。`/config_dump` 的输出可能非常冗长，特别是如果有非常多复杂的 Cluster、Listener 和 Route。我认为这将是一个很好的用例，可以用来演示一些展示当前流量分割、流量镜像、Cluster 子集和权重的可视化。
 
@@ -115,6 +117,6 @@ static_resources:
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

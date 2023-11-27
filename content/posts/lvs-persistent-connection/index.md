@@ -1,17 +1,24 @@
 ---
+keywords:
+- load balancing
+- 负载均衡
+- lvs
+- ipvs
 title: "LVS负载均衡之持久性连接介绍"
 subtitle: "如何根据业务场景来设置 lvs 持久性"
 date: 2018-04-18T11:18:06Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "loadbalance"
-tags: ["lvs"]
+categories:
+- load-balancing
+tags:
+- LVS
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204210441.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> 前言
+## 前言
 
 ----
 
@@ -65,7 +72,7 @@ LVS 的八种轮询算法中有（Source Hashing）源地址 hash，它和持久
 
 这并不与 SH 算法冲突，lvs 持久连接会在新请求达到时，检查后端 RS 的负载状况，这就是比较精细的调度和会话保持方法。
 
-## <span id="inline-toc">2.</span> lvs 的持久性连接有两方面
+## lvs 的持久性连接有两方面
 
 ----
 
@@ -79,7 +86,7 @@ LVS 的八种轮询算法中有（Source Hashing）源地址 hash，它和持久
 + **tcpfin:** lvs收到客户端tcp fin的超时时间
 + **udp:** udp的超时时间
 
-## <span id="inline-toc">3.</span> lvs 相关超时时间查看
+## lvs 相关超时时间查看
 
 ----
 
@@ -105,7 +112,7 @@ $ ipvsadm -Ln --timeout
 Timeout (tcp tcpfin udp): 900 120 300
 ```
 
-## <span id="inline-toc">4.</span> lvs 如何控制这些超时时间工作
+## lvs 如何控制这些超时时间工作
 
 ----
 
@@ -122,7 +129,7 @@ TCP 180:03 NONE        192.168.123.248:0  10.254.66.97:8080  172.20.135.6:8080
 
 + `TIME_WAIT` 的值就是 tcp tcpfin udp 中的 `tcpfin` 的超时时间，当 `NONE` 的值为0时，如果 TIME_WAIT 还存在，那么 NONE 的值会从新变成 `persistence_timeout` 的值，再减少，直到 TIME_WAIT 消失以后，NONE 才会消失，只要 NONE 存在，同一 client 的访问，都会分配到统一 real server。
 
-## <span id="inline-toc">5.</span> lvs 关于相关超时时间的设置
+## lvs 关于相关超时时间的设置
 
 ----
 
@@ -141,11 +148,11 @@ $ ipvsadm -A -t 192.168.20.154:80 -s rr -p 60
 $ ipvsadm --set tcp tcpfin udp
 ```
 
-{{< notice note >}}
+{{< alert >}}
 <code>tcpfin</code> 的值最好小于 <code>persistence_timeout</code> 的值，这样比较方便计算，也有利于 <code>tcpfin</code> 回收
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">6.</span> 持久连接定义与原理
+## 持久连接定义与原理
 
 ----
 
@@ -157,9 +164,9 @@ $ ipvsadm --set tcp tcpfin udp
 
 当使用 LVS 持久性的时候，Director 在内部使用一个连接根据记录称之为 `持久连接模板` 来确保所有来自同一个客户端的请求被分发到同一台 `Real Server` 上。
 
-{{< notice note >}}
+{{< alert >}}
 持久连接模板是指每一个客户端及分配给它的 <code>RS</code> 的映射关系。
-{{< /notice >}}
+{{< /alert >}}
 
 ### 持久连接分类
 
@@ -205,7 +212,7 @@ $ ipvsadm -a -f 8 -r 172.16.100.10 -g -w 2
 $ ipvsadm -a -f 8 -r 172.16.100.11 -g -w 1
 ```
 
-## <span id="inline-toc">7.</span> 总结
+## 总结
 
 ----
 

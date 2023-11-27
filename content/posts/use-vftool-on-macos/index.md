@@ -16,13 +16,12 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- macOS
 - vftool
 categories: macOS
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210118140825.png
 ---
 
-之前我给大家介绍过如何[在 macOS 上使用 multipass 创建轻量级虚拟机来使用 Podman](https://icloudnative.io/posts/use-podman-in-macos/)，众小伙伴纷纷齐说真香。今天我要给大家介绍一个全新的黑科技，利用 `macOS Big Sur` 引入的全新虚拟化框架 [Virtualization Kit](https://developer.apple.com/documentation/virtualization) 来创建更加轻量级的虚拟机。准确地说，这个最新的虚拟化框架并不能直接使用，它只是提供了 API，为许多设备类型定义了标准接口，包括网络、存储等设备，且支持 Virtio 标准。要想使用该框架来创建管理虚拟机，需要对其进行封装，构建出一个易于使用的工具，目前最优秀的就是 [vftool](https://github.com/evansm7/vftool)。
+之前我给大家介绍过如何[在 macOS 上使用 multipass 创建轻量级虚拟机来使用 Podman](/posts/use-podman-in-macos/)，众小伙伴纷纷齐说真香。今天我要给大家介绍一个全新的黑科技，利用 `macOS Big Sur` 引入的全新虚拟化框架 [Virtualization Kit](https://developer.apple.com/documentation/virtualization) 来创建更加轻量级的虚拟机。准确地说，这个最新的虚拟化框架并不能直接使用，它只是提供了 API，为许多设备类型定义了标准接口，包括网络、存储等设备，且支持 Virtio 标准。要想使用该框架来创建管理虚拟机，需要对其进行封装，构建出一个易于使用的工具，目前最优秀的就是 [vftool](https://github.com/evansm7/vftool)。
 
 下面就来看看如何使用 `vftool` 来创建 `Ubuntu` 虚拟机。
 

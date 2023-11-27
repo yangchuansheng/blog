@@ -3,6 +3,7 @@ keywords:
 - 米开朗基杨
 - macvlan
 - vepa
+- linux
 title: "Linux 虚拟网卡技术：Macvlan"
 subtitle: "Macvlan 的实现原理及其工作模式"
 description: 本文主要介绍了 Macvlan 的实现原理，比较了它和 Linux Bridge 模式之间的差异及其使用场景，还详细剖析了 Macvlan 四种模式的工作原理和相关注意项。
@@ -10,17 +11,15 @@ date: 2019-03-25T17:29:43+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: Network
-tags: ["macvlan"]
+categories: 
+- network
+tags:
+- Macvlan
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/mceclip0.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-## <span id="inline-toc">1.</span> Macvlan 简介
-
-----
+## Macvlan 简介
 
 在 Macvlan 出现之前，我们只能为一块以太网卡添加多个 IP 地址，却不能添加多个 MAC 地址，因为 MAC 地址正是通过其全球唯一性来标识一块以太网卡的，即便你使用了创建 `ethx:y` 这样的方式，你会发现所有这些“网卡”的 MAC 地址和 ethx 都是一样的，本质上，它们还是一块网卡，这将限制你做很多二层的操作。有了 `Macvlan` 技术，你可以这么做了。
 
@@ -30,13 +29,11 @@ Macvlan 允许你在主机的一个网络接口上配置多个虚拟的网络接
 
 我们先来看一下 Macvlan 技术的流程示意图：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/mSHyZc.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-13-0aXNFF.jpg)
 
 简单来说，Macvlan 虚拟网卡设备是寄生在物理网卡设备上的。发包时调用自己的发包函数，查找到寄生的物理设备，然后通过物理设备发包。收包时，通过注册寄生的物理设备的 `rx_handler` 回调函数，处理数据包。
 
-## <span id="inline-toc">2.</span> Macvlan vs Bridge
-
-----
+## Macvlan vs Bridge
 
 说到 Macvlan，就不得不提 `Bridge`，因为你可以把 Macvlan 看成一个简单的 Bridge。但他们之间还是有很大的区别的。
 
@@ -44,7 +41,7 @@ Macvlan 允许你在主机的一个网络接口上配置多个虚拟的网络接
 
 Bridge 实际上就是一种旧式交换机，他们之间并没有很大的差别。Bridge 与交换机的区别在与市场，而不在与技术。交换机对网络进行分段的方式与 Bridge 相同，交换机就是一个多端口的网桥。确切地说，高端口密度的 Bridge 就称为局域网交换机。 
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/xTkQl9.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-uzg6Tm.jpg)
 
 Bridge 有以下特点：
 
@@ -55,7 +52,7 @@ Bridge 有以下特点：
 
 以下是一个在 Linux 主机上，多个 VM 使用 bridge 相互通讯的状况：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/LwCdhI.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-mZpEUH.jpg)
 
 Linux 主机中可以通过命令行工具 `brctl` 来查看 Bridge 的配置，该工具可以通过安装软件包 `bridge-utils` 来获得。
 
@@ -69,9 +66,9 @@ br1          8000.080021d2a187  no           veth1
                                              veth2
 ```
 
-{{< notice note >}}
+{{< alert >}}
 Bridge 有可能会遇到二层环路，如有需要，你可以开启 [STP](https://www.wikiwand.com/zh-hans/%E7%94%9F%E6%88%90%E6%A0%91%E5%8D%8F%E8%AE%AE) 来防止出现环路。
-{{< /notice >}}
+{{< /alert >}}
 
 ### Macvlan
 
@@ -87,17 +84,15 @@ Macvlan 有以下特点：
 
 用张图来解释一下设定 Macvlan 后的样子：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/11BacB.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-cmnaFw.jpg)
 
-## <span id="inline-toc">3.</span> Macvlan 的工作模式
-
-----
+## Macvlan 的工作模式
 
 Macvlan 共支持四种模式，分别是：
 
 ### VEPA（Virtual Ethernet Port Aggregator）
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/hWQfo8.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-FNNoJq.jpg)
 
 在 `VEPA` 模式下，所有从 Macvlan 接口发出的流量，不管目的地全部都发送给父接口，即使流量的目的地是共享同一个父接口的其它 Macvlan 接口。在二层网络场景下，由于生成树协议的原因，两个 Macvlan 接口之间的通讯会被阻塞，这时需要上层路由器上为其添加路由（需要外部交换机配置 `Hairpin` 支持，即需要兼容 802.1Qbg 的交换机支持，其可以把源和目的地址都是本地 Macvlan 接口地址的流量发回给相应的接口）。此模式下从父接口收到的广播包，会泛洪给 VEPA 模式的所有子接口。
 
@@ -121,43 +116,41 @@ $ echo 1 >/sys/class/net/br0/brif/eth1/hairpin_mode
 
 在 Linux 主机上配置了 `Harpin` 模式之后，源和目的地址都是本地 Macvlan 接口地址的流量，都会被 `br0`（假设你创建的 Bridge 是 br0）发回给相应的接口。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/Upu0WA.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-2dXOlQ.jpg)
 
 如果想在物理交换机层面对虚拟机或容器之间的访问流量进行优化设定，VEPA 模式将是一种比较好的选择。
 
-{{< notice note >}}
+{{< alert >}}
 <code>VEPA</code> 和 <code>Passthru</code> 模式下，两个 Macvlan 接口之间的通信会经过主接口两次：第一次是发出的时候，第二次是返回的时候。这样会影响物理接口的宽带，也限制了不同 Macvlan 接口之间通信的速度。如果多个 Macvlan 接口之间通信比较频繁，对于性能的影响会比较明显。
-{{< /notice >}}
+{{< /alert >}}
 
 ### Bridge
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/DX8XTB.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-DgMUzi.jpg)
 
 此种模式类似 Linux 的 Bridge，拥有相同父接口的两块 Macvlan 虚拟网卡是可以直接通讯的，不需要把流量通过父网卡发送到外部网络，广播帧将会被泛洪到连接在"网桥"上的所有其他子接口和物理接口。这比较适用于让共享同一个父接口的 Macvlan 网卡进行直接通讯的场景。
 
 这里所谓的 Bridge 指的是在这些网卡之间，数据流可以实现直接转发，不需要外部的协助，这有点类似于 Linux host 内建了一个 Bridge，即用 brctl 命令所做的那一切。但和 Linux bridge 绝不是一回事，它不需要学习 MAC 地址，也不需要 `STP`，因此效能比起使用 Linux bridge 好上很多。
 
-{{< notice note >}}
+{{< alert >}}
 Bridge 模式有个缺点：如果父接口 down 掉，所有的 Macvlan 子接口也会全部 down 掉，同时子接口之间也将无法进行通讯。
-{{< /notice >}}
+{{< /alert >}}
 
 ### Private
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/uDCfcQ.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-OIReFA.jpg)
 
 此种模式相当于 `VEPA` 模式的增强模式，其完全阻止共享同一父接口的 Macvlan 虚拟网卡之间的通讯，即使配置了 `Hairpin` 让从父接口发出的流量返回到宿主机，相应的通讯流量依然被丢弃。具体实现方式是丢弃广播/多播数据，这就意味着以太网地址解析 `arp` 将不可运行，除非手工探测 MAC 地址，否则通信将无法在同一宿主机下的多个 Macvlan 网卡间展开。之所以隔离广播流量，是因为以太网是基于广播的，隔离了广播，以太网将失去了依托。 
 
 ### Passthru
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/udMMFI.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-uuJuoP.jpg)
 
 此种模式会直接把父接口和相应的MacVLAN接口捆绑在一起，这种模式每个父接口只能和一个 Macvlan 虚拟网卡接口进行捆绑，并且 Macvlan 虚拟网卡接口继承父接口的 MAC 地址。
 
 此种模式的优点是虚拟机和容器可以更改 MAC 地址和其它一些接口参。
 
-## <span id="inline-toc">4.</span> Macvlan 和 Bridge 的使用场景
-
-----
+## Macvlan 和 Bridge 的使用场景
 
 最后我们再来讨论一下 Macvlan 和 Bridge 的各自使用场景。
 
@@ -173,9 +166,7 @@ Bridge 模式有个缺点：如果父接口 down 掉，所有的 Macvlan 子接�
 + 对于拥有多个网桥的混合环境。
 + 需要应用高级流量控制，FDB的维护。
 
-## <span id="inline-toc">5.</span> Macvlan 的局限性
-
-----
+## Macvlan 的局限性
 
 Macvlan 是将 VM 或容器通过二层连接到物理网络的近乎理想的方案，但它也有一些局限性：
 
@@ -183,15 +174,11 @@ Macvlan 是将 VM 或容器通过二层连接到物理网络的近乎理想的�
 + 许多 [NIC](https://www.wikiwand.com/zh/%E7%BD%91%E5%8D%A1) 也会对该物理网卡上的 MAC地址数量有限制。超过这个限制就会影响到系统的性能。
 + [IEEE 802.11](https://www.wikiwand.com/zh-hans/IEEE_802.11) 不喜欢同一个客户端上有多个 MAC 地址，这意味着你的 Macvlan 子接口在无线网卡或 [AP](https://www.wikiwand.com/en/Wireless_access_point) 中都无法通信。可以通过复杂的办法来突破这种限制，但还有一种更简单的办法，那就是使用 `Ipvlan`，感兴趣可以自己查阅相关资料。
 
-## <span id="inline-toc">6.</span> 总结
-
-----
+## 总结
 
 本文主要介绍了 Macvlan 的实现原理，比较了它和 Linux Bridge 模式之间的差异及其使用场景，还详细剖析了 Macvlan 四种模式的工作原理和相关注意项。下一节我们将通过实际演练来模拟 Macvlan 的四种工作模式。
 
-## <span id="inline-toc">7.</span> 参考资料
-
-----
+## 参考资料
 
 + [Bridge vs Macvlan](http://hicu.be/bridge-vs-macvlan)
 + [图解几个与Linux网络虚拟化相关的虚拟网卡-VETH/MACVLAN/MACVTAP/IPVLAN](https://blog.csdn.net/ztguang/article/details/51854037)

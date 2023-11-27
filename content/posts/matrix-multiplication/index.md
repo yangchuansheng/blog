@@ -40,7 +40,7 @@ $$\begin{bmatrix} 2 & 1 \\\ 4 & 3 \end{bmatrix} \cdot \begin{bmatrix} 1 & 2 \\\ 
 
 教科书告诉你，计算规则是，第一个矩阵第一行的每个数字（2和1），各自乘以第二个矩阵第一列对应位置的数字（1和1），然后将乘积相加（ 2 x 1 + 1 x 1），得到结果矩阵左上角的那个值3。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/PAwGG3.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/PAwGG3.jpg)
 
 也就是说，结果矩阵第 m 行与第 n 列交叉位置的那个值，等于第一个矩阵第 m 行与第二个矩阵第 n 列，对应位置的每个值的乘积之和。
 
@@ -60,7 +60,7 @@ $$C\_{ij} = a\_{i1} \cdot b\_{1j} + a\_{i2} \cdot b\_{2j} + \cdots + a\_{in} \cd
 
 这就是矩阵乘法的一般性法则，人们一般都用这个法则来计算，我也不例外。不过我觉得还是有必要讲讲其他几种方法，比如考虑整行或整列。下面还是继续拿矩阵 $A$ 和 $B$ 举例。
 
-## <span id="inline-toc">1.</span> 列向量视角
+## 列向量视角
 
 ----
 
@@ -100,7 +100,7 @@ $$\vec{c\_i} = A \cdot \vec{b\_i} = \vec{a\_1} \cdot b\_{1i} + \vec{a\_2} \cdot 
 
 怎么样，是不是有一种茅塞顿开的感觉？别急，下面我们再换一种理解角度。
 
-## <span id="inline-toc">2.</span> 行向量视角
+## 行向量视角
 
 ----
 
@@ -136,7 +136,7 @@ $$\vec{c\_j} = \vec{a\_j} \cdot B = a\_{j1} \cdot \vec{b\_1} + a\_{j2} \cdot \ve
 
 故事到这里就结束了吗？远远没有，下面我们再换一种理解角度。
 
-## <span id="inline-toc">3.</span> 鬼畜视角
+## 鬼畜视角
 
 ----
 

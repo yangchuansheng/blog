@@ -1,22 +1,31 @@
 ---
+keywords:
+- Device Mapper
+- devicemapper
+- docker
+- 容器
+- 云原生
 title: "Device Mapper系列基础教程：Device Mapper 的原理"
 subtitle: "Device Mapper 原理剖析"
 date: 2018-01-21T09:28:41Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["docker", "devicemapper"]
+categories:
+- cloud-native
+tags:
+- Docker
+- Device Mapper
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191205115406.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> Device Mapper 简介
+## Device Mapper 简介
 ------
 
-{{< notice note >}}
+{{< alert >}}
 <code>Device Mapper</code> 是 linux 的内核用来将块设备映射到虚拟块设备的 framework，它支持许多高级卷管理技术。docker 的 devicemapper 存储驱动程序利用此框架的<code>自动精简配置</code>(thin provisioning) 和快照功能来管理 docker 镜像和容器。本文将 Device Mapper 存储驱动称为 <code>devicemapper</code>，将它的内核框架称为 <code>Device Mapper</code>。
-{{< /notice >}}
+{{< /alert >}}
 
 `Device Mapper` 不同于 AUFS、ext4、NFS 等，因为它并不是一个文件系统（File System），而是 Linux 内核映射块设备的一种技术框架。提供的一种从逻辑设备（虚拟设备）到物理设备的映射框架机制，在该机制下，用户可以很方便的根据自己的需要制定实现存储资源的管理策略。
 
@@ -26,7 +35,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 `devicemapper` 存储驱动使用专用于 `docker` 的块设备，它运行在块级别上而不是文件级别。使用块设备比直接使用文件系统性能更好，通过向 `Docker` 的宿主机添加物理存储可以扩展块设备的存储空间。
 
-## <span id="inline-toc">2.</span> 用户空间和内核空间
+## 用户空间和内核空间
 ------
 
 **Device Mapper主要分为用户空间部分和内核空间部分**
@@ -35,9 +44,9 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 内核中主要提供完成这些用户空间策略所需要的机制，负责具体过滤和重定向 IO 请求。通过不同的驱动插件，转发 IO 请求至目的设备上。附上 `Device Mapper` 架构图。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wazQIK.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wazQIK.jpg)
 
-## <span id="inline-toc">3.</span> Device Mapper 技术分析
+## Device Mapper 技术分析
 ------
 
 **`Device Mapper`** 作为 Linux 块设备映射技术框架，向外部提供逻辑设备。包含三个重要概念，映射设备（mapped device），映射表（map table），目标设备（target device）。
@@ -48,7 +57,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 简而言之，`Device Mapper` 对外提供一个虚拟设备供使用，而这块虚拟设备可以通过映射表找到相应的地址，该地址可以指向一块物理设备，也可以指向一个虚拟设备。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/JRQI4L.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/JRQI4L.jpg)
 
 映射表，是由用户空间创建，传递到内核空间。映射表里有映射设备逻辑的起始地址、范围、和表示在目标设备所在物理设备的地址偏移量以及Target 类型等信息（注：这些地址和偏移量都是以磁盘的扇区为单位的，即 512 个字节大小，所以，当你看到 128 的时候，其实表示的是 128*512=64K）。
 
@@ -56,7 +65,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 `Device Mapper` 中的 IO 流处理，从虚拟设备（逻辑设备）根据映射表并指定特定的映射驱动转发到目标设备上。
 
-## <span id="inline-toc">4.</span> Docker 中的 Device Mapper 核心技术
+## Docker 中的 Device Mapper 核心技术
 ------
 
 Docker 的 `devicemapper` 驱动有三个核心概念，`copy on-write（写复制）`，`thin-provisioning（精简配置）`。`snapshot（快照）`，首先简单介绍一下这三种技术。
@@ -71,11 +80,11 @@ Docker 的 `devicemapper` 驱动有三个核心概念，`copy on-write（写复�
   
   下图所示，容器层所见 file1 文件为镜像层文件，当需要修改 file1 时，会从镜像层把文件复制到容器层，然后进行修改，从而保证镜像层数据的完整性和复用性。
   
-  ![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/Qhtdrp.jpg)
+  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/Qhtdrp.jpg)
   
   下图所示，当需要删除 file1 时，由于 file1 是镜像层文件，容器层会创建一个 .wh 前置的隐藏文件，从而实现对 file1 的隐藏，实际并未删除 file1，从而保证镜像层数据的完整性和复用性。
   
-  ![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/m4tMby.jpg)
+  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/m4tMby.jpg)
   
   `devicemapper` 支持在块级别（block）写复制。
   
@@ -86,17 +95,17 @@ Docker 的 `devicemapper` 驱动有三个核心概念，`copy on-write（写复�
   
   好了，话题拉回来，我们这里说的是存储。看下面两个图，第一个是 `Fat Provisioning`，第二个是 `Thin Provisioning`，其很好的说明了是个怎么一回事（和虚拟内存是一个概念）。
   
-  ![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/Dou0uN.jpg)
+  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/Dou0uN.jpg)
   
-  ![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/lMhtJG.jpg)
+  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/lMhtJG.jpg)
 
   下图中展示了某位用户向服务器管理员请求分配 10TB 的资源的情形。实际情况中这个数值往往是峰值，根据使用情况，分配 2TB 就已足够。因此，系统管理员准备 2TB 的物理存储，并给服务器分配 10TB 的虚拟卷。服务器即可基于仅占虚拟卷容量 1/5 的现有物理磁盘池开始运行。这样的“始于小”方案能够实现更高效地利用存储容量。
 
-  ![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/udMvqc.jpg)
+  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/udMvqc.jpg)
 
 那么，Docker 是怎么使用 <code>Thin Provisioning</code> 这个技术做到像 UnionFS 那样的分层镜像的呢？答案是，Docker 使用了 <code>Thin Provisioning</code> 的 <code>Snapshot</code> 的技术。下面一篇我们来介绍一下 <code>Thin Provisioning</code> 的 <code>Snapshot</code>。
 
-## <span id="inline-toc">5.</span> 参考资料
+## 参考资料
 
 ----
 

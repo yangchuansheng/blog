@@ -11,17 +11,16 @@ date: 2018-12-14T17:39:06+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service-mesh"
-tags: ["envoy","nginx"]
+categories: 
+- service-mesh
+tags:
+- Envoy
+- Nginx
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/sidecar.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-<p id="div-border-left-red">
-原文链接：<a href="https://www.envoyproxy.io/try/migrating-from-nginx-to-envoy" target="_blank">Migrating from NGINX to Envoy Proxy</a>
-</p>
+> 原文链接：[Migrating from NGINX to Envoy Proxy](https://iceburn.medium.com/migrating-from-nginx-to-envoy-proxy-41ef0e1272bb)
 
 本文将会手把手教你如何从 `Nginx` 迁移到 `Envoy Proxy`，你可以将任何以前的经验和对 Nginx 的理解直接应用于 `Envoy Proxy` 中。
 
@@ -33,7 +32,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 学完本教程之后，你将会了解 `Envoy Proxy` 的核心功能，以及如何将现有的 Nginx 配置文件迁移到 Envoy Proxy 中。
 
-## <span id="inline-toc">1.</span> Nginx 与 Envoy Proxy 的核心模块
+## Nginx 与 Envoy Proxy 的核心模块
 
 ----
 
@@ -105,7 +104,7 @@ Nginx 的配置通常分为三个关键要素：
 
 接下来我们将使用这四个关键组件创建一个 Envoy Proxy 配置文件，以匹配前面定义的 Nginx 配置文件。
 
-## <span id="inline-toc">2.</span> Nginx 配置迁移
+## Nginx 配置迁移
 
 ----
 
@@ -133,7 +132,7 @@ Envoy 中的所有连接池都和 Worker 线程绑定。 尽管 `HTTP/2` 连接�
 
 Nginx 的下一个配置块是 HTTP 块，包括资源的媒体类型（mime type）、默认超时和 gzip 压缩配置。这些功能在 Envoy Proxy 中都是通过过滤器来实现的，下文将会详细讨论。
 
-## <span id="inline-toc">3.</span> Server 配置迁移
+## Server 配置迁移
 
 ----
 
@@ -163,7 +162,7 @@ static_resources:
 
 这里不需要定义 `server_name`，域名将会交给过滤器来处理。
 
-## <span id="inline-toc">4.</span> Location 配置迁移
+## Location 配置迁移
 
 ----
 
@@ -210,7 +209,7 @@ filter_chains:
 
 `envoy.http_connection_manager` 是 Envoy 中的内置 HTTP 过滤器。除了该过滤器，Envoy 中还内置了一些其他过滤器，包括 Redis、Mongo、TCP 等，完整的过滤器列表请参考 [Envoy 官方文档](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/listener/listener.proto#envoy-api-file-envoy-api-v2-listener-listener-proto)。
 
-## <span id="inline-toc">5.</span> Proxy 与 upstream 配置迁移
+## Proxy 与 upstream 配置迁移
 
 ----
 
@@ -244,7 +243,7 @@ clusters:
 
 当使用 `STRICT_DNS` 类型的服务发现时，Envoy 将持续并异步地解析指定的 DNS 目标。DNS 结果中每个返回的 IP 地址将被视为上游集群中的显式主机。这意味着如果查询返回三个 IP 地址，Envoy 将假定该集群有三台主机，并且所有三台主机应该负载均衡。如果有主机从 DNS 返回结果中删除，则 Envoy 会认为它不再存在，并且会将它从所有的当前连接池中排除。更多详细内容请参考 [Envoy 官方文档](https://www.envoyproxy.io/docs/envoy/latest/intro/arch_overview/service_discovery#strict-dns)。
 
-## <span id="inline-toc">6.</span> 日志配置迁移
+## 日志配置迁移
 
 ----
 
@@ -360,7 +359,7 @@ admin:
     socket_address: { address: 0.0.0.0, port_value: 9090 }
 ```
 
-## <span id="inline-toc">7.</span> 启动 Envoy Proxy
+## 启动 Envoy Proxy
 
 ----
 

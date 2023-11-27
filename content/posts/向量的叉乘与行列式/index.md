@@ -19,19 +19,19 @@ libraries:
 
 我们从一个五边形的面积开始说起
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E6%AD%A3%E4%BA%94%E8%BE%B9%E5%BD%A2.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/%E6%AD%A3%E4%BA%94%E8%BE%B9%E5%BD%A2.png)
 
 比如我们要求这个正五边形的面积，该怎样用向量求呢？
 
 先简化这个问题，不用考虑五边形，只需考虑三角形。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E4%BA%94%E8%BE%B9%E5%BD%A22.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/%E4%BA%94%E8%BE%B9%E5%BD%A22.png)
 
 现在，我们把正五边形分割成三个三角形，再把三角形的面积加起来，就得到了五边形的面积。
 
 那么问题来了：**怎样求三角形的面积？**
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E4%B8%89%E8%A7%92%E5%BD%A2.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/%E4%B8%89%E8%A7%92%E5%BD%A2.png)
 
 设三角形的面积为S，那么
 
@@ -68,7 +68,7 @@ $$
 
 作向量$\vec{A}$、$\vec{B}$，夹角记为$\theta$，将向量$\vec{A}$逆时针旋转 $90^\circ$ 得到 $\vec{A^\prime}$，如下图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E9%80%89%E5%8C%BA_347.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/%E9%80%89%E5%8C%BA_347.png)
 
 通过上图给的条件，我们已知：
 
@@ -103,7 +103,7 @@ $$
 
 这个方法看起来不错，不过还有一点是不知道的，就是怎么求$\vec{A^\prime}$呢?
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E9%80%89%E5%8C%BA_348.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/%E9%80%89%E5%8C%BA_348.png)
 
 假设$\vec{A}$的坐标为$\left\langle a_1,a_2 \right\rangle$，由我画的图可知，逆时针旋转 $90^\circ$ 后，得到：$A^\prime=\left\langle -a_2,a_1 \right\rangle$ 。
 
@@ -300,7 +300,7 @@ $$
 
 下面我们回到最初提出的问题 :** 求平行六面体的体积**
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/%E9%80%89%E5%8C%BA_351.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/%E9%80%89%E5%8C%BA_351.png)
 如上图所示，我们要求由三个向量 $\vec{A}$,$\vec{B}$ 与 $\vec{C}$ 构成的平行六面体的体积。
 
 设体积为V，向量$\vec{A}$与$\vec{B}$构成的平行四边形的面积为S，高为h，那么：

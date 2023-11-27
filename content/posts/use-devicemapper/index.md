@@ -1,17 +1,26 @@
 ---
+keywords:
+- Device Mapper
+- devicemapper
+- docker
+- 容器
+- 云原生
 title: "Device Mapper基础教程：Docker 中使用 devicemapper 存储驱动"
 subtitle: "配置 Docker 使用 devicemapper"
 date: 2018-01-22T16:17:11+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["docker", "devicemapper"]
+categories:
+- cloud-native
+tags:
+- Docker
+- Device Mapper
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191205104948.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> 准备条件
+## 准备条件
 ------
 
 + `devicemapper` 存储驱动是 `RHEL`, `CentOS` 和 `Oracle Linux` 系统上唯一一个支持 `Docker EE` 和 `Commercially Supported Docker Engine` (CS-Engine) 的存储驱动，具体参考 [Product compatibility matrix](https://success.docker.com/Policies/Compatibility_Matrix).
@@ -20,7 +29,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 + 如果你更改了 `Docker` 的存储驱动，那么你之前在本地创建的所有容器都将无法访问。
 
-## <span id="inline-toc">2.</span> 配置Docker使用devicemapper
+## 配置Docker使用devicemapper
 ------
 
 Docker 主机运行 `devicemapper` 存储驱动时，默认的配置模式为 `loop-lvm`。此模式使用空闲的文件来构建用于镜像和容器快照的精简存储池。该模式设计为无需额外配置开箱即用(out-of-the-box)。不过生产部署不应该以 `loop-lvm` 模式运行。
@@ -188,11 +197,11 @@ $ cat /etc/docker/daemon.json
 }
 ```
 
-{{< notice note >}}
+{{< alert >}}
 Note: Always set both `dm.use_deferred_removal=true` and `dm.use_deferred_deletion=true` to prevent unintentionally leaking mount points.
 
 启用上述2个参数来阻止可能意外产生的挂载点泄漏问题
-{{< /notice >}}
+{{< /alert >}}
 
 #### 检查主机上的 `devicemapper` 结构
 
@@ -212,13 +221,13 @@ xvdf               202:80   0   10G  0 disk
 
 下图显示由 `lsblk` 命令输出的之前镜像的详细信息。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/devicemapper-in-practice-pic4.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic4.jpg)
 
 可以看出，名为 `Docker-202:1-1032-pool` 的 pool 横跨在 `data` 和 `metadata` 设备之上。pool 的命名规则为：
 
 > Docker-主设备号:二级设备号-inode号-pool
 
-## <span id="inline-toc">3.</span> 管理 devicemapper
+## 管理 devicemapper
 ------
 
 ### 3.1 监控 thin pool
@@ -231,9 +240,9 @@ xvdf               202:80   0   10G  0 disk
 $ journalctl -fu dm-event.service
 ```
 
-{{< notice note >}}
+{{< alert >}}
 如果你在使用精简池（thin pool）的过程中频繁遇到问题，你可以在 <code>/etc/docker.daemon.json</code> 中设置参数 <code>dm.min_free_space</code> 的值（表示百分比）。例如将其设置为 10，以确保当可用空间达到或接近 10％ 时操作失败，并发出警告。参考 <a href="https://docs.docker.com/engine/reference/commandline/dockerd/#storage-driver-options">storage driver options in the Engine daemon reference</a>.
-{{< /notice >}}
+{{< /alert >}}
 
 ### 3.2 为正在运行的设备增加容量
 
@@ -433,7 +442,7 @@ $ docker info |grep 'loop file'
 $ lvchange -ay docker/thinpool
 ```
 
-## <span id="inline-toc">4.</span> devicemapper 存储驱动的工作原理
+## devicemapper 存储驱动的工作原理
 ------
 
 <p markdown="1" style="display: block;padding: 10px;margin: 10px 0;border: 1px solid #ccc;border-top-width: 5px;border-radius: 3px;border-top-color: #9954bb;">
@@ -488,22 +497,22 @@ $ mount |grep devicemapper
 
 下图显示一个具有一个base设备和两个镜像的精简池。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/devicemapper-in-practice-pic1.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic1.jpg)
 
 如果你仔细查看图表你会发现快照一个连着一个。每一个镜像数据层是它下面数据层的一个快照。每个镜像的最底端数据层是存储池中 `base` 设备的快照。此 `base` 设备是 `Device Mapper` 的工件，而不是 Docker 镜像数据层。
 
 一个容器是从其创建的镜像的一个快照。下图显示两个容器： 一个基于 `Ubuntu` 镜像和另一个基于 `Busybox` 镜像。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/devicemapper-in-practice-pic2.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic2.jpg)
 
-## <span id="inline-toc">5.</span> devicemapper 读写数据的过程
+## devicemapper 读写数据的过程
 ------
 
 ### 5.1 读数据
 
 我们来看下使用 `devicemapper` 存储驱动如何进行读文件。下图显示在示例容器中读取一个单独的块 [0x44f] 的过程。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/devicemapper-in-practice-pic3.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic3.jpg)
 
   1. 一个应用程序请求读取容器中 `0x44f` 数据块。由于容器是一个镜像的一个精简快照，它没有那个数据，只有一个指向镜像存储的地方的指针。
 
@@ -517,13 +526,13 @@ $ mount |grep devicemapper
 
 + **写入新数据 :**  使用 `devicemapper` 驱动，通过按需分配（allocate-on-demand）操作来实现写入新数据到容器，所有的新数据都被写入容器的可写层中。
 
-{{< notice note >}}
+{{< alert >}}
 例如要写入 56KB 的新数据到容器：
 
 1. 一个应用程序请求写入56KB的新数据到容器。
 2. 按需分配操作给容器快照分配一个新的64KB数据块。如果写操作大于64KB，就分配多个新数据块给容器快照。
 3. 新的数据写入到新分配的数据块。
-{{< /notice >}}
+{{< /alert >}}
 
 + **覆盖存在的数据 :** 更新存在的数据使用写时拷贝（copy-on-write）操作，先从最近的镜像层中读取与该文件相关的数据块；然后分配新的空白数据块给容器快照并复制数据到这些数据块；最后更新好的数据写入到新分配的数据块。
 
@@ -531,7 +540,7 @@ $ mount |grep devicemapper
 
 + **写入新数据并删除旧数据 :** 当你向容器中写入新数据并删除旧数据时，所有这些操作都发生在容器的可写层。如果你使用的是 `direct-lvm` 模式，删除的数据块将会被释放；如果你使用的是 `loop-lvm` 模式，那么这些数据块就不会被释放。因此不建议在生产环境中使用 `loop-lvm` 模式。
 
-## <span id="inline-toc">6.</span> Device Mapper 对 Docker 性能的影响
+## Device Mapper 对 Docker 性能的影响
 ------
 
 了解按需分配和写时拷贝操作对整体容器性能的影响很重要。

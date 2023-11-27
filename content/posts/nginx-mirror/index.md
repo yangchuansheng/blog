@@ -10,17 +10,15 @@ date: 2019-01-28T16:39:48+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "loadbalance"
-tags: ["nginx", "loadbalance"]
+categories: 
+- load-balancing
+tags:
+- Nginx
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/dynamic-pages-seo-friendly.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-<p id="div-border-left-red">
-原文链接：<a href="https://alex.dzyoba.com/blog/nginx-mirror/" target="_blank">nginx mirroring tips and tricks</a>
-</p>
+> 原文链接：[nginx mirroring tips and tricks](https://alex.dzyoba.com/blog/nginx-mirror/)
 
 最近我在研究 Nginx 1.13.4 最新的 [mirror 模块](http://nginx.org/en/docs/http/ngx_http_mirror_module.htm)，利用 mirror 模块，你可以将线上实时流量拷贝至其他环境同时不影响源站请求的响应，因为 Nginx 会丢弃 mirror 的响应。mirror 模块可用于以下几个场景：
 
@@ -31,13 +29,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 我已经用它来测试新系统对生产环境流量的处理能力，但遇到了一些小问题，经过一番努力我总结出了一些小窍门，现在分享给你们。
 
-## <span id="inline-toc">1.</span> 基础配置
+## 基础配置
 
 ----
 
 先来创建一个基本的配置，架构如下图所示，由一个用来实际处理流量的后端和一个前端代理组成：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/SePJFH.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/SePJFH.jpg)
 
 Nginx 配置文件如下：
 
@@ -107,13 +105,13 @@ Status code distribution:
 
 大多数请求都在 1 毫秒内处理完成，也没有错误响应，很好，但这只是我们的底线。
 
-## <span id="inline-toc">2.</span> 基础流量镜像配置
+## 基础流量镜像配置
 
 ----
 
 现在我们向后端添加一个测试服务，并将发往源后端的流量复制一份到测试后端。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/VqOLrh.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/VqOLrh.jpg)
 
 流量镜像的配置文件如下：
 
@@ -199,7 +197,7 @@ Status code distribution:
 
 和第一次的测试结果一样：大多数请求都在 1 毫秒内处理完成，也没有错误响应。可以得出结论：镜像流量不会影响源站请求的响应。
 
-## <span id="inline-toc">3.</span> 将流量复制到故障后端
+## 将流量复制到故障后端
 
 ----
 
@@ -264,7 +262,7 @@ Status code distribution:
 
 仍然和之前的测试结果一样！这说明了故障后端的错误并不会影响源后端的响应。Nginx 忽略了镜像请求的响应，所以测试结果会和之前一样。
 
-## <span id="inline-toc">4.</span> 将流量复制到响应缓慢的后端
+## 将流量复制到响应缓慢的后端
 
 ----
 
@@ -395,7 +393,7 @@ Status code distribution:
 
 我不知道如何修复这个 bug，但我想到了一个方法可以缓解这个 bug 带来的影响：只复制流量的一部分。具体的实现方法见下文。
 
-## <span id="inline-toc">5.</span> 只复制流量的一部分
+## 只复制流量的一部分
 
 ----
 
@@ -482,7 +480,7 @@ $ for i in {1..20};do curl -i "proxy.local:8000/?apikey=${i}" ;done
 
 这个方法的奇妙之处在于 `split_client` 对流量的拆分结果是保持恒定的，`apikey=1` 的请求会一直被复制到镜像后端。
 
-## <span id="inline-toc">6.</span> 总结
+## 总结
 
 ----
 

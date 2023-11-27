@@ -18,13 +18,18 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
-categories: Network
+- Linux
+- Netmaker
+- Kubernetes
+categories: 
+- Network
+- VPN
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202110191613650.png
 ---
 
 大家好，我是米开朗基杨。
 
-关注我的读者应该都还记得我之前写过一篇 [WireGuard 全互联模式 (full mesh) 的配置指南](https://icloudnative.io/posts/wireguard-full-mesh/)，限于当时还没有成熟的产品来帮助我们简化全互联模式的配置，所以我选择了使用可视化界面 [wg-gen-web](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/) 来达成目的。但 [wg-gen-web](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/) 的缺陷也很明显，它生成的每一个客户端的配置都要手动调整，终究还是不够便利。
+关注我的读者应该都还记得我之前写过一篇 [WireGuard 全互联模式 (full mesh) 的配置指南](/posts/wireguard-full-mesh/)，限于当时还没有成熟的产品来帮助我们简化全互联模式的配置，所以我选择了使用可视化界面 [wg-gen-web](/posts/configure-wireguard-using-wg-gen-web/) 来达成目的。但 [wg-gen-web](/posts/configure-wireguard-using-wg-gen-web/) 的缺陷也很明显，它生成的每一个客户端的配置都要手动调整，终究还是不够便利。
 
 今天我将为大家介绍一种更加完美的工具来配置 WireGuard 的全互联模式，这个工具就是 [Netmaker](https://github.com/gravitl/netmaker)。
 
@@ -44,7 +49,7 @@ Netmaker 使用的是 C/S 架构，即客户端/服务器架构。Netmaker Serve
 
 客户端（netclient）是一个二进制文件，可以在绝大多数 Linux 客户端以及 macOS 和 Windows 客户端运行，它的功能就是自动管理 WireGuard，动态更新 Peer 的配置。
 
-> **注意**：这里不要将 Netmaker 理解成我之前的文章所提到的[中心辐射型网络拓扑](https://icloudnative.io/posts/why-not-why-not-wireguard/#7-wireguard-%E7%9C%9F%E7%9A%84%E5%BE%88%E5%BF%AB%E5%90%97)。Netmaker Server 只是用来存储虚拟网络的配置并管理各个 Peer 的状态，Peer 之间的网络流量并不会通过 Netmaker Server。
+> **注意**：这里不要将 Netmaker 理解成我之前的文章所提到的[中心辐射型网络拓扑](/posts/why-not-why-not-wireguard/#7-wireguard-%E7%9C%9F%E7%9A%84%E5%BE%88%E5%BF%AB%E5%90%97)。Netmaker Server 只是用来存储虚拟网络的配置并管理各个 Peer 的状态，Peer 之间的网络流量并不会通过 Netmaker Server。
 
 Netmaker 还有一个重要的术语叫**签到**，客户端会通过定时任务来不断向 Netmaker Server 签到，以动态更新自身的状态和 Peer 的配置，它会从 Netmaker Server 检索 Peer 列表，然后与所有的 Peer 建立点对点连接，即全互联模式。所有的 Peer 通过互联最终呈现出来的网络拓扑结构就类似于本地子网或 VPC。
 

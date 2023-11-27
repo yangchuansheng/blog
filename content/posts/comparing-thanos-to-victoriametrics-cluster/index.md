@@ -17,9 +17,10 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- victoriametrics
-- prometheus
-categories: monitoring
+- VictoriaMetrics
+- Prometheus
+categories: 
+- monitoring
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200826182758.png
 ---
 

@@ -17,7 +17,9 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - Containerd
-categories: containers
+- Docker
+- Conatiners
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-13-11-19-PIPRRh.png
 ---
 

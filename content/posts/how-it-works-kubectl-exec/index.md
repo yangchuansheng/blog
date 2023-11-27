@@ -13,9 +13,10 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- kubelet
-- kubernetes
-categories: Kubernetes
+- Kubelet
+- Kubernetes
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200521183444.png
 ---
 
@@ -75,15 +76,15 @@ root@nginx:/#
 + `GET` 请求用来[获取 Pod 信息](https://github.com/kubernetes/kubectl/blob/4f155a6381d3caaf46f37df8e575abdad9b24b3f/pkg/cmd/exec/exec.go#L287-L306)。
 + POST 请求调用 Pod 的子资源 `exec` 在容器内执行命令。
 
-{{< notice note >}}
+{{< alert >}}
 子资源（subresource）隶属于某个 K8S 资源，表示为父资源下方的子路径，例如 `/logs`、`/status`、`/scale`、`/exec` 等。其中每个子资源支持的操作根据对象的不同而改变。
-{{< /notice >}}
+{{< /alert >}}
 
 最后 API Server 返回了 `101 Ugrade` 响应，向客户端表示已切换到 `SPDY` 协议。
 
-{{< notice note >}}
+{{< alert >}}
 SPDY 允许在单个 TCP 连接上复用独立的 stdin/stdout/stderr/spdy-error 流。
-{{< /notice >}}
+{{< /alert >}}
 
 ## 1. API Server 源码分析
 
@@ -133,9 +134,9 @@ restStorageMap := map[string]rest.Storage{
 
 
 
-{{< notice note >}}
+{{< alert >}}
 `podstorage` 为 pod 和子资源提供了 `CURD` 逻辑和策略的抽象。更多详细信息请查看内嵌的 [genericregistry.Store](https://github.com/kubernetes/apiserver/blob/d65a85b44b2088665850402025c97aa9f6f32ba4/pkg/registry/generic/registry/store.go#L72-L77)
-{{< /notice >}}
+{{< /alert >}}
 
 map `restStorageMap` 会成为实例 `apiGroupInfo` 的一部分，添加到 `GenericAPIServer` 中：
 

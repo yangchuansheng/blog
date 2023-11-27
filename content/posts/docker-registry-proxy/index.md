@@ -16,9 +16,10 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- docker
-- envoy
-categories: containers
+- Docker
+- Envoy
+categories:
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200513123439.png
 
 ---
@@ -105,7 +106,7 @@ exec "$@"
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210216182846.png)
 
-既然买了两台，肯定得[组个 k3s 集群](https://icloudnative.io/posts/deploy-k3s-cross-public-cloud/)啦，看主机名就知道我是用来干啥的。其中 2C 4G 作为 master 节点，1C 2G 作为 node 节点。
+既然买了两台，肯定得[组个 k3s 集群](/posts/deploy-k3s-cross-public-cloud/)啦，看主机名就知道我是用来干啥的。其中 2C 4G 作为 master 节点，1C 2G 作为 node 节点。
 
 以 `docker.io` 为例，创建资源清单：
 
@@ -201,7 +202,7 @@ spec:
 
 对于 Kubernetes 集群来说，`Ingress Controller` 即边缘代理，常见的 `Ingress Controller` 基本上都是由 `Nginx` 或者 [Envoy](https://icloudnative.io/envoy-handbook/) 来实现。[Envoy](https://icloudnative.io/envoy-handbook/) 虽为代理界新秀，但生而逢时，它的很多特性都是原生为云准备的，是真正意义上的 Cloud Native L7 代理和通信总线。比如它的服务发现和动态配置功能，与 `Nginx` 等代理的热加载不同，[Envoy](https://icloudnative.io/envoy-handbook/) 可以通过 `API` 来实现其控制平面，控制平面可以集中服务发现，并通过 `API` 接口动态更新数据平面的配置，不需要重启数据平面的代理。不仅如此，控制平面还可以通过 API 将配置进行分层，然后逐层更新。
 
-目前使用 [Envoy](https://icloudnative.io/envoy-handbook/) 实现的 Ingress Controller 有 [Contour](https://icloudnative.io/posts/use-envoy-as-a-kubernetes-ingress/)、[Ambassador](https://github.com/datawire/ambassador) 和 [Gloo](https://github.com/solo-io/gloo) 等，如果你对 [Envoy](https://icloudnative.io/envoy-handbook/) 比较感兴趣，并且想使用 Ingress Controller 作为边缘代理，可以试试 [Contour](https://icloudnative.io/posts/use-envoy-as-a-kubernetes-ingress/)。Ingress Controller 对底层做了抽象，屏蔽了很多细节，无法顾及到所有细节的配置，必然不会支持底层代理所有的配置项，所以我选择使用原生的 [Envoy](https://icloudnative.io/envoy-handbook/) 来作为边缘代理。如果你是单机跑的 registry-proxy 服务，也可以试试 [Envoy](https://icloudnative.io/envoy-handbook/)。
+目前使用 [Envoy](https://icloudnative.io/envoy-handbook/) 实现的 Ingress Controller 有 [Contour](/posts/use-envoy-as-a-kubernetes-ingress/)、[Ambassador](https://github.com/datawire/ambassador) 和 [Gloo](https://github.com/solo-io/gloo) 等，如果你对 [Envoy](https://icloudnative.io/envoy-handbook/) 比较感兴趣，并且想使用 Ingress Controller 作为边缘代理，可以试试 [Contour](/posts/use-envoy-as-a-kubernetes-ingress/)。Ingress Controller 对底层做了抽象，屏蔽了很多细节，无法顾及到所有细节的配置，必然不会支持底层代理所有的配置项，所以我选择使用原生的 [Envoy](https://icloudnative.io/envoy-handbook/) 来作为边缘代理。如果你是单机跑的 registry-proxy 服务，也可以试试 [Envoy](https://icloudnative.io/envoy-handbook/)。
 
 ## 6. 代理配置
 
@@ -273,7 +274,7 @@ spec:
 🐳  → kubectl apply -f envoy.yaml
 ```
 
-这里选择使用 `hostPath` 将 envoy 的配置挂载到容器中，然后[通过文件来动态更新配置](https://icloudnative.io/posts/file-based-dynamic-routing-configuration/)。来看下 [Envoy](https://icloudnative.io/envoy-handbook/) 的配置，先进入 `/etc/envoy` 目录。
+这里选择使用 `hostPath` 将 envoy 的配置挂载到容器中，然后[通过文件来动态更新配置](/posts/file-based-dynamic-routing-configuration/)。来看下 [Envoy](https://icloudnative.io/envoy-handbook/) 的配置，先进入 `/etc/envoy` 目录。
 
 `bootstrap` 配置：
 

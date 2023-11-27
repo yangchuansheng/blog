@@ -101,9 +101,9 @@ VXLAN 的报文结构如下图所示：
 + **VXLAN Header** : 在原始二层帧的前面增加 `8` 字节的 VXLAN 的头部，其中最主要的是 `VNID`，占用 `3` 个字节（即 24 bit），类似 VLAN ID，可以具有 $2^{24}$ 个网段。
 + **UDP Header** : 在 VXLAN 和原始二层帧的前面使用 `8` 字节 `UDP` 头部进行封装（MAC IN UDP），目的端口号缺省使用 4789，源端口按流随机分配（通过 MAC，IP，四层端口号进行 hash 操作）， 这样可以更好的做 `ECMP`。
 
-  {{< notice note >}}
+  {{< alert >}}
   `IANA`（Internet As-signed Numbers Autority）分配了 `4789` 作为 VXLAN 的默认目的端口号。
-  {{< /notice >}}
+  {{< /alert >}}
 
 在上面添加的二层封装之后，再添加底层网络的 IP 头部（`20` 字节）和 MAC 头部（`14` 字节），**这里的 IP 和 MAC 是宿主机的 IP 地址和 MAC 地址**。
 

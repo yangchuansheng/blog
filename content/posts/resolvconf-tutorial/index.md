@@ -4,6 +4,7 @@ keywords:
 - resolvconf
 - /etc/resolv.conf
 - systemd-resolved
+- dns
 title: "重新夺回对 /etc/resolv.conf 的控制权"
 date: 2020-09-28T14:50:58+08:00
 lastmod: 2020-09-28T14:50:58+08:00
@@ -15,8 +16,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- linux
-categories: linux
+- DNS
+categories: 
+- Linux
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20201007172159.png
 ---
 

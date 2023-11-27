@@ -12,8 +12,11 @@ date: 2019-10-18T00:16:16-04:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["podman","envoy"]
+categories:
+- cloud-native
+tags:
+- Podman
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-2019-10-18-072928.webp"
 ---
 
@@ -30,7 +33,7 @@ Podman 比较简单粗暴，它不使用 Daemon，而是直接通过 OCI runtime
 
 废话不多说，下面我们直接进入实战环节，本文将手把手教你如何用 podman 来部署静态博客，并通过 Sidecar 模式将博客所在的容器加入到 `Envoy` mesh 之中。
 
-## <span id="inline-toc">1.</span> 方案架构
+## 方案架构
 
 ----
 
@@ -40,9 +43,9 @@ Podman 比较简单粗暴，它不使用 Daemon，而是直接通过 OCI runtime
 + 其次，博客静态页面由 nginx 提供，同时以 Sidecar 模式运行一个 `Envoy` 容器，它与 nginx 共享 `network nemspace`。
 + 所有的 Envoy 形成一个 mesh，然后在他们之间共享路由信息。
 
-我之前写过一篇用 `Docker` 部署 hugo 静态博客并配置 `HTTPS` 证书的文章，本文采用的是相同的方案，只是将 docker 换成了 podman，具体参考[为 Envoy 开启 TLS 验证实战](https://icloudnative.io/posts/setting-up-ssl-in-envoy-practice/)。
+我之前写过一篇用 `Docker` 部署 hugo 静态博客并配置 `HTTPS` 证书的文章，本文采用的是相同的方案，只是将 docker 换成了 podman，具体参考[为 Envoy 开启 TLS 验证实战](/posts/setting-up-ssl-in-envoy-practice/)。
 
-## <span id="inline-toc">2.</span> 部署 hugo 和 sidecar proxy
+## 部署 hugo 和 sidecar proxy
 
 ----
 
@@ -255,11 +258,11 @@ admin:
       port_value: 8081
 ```
 
-具体的含义请参考[为 Envoy 开启 TLS 验证实战](https://icloudnative.io/posts/setting-up-ssl-in-envoy-practice/)。
+具体的含义请参考[为 Envoy 开启 TLS 验证实战](/posts/setting-up-ssl-in-envoy-practice/)。
 
 本文开头提到 podman 创建的容器是 podman 的子进程，这个表述可能比较模糊，实际上 podman 由两部分组成，一个是 podman CLI，还有一个是 container runtime，container runtime 由 `conmon` 来负责，主要包括监控、日志、TTY 分配以及类似 `out-of-memory` 情况的杂事。也就是说，conmon 是所有容器的父进程。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-10-17-064233.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-064233.png)
 
 conmon 需要去做所有 `systemd` 不做或者不想做的事情。即使 CRI-O 不直接使用 systemd 来管理容器，它也将容器分配到 sytemd 兼容的 `cgroup` 中，这样常规的 systemd 工具比如 `systemctl` 就可以看见容器资源使用情况了。
 
@@ -271,20 +274,20 @@ CONTAINER ID  IMAGE                                     COMMAND               CR
 f0204fdc9524  docker.io/library/nginx:alpine            nginx -g daemon o...  2 minutes ago       Up 2 minutes ago              hugo
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%882.18.30.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%882.18.30.png)
 
 对 cgroup 不熟的同学，可以参考下面这个系列：
 
-+ [深入理解 Linux Cgroup 系列（一）：基本概念](https://icloudnative.io/posts/understanding-cgroups-part-1-basics/)
-+ [深入理解 Linux Cgroup 系列（二）：玩转 CPU](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)
-+ [深入理解 Linux Cgroup 系列（三）：内存](https://icloudnative.io/posts/understanding-cgroups-part-3-memory/)
-+ [深入理解 Kubernetes 资源限制：CPU](https://icloudnative.io/posts/understanding-resource-limits-in-kubernetes-cpu-time/)
-+ [Kubernetes 内存资源限制实战](https://icloudnative.io/posts/memory-limit-of-pod-and-oom-killer/)
-+ [Kubernetes Pod 驱逐详解](https://icloudnative.io/posts/kubernetes-eviction/)
++ [深入理解 Linux Cgroup 系列（一）：基本概念](/posts/understanding-cgroups-part-1-basics/)
++ [深入理解 Linux Cgroup 系列（二）：玩转 CPU](/posts/understanding-cgroups-part-2-cpu/)
++ [深入理解 Linux Cgroup 系列（三）：内存](/posts/understanding-cgroups-part-3-memory/)
++ [深入理解 Kubernetes 资源限制：CPU](/posts/understanding-resource-limits-in-kubernetes-cpu-time/)
++ [Kubernetes 内存资源限制实战](/posts/memory-limit-of-pod-and-oom-killer/)
++ [Kubernetes Pod 驱逐详解](/posts/kubernetes-eviction/)
 
 零基础的同学建议按照上面的目录从上到下打怪升级，祝你好运！
 
-## <span id="inline-toc">3.</span> 部署前端代理
+## 部署前端代理
 
 ----
 
@@ -396,19 +399,19 @@ admin:
       port_value: 8001
 ```
 
-具体的含义请参考[为 Envoy 开启 TLS 验证实战](https://icloudnative.io/posts/setting-up-ssl-in-envoy-practice/)。
+具体的含义请参考[为 Envoy 开启 TLS 验证实战](/posts/setting-up-ssl-in-envoy-practice/)。
 
 现在就可以通过公网域名访问博客网站了，如果后续还有其他应用，都可以参考第二节的步骤，然后重新创建前端代理，添加 `--add-host `参数。以我的网站 [https://icloudnative.io](https://icloudnative.io) 为例：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.07.30.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.07.30.png)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.19.21.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.19.21.png)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-10-17-072659.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-072659.png)
 
 我好像透露了一些什么不得了的东西，就此打住，你也不要说，你也不要问。
 
-## <span id="inline-toc">4.</span> 开机自启
+## 开机自启
 
 ----
 
@@ -494,7 +497,7 @@ $ systemctl enable front-envoy_container
 
 之后每次系统重启后 systemd 都会自动启动这个服务所对应的容器。
 
-## <span id="inline-toc">4.</span> 总结
+## 总结
 
 ----
 

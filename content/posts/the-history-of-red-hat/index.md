@@ -13,7 +13,7 @@ keywords:
 - RHEL
 - 开源运动
 - CentOS
-title: "红帽 (Red Hat) 公司的起源与发展：十亿美金开源巨头的崛起"
+title: "Red Hat 公司的起源与发展：十亿美金开源巨头的崛起"
 date: 2023-11-10T14:06:37+08:00
 lastmod: 2023-11-10T14:06:37+08:00
 description: 探索估值超过10亿美金的红帽公司如何从小型创业企业成长为开源软件的巨头，揭秘其背后的创始人故事和历史里程碑。
@@ -27,7 +27,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - RedHat
 - Linux
-categories: share
+categories: tech-social
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-11-12-01-32-1peciH.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-11-12-01-27-WFsnff.jpg
 ---
@@ -58,7 +58,7 @@ Young 曾感慨，手握历史学学位在职场上并没让他多少占到便�
 
 尽管 Young 将 Linux 刻录在 CD 上销售，但他对于自己所销售的产品尚未完全理解。在 Don Becker 的邀请下，他前往位于马里兰州格林贝尔特的 Goddard 太空飞行中心进行了访问。
 
-![这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-00-17-6t2Ari.jpg)
+![这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-00-17-6t2Ari.jpg "这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29")
 
 当时 Becker 大佬正在搞一个叫 [Beowulf](https://ntrs.nasa.gov/api/citations/20150001285/downloads/20150001285.pdf) 的项目，这是历史上第一台运行 Linux 的超级计算机。这款计算机实际上就是把一堆市面上的普通电脑拼在一起组成的一个集群。这款 “原始版” 超级计算机，用了十六台 486DX4 计算机，然后用双通道以太网给它们都串联起来。美国国家航空航天局 (NASA) 有个需求：一个能够进行吉浮点运算的工作站，预算不能超过 $50000 (按 2023 年的价值是 $105000)，同时，他们需要能够随意修改的软件。Beowulf 完美地满足了这两个需求。在此背景下，Linux 的开源特性显得至关重要。**尽管 Becker 和他的团队都认为 Solaris 是更为优秀的 UNIX 系统，但因为不能随心所欲地修改它，所以最终选择了 Linux**。Young 在看到 Beowulf 后，深刻地意识到 Linux 的潜力，它并不仅仅是 UNIX 的一个分支而已。
 
@@ -68,7 +68,7 @@ Young 曾感慨，手握历史学学位在职场上并没让他多少占到便�
 
 Marc Ewing 出生于 1969 年 3 月 9 日，他的父亲是 IBM 的一名程序员。年仅 10 岁的他已经显露出了敏锐的商业嗅觉：他将购买的 Bubble Yum 和 Bubblicious 口香糖 (每片四分之一美元) 放入他的萨克斯风盒子中，并在学校里以一美元的价格卖出。因此，在纽约波基普西的 Hagen 小学，大家都称他为 “口香糖小贩”。他还参加了计算机夏令营，学会了为 Apollo 和 Commodore 计算机编写程序。1992 年，他从卡内基梅隆大学毕业。**在校期间，他常常戴著一顶红色的康乃尔大学长曲棍球帽子 (这是他的祖父赠送给他的)，并且经常出没在计算机实验室。由于他技术高超，又经常待在实验室，同学们总是来找他请教问题。他待人友好，乐于助人，久而久之，大家开始口口相传：“有技术难题？找那个戴红帽子的帅小伙吧！”**
 
-![由 DALL·E 3 配图](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-22-15-12-xpxjYJ.jpg)
+![由 DALL·E 3 配图](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-22-15-12-xpxjYJ.jpg "由 DALL·E 3 配图")
 
 ### 创办红帽公司
 
@@ -90,13 +90,13 @@ Ewing 急需财务和市场推广的支持，而 Young 则在寻找一款能代�
 
 他们成立新公司后，仍选择在 Ewing 的公寓里办公，并且经常组队去山姆超市囤点汽水，生活也算是轻松有趣。但是，一个清晨，公寓的厕所不争气地溢水了，还影响到了楼下的房间。当物业维修人员走进公寓，只见满屋的电脑却不见人影，因此强烈要求他们搬离这里。好在，公司很快就在附近找到了一个小型办公室，重新启航。
 
-![由 DALL·E 3 配图](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-22-15-16-3yrpim.jpg)
+![由 DALL·E 3 配图](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-22-15-16-3yrpim.jpg "由 DALL·E 3 配图")
 
 RHS Linux 在新公司成立后的首发版本是在 1995 年 5 月，被命名为 “Mother’s Day” 版本。版本号为 1.0，并搭载了 1.2.8 版本的 Linux 内核。它的新名称是 “Red Hat Commercial Linux”。logo 也进行了创新设计，从那个经典的红色高顶帽，变成了一个**手拎公文包，另一手高高举着红帽的潇洒男士**。
 
-![RHS 旧版 LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-13-06-oNku3W.jpg)
+![RHS 旧版 LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-13-06-oNku3W.jpg "RHS 旧版 LOGO")
 
-![RHS Inc 1995 年的 LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-13-07-tsWpcy.jpg)
+![RHS Inc 1995 年的 LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-13-07-tsWpcy.jpg "RHS Inc 1995 年的 LOGO")
 
 在那个炎炎夏日，RHS 出其不意地推出了一个名为 “母亲节加一” 的 bug 修复版本。根据购买时间，这个版本可能搭载了 1.2.11 或 1.2.13 的 Linux 内核。
 
@@ -114,7 +114,7 @@ RHS Linux 在新公司成立后的首发版本是在 1995 年 5 月，被命名�
 
 1996 年 3 月 15 日，Red Hat 发布了 3.0.3 版本，并命名为 “**Picasso**”。这是其首次为多种硬件架构同时发布的版本，同时兼容了 DEC Alpha 和 Intel x86。Alpha 版本采用了 a.out 格式，而 x86 则采用了 ELF 格式；且 Alpha 版本是完全静态链接，不涉及共享库。这个版本还有一个亮点，那就是首次在 Red Hat Linux 中集成了来自 Metro Link Inc 的 Metro-X。那个时代，配置 Linux 的 X Windows 服务器简直就是个体力活，非常繁琐。Metro-X 大大简化了这一过程，提供了一个图形化的配置工具帮助用户轻松设置 X 环境。但这个版本在命名上存在些许混乱，有的叫官方 Red Hat LiNUX，有的叫 Red Hat™ Software Inc LiNUX，还有 RED HAT LINUX 和 Red Hat Linux。估计是因为当时市面上已经泛滥了各种低价和免费版本，红帽公司急需做点区分，标明自己的官方版本。
 
-![预装了 FVWM 界面的 Red Hat Linux 3.0.3](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-13-39-NgdGkc.jpg)
+![预装了 FVWM 界面的 Red Hat Linux 3.0.3](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-13-39-NgdGkc.jpg "预装了 FVWM 界面的 Red Hat Linux 3.0.3")
 
 1996 年 3 月至 8 月对于 Red Hat Linux 来说是转变与进化的关键时期。这段时间里，Red Hat Linux 像蜕变的蝴蝶一样，逐渐进化成了一个现代化的 Linux 发行版。为了 4.0 版本的推出，Red Hat 采用 C 语言重新设计了 RPM，并开始研发 Pluggable Authentication Modules (PAM)。此外，他们也用 Python/TK 工具替换了之前的 TCL/TK，首先从网络配置开始更新。当然，这还不算完，他们将 Linux 内核也升级到了 2.0 版本，引入了新的内核模块功能。这个期待已久的 4.0 测试版被赋予了一个时髦的名字——“**Rembrandt**”，并在 1996 年 8 月正式亮相。
 
@@ -124,7 +124,7 @@ RHS Linux 在新公司成立后的首发版本是在 1995 年 5 月，被命名�
 
 > 译者注：Shadowman™ 是 Red Hat 的商标和品牌形象，表现为一个带有礼帽的剪影人像。这个标志从 1996 年开始出现在 Red Hat 的产品和宣传材料上，后来逐渐成为该公司的标志性形象。Shadowman 的设计旨在传达红帽公司的核心价值观和精神，它代表了开放、社区驱动和革新的理念。
 
-![Red Hat Shadowman™ LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-14-03-aotSps.jpg)
+![Red Hat Shadowman™ LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-14-03-aotSps.jpg "Red Hat Shadowman™ LOGO")
 
 ### 转型为服务型公司
 
@@ -138,7 +138,7 @@ RHS Linux 在新公司成立后的首发版本是在 1995 年 5 月，被命名�
 
 1997 年 12 月 1 日，Red Hat 发布了新的版本 5，并命名为 “**Hurricane**”。这个名字是为了纪念一场飓风，该飓风曾经席卷 Red Hat 的家乡，对周边造成了很大的损害，但 Red Hat 的总部却安然无恙。此版本不仅集成了 Real Audio™ 客户端和服务器软件，而且还荣获了 Info World 1997 年的年度最佳产品奖。
 
-![内置 Netscape Communicator 和 FVWM 的 Red Hat Linux 5，图片来源于 toastytech.com](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-14-56-oKiQJL.jpg)
+![内置 Netscape Communicator 和 FVWM 的 Red Hat Linux 5，图片来源于 toastytech.com](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-14-56-oKiQJL.jpg "内置 Netscape Communicator 和 FVWM 的 Red Hat Linux 5，图片来源于 toastytech.com")
 
 1998 年 6 月 1 日，Red Hat Linux 5.1 版本 (代号 Manhattan) 正式发布。该版本进一步强化了对专有软件的支持，甚至专门为这些软件推出了一个独立的 CD。此外，GNU Network Object Model Environment (GNOME) 的预览版也被整合在安装媒介的一个特定文件夹中。“Manhattan” 版本也首次引入了 linuxconf 作为集中式的配置工具。至于荣誉，它**不仅摘下了《PC Magazine》的技术创新奖，更是从澳大利亚个人电脑杂志那里斩获了编辑之选奖和那个酷到没朋友的 Just Plain Cool 奖**。
 
@@ -150,7 +150,7 @@ RHS Linux 在新公司成立后的首发版本是在 1995 年 5 月，被命名�
 
 在获得大量投资和实现增长的同时，Red Hat 的团队可没闲着。1998 年，他们精心打造了 5.2 版本 (代号 Apollo)，紧接着在 1999 年推出了 5.9 版本 (代号 Starbuck)。更厉害的是，他们在 1999 年打破常规，推出了 6.0 版本 (代号 **Hedwig**)。这是一个里程碑式的版本。从技术角度看，该版本采用了 glibc 2.1、EGCS、2.2 版 Linux 内核，并集成了 GNOME 桌面环境。EGCS 实际上是多个 GCC 的分支合并而成，为 GCC 带来了更多的扩展功能，如 g77 (fortran)、P5 Pentium 的优化、更出色的 C++ 支持，以及对更多体系结构和操作系统的支持。此外，新版内核在多个平台 (包括 Intel 的 Pentium 系列、Cyrix 和 AMD 芯片) 上表现优异，并解决了之前 Linux 启动时遇到的一些问题。此版本还进一步加强了硬件驱动支持，并提高了系统性能。但更让人惊喜的是，6.0 版本被 Dell 看上并预装在他们的电脑上，这为 Red Hat 带来了丰厚的收入。
 
-![集成了 GNOME 桌面环境的 Red Hat 6.0，图片选自 Linux Journal 杂志](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-16-37-TKgKPK.jpg)
+![集成了 GNOME 桌面环境的 Red Hat 6.0，图片选自 Linux Journal 杂志](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-16-37-TKgKPK.jpg "集成了 GNOME 桌面环境的 Red Hat 6.0，图片选自 Linux Journal 杂志")
 
 ## 首次公开募股与收购狂潮
 
@@ -162,7 +162,7 @@ Red Hat 正式更名为 Red Hat，Inc。并在 1999 年 8 月 11 日闪亮上市
 
 公司甚至还稍微修改了一下他们的 LOGO：
 
-![自 1999 年开始使用的 Red Hat Shadowman™ LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-16-53-Hlc6nD.jpg)
+![自 1999 年开始使用的 Red Hat Shadowman™ LOGO](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-16-53-Hlc6nD.jpg "自 1999 年开始使用的 Red Hat Shadowman™ LOGO")
 
 红帽在首次公开募股 (IPO) 后，如同开启了超级加速模式，飞速在全球多个角落如英国、德国、法国、意大利和日本插上了旗帜，新办公室一个接一个地开设起来。他们不只是单纯地扩张，还收购了多家公司：首先是 Cygnus Solutions，一家专门为嵌入式系统制作编译器和调试器的公司，其前总裁 Michael Tieman 还出任了红帽的首席技术官 (CTO)；此外，Marc Ewing 也拿起了指挥棒，带领 Red Hat Center for Open Source 这个红帽的非营利部队，准备在开源世界大放异彩。
 
@@ -176,10 +176,10 @@ Bob Young 在 1999 年 11 月离开了红帽。他觉得自己更适合做一个
 
 2000年2月9日，Red Hat Linux 发布了 6.1.92 版本 (代号 Piglet)。不久之后，具有划时代意义的 Red Hat Linux 6.2 (代号 Zoot) 随之诞生。这不仅仅是一个版本的更新，还标志着红帽首次在公共 FTP 上提供了 ISO 镜像，为用户的下载和安装提供了极大的便利。
 
-![Red Hat Linux 6.2 的包装盒及其内容](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-19-14-59-YDVS4z.jpg)
+![Red Hat Linux 6.2 的包装盒及其内容](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-19-14-59-YDVS4z.jpg "Red Hat Linux 6.2 的包装盒及其内容")
 
 
-![这个版本附带了一本内容翔实的手册，长达 300 余页](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-19-15-00-ETtGCR.jpg)
+![这个版本附带了一本内容翔实的手册，长达 300 余页](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-19-15-00-ETtGCR.jpg "这个版本附带了一本内容翔实的手册，长达 300 余页")
 
 2000 年 7 月 31 日，Red Hat Linux 发布了 6.9.5 版本，代号 “Pinstripe”。
 
@@ -193,7 +193,7 @@ Bob Young 在 1999 年 11 月离开了红帽。他觉得自己更适合做一个
 
 2002 年 9 月 30 日，Red Hat Linux 8.0 (代号 Psyche) 发布。这一版本不仅标志着红帽最后一次在零售盒中推出 Linux 发行版，也是第一次采用了 “Bluecurve” 这种全新的视觉感受和操作体验。就像是开启了一个新世界的大门，该版本还首次搭载了 GNOME 2、KDE 3.0.3、OpenOffice.org 1.0.1、GCC 3.2、Glibc 2.3 和内核版本 2.4.18-14。
 
-![内置 Bluecurve 主题的 Red Hat Linux 8](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-19-15-25-o7qJWg.jpg)
+![内置 Bluecurve 主题的 Red Hat Linux 8](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-19-15-25-o7qJWg.jpg "内置 Bluecurve 主题的 Red Hat Linux 8")
 
 2003 年 3 月 31 日，Red Hat Linux 悄悄发布了 9.0 版本 (代号 Shrike)，这是 Red Hat Linux 系列的最后一个主要版本。该版本没有 CD，只能通过网络下载，仿佛是 Red Hat Linux 系列的告别信。它不仅代表着一个时代的结束，也铺垫了红帽企业级 Linux 3 的未来。这个版本引入了一个技术叫做 Native POSIX Thread Library (NPTL) 的功能。这项技术原先存在于 2.5 版本的内核，经过精心设计，被回溯移植到了 2.4.20 版本的内核中。该版本之后只有一次小规模的补丁更新，然后 Red Hat Linux 便优雅地退出了历史舞台。
 

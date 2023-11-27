@@ -4,6 +4,7 @@ keywords:
 - security context
 - allowPrivilegeEscalation
 - runAsUser
+- kubernetes 安全
 title: "Kubernetes 最佳安全实践指南"
 date: 2020-11-26T14:02:20+08:00
 lastmod: 2020-11-26T14:02:20+08:00
@@ -15,8 +16,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- kubernetes
-categories: cloud-native
+- Kubernetes
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201130153130.jpg
 ---
 
@@ -129,9 +131,9 @@ spec:
 
 如果你对 Linux capabilities 这个词一脸懵逼，建议去看看我的脑残入门系列：
 
-+ [Linux Capabilities 入门教程：概念篇](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)
-+ [Linux Capabilities 入门教程：基础实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-1/)
-+ [Linux Capabilities 入门教程：进阶实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-2/)
++ [Linux Capabilities 入门教程：概念篇](/posts/linux-capabilities-why-they-exist-and-how-they-work/)
++ [Linux Capabilities 入门教程：基础实战篇](/posts/linux-capabilities-in-practice-1/)
++ [Linux Capabilities 入门教程：进阶实战篇](/posts/linux-capabilities-in-practice-2/)
 
 ## 8. 只读
 

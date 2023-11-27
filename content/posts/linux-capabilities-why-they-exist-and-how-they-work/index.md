@@ -15,8 +15,10 @@ date: 2019-10-27T09:57:11-04:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "capabilities"]
+categories:
+- Linux
+tags:
+- Capabilities
 series:
 - Linux Capabilities 入门系列
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-LinuxPenguin.webp"
@@ -24,9 +26,9 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-LinuxPenguin.w
 
 该系列文章总共分为三篇：
 
-+ [Linux Capabilities 入门教程：概念篇](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)
-+ [Linux Capabilities 入门教程：基础实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-1/)
-+ [Linux Capabilities 入门教程：进阶实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-2/)
++ [Linux Capabilities 入门教程：概念篇](/posts/linux-capabilities-why-they-exist-and-how-they-work/)
++ [Linux Capabilities 入门教程：基础实战篇](/posts/linux-capabilities-in-practice-1/)
++ [Linux Capabilities 入门教程：进阶实战篇](/posts/linux-capabilities-in-practice-2/)
 
 Linux 是一种安全的操作系统，它把所有的系统权限都赋予了一个单一的 root 用户，只给普通用户保留有限的权限。root 用户拥有超级管理员权限，可以安装软件、允许某些服务、管理用户等。
 
@@ -38,7 +40,7 @@ Linux 是一种安全的操作系统，它把所有的系统权限都赋予了�
 
 为了对 root 权限进行更细粒度的控制，实现按需授权，Linux 引入了另一种机制叫 `capabilities`。
 
-## <span id="inline-toc">1.</span> Linux capabilities 是什么？
+## Linux capabilities 是什么？
 
 ----
 
@@ -89,7 +91,7 @@ Capabilities 可以在进程执行时赋予，也可以直接从父进程继承�
 | CAP_SYSLOG           | 允许使用 syslog() 系统调用                          |
 | CAP_WAKE_ALARM       | 允许触发一些能唤醒系统的东西(比如 CLOCK_BOOTTIME_ALARM 计时器) |
 
-## <span id="inline-toc">2.</span> capabilities 的赋予和继承
+## capabilities 的赋予和继承
 
 ----
 
@@ -169,7 +171,7 @@ Linux `4.3` 内核新增了一个 capabilities 集合叫 `Ambient` ，用来弥�
 
 详情请参考 [Linux capabilities 的 man page](http://man7.org/linux/man-pages/man7/capabilities.7.html)。
 
-## <span id="inline-toc">3.</span> 运行 execve() 后 capabilities 的变化
+## 运行 execve() 后 capabilities 的变化
 
 ----
 
@@ -215,7 +217,7 @@ Linux `4.3` 内核新增了一个 capabilities 集合叫 `Ambient` ，用来弥�
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163240.png)
 
-## <span id="inline-toc">4.</span> 简单示例
+## 简单示例
 
 ----
 
@@ -229,7 +231,7 @@ Linux `4.3` 内核新增了一个 capabilities 集合叫 `Ambient` ，用来弥�
 
 要想改变这种状况，可以使用 `Ambient` 集合。`Ambient` 集合会自动从父线程中继承，同时会自动添加到当前线程的 `Permitted` 集合中。举个例子，在一个 Bash 环境中（例如某个正在执行的脚本），该环境所在的线程的 `Ambient` 集合中包含 `CAP_NET_RAW` capability，那么在该环境中执行 ping 文件可以正常工作，即使该文件是普通文件（没有任何 capabilities，也没有设置 SUID）。
 
-## <span id="inline-toc">5.</span> 终极案例
+## 终极案例
 
 ----
 
@@ -247,7 +249,7 @@ bind() to 0.0.0.0:80 failed (13: Permission denied)
 
 虽然 Kubernetes 官方不支持，但我们可以自己来实现，具体实现方式可以关注我后续的文章。
 
-## <span id="inline-toc">6.</span> 参考资料
+## 参考资料
 
 ----
 

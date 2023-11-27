@@ -2,8 +2,12 @@
   cursor: url(/img/cursor/2078-blue-pointer-cursor.svg), default !important;
 }
 
-a, a:hover, a:focus, img, svg, a span, svg path, a span p, .thumbnail_card, .cursor-pointer, button, .icon, a h6 {
+a, a:hover, a:focus, img, svg, a span, svg path, a span p, .thumbnail_card, .cursor-pointer, button, .icon, a h6, .rounded-md {
   cursor: url(/img/cursor/2078-blue-pointer-pointer.svg), pointer !important;
+}
+
+figcaption {
+  text-align: center;
 }
 
 /* jetbrains-mono-regular */
@@ -61,6 +65,8 @@ pre {
   font-size: 1em;
 }
 
+
+/* 代码块 macOS 样式 */
 .prose .chroma:before {
   background: #fc625d;
   border-radius: 50%;
@@ -81,13 +87,14 @@ pre {
 
 
 /* 列表样式 */
-section div {
-  counter-reset: listitem; /* 重置计数器 */
-}
-
 section div ol {
+  counter-reset: listitem; /* 重置计数器 */
   list-style-type: none !important; /* 移除默认的数字 */
   padding-left: 0.325em !important; /* 移除默认的内边距 */
+}
+
+section div ul {
+  counter-reset: listitem; /* 重置计数器 */
 }
 
 section div ol li {
@@ -178,6 +185,8 @@ ul > li::marker {
     background: rgba(var(--color-primary-400), 1);
   }
 }
+
+
 
 .logo_cursor {
   display: inline-block;

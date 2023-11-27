@@ -1,12 +1,20 @@
 ---
+keywords:
+- service mesh
+- envoy
+- 服务网格
+- SSL
+- TLS
 title: "Envoy 基础教程：启用证书验证"
 subtitle: "加密客户端和 Envoy 代理之间的所有流量"
 date: 2018-07-03T06:43:33Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories:
+- cloud-native
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203202436.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -21,15 +29,15 @@ Envoy 同时支持监听器中的 [TLS 终止](https://www.envoyproxy.io/docs/en
 2. 为 Envoy 启用证书验证
 3. 配置 Envoy 将 80 端口重定向到 443 端口
 
-## <span id="inline-toc">1.</span> 创建证书
+## 创建证书
 
 ----
 
 如果要启用 HTTPS，我们就需要从证书授权机构(以下简称 CA) 处获取一个证书。如果你还没有证书，你可以从 [Let’s Encrypt](https://letsencrypt.org/) 获得网站域名的免费的证书，因为 Let’s Encrypt 就是一个 `CA`。本文为了测试使用 `OpenSSL` 生成私钥文件 `example-com.key` 和 自签名证书 `example-com.crt`。
 
-{{< notice note >}}
+{{< alert >}}
 需要注意的是 <code>Common Name</code> 字段，本文测试使用的是 <code>example.com</code>。
-{{< /notice >}}
+{{< /alert >}}
 
 ```bash
 # 继续沿用前文使用的示例
@@ -65,7 +73,7 @@ An optional company name []:
 $ openssl x509 -req -days 365 -in example-com.csr -signkey example-com.key -out example-com.crt
 ```
 
-## <span id="inline-toc">2.</span> 为 Envoy 启用证书验证
+## 为 Envoy 启用证书验证
 
 ----
 
@@ -145,7 +153,7 @@ Hello from behind Envoy (service 1)! hostname: 56e8a5bff6bd resolvedhostname: 17
 $ curl --cacert example-com.crt https://example.com/service/1
 ```
 
-## <span id="inline-toc">3.</span> 将 80 端口重定向到 443 端口
+## 将 80 端口重定向到 443 端口
 
 ----
 
@@ -290,6 +298,6 @@ admin:
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

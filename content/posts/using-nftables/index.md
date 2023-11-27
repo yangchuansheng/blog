@@ -3,29 +3,28 @@ keywords:
 - 米开朗基杨 
 - netfilter
 - nftables
-title: "nftables 使用教程"
+- nftables 教程
+title: "nftables 中文教程"
 subtitle: "nftables 命令行工具 nft 的用法"
 description: 本文带你了解 nftables 的功能和用法，包括集合和字典等高级用法。
 date: 2019-09-29T21:01:14+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux","nftables"]
+categories:
+- Linux
+tags:
+- Nftables
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-130811.webp"
 ---
-
-如果你没有生活在上个世纪，并且是云计算或相关领域的一名搬砖者，那你应该听说最近 CentOS 8 官方正式版已经发布了，`CentOS` 完全遵守 `Red Hat` 的再发行政策，并且致力与上游产品在功能上完全兼容。CentOS 8 主要改动和 RedHat Enterprise Linux 8 是一致的，基于 Fedora 28 和内核版本 `4.18`，其中网络方面的主要改动是**用 `nftables` 框架替代 `iptables` 框架作为默认的网络包过滤工具。** 如果你还没有听说过 nftables，现在是时候学习一下了。
 
 nftables 是一个 `netfilter` 项目，旨在替换现有的 {ip,ip6,arp,eb}tables 框架，为 {ip,ip6}tables 提供一个新的包过滤框架、一个新的用户空间实用程序（nft）和一个兼容层。它使用现有的钩子、链接跟踪系统、用户空间排队组件和 `netfilter` 日志子系统。
 
 nftables 主要由三个组件组成：内核实现、libnl netlink 通信和 nftables 用户空间。 其中内核提供了一个 `netlink` 配置接口以及运行时规则集评估，`libnl` 包含了与内核通信的基本函数，用户空间可以通过 `nft` 和用户进行交互。
 
-本文主要介绍用户空间命令行工具 `nft` 的用法。
+本文是 nftables 中文教程，主要介绍用户空间命令行工具 `nft` 的用法。
 
-## <span id="inline-toc">1.</span> nftables VS iptables
-
-----
+## nftables VS iptables
 
 nftables 和 iptables 一样，由表（table）、链（chain）和规则（rule）组成，其中表包含链，链包含规则，规则是真正的 action。与 iptables 相比，nftables 主要有以下几个变化：
 
@@ -43,9 +42,7 @@ $ nft list ruleset
 
 啥也没有，果然是没有内置的链啊（如果你关闭了 `firewalld` 服务）。
 
-## <span id="inline-toc">2.</span> 创建表
-
-----
+## 创建表
 
 nftables 的每个表只有一个地址簇，并且只适用于该簇的数据包。表可以指定五个簇中的一个：
 
@@ -74,9 +71,7 @@ table inet my_table {
 
 现在表中还没有任何规则，需要创建一个链来保存规则。
 
-## <span id="inline-toc">3.</span> 创建链
-
-----
+## 创建链
 
 链是用来保存规则的，和表一样，链也需要被显示创建，因为 nftables 没有内置的链。链有以下两种类型：
 
@@ -115,9 +110,7 @@ table inet my_table {
 }
 ```
 
-## <span id="inline-toc">4.</span> 创建规则
-
-----
+## 创建规则
 
 有了表和链之后，就可以创建规则了，规则由语句或表达式构成，包含在链中。下面添加一条规则允许 SSH 登录：
 
@@ -216,9 +209,7 @@ $ nft --echo --handle add rule inet my_table my_filter_chain udp dport 3333 acce
 add rule inet my_table my_filter_chain udp dport 3333 accept # handle 10
 ```
 
-## <span id="inline-toc">5.</span> 删除规则
-
-----
+## 删除规则
 
 单个规则只能通过其句柄删除，首先需要找到你想删除的规则句柄：
 
@@ -256,7 +247,7 @@ table inet my_table { # handle 10
 }
 ```
 
-## <span id="inline-toc">6.</span> 列出规则
+## 列出规则
 
 ----
 
@@ -290,9 +281,7 @@ table inet my_table {
 }
 ```
 
-## <span id="inline-toc">7.</span> 集合
-
-----
+## 集合
 
 `nftables` 的语法原生支持集合，可以用来匹配多个 IP 地址、端口号、网卡或其他任何条件。
 
@@ -449,9 +438,7 @@ $ nft add rule inet my_table my_filter_chain ip saddr . meta l4proto . udp dport
 
 > nftables 级联类型的集合类似于 ipset 的聚合类型，例如 `hash:ip,port`。
 
-## <span id="inline-toc">8.</span> 字典
-
-----
+## 字典
 
 字典是 nftables 的一个高级特性，它可以使用不同类型的数据并将匹配条件映射到某一个规则上面，并且由于是哈希映射的方式，可以完美的避免链式规则跳转的性能开销。
 
@@ -489,9 +476,7 @@ $ nft add element inet my_table my_vmap { 192.168.0.10 : drop, 192.168.0.11 : ac
 $ nft add rule inet my_table my_filter_chain ip saddr vmap @my_vmap
 ```
 
-## <span id="inline-toc">9.</span> 表与命名空间
-
-----
+## 表与命名空间
 
 在 nftables 中，每个表都是一个独立的命名空间，这就意味着不同的表中的链、集合、字典等都可以有相同的名字。例如：
 
@@ -516,9 +501,7 @@ table inet table_two {
 
 当然，这个特性也有缺陷，由于每个表都被视为独立的防火墙，那么某个数据包必须被所有表中的规则放行，才算真正的放行，即使 `table_one` 允许该数据包通过，该数据包仍然有可能被 `table_two` 拒绝。为了解决这个问题，nftables 引入了优先级，`priority` 值越高的链优先级越低，所以 `priority` 值低的链比 `priority` 值高的链先执行。如果两条链的优先级相同，就会进入竞争状态。
 
-## <span id="inline-toc">10.</span> 备份与恢复
-
-----
+## 备份与恢复
 
 以上所有示例中的规则都是临时的，要想永久生效，我们可以将规则备份，重启后自动加载恢复，其实 nftables 的 `systemd` 服务就是这么工作的。
 
@@ -536,8 +519,6 @@ $ nft -f /root/nftables.conf
 
 在 CentOS 8 中，`nftables.service` 的规则被存储在 `/etc/nftables.conf` 中，其中 include 一些其他的示例规则，一般位于 `/etc/sysconfig/nftables.conf` 文件中，但默认会被注释掉。
 
-## <span id="inline-toc">11.</span> 总结
+## 总结
 
-----
-
-希望通过本文的讲解，你能对 nftables 的功能和用法有所了解，当然本文只涉及了一些浅显的用法，更高级的用法可以查看 nftables 的官方 `wiki`，或者坐等我接下来的文章。相信有了本文的知识储备，你应该可以愉快地使用 nftables 实现 Linux 的智能分流了，具体参考这篇文章：[Linux全局智能分流方案](https://icloudnative.io/posts/linux-circumvent/)。
+希望通过本文的讲解，你能对 nftables 的功能和用法有所了解，当然本文只涉及了一些浅显的用法，更高级的用法可以查看 nftables 的官方 `wiki`，或者坐等我接下来的文章。相信有了本文的知识储备，你应该可以愉快地使用 nftables 实现 Linux 的智能分流了，具体参考这篇文章：[Linux全局智能分流方案](/posts/linux-circumvent/)。

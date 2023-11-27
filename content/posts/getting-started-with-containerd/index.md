@@ -5,9 +5,10 @@ keywords:
 - crictl
 - docker
 - bundle
+- containerd 教程
 title: "Containerd 使用教程"
 date: 2020-12-13T22:16:22+08:00
-lastmod: 2020-12-13T22:16:22+08:00
+lastmod: 2023-11-25T10:16:22+08:00
 description: 本文详述了 Containerd 的历史背景，介绍了 Containerd 的安装和使用方式。
 draft: false 
 author: 米开朗基杨
@@ -16,8 +17,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- containerd
-categories: containers
+- Containerd
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201217154848.jpg
 ---
 
@@ -99,8 +101,8 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 为 seccomp 安装依赖：
 
 ```bash
-🐳  → sudo apt-get update
-🐳  → sudo apt-get install libseccomp2
+🐳 → sudo apt-get update
+🐳 → sudo apt-get install libseccomp2
 ```
 
 ### 下载并解压 Containerd 程序
@@ -112,16 +114,16 @@ Containerd 是需要调用 `runc` 的，而第一个压缩包是不包含 `runc`
 首先从 [release 页面](https://github.com/containerd/containerd/releases)下载最新版本的压缩包，当前最新版本为 1.4.3：
 
 ```bash
-🐳  → wget https://github.com/containerd/containerd/releases/download/v1.4.3/cri-containerd-cni-1.4.3-linux-amd64.tar.gz
+🐳 → wget https://github.com/containerd/containerd/releases/download/v1.4.3/cri-containerd-cni-1.4.3-linux-amd64.tar.gz
 
 # 也可以替换成下面的 URL 加速下载
-🐳  → wget https://download.fastgit.org/containerd/containerd/releases/download/v1.4.3/cri-containerd-cni-1.4.3-linux-amd64.tar.gz
+🐳 → wget https://download.fastgit.org/containerd/containerd/releases/download/v1.4.3/cri-containerd-cni-1.4.3-linux-amd64.tar.gz
 ```
 
 可以通过 tar 的 `-t` 选项直接看到压缩包中包含哪些文件：
 
 ```bash
-🐳  → tar -tf cri-containerd-cni-1.4.3-linux-amd64.tar.gz
+🐳 → tar -tf cri-containerd-cni-1.4.3-linux-amd64.tar.gz
 etc/
 etc/cni/
 etc/cni/net.d/
@@ -176,7 +178,7 @@ opt/containerd/cluster/gce/env
 直接将压缩包解压到系统的各个目录中：
 
 ```bash
-🐳  → sudo tar -C / -xzf cri-containerd-cni-1.4.3-linux-amd64.tar.gz
+🐳 → sudo tar -C / -xzf cri-containerd-cni-1.4.3-linux-amd64.tar.gz
 ```
 
 将 `/usr/local/bin` 和 `/usr/local/sbin` 追加到 `~/.bashrc` 文件的 `$PATH` 环境变量中：
@@ -188,13 +190,13 @@ export PATH=$PATH:/usr/local/bin:/usr/local/sbin
 立即生效：
 
 ```bash
-🐳  → source ~/.bashrc
+🐳 → source ~/.bashrc
 ```
 
 查看版本：
 
 ```bash
-🐳  → ctr version
+🐳 → ctr version
 Client:
   Version:  v1.4.3
   Revision: 269548fa27e0089a8b8278fc4fc781d7f65a939b
@@ -211,8 +213,8 @@ Server:
 Containerd 的默认配置文件为  `/etc/containerd/config.toml`，我们可以通过命令来生成一个默认的配置：
 
 ```bash
-🐳  → mkdir /etc/containerd
-🐳  → containerd config default > /etc/containerd/config.toml
+🐳 → mkdir /etc/containerd
+🐳 → containerd config default > /etc/containerd/config.toml
 ```
 
 ### 镜像加速
@@ -307,7 +309,7 @@ Containerd 的默认配置文件为  `/etc/containerd/config.toml`，我们可�
 每一个顶级配置块的命名都是 `plugins."io.containerd.xxx.vx.xxx"` 这种形式，其实每一个顶级配置块都代表一个插件，其中 `io.containerd.xxx.vx` 表示插件的类型，vx 后面的 xxx 表示插件的 `ID`。可以通过 `ctr` 一览无余：
 
 ```bash
-🐳  → ctr plugin ls
+🐳 → ctr plugin ls
 TYPE                            ID                    PLATFORMS      STATUS
 io.containerd.content.v1        content               -              ok
 io.containerd.snapshotter.v1    btrfs                 linux/amd64    error
@@ -378,7 +380,7 @@ state = "/run/containerd"
 `root`用来保存持久化数据，包括 `Snapshots`, `Content`, `Metadata` 以及各种插件的数据。每一个插件都有自己单独的目录，Containerd 本身不存储任何数据，它的所有功能都来自于已加载的插件，真是太机智了。
 
 ```bash
-🐳  → tree -L 2 /var/lib/containerd/
+🐳 → tree -L 2 /var/lib/containerd/
 /var/lib/containerd/
 ├── io.containerd.content.v1.content
 │   ├── blobs
@@ -407,7 +409,7 @@ state = "/run/containerd"
 `state` 用来保存临时数据，包括 sockets、pid、挂载点、运行时状态以及不需要持久化保存的插件数据。
 
 ```bash
-🐳  → tree -L 2 /run/containerd/
+🐳 → tree -L 2 /run/containerd/
 /run/containerd/
 ├── containerd.sock
 ├── containerd.sock.ttrpc
@@ -452,7 +454,7 @@ report a badness score of 0.
 建议通过 systemd 配置 Containerd 作为守护进程运行，配置文件在上文已经被解压出来了：
 
 ```bash
-🐳  → cat /etc/systemd/system/containerd.service
+🐳 → cat /etc/systemd/system/containerd.service
 # Copyright The containerd Authors.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -511,39 +513,24 @@ WantedBy=multi-user.target
 现在到了最关键的一步：启动 Containerd。执行一条命令就完事：
 
 ```bash
-🐳  → systemctl enable containerd --now
+🐳 → systemctl enable containerd --now
 ```
 
 接下来进入本文最后一部分：Containerd 的基本使用方式。本文只会介绍 Containerd 的本地使用方法，即本地客户端 `ctr` 的使用方法，不会涉及到 `crictl`，后面有机会再介绍 `crictl`。
 
 ## 4. Containerd 快速安装
 
-如果你想在一分钟内快速装好 Kubernetes 和 Containerd，可以使用 [Sealos](https://github.com/fanux/sealos) 来部署。该项目旨在做一个简单干净轻量级稳定的 kubernetes 安装工具，一条命令，离线安装，包含所有依赖，内核负载不依赖 haproxy keepalived,纯 golang 开发,99 年证书。1.12.0 版本的离线包搭载了最新版本的 Containerd，还支持 `arm64` 架构，简直就是简直了。
+如果你想在一分钟内快速装好 Kubernetes 和 Containerd，可以直接部署 Sealos [云操作系统](https://sealos.run)。当然，你也可以使用 Sealos 的命令行工具直接部署 Kubernetes 集群，只需一条命令即可。
 
-部署方法特别简单，首先下载并安装 `sealos`, `sealos` 是个 golang 的二进制工具，直接下载拷贝到 `bin` 目录即可, `release` 页面也可下载：
-
-```bash
-🐳  → wget -c https://sealyun.oss-cn-beijing.aliyuncs.com/latest/sealos
-🐳  → chmod +x sealos && mv sealos /usr/bin
-```
-
-下载离线资源包：
+首先需要[下载 Sealos 的命令行工具](https://sealos.run/docs/self-hosting/lifecycle-management/quick-start/install-cli)，然后执行以下命令即可：
 
 ```bash
-🐳  → wget -c https://sealyun.oss-cn-beijing.aliyuncs.com/7b6af025d4884fdd5cd51a674994359c-1.18.0/kube1.18.0.tar.gz
+🐳 → sealos run registry.cn-shanghai.aliyuncs.com/labring/kubernetes:v1.27.7 registry.cn-shanghai.aliyuncs.com/labring/helm:v3.9.4 registry.cn-shanghai.aliyuncs.com/labring/cilium:v1.13.4 \
+     --masters <master1 的 IP>,<master2 的 IP>,... \
+     --nodes <node1 的 IP>,<node1 的 IP>,... -p [your-ssh-passwd]
 ```
 
-安装一个三 master 的高可用 Kubernetes 集群：
-
-```bash
-🐳  → sealos init --passwd 123456 
---master 192.168.0.2  --master 192.168.0.3  --master 192.168.0.4  
---node 192.168.0.5 
---pkg-url /root/kube1.18.0.tar.gz 
---version v1.18.0
-```
-
-然后就完事了。。。
+详细部署方式请参考：[安装 Kubernetes 集群](https://sealos.run/docs/self-hosting/lifecycle-management/quick-start/deploy-kubernetes)
 
 ## 5. ctr 使用
 
@@ -554,7 +541,7 @@ ctr 目前很多功能做的还没有 docker 那么完善，但基本功能已�
 **镜像下载：**
 
 ```bash
-🐳  → ctr i pull docker.io/library/nginx:alpine
+🐳 → ctr i pull docker.io/library/nginx:alpine
 docker.io/library/nginx:alpine:                                                   resolved       |++++++++++++++++++++++++++++++++++++++|
 index-sha256:efc93af57bd255ffbfb12c89ec0714dd1a55f16290eb26080e3d1e7e82b3ea66:    done           |++++++++++++++++++++++++++++++++++++++|
 manifest-sha256:6ceeeab513f7d15cea38c1f8dfe5455323b5a1bfd568516b3b0ee70406f75247: done           |++++++++++++++++++++++++++++++++++++++|
@@ -572,7 +559,7 @@ done
 **本地镜像列表查询：**
 
 ```bash
-🐳  → ctr i ls
+🐳 → ctr i ls
 REF                                                               TYPE                                                      DIGEST                                                                  SIZE      PLATFORMS                                                                                LABELS
 docker.io/library/nginx:alpine                                    application/vnd.docker.distribution.manifest.list.v2+json sha256:efc93af57bd255ffbfb12c89ec0714dd1a55f16290eb26080e3d1e7e82b3ea66 9.3 MiB   linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x -
 ```
@@ -582,9 +569,9 @@ docker.io/library/nginx:alpine                                    application/vn
 **将镜像挂载到主机目录：**
 
 ```bash
-🐳  → ctr i mount docker.io/library/nginx:alpine /mnt
+🐳 → ctr i mount docker.io/library/nginx:alpine /mnt
 
-🐳  → tree -L 1 /mnt
+🐳 → tree -L 1 /mnt
 /mnt
 ├── bin
 ├── dev
@@ -612,25 +599,25 @@ docker.io/library/nginx:alpine                                    application/vn
 **将镜像从主机目录上卸载：**
 
 ```bash
-🐳  → ctr i unmount /mnt
+🐳 → ctr i unmount /mnt
 ```
 
 **将镜像导出为压缩包：**
 
 ```bash
-🐳  → ctr i export nginx.tar.gz docker.io/library/nginx:alpine
+🐳 → ctr i export nginx.tar.gz docker.io/library/nginx:alpine
 ```
 
 **从压缩包导入镜像：**
 
 ```bash
-🐳  → ctr i import nginx.tar.gz
+🐳 → ctr i import nginx.tar.gz
 ```
 
 其他操作可以自己查看帮助：
 
 ```bash
-🐳  → ctr i --help
+🐳 → ctr i --help
 NAME:
    ctr images - manage images
 
@@ -657,13 +644,13 @@ OPTIONS:
 对镜像的更高级操作可以使用子命令 `content`，例如在线编辑镜像的 `blob` 并生成一个新的 `digest`：
 
 ```bash
-🐳  → ctr content ls
+🐳 → ctr content ls
 DIGEST									SIZE	AGE		LABELS
 ...
 ...
 sha256:fdd7fff110870339d34cf071ee90fbbe12bdbf3d1d9a14156995dfbdeccd7923	740B	7 days		containerd.io/gc.ref.content.2=sha256:4e537e26e21bf61836f827e773e6e6c3006e3c01c6d59f4b058b09c2753bb929,containerd.io/gc.ref.content.1=sha256:188c0c94c7c576fff0792aca7ec73d67a2f7f4cb3a6e53a84559337260b36964,containerd.io/gc.ref.content.0=sha256:b7199797448c613354489644be1f60aa2d8e9c2278989100c72ede3001334f7b,containerd.io/distribution.source.ghcr.icloudnative.io=yangchuansheng/grafana-backup-tool
 
-🐳  → ctr content edit --editor vim sha256:fdd7fff110870339d34cf071ee90fbbe12bdbf3d1d9a14156995dfbdeccd7923
+🐳 → ctr content edit --editor vim sha256:fdd7fff110870339d34cf071ee90fbbe12bdbf3d1d9a14156995dfbdeccd7923
 ```
 
 ### 容器
@@ -671,9 +658,9 @@ sha256:fdd7fff110870339d34cf071ee90fbbe12bdbf3d1d9a14156995dfbdeccd7923	740B	7 d
 创建容器：
 
 ```bash
-🐳  → ctr c create docker.io/library/nginx:alpine nginx
+🐳 → ctr c create docker.io/library/nginx:alpine nginx
 
-🐳  → ctr c ls
+🐳 → ctr c ls
 CONTAINER    IMAGE                             RUNTIME
 nginx        docker.io/library/nginx:alpine    io.containerd.runc.v2
 ```
@@ -682,13 +669,13 @@ nginx        docker.io/library/nginx:alpine    io.containerd.runc.v2
 
 ```bash
 # 和 docker inspect 类似
-🐳  → ctr c info nginx
+🐳 → ctr c info nginx
 ```
 
 其他操作可以自己查看帮助：
 
 ```bash
-🐳  → ctr c --help
+🐳 → ctr c --help
 NAME:
    ctr containers - manage containers
 
@@ -717,9 +704,9 @@ OPTIONS:
 所以还需要通过 Task 启动容器：
 
 ```bash
-🐳  → ctr task start -d nginx
+🐳 → ctr task start -d nginx
 
-🐳  → ctr task ls
+🐳 → ctr task ls
 TASK     PID       STATUS
 nginx    131405    RUNNING
 ```
@@ -727,27 +714,27 @@ nginx    131405    RUNNING
 当然，也可以一步到位直接创建并运行容器：
 
 ```bash
-🐳  → ctr run -d docker.io/library/nginx:alpine nginx
+🐳 → ctr run -d docker.io/library/nginx:alpine nginx
 ```
 
 进入容器：
 
 ```bash
 # 和 docker 的操作类似，但必须要指定 --exec-id，这个 id 可以随便写，只要唯一就行
-🐳  → ctr task exec --exec-id 0 -t nginx sh
+🐳 → ctr task exec --exec-id 0 -t nginx sh
 ```
 
 暂停容器：
 
 ```bash
 # 和 docker pause 类似
-🐳  → ctr task pause nginx
+🐳 → ctr task pause nginx
 ```
 
 容器状态变成了 PAUSED：
 
 ```bash
-🐳  → ctr task ls
+🐳 → ctr task ls
 TASK     PID       STATUS
 nginx    149857    PAUSED
 ```
@@ -755,7 +742,7 @@ nginx    149857    PAUSED
 恢复容器：
 
 ```bash
-🐳  → ctr task resume nginx
+🐳 → ctr task resume nginx
 ```
 
 **ctr 没有 stop 容器的功能，只能暂停或者杀死容器。**
@@ -763,14 +750,14 @@ nginx    149857    PAUSED
 杀死容器：
 
 ```bash
-🐳  → ctr task kill nginx
+🐳 → ctr task kill nginx
 ```
 
 获取容器的 cgroup 信息：
 
 ```bash
 # 这个命令用来获取容器的内存、CPU 和 PID 的限额与使用量。
-🐳  → ctr task metrics nginx
+🐳 → ctr task metrics nginx
 ID       TIMESTAMP
 nginx    2020-12-15 09:15:13.943447167 +0000 UTC
 
@@ -787,7 +774,7 @@ pids.limit               0
 查看容器中所有进程的 `PID`：
 
 ```bash
-🐳  → ctr task ps nginx
+🐳 → ctr task ps nginx
 PID       INFO
 149857    -
 149921    -
@@ -812,7 +799,7 @@ PID       INFO
 除了 k8s 有命名空间以外，Containerd 也支持命名空间。
 
 ```bash
-🐳  → ctr ns ls
+🐳 → ctr ns ls
 NAME    LABELS
 default
 ```
@@ -828,19 +815,19 @@ default
 首先从其他装了 Docker 的机器或者 GitHub 上下载 Docker 相关的二进制文件，然后使用下面的命令启动 Docker：
 
 ```bash
-🐳  → dockerd --containerd /run/containerd/containerd.sock --cri-containerd
+🐳 → dockerd --containerd /run/containerd/containerd.sock --cri-containerd
 ```
 
 接着用 Docker 运行一个容器：
 
 ```bash
-🐳  → docker run -d --name nginx nginx:alpine
+🐳 → docker run -d --name nginx nginx:alpine
 ```
 
 现在再回过头来查看 Containerd 的命名空间：
 
 ```bash
-🐳  → ctr ns ls
+🐳 → ctr ns ls
 NAME    LABELS
 default
 moby
@@ -849,7 +836,7 @@ moby
 查看该命名空间下是否有容器：
 
 ```bash
-🐳  → ctr -n moby c ls
+🐳 → ctr -n moby c ls
 CONTAINER                                                           IMAGE    RUNTIME
 b7093d7aaf8e1ae161c8c8ffd4499c14ba635d8e174cd03711f4f8c27818e89a    -        io.containerd.runtime.v1.linux
 ```
@@ -857,3 +844,5 @@ b7093d7aaf8e1ae161c8c8ffd4499c14ba635d8e174cd03711f4f8c27818e89a    -        io.
 我艹，还可以酱紫？看来以后用 Containerd 不耽误我 `docker build` 了~~
 
 最后提醒一句：Kubernetes 用户不用惊慌，Kubernetes 默认使用的是 Containerd 的 `k8s.io` 命名空间，所以 `ctr -n k8s.io` 就能看到 Kubernetes 创建的所有容器啦，也不用担心 `crictl` 不支持 load 镜像了，因为 `ctr -n k8s.io` 可以 load 镜像啊，嘻嘻😬
+
+当然，Containerd 也有比较好用的命令行工具：[nerdctl](https://github.com/containerd/nerdctl)。后面我会给大家介绍 nerdctl 的安装和使用教程。

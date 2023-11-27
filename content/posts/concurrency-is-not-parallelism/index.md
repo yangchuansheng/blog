@@ -5,6 +5,8 @@ keywords:
 - 并行
 - concurrency
 - parallelism
+- Go
+- Golang
 title: "并发与并行的区别"
 subtitle: "并发不是并行"
 description: 通过漫画告诉你并发与并行的区别，故事原型来自 Go 语言创始人之一 Rob Pike 的一篇演讲。
@@ -12,8 +14,10 @@ date: 2019-11-04T23:47:34-05:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "golang"]
+categories:
+- Linux
+tags:
+- Golang
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-55d2f2e700747.webp"
 ---
 
@@ -29,19 +33,19 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-55d2f2e700747.
 
 刚开始只有一只地鼠，使用一辆推车，将书装到车上，运输到火炉旁，将书卸到火炉。完成任务必然需要比较长的时间。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e623b3d.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e623b3d.png)
 
 此时如果再增加一只地鼠，那也没什么用，因为一只地鼠在干活，另一只地鼠只能等待。（当然有人说两只地鼠轮流使用一辆推车，这样可以让地鼠得到休息，这样它们干活更快，也可以提高效率。）
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e636942.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e636942.png)
 
 再找一辆推车来，两只地鼠分别使用各自的推车，将书装到车上，运输到火炉旁，将书卸到火炉。这样会提高运输效率，但它们会在装书和卸书时进行排队，降低了效率。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e64871f.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e64871f.png)
 
 这样虽然比之前快了，但还是有瓶颈的。因为书只有一堆，火炉也只有一个，所以我们还必须通过消息来协调两只地鼠的行动。好吧，那我们再把书分成两堆，再增加一个火炉。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e661409.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e661409.png)
 
 这样就比之前的效率高差不多一倍了。现在这个模型就是并发的，因为两只地鼠可以独立完成一件事了，这样提高了运输效率，而且在装书和卸书时不会进行排队，提高了装卸的效率。但这个模型不一定是并行的，比如同一时刻可能只有一只地鼠在干活。
 
@@ -49,11 +53,11 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-55d2f2e700747.
 
 这次找了 3 只地鼠，一只负责把书装到车上，一只负责运输，一只负责把书卸到火炉焚烧。每只地鼠做一个独立的任务，当然三只地鼠之间需要使用一些诸如消息通信之类的手段进行协调。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e6887a8.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e6887a8.png)
 
 装书和烧书的两只地鼠都很轻松，负责运输的这只地鼠却很累，系统出现了瓶颈。那我们再找一只地鼠来，专门负责运回空推车。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e6998f3.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e6998f3.png)
 
 我们在一个已有的设计（指三个地鼠的那个设计）中添加一个并发的步骤（第四只地鼠）增强了系统的性能。这样一来，两只地鼠去搞运输，如果协调的好，理论情况下工作效率将是一只地鼠的 4 倍。
 
@@ -66,23 +70,23 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-55d2f2e700747.
 
 可以再增加一个分组，将这个并发模型并行化。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e6afee0.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e6afee0.png)
 
 下面我们再来看另外一种并发模型。负责运输的地鼠抱怨说运输路程太长，那我们就增加一个中转站。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e6e4a51.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e6e4a51.png)
 
 然后再增加一个分组，将这个并发模型并行化，两个分组并行执行。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e700747.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e700747.png)
 
 可以把上面的并发模型再改进一下。增加中转站的同时，再增加两只地鼠，一只负责将从书堆运过来的书卸到中转站，另一只负责将书从中转站装到推车里，再让后面的地鼠运输到火炉旁。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e717ebd.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e717ebd.png)
 
 然后再增加一个分组，将这个并发模型并行化。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2015-08-18_55d2f2e7282b4.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2015-08-18_55d2f2e7282b4.png)
 
 漫画到这里就结束了，总共介绍了三种并发模型，每种模型都可以很容易地并行化。可以看到上面的并发模型每改进一次，其实就是将任务拆的更细了，一旦分解了问题，并发就自然而然产生了，每个人只专注于一个任务。
 

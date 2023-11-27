@@ -12,14 +12,16 @@ Lastmod: 2020-03-26T00:14:06+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191215002051.webp"
 ---
 
 没错，Istio 架构又换了。。。北京时间 2020 年 3 月 6 日 凌晨发布了 1.5 版本，该版本最大的变化是将控制平面的所有组件组合成一个单体结构叫  `istiod`。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/istio-1.5-arch.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/istio-1.5-arch.svg)
 
 从架构图可以看出，在 Istio 1.5 中，饱受诟病的 `Mixer` 终于被废弃了，新版本的 HTTP 遥测默认基于 in-proxy Stats filter，同时可使用 [WebAssembly](https://webassembly.org/) 开发 `in-proxy` 扩展。更详细的说明请参考 [Istio 1.5 发布公告](https://istio.io/news/releases/1.5.x/announcing-1.5/)。
 
@@ -27,9 +29,9 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191215002051
 
 在部署 Istio 之前，首先需要确保 Kubernetes 集群（kubernetes 版本建议在 `1.14` 以上）已部署并配置好本地的 kubectl 客户端。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20200306144254.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20200306144254.png)
 
-## <span id="inline-toc">1.</span> Kubernetes 环境准备
+## Kubernetes 环境准备
 
 为了快速准备 kubernetes 环境，我们可以使用 sealos 来部署，步骤如下：
 
@@ -65,7 +67,7 @@ sealos03   Ready    <none>   18h   v1.16.3
 sealos04   Ready    <none>   18h   v1.16.3
 ```
 
-## <span id="inline-toc">2.</span> 下载 Istio 部署文件
+## 下载 Istio 部署文件
 
 你可以从 GitHub 的 [release](https://github.com/istio/istio/releases/tag/1.5.0) 页面下载 istio，或者直接通过下面的命令下载：
 
@@ -145,7 +147,7 @@ source ~/_istioctl
 $ source ~/.zshrc
 ```
 
-## <span id="inline-toc">3.</span> 部署 Istio
+## 部署 Istio
 
 istioctl 提供了多种安装配置文件，可以通过下面的命令查看：
 
@@ -182,7 +184,7 @@ $ ll install/kubernetes/operator/profiles
 
 ### Istio CNI Plugin
 
-当前实现将用户 pod 流量转发到 proxy 的默认方式是使用 privileged 权限的 `istio-init` 这个 init container 来做的（运行脚本写入 iptables），需要用到 `NET_ADMIN` capabilities。对 linux capabilities 不了解的同学可以参考我的 [Linux capabilities 系列](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)。
+当前实现将用户 pod 流量转发到 proxy 的默认方式是使用 privileged 权限的 `istio-init` 这个 init container 来做的（运行脚本写入 iptables），需要用到 `NET_ADMIN` capabilities。对 linux capabilities 不了解的同学可以参考我的 [Linux capabilities 系列](/posts/linux-capabilities-why-they-exist-and-how-they-work/)。
 
 Istio CNI 插件的主要设计目标是消除这个 privileged 权限的 init container，换成利用 Kubernetes CNI 机制来实现相同功能的替代方案。具体的原理就是在 Kubernetes CNI 插件链末尾加上 Istio 的处理逻辑，在创建和销毁 pod 的这些 hook 点来针对 istio 的 pod 做网络配置：写入 iptables，让该 pod 所在的 network namespace 的网络流量转发到 proxy 进程。
 
@@ -287,7 +289,7 @@ EOF
 
 为了暴露 Ingress Gateway，我们可以使用 `hostport` 暴露端口，并将其调度到某个固定节点。如果你的 CNI 插件不支持 `hostport`，可以使用 `HostNetwork` 模式运行，但你会发现无法启动 ingressgateway 的 Pod，因为如果 Pod 设置了 `HostNetwork=true`，则 dnsPolicy 就会从 `ClusterFirst` 被强制转换成 `Default`。而 Ingress Gateway 启动过程中需要通过 DNS 域名连接 `pilot` 等其他组件，所以无法启动。
 
-我们可以通过强制将 `dnsPolicy` 的值设置为 `ClusterFirstWithHostNet` 来解决这个问题，详情参考：[Kubernetes DNS 高阶指南](https://icloudnative.io/posts/kubernetes-dns/)。
+我们可以通过强制将 `dnsPolicy` 的值设置为 `ClusterFirstWithHostNet` 来解决这个问题，详情参考：[Kubernetes DNS 高阶指南](/posts/kubernetes-dns/)。
 
 当然你可以部署完成之后再修改 Ingress Gateway 的 `Deployment`，但这种方式还是不太优雅。经过我对  [`IstioOperator` API 文档](https://istio.io/docs/reference/config/istio.operator.v1alpha1/) 的研究，发现了一个更为优雅的方法，那就是直接修改资源对象 `IstioOperator` 的内容，在 `components.ingressGateways` 下面加上么一段：
 
@@ -384,9 +386,9 @@ istio-cni-node-x2drr   2/2     Running   0          3h12m
 }
 ```
 
-## <span id="inline-toc">4.</span> 暴露 Dashboard
+## 暴露 Dashboard
 
-这个没什么好说的，通过 Ingress Controller 暴露就好了，可以参考我以前写的 [Istio 1.0 部署](https://icloudnative.io/posts/istio-1.0-deploy/)。如果使用 Contour 的可以参考我的另一篇文章：[Contour 学习笔记（一）：使用 Contour 接管 Kubernetes 的南北流量](https://icloudnative.io/posts/use-envoy-as-a-kubernetes-ingress/)。
+这个没什么好说的，通过 Ingress Controller 暴露就好了，可以参考我以前写的 [Istio 1.0 部署](/posts/istio-1.0-deploy/)。如果使用 Contour 的可以参考我的另一篇文章：[Contour 学习笔记（一）：使用 Contour 接管 Kubernetes 的南北流量](/posts/use-envoy-as-a-kubernetes-ingress/)。
 
 这里我再介绍一种新的方式，`istioctl` 提供了一个子命令来从本地打开各种 Dashboard：
 

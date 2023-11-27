@@ -40,7 +40,7 @@ tags:
 - Windows
 - Microsoft
 - System
-categories: share
+categories: tech-social
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-16-05-GfVWZK.jpg
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-16-04-yYXPtm.jpg
 ---

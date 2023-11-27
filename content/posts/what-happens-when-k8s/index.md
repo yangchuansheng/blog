@@ -12,8 +12,10 @@ draft: false
 author: 米开朗基杨
 toc: true
 weight: 100
-categories: cloud-native
-tags: ["kubernetes"]
+categories: 
+- cloud-native
+tags:
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191204132152.webp"
 ---
 
@@ -31,7 +33,7 @@ Kubernetes 的神奇之处在于：它可以通过用户友好的 API 来处理�
 
 这是一份可以在线修改的文档，如果你发现有什么可以改进或重写的，欢迎提供帮助！
 
-## <span id="inline-toc">1.</span> kubectl
+## kubectl
 
 ----
 
@@ -76,7 +78,7 @@ kubectl 在生成运行时对象后，开始为它[找到适当的 API 组和 AP
 + 用户名和密码通过 HTTP 基本认证[发送](https://github.com/kubernetes/client-go/blob/c6f8cf2c47d21d55fa0df928291b2580544886c8/transport/round_trippers.go#L223)。<br />
 + `OpenID` 认证过程是由用户事先手动处理的，产生一个像 bearer token 一样被发送的 token。<br />
 
-## <span id="inline-toc">2.</span> kube-apiserver
+## kube-apiserver
 
 ----
 
@@ -119,9 +121,9 @@ kube-apiserver 目前支持以下几种授权方法：
 
 虽然授权的重点是回答用户是否有权限，但准入控制器会拦截请求以确保它符合集群的更广泛的期望和规则。它们是资源对象保存到 `etcd` 之前的最后一个堡垒，封装了一系列额外的检查以确保操作不会产生意外或负面结果。不同于授权和认证只关心请求的用户和操作，准入控制还处理请求的内容，并且仅对创建、更新、删除或连接（如代理）等有效，而对读操作无效。
 
-{{< notice note >}}
+{{< alert >}}
 准入控制器的工作方式与授权者和验证者的工作方式类似，但有一点区别：与验证链和授权链不同，如果某个准入控制器检查不通过，则整个链会中断，整个请求将立即被拒绝并且返回一个错误给终端用户。
-{{< /notice >}}
+{{< /alert >}}
 
 准入控制器设计的重点在于提高可扩展性，某个控制器都作为一个插件存储在 `plugin/pkg/admission` 目录中，并且与某一个接口相匹配，最后被编译到 kube-apiserver 二进制文件中。
 
@@ -131,7 +133,7 @@ kube-apiserver 目前支持以下几种授权方法：
 + <span id="inline-blue">ResourceQuota</span> 不仅能限制某个 Namespace 中创建资源的数量，而且能限制某个 Namespace 中被 Pod 所请求的资源总量。该准入控制器和资源对象 `ResourceQuota` 一起实现了资源配额管理。
 + <span id="inline-blue">LimitRanger</span> 作用类似于上面的 ResourceQuota 控制器，针对 Namespace 资源的每个个体（Pod 与 Container 等）的资源配额。该插件和资源对象 `LimitRange` 一起实现资源配额管理。
 
-## <span id="inline-toc">3.</span> etcd
+## etcd
 
 ----
 
@@ -157,7 +159,7 @@ kube-apiserver 目前支持以下几种授权方法：
 
 原来 apiserver 做了这么多的工作，以前竟然没有发现呢！到目前为止，我们创建的 `Deployment` 资源已经保存到了 etcd 中，但 apiserver 仍然看不到它。
 
-## <span id="inline-toc">4.</span> 初始化
+## 初始化
 
 ----
 
@@ -195,7 +197,7 @@ initializers:
 
 为了解决这个问题，kube-apiserver 暴露了一个 `?includeUninitialized` 查询参数，它会返回所有的资源对象（包括未初始化的）。
 
-## <span id="inline-toc">5.</span> 控制循环
+## 控制循环
 
 ----
 
@@ -274,11 +276,11 @@ $ kubectl get <PODNAME> -o go-template='{{range .status.conditions}}{{if eq .typ
 
 一旦 Scheduler 将 Pod 调度到某个节点上，该节点的 `Kubelet` 就会接管该 Pod 并开始部署。
 
-{{< notice note >}}
+{{< alert >}}
 预选策略和优选策略都可以通过 <code>--policy-config-file</code> 参数来扩展，如果默认的调度器不满足要求，还可以部署自定义的调度器。如果  <code>podSpec.schedulerName</code> 的值设置为其他的调度器，则 Kubernetes 会将该 Pod 的调度转交给那个调度器。
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">6.</span> Kubelet
+## Kubelet
 
 ----
 
@@ -395,7 +397,7 @@ CNI 插件还会通过 `CNI_ARGS` 环境变量为 Pod 指定其他的元数据�
 4. 最后容器开始真正[启动](https://github.com/kubernetes/kubernetes/blob/5f9f4a1c5939436fa320e9bc5973a55d6446e59f/pkg/kubelet/kuberuntime/kuberuntime_container.go#L135)。<br />
 5. 如果 Pod 中配置了容器生命周期钩子（Hook），容器启动之后就会运行这些 `Hook`。Hook 的类型包括两种：`Exec`（执行一段命令） 和 `HTTP`（发送HTTP请求）。如果 PostStart Hook 启动的时间过长、挂起或者失败，容器将永远不会变成 `running` 状态。
 
-## <span id="inline-toc">7.</span> 总结
+## 总结
 
 ----
 
@@ -403,10 +405,8 @@ CNI 插件还会通过 `CNI_ARGS` 环境变量为 Pod 指定其他的元数据�
 
 上文所述的创建 Pod 整个过程的流程图如下所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/what-happens-when-k8s.svg)
+![Kubelet 创建 Pod 的流程](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/what-happens-when-k8s.svg "Kubelet 创建 Pod 的流程")
 
-<center><p id=small>Kubelet 创建 Pod 的流程</p></center>
-
-## <span id="inline-toc">8.</span> 原文链接
+## 原文链接
 
 + [What happens when ... Kubernetes edition!](https://github.com/jamiehannaford/what-happens-when-k8s)

@@ -23,13 +23,15 @@ tags:
 - WireGuard
 - Tailscale
 - Headscale
-categories: Network
+categories: 
+- Network
+- VPN
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-52-bJRrjv.jpg
 ---
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-54-F9DnXG.png)
 
-[上篇文章](https://icloudnative.io/posts/how-to-set-up-or-migrate-headscale/#%E6%80%BB%E7%BB%93)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 `DERP` 是个啥玩意儿，没关系，我先从**中继服务器**开始讲起。
+[上篇文章](/posts/how-to-set-up-or-migrate-headscale/#%E6%80%BB%E7%BB%93)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 `DERP` 是个啥玩意儿，没关系，我先从**中继服务器**开始讲起。
 
 ## STUN 是什么
 Tailscale 的终极目标是让两台**处于网络上的任何位置**的机器建立**点对点连接**（直连），但现实世界是复杂的，大部份情况下机器都位于 NAT 和防火墙后面，这时候就需要通过打洞来实现直连，也就是 NAT 穿透。

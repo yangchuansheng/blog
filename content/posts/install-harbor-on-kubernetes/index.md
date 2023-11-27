@@ -3,6 +3,8 @@ keywords:
 - harbor
 - kubernetes
 - containerd
+- harbor 安装
+- harbor 部署
 title: "在 Kubernetes 中部署高可用 Harbor 镜像仓库"
 date: 2020-12-30T00:31:35+08:00
 lastmod: 2020-12-30T00:31:35+08:00
@@ -15,9 +17,10 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- harbor
-- kubernetes
-categories: cloud-native
+- Harbor
+- Kubernetes
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210107115844.jpg
 ---
 
@@ -55,23 +58,23 @@ github: https://github.com/cloudflare/cfssl
 macOS 安装步骤：
 
 ```bash
-🐳  → brew install cfssl
+🐳 → brew install cfssl
 ```
 
 通用安装方式：
 
 ```bash
-🐳  → wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -O /usr/local/bin/cfssl
-🐳  → wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -O /usr/local/bin/cfssljson
-🐳  → wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64 -O /usr/local/bin/cfssl-certinfo
-🐳  → chmod +x /usr/local/bin/cfssl*
+🐳 → wget https://pkg.cfssl.org/R1.2/cfssl_linux-amd64 -O /usr/local/bin/cfssl
+🐳 → wget https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64 -O /usr/local/bin/cfssljson
+🐳 → wget https://pkg.cfssl.org/R1.2/cfssl-certinfo_linux-amd64 -O /usr/local/bin/cfssl-certinfo
+🐳 → chmod +x /usr/local/bin/cfssl*
 ```
 
 ### 获取默认配置
 
 ```bash
-🐳  → cfssl print-defaults config > ca-config.json
-🐳  → cfssl print-defaults csr > ca-csr.json
+🐳 → cfssl print-defaults config > ca-config.json
+🐳 → cfssl print-defaults csr > ca-csr.json
 ```
 
 ### 生成 CA 证书
@@ -122,7 +125,7 @@ macOS 安装步骤：
 修改好配置文件后,接下来就可以生成 CA 证书了：
 
 ```bash
-🐳  → cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+🐳 → cfssl gencert -initca ca-csr.json | cfssljson -bare ca
 2020/12/30 00:45:55 [INFO] generating a new CA key and certificate from CSR
 2020/12/30 00:45:55 [INFO] generate received request
 2020/12/30 00:45:55 [INFO] received CSR
@@ -134,7 +137,7 @@ macOS 安装步骤：
 此时目录下会出现三个文件：
 
 ```bash
-🐳  → tree
+🐳 → tree
 ├── ca-config.json #这是刚才的json
 ├── ca.csr
 ├── ca-csr.json    #这也是刚才申请证书的json
@@ -179,7 +182,7 @@ macOS 安装步骤：
 使用之前的 CA 证书签发 harbor 证书：
 
 ```bash
-🐳  → cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=harbor harbor-csr.json | cfssljson -bare harbor
+🐳 → cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=harbor harbor-csr.json | cfssljson -bare harbor
 2020/12/30 00:50:31 [INFO] generate received request
 2020/12/30 00:50:31 [INFO] received CSR
 2020/12/30 00:50:31 [INFO] generating key: rsa-2048
@@ -190,7 +193,7 @@ macOS 安装步骤：
 此时目录下会多几个文件：
 
 ```bash
-🐳  → tree -L 1
+🐳 → tree -L 1
 ├── etcd.csr
 ├── etcd-csr.json
 ├── etcd-key.pem
@@ -207,14 +210,14 @@ macOS 安装步骤：
 - --from-file：指定要导入的文件地址
 
 ```bash
-🐳  → kubectl create ns harbor
-🐳  → kubectl -n harbor create secret generic harbor-tls --from-file=tls.crt=harbor.pem --from-file=tls.key=harbor-key.pem --from-file=ca.crt=ca.pem
+🐳 → kubectl create ns harbor
+🐳 → kubectl -n harbor create secret generic harbor-tls --from-file=tls.crt=harbor.pem --from-file=tls.key=harbor-key.pem --from-file=ca.crt=ca.pem
 ```
 
 查看是否创建成功：
 
 ```bash
-🐳  → kubectl -n harbor get secret harbor-tls
+🐳 → kubectl -n harbor get secret harbor-tls
 NAME         TYPE     DATA   AGE
 harbor-tls   Opaque   3      1m
 ```
@@ -228,13 +231,13 @@ harbor-tls   Opaque   3      1m
 先安装 radosgw：
 
 ```bash
-🐳  → ceph-deploy install --rgw 172.16.7.1 172.16.7.2 172.16.7.3
+🐳 → ceph-deploy install --rgw 172.16.7.1 172.16.7.2 172.16.7.3
 ```
 
 然后创建 radosgw：
 
 ```bash
-🐳  → ceph-deploy rgw create 172.16.7.1 172.16.7.2 172.16.7.3
+🐳 → ceph-deploy rgw create 172.16.7.1 172.16.7.2 172.16.7.3
 ```
 
 如果你是通过 `cephadm` 部署的，可以通过以下步骤创建 `radosgw`：
@@ -243,29 +246,29 @@ cephadm 将 radosgw 部署为管理特定**领域**和**区域**的守护程序�
 
 ```bash
 #如果尚未创建领域，请首先创建一个领域：
-🐳  → radosgw-admin realm create --rgw-realm=mytest --default
+🐳 → radosgw-admin realm create --rgw-realm=mytest --default
 
 #接下来创建一个新的区域组：
-🐳  → radosgw-admin zonegroup create --rgw-zonegroup=myzg --master --default
+🐳 → radosgw-admin zonegroup create --rgw-zonegroup=myzg --master --default
 
 #接下来创建一个区域：
-🐳  → radosgw-admin zone create --rgw-zonegroup=myzg --rgw-zone=myzone --master --default
+🐳 → radosgw-admin zone create --rgw-zonegroup=myzg --rgw-zone=myzone --master --default
 
 #为特定领域和区域部署一组radosgw守护程序：
-🐳  → ceph orch apply rgw mytest myzone --placement="1 172.16.7.1"
+🐳 → ceph orch apply rgw mytest myzone --placement="1 172.16.7.1"
 ```
 
 查看服务状态：
 
 ```bash
-🐳  → ceph orch ls|grep rgw
+🐳 → ceph orch ls|grep rgw
 rgw.mytest.myzone      1/1  5m ago     7w   count:1 k8s01  docker.io/ceph/ceph:v15     4405f6339e35
 ```
 
 测试服务是否正常：
 
 ```bash
-🐳  → curl -s http://172.16.7.1
+🐳 → curl -s http://172.16.7.1
 ```
 
 正常返回如下数据：
@@ -284,7 +287,7 @@ rgw.mytest.myzone      1/1  5m ago     7w   count:1 k8s01  docker.io/ceph/ceph:v
 查看 `zonegroup`：
 
 ```bash
-🐳  → radosgw-admin zonegroup get
+🐳 → radosgw-admin zonegroup get
 {
     "id": "ed34ba6e-7089-4b7f-91c4-82fc856fc16c",
     "name": "myzg",
@@ -329,7 +332,7 @@ rgw.mytest.myzone      1/1  5m ago     7w   count:1 k8s01  docker.io/ceph/ceph:v
 ### Create Auth Key
 
 ```bash
-🐳  → ceph auth get-or-create client.radosgw.gateway osd 'allow rwx' mon 'allow rwx' -o /etc/ceph/ceph.client.radosgw.keyring
+🐳 → ceph auth get-or-create client.radosgw.gateway osd 'allow rwx' mon 'allow rwx' -o /etc/ceph/ceph.client.radosgw.keyring
 ```
 
 分发 `/etc/ceph/ceph.client.radosgw.keyring` 到其它 radosgw 节点。
@@ -339,19 +342,19 @@ rgw.mytest.myzone      1/1  5m ago     7w   count:1 k8s01  docker.io/ceph/ceph:v
 1. Create a radosgw user for s3 access
 
    ```bash
-   🐳  → radosgw-admin user create --uid="harbor" --display-name="Harbor Registry"
+   🐳 → radosgw-admin user create --uid="harbor" --display-name="Harbor Registry"
    ```
 
 2. Create a swift user
 
    ```bash
-   🐳  → adosgw-admin subuser create --uid=harbor --subuser=harbor:swift --access=full
+   🐳 → adosgw-admin subuser create --uid=harbor --subuser=harbor:swift --access=full
    ```
 
 3. Create Secret Key
 
    ```bash
-   🐳  → radosgw-admin key create --subuser=harbor:swift --key-type=swift --gen-secret
+   🐳 → radosgw-admin key create --subuser=harbor:swift --key-type=swift --gen-secret
    ```
 
    记住 `keys` 字段中的 `access_key` & `secret_key`
@@ -361,13 +364,13 @@ rgw.mytest.myzone      1/1  5m ago     7w   count:1 k8s01  docker.io/ceph/ceph:v
 首先需要安装 `awscli`：
 
 ```bash
-🐳  → pip3 install awscli  -i https://pypi.tuna.tsinghua.edu.cn/simple
+🐳 → pip3 install awscli  -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 查看秘钥：
 
 ```bash
-🐳  → radosgw-admin user info --uid="harbor"|jq .keys
+🐳 → radosgw-admin user info --uid="harbor"|jq .keys
 [
   {
     "user": "harbor",
@@ -380,7 +383,7 @@ rgw.mytest.myzone      1/1  5m ago     7w   count:1 k8s01  docker.io/ceph/ceph:v
 配置 awscli：
 
 ```bash
-🐳  → aws configure --profile=ceph
+🐳 → aws configure --profile=ceph
 AWS Access Key ID [None]: VGZQY32LMFQOQPVNTDSJ
 AWS Secret Access Key [None]: YZMMYqoy1ypHaqGOUfwLvdAj9A731iDYDjYqwkU5
 Default region name [None]:
@@ -390,7 +393,7 @@ Default output format [None]: json
 配置完成后，凭证将会存储到 `~/.aws/credentials`：
 
 ```bash
-🐳  → cat ~/.aws/credentials
+🐳 → cat ~/.aws/credentials
 [ceph]
 aws_access_key_id = VGZQY32LMFQOQPVNTDSJ
 aws_secret_access_key = YZMMYqoy1ypHaqGOUfwLvdAj9A731iDYDjYqwkU5
@@ -399,7 +402,7 @@ aws_secret_access_key = YZMMYqoy1ypHaqGOUfwLvdAj9A731iDYDjYqwkU5
 配置将会存储到 `~/.aws/config`：
 
 ```bash
-🐳  → cat ~/.aws/config
+🐳 → cat ~/.aws/config
 [profile ceph]
 region = cn-hangzhou-1
 output = json
@@ -408,13 +411,13 @@ output = json
 创建存储桶（bucket）：
 
 ```bash
-🐳  → aws --profile=ceph --endpoint=http://172.16.7.1 s3api create-bucket --bucket harbor
+🐳 → aws --profile=ceph --endpoint=http://172.16.7.1 s3api create-bucket --bucket harbor
 ```
 
 查看存储桶（bucket）列表：
 
 ```
-🐳  → radosgw-admin bucket list
+🐳 → radosgw-admin bucket list
 [
     "harbor"
 ]
@@ -423,7 +426,7 @@ output = json
 查看存储桶状态：
 
 ```bash
-🐳  → radosgw-admin bucket stats
+🐳 → radosgw-admin bucket stats
 [
     {
         "bucket": "harbor",
@@ -460,7 +463,7 @@ output = json
 查看存储池状态
 
 ```bash
-🐳  → rados df
+🐳 → rados df
 POOL_NAME                    USED  OBJECTS  CLONES  COPIES  MISSING_ON_PRIMARY  UNFOUND  DEGRADED    RD_OPS       RD     WR_OPS       WR  USED COMPR  UNDER COMPR
 .rgw.root                 2.3 MiB       13       0      39                   0        0         0       533  533 KiB         21   16 KiB         0 B          0 B
 cache                         0 B        0       0       0                   0        0         0         0      0 B          0      0 B         0 B          0 B
@@ -698,19 +701,19 @@ chartmuseum:
 ### 添加 Helm 仓库
 
 ```bash
-🐳  → helm repo add harbor https://helm.goharbor.io
+🐳 → helm repo add harbor https://helm.goharbor.io
 ```
 
 ### 部署 Harbor
 
 ```bash
-🐳  → helm install harbor harbor/harbor -f values.yaml -n harbor
+🐳 → helm install harbor harbor/harbor -f values.yaml -n harbor
 ```
 
 ### 查看应用是否部署完成
 
 ```bash
-🐳  → kubectl -n harbor get pod
+🐳 → kubectl -n harbor get pod
 NAME                                          READY   STATUS    RESTARTS   AGE
 harbor-harbor-chartmuseum-55fb975fbd-74vnh    1/1     Running   0          3m
 harbor-harbor-clair-695c7f9c69-7gpkh          2/2     Running   0          3m
@@ -731,7 +734,7 @@ harbor-harbor-trivy-0                         1/1     Running   0          3m
 接下来配置 Hosts，客户端想通过域名访问服务，必须要进行 DNS 解析，由于这里没有 DNS 服务器进行域名解析，所以修改 hosts 文件将 Harbor 指定 `clusterIP` 和自定义 host 绑定。首先查看 nginx 的 clusterIP：
 
 ```bash
-🐳  → kubectl -n harbor get svc harbor-harbor-nginx
+🐳 → kubectl -n harbor get svc harbor-harbor-nginx
 NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
 harbor-harbor-nginx   ClusterIP   10.109.50.142   <none>        80/TCP,443/TCP   22h
 ```
@@ -785,7 +788,7 @@ harbor-harbor-nginx   ClusterIP   10.109.50.142   <none>        80/TCP,443/TCP  
 Kubernetes 集群使用 `docker-registry` 类型的 Secret 来通过镜像仓库的身份验证，进而拉取私有映像。所以需要创建 Secret，命名为 `regcred`：
 
 ```bash
-🐳  → kubectl create secret docker-registry regcred \
+🐳 → kubectl create secret docker-registry regcred \
   --docker-server=<你的镜像仓库服务器> \
   --docker-username=<你的用户名> \
   --docker-password=<你的密码> \
@@ -828,7 +831,7 @@ spec:
 
 ```bash
 ### 拉取 Helloworld 镜像
-🐳  → ctr i pull bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest
+🐳 → ctr i pull bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest
 bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest:                          resolved       |++++++++++++++++++++++++++++++++++++++|
 index-sha256:1a523af650137b8accdaed439c17d684df61ee4d74feac151b5b337bd29e7eec:    done           |++++++++++++++++++++++++++++++++++++++|
 manifest-sha256:90659bf80b44ce6be8234e6ff90a1ac34acbeb826903b02cfa0da11c82cbc042: done           |++++++++++++++++++++++++++++++++++++++|
@@ -839,11 +842,11 @@ unpacking linux/amd64 sha256:1a523af650137b8accdaed439c17d684df61ee4d74feac151b5
 done
 
 ### 将下载的镜像使用 tag 命令改变镜像名
-🐳  → ctr i tag bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest harbor.example.net/library/hello-world:latest
+🐳 → ctr i tag bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest harbor.example.net/library/hello-world:latest
 harbor.example.net/library/hello-world:latest
 
 ### 推送镜像到镜像仓库
-🐳  → ctr i push --user admin:Mydlq123456 --platform linux/amd64 harbor.example.net/library/hello-world:latest
+🐳 → ctr i push --user admin:Mydlq123456 --platform linux/amd64 harbor.example.net/library/hello-world:latest
 manifest-sha256:90659bf80b44ce6be8234e6ff90a1ac34acbeb826903b02cfa0da11c82cbc042: done           |++++++++++++++++++++++++++++++++++++++|
 config-sha256:bf756fb1ae65adf866bd8c456593cd24beb6a0a061dedf42b26a993176745f6b:   done           |++++++++++++++++++++++++++++++++++++++|
 layer-sha256:0e03bdcc26d7a9a57ef3b6f1bf1a210cff6239bff7c8cac72435984032851689:    done           |++++++++++++++++++++++++++++++++++++++|
@@ -858,11 +861,11 @@ elapsed: 2.2 s                                                                  
 
 ```bash
 ### 删除之前镜像
-🐳  → ctr i rm harbor.example.net/library/hello-world:latest
-🐳  → ctr i rm bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest
+🐳 → ctr i rm harbor.example.net/library/hello-world:latest
+🐳 → ctr i rm bxsfpjcb.mirror.aliyuncs.com/library/hello-world:latest
 
 ### 测试从 harbor.example.net 下载新镜像
-🐳  → ctr i pull harbor.example.net/library/hello-world:latest
+🐳 → ctr i pull harbor.example.net/library/hello-world:latest
 harbor.example.net/library/hello-world:latest:                                   resolved       |++++++++++++++++++++++++++++++++++++++|
 manifest-sha256:90659bf80b44ce6be8234e6ff90a1ac34acbeb826903b02cfa0da11c82cbc042: done           |++++++++++++++++++++++++++++++++++++++|
 layer-sha256:0e03bdcc26d7a9a57ef3b6f1bf1a210cff6239bff7c8cac72435984032851689:    done           |++++++++++++++++++++++++++++++++++++++|

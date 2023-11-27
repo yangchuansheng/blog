@@ -1,12 +1,19 @@
 ---
+keywords:
+- hugo
+- 社交分享
+- blog
+- 博客
 title: "Hugo 集成社交分享插件"
 subtitle: "通过 share.js 让你的分享飞起来"
 date: 2018-11-07T01:22:31+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "hugo"
-tags: ["hugo"]
+categories:
+- Blog
+tags:
+- Hugo
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/hugo.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -15,11 +22,9 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 还好我发现了一款简单高效的社交分享组件，只看一眼便可以确认这就是我要寻找的那个它。直接上预览，你看完一定会喜欢上：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/yURXT6.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/yURXT6.jpg)
 
-## <span id="inline-toc">1.</span> 简介
-
-----
+## 简介
 
 [share.js](https://github.com/overtrue/share.js) 是一款简单高效的社交分享组件，直接引入使用即可，无须依赖其他库。它有以下这些特点：
 
@@ -31,9 +36,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 + 同页面个分享组件
 + 支持npm安装
 
-## <span id="inline-toc">2.</span> 引入 share.js
-
-----
+## 引入 share.js
 
 由于我的博客使用的是 [hugo](https://gohugo.io/)，而且使用的主题是 [Jimmy Song](https://jimmysong.io/) 的 [beautifulhugo](https://github.com/rootsongjc/beautifulhugo)，官方文档提供的安装方式不适用，需要稍作改动。
 
@@ -211,8 +214,6 @@ noshare: true
 ---
 ```
 
-## <span id="inline-toc">3.</span> 更多
-
-----
+## 更多
 
 关于分享插件的更多自定义配置请参考代码仓库的 [README](https://github.com/overtrue/share.js)。

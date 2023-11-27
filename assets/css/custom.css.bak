@@ -1,3 +1,15 @@
+* {
+  cursor: url(/img/cursor/2078-blue-pointer-cursor.svg), default !important;
+}
+
+a, a:hover, a:focus, img, svg, a span, svg path, a span p, .thumbnail_card, .cursor-pointer, button, .icon, a h6, .rounded-md {
+  cursor: url(/img/cursor/2078-blue-pointer-pointer.svg), pointer !important;
+}
+
+section a {
+  margin-left: -0.5rem;
+}
+
 /* jetbrains-mono-regular */
 @font-face {
   font-family: "JetBrains Mono";
@@ -21,9 +33,29 @@
       format("svg"); /* Legacy iOS */
 }
 
+/*
 html {
-  font-family: JetBrains Mono, LXGW WenKai Screen;
+  font-family: JetBrains Mono, LXGW WenKai Screen, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial,
+    noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol,
+    noto color emoji;
 }
+*/
+
+article {
+  font-family: JetBrains Mono, LXGW WenKai Screen, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial,
+    noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol,
+    noto color emoji;
+}
+
+#TableOfContents,
+header {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif,
+    apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+}
+
 code,
 kbd,
 samp,
@@ -48,6 +80,108 @@ pre {
 
 .prose .chroma {
   padding-top: 30px;
+}
+
+
+
+/* 列表样式 */
+section div ol {
+  counter-reset: listitem; /* 重置计数器 */
+  list-style-type: none !important; /* 移除默认的数字 */
+  padding-left: 0.325em !important; /* 移除默认的内边距 */
+}
+
+section div ul {
+  counter-reset: listitem; /* 重置计数器 */
+}
+
+section div ol li {
+  position: relative; /* 设置相对定位，为伪元素定位做准备 */
+  margin-left: 20px; /* 留出空间放置圆圈和数字 */
+}
+
+section div ol li::before {
+  position: absolute; /* 绝对定位，使得伪元素脱离正常文档流，可以自由定位 */
+  left: -1.5rem; /* 向左移动1.5rem，通常用于将圆形标记放置在列表项内容的左侧 */
+  top: 0.24rem; /* 从顶部向下移动0.24rem，用于垂直居中圆形标记 */
+  box-sizing: initial; /* 设置盒模型的计算方式，这里使用浏览器的默认设置 */
+  height: 0.75rem; /* 圆形标记的高度 */
+  width: 1.25rem; /* 圆形标记的宽度 */
+  border-radius: 9999px; /* 设置极大的边框半径来创建圆形 */
+  background-color: rgba(
+    var(--color-neutral-400),
+    0.4
+  ); /* 设置背景色，使用rgba颜色值，透明度为0.4 */
+  padding: 0.25rem 0; /* 设置内边距，垂直方向为0.25rem，水平方向为0 */
+  text-align: center; /* 文本居中，确保数字在圆形标记中居中对齐 */
+  font-size: 0.75rem; /* 字体大小设置为0.75rem */
+  line-height: 1rem; /* 行高设置为1rem */
+  font-weight: 500; /* 字体加粗程度，500为中等加粗 */
+  line-height: 1; /* 行高设置为1，这里可能是一个重复设置，通常以最后一个为准 */
+  color: rgba(
+    var(--color-neutral-700),
+    1
+  ); /* 设置字体颜色，使用rgba颜色值，透明度为1 */
+  counter-increment: listitem; /* 使用CSS计数器，每次列表项出现时增加计数器listitem的值 */
+  content: counter(
+    listitem
+  ); /* 在伪元素中显示计数器listitem的值，即列表项的序号 */
+}
+
+.dark section div ol li::before {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.24rem;
+  box-sizing: initial;
+  height: 0.75rem;
+  width: 1.25rem;
+  border-radius: 9999px;
+  --tw-bg-opacity: 1;
+  background-color: rgba(var(--color-neutral-500), 1);
+  padding: 0.25rem 0;
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  line-height: 1;
+  --tw-text-opacity: 1;
+  color: rgba(var(--color-neutral-100), 1);
+  counter-increment: listitem;
+  content: counter(listitem);
+}
+
+ul > li::marker {
+  color: rgba(var(--color-neutral-700), 1) !important;
+}
+
+.dark ul > li::marker {
+  color: rgba(var(--color-neutral-100), 1) !important;
+}
+
+
+/* katex 样式 */
+.katex {
+  font-size: 1em !important;
+}
+.katex-display > .katex {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* 顶部阅读进度条 */
+.top-scroll-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  width: 0;
+  height: 3px;
+  background: rgba(var(--color-primary-600), 1);
+  .dark & {
+    background: rgba(var(--color-primary-400), 1);
+  }
 }
 
 .logo_cursor {
@@ -358,4 +492,185 @@ pre {
 .github-badge .bg-lightgrey,
 .github-badge .bg-lightgray {
   background-color: #9f9f9f !important;
+}
+
+/* 评论区样式 */
+
+.comment-list .comment-item-content p {
+  color: rgba(var(--color-neutral-700), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.comment-list .comment-item-header .comment-item-name[href^="javascript"] {
+  color: #0095dd !important;
+}
+
+.comment-header .comment-header-item {
+  color: rgba(var(--color-neutral-700), 1);
+  border-bottom: 2px solid rgba(var(--color-primary-600), 1);
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+    border-bottom: 2px solid rgba(var(--color-primary-400), 1);
+  }
+}
+
+.comment-list .comment-item-header .comment-item-time,
+.comment-list .comment-item-footer .comment-item-reply,
+.comment-list .comment-item-footer .comment-item-edit,
+.comment-list .comment-item-footer .comment-item-delete,
+.comment-list .comment-item-header .comment-item-pname .icon,
+.comment-list .comment-item-header .comment-item-pname {
+  .dark & {
+    color: rgba(var(--color-neutral-400), 1);
+    fill: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-header .comment-header-item:last-child:hover {
+  color: rgba(var(--color-primary-600), 1) !important;
+  .dark & {
+    color: rgba(var(--color-primary-400), 1) !important;
+  }
+}
+
+.comment-navbar .comment-recommend {
+  .dark & {
+    border: 1px solid rgba(var(--color-neutral-400), 1);
+    color: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-navbar .comment-recommend .icon {
+  .dark & {
+    fill: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-related .comment-related-title,
+.comment-related .related-list .related-item-desc {
+  .dark & {
+    color: rgba(var(--color-neutral-400), 1);
+  }
+}
+
+.comment-related .comment-related-forumname {
+  .dark & {
+    color: rgba(var(--color-neutral-300), 1);
+  }
+}
+
+.comment-related .related-list .related-item-link {
+  color: rgba(var(--color-neutral-600), 1) !important;
+  .dark & {
+    color: rgba(var(--color-neutral-200), 1) !important;
+  }
+}
+
+#fixed-box {
+  position: fixed;
+  z-index: 9999;
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.feedback-btn-wrapper {
+  position: fixed;
+  z-index: 1000;
+  bottom: 0;
+  right: 0;
+  margin: 6rem 2rem;
+}
+#feedback-btn {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 1.2rem 0.7rem;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  user-select: none;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  background-color: #4d698e;
+  transition: filter 0.4s ease;
+}
+
+#feedback-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+#feedback-btn span {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+/* shotcode tabs 样式 */
+
+/* 标签按钮默认状态的样式 */
+.tablinks {
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  transition: 0.3s;
+  font-size: 17px;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+/* 标签按钮激活时和悬停时的样式 */
+.tablinks.active,
+.tablinks:hover {
+  background-color: rgba(var(--color-neutral-200), 0.5);
+  border: 1px solid rgba(var(--color-neutral-300), 0.5);
+  border-bottom: none;
+  text-decoration-line: none;
+  .dark & {
+    background-color: rgba(var(--color-neutral-600), 0.5);
+    border: 1px solid rgba(var(--color-neutral-700), 0.2);
+    border-bottom: none;
+  }
+}
+
+/* 样式化标签页内容 (tabcontent) */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  background: rgba(var(--color-neutral-200), 0.5);
+  border: 1px solid rgba(var(--color-neutral-300), 0.5);
+  border-top: none;
+  .dark & {
+    background-color: rgba(var(--color-neutral-600), 0.5);
+    border: 1px solid rgba(var(--color-neutral-700), 0.2);
+    border-top: none;
+  }
+}
+
+/* 清除浮动 */
+.tabs:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* shortcode details */
+.details {
+  background-color: rgba(var(--color-neutral-300), 0.5);
+  border-color: rgba(var(--color-neutral-300), 1);
+  color: var(--text-default);
+  padding: 0.5rem !important;
+  margin-bottom: 1.5rem !important;
+  margin-top: 1.5rem !important;
+  .dark & {
+    background-color: rgba(var(--color-neutral-900), 0.5);
+    border-color: rgba(var(--color-neutral-900), 1);
+  }
 }

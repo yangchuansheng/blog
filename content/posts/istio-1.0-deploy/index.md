@@ -1,12 +1,19 @@
 ---
+keywords:
+- service mesh
+- 服务网格
+- istio
+- kubernetes
 title: "Istio 1.0 部署"
 subtitle: "使用 Helm 部署 Istio 服务"
 date: 2018-08-01T15:33:46+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203194912.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -15,7 +22,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 在安装 Istio 之前要确保 Kubernetes 集群（仅支持 `v1.9` 及以后版本）已部署并配置好本地的 kubectl 客户端。
 
-## <span id="inline-toc">1.</span> 下载 Istio
+## 下载 Istio
 
 ----
 
@@ -25,7 +32,7 @@ $ tar zxf istio-1.0.0-linux.tar.gz
 $ cp istio-1.0.0/bin/istioctl /usr/local/bin/
 ```
 
-## <span id="inline-toc">2.</span> 使用 Helm 部署 Istio 服务
+## 使用 Helm 部署 Istio 服务
 
 ----
 
@@ -76,7 +83,7 @@ servicegraph-5b8d7b4d5-lzhth
 2. `istio-cleanup-secrets` 是一个 job，用于清理过去的 Istio 遗留下来的 CA 部署（包括 sa、deploy 以及 svc 三个对象）。
 3. `egressgateway`、`ingress` 以及 `ingressgateway`，可以看出边缘部分的变动很大，以后会另行发文。
 
-## <span id="inline-toc">3.</span> Prometheus、Grafana、Servicegraph 和 Jaeger
+## Prometheus、Grafana、Servicegraph 和 Jaeger
 
 ----
 
@@ -166,19 +173,19 @@ $Ingree_host tracing.istio.io
 
 通过 `http://grafana.istio.io` 访问 Grafana 服务：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/fqfx2B.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/fqfx2B.jpg)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/3eUieX.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/3eUieX.jpg)
 
 通过 `http://servicegraph.istio.io` 访问 ServiceGraph 服务，展示服务之间调用关系图。
 
 + `http://servicegraph.istio.io/force/forcegraph.html` : As explored above, this is an interactive [D3.js](https://d3js.org/) visualization.
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/LYeAvu.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/LYeAvu.jpg)
 
 + `http://servicegraph.istio.io/dotviz` : is a static [Graphviz](https://www.graphviz.org/) visualization.
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/aQFDCs.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/aQFDCs.jpg)
 
 + `http://servicegraph.istio.io/dotgraph` : provides a <a href="https://www.wikiwand.com/en/DOT_(graph_description_language)" target="_blank">DOT</a> serialization.
 + `http://servicegraph.istio.io/d3graph` : provides a JSON serialization for D3 visualization.
@@ -186,17 +193,17 @@ $Ingree_host tracing.istio.io
 
 通过 `http://tracing.istio.io/` 访问 Jaeger 跟踪页面：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/bsfLDQ.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/bsfLDQ.jpg)
 
 通过 `http://prometheus.istio.io/` 访问 Prometheus 页面：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/Uwa1Oh.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/Uwa1Oh.jpg)
 
-{{< notice note >}}
+{{< alert >}}
 如果你已经部署了 <code>Prometheus-operator</code>，可以不必部署 Grafana，直接将 <code>addons/grafana/dashboards</code> 目录下的 Dashboard 模板复制出来放到 Prometheus-operator 的 Grafana 上，然后添加 istio-system 命名空间中的 Prometheus 数据源就可以监控 Istio 了。
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">4.</span> Mesh Expansion
+## Mesh Expansion
 
 ----
 
@@ -210,7 +217,7 @@ $ istioctl -n onprem register mysql 1.2.3.4 3306
 $ istioctl -n onprem register svc1 1.2.3.4 http:7000
 ```
 
-## <span id="inline-toc">5.</span> 参考
+## 参考
 
 ----
 

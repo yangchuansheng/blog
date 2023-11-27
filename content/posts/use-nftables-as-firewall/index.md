@@ -4,6 +4,8 @@ keywords:
 - nftables
 - 令牌桶
 - conntrack
+- netfilter
+- Linux
 title: "nftables 基础教程：使用 nftables 作为防火墙"
 subtitle: "使用 nftables 搭建一个简单的模块化防火墙"
 description:
@@ -11,18 +13,20 @@ date: 2019-12-19T17:56:09+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux","nftables"]
+categories:
+- Linux
+tags: 
+- Nftables
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191219175915.webp"
 ---
 
-[上篇文章](https://icloudnative.io/posts/using-nftables/) 给大家介绍了 `nftables` 的优点以及基本的使用方法，它的优点在于直接在用户态把网络规则编译成字节码，然后由内核的虚拟机执行，尽管和 iptables 一样都是基于 `netfilter`，但 nftables 的灵活性更高。
+[上篇文章](/posts/using-nftables/) 给大家介绍了 `nftables` 的优点以及基本的使用方法，它的优点在于直接在用户态把网络规则编译成字节码，然后由内核的虚拟机执行，尽管和 iptables 一样都是基于 `netfilter`，但 nftables 的灵活性更高。
 
-之前用 iptables 匹配大量数据时，还得需要 `ipset` 配合，而 nftables 直接内置了集合和字典，可以直接匹配大量的数据，这一点比 iptables 方便多了，拿来练练魔法真是极好的，不多解释，请直接看 [Linux全局智能分流方案](https://icloudnative.io/posts/linux-circumvent/)。
+之前用 iptables 匹配大量数据时，还得需要 `ipset` 配合，而 nftables 直接内置了集合和字典，可以直接匹配大量的数据，这一点比 iptables 方便多了，拿来练练魔法真是极好的，不多解释，请直接看 [Linux全局智能分流方案](/posts/linux-circumvent/)。
 
 本文将会教你如何配置 nftables 来为服务器实现一个简单的防火墙，本文以 CentOS 7 为例，其他发行版类似。
 
-## <span id="inline-toc">1.</span> 安装 nftables
+## 安装 nftables
 
 ----
 
@@ -66,7 +70,7 @@ table inet filter {
 
 在 nftables 中，`ipv4` 和 `ipv6` 协议可以被合并到一个单一的地址簇 `inet` 中，使用了 inet 地址簇，就不需要分别为 ipv4 和 ipv6 指定两个不同的规则了。
 
-## <span id="inline-toc">2.</span> 添加 INPUT 规则
+## 添加 INPUT 规则
 
 ----
 
@@ -308,7 +312,7 @@ table inet filter {
 }
 ```
 
-## <span id="inline-toc">3.</span> 处理 TCP 流量
+## 处理 TCP 流量
 
 ----
 
@@ -412,7 +416,7 @@ $ nft add rule inet filter TCP \
    comment \"Accept v-2-r-a-y\"
 ```
 
-## <span id="inline-toc">4.</span> 处理 UDP 流量
+## 处理 UDP 流量
 
 ----
 
@@ -455,7 +459,7 @@ $ nft list ruleset >> /etc/nftables/inet-filter
 $ systemctl enable nftables
 ```
 
-## <span id="inline-toc">5.</span> 在 rsyslog 中记录日志
+## 在 rsyslog 中记录日志
 
 ----
 
@@ -491,7 +495,7 @@ $ tail -f /var/log/nftables/ssh.log
 Dec 19 17:15:33 [localhost] kernel: New SSH connection: IN=ens192 OUT= MAC=00:50:56:bd:2f:3d:00:50:56:bd:d7:24:08:00 SRC=192.168.57.2 DST=192.168.57.53 LEN=60 TOS=0x00 PREC=0x00 TTL=64 ID=43312 DF PROTO=TCP SPT=41842 DPT=22 WINDOW=29200 RES=0x00 SYN URGP=0
 ```
 
-## <span id="inline-toc">6.</span> 总结
+## 总结
 
 ----
 

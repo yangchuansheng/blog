@@ -33,7 +33,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 虽然意外宕机不能完全避免，但在更新应用时保持零宕机还是有可能的。
 
-## <span id="inline-toc">1.</span> 先驱：蓝绿部署
+## 先驱：蓝绿部署
 
 ----
 
@@ -55,13 +55,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
   
     折中的解决方案是将数据库转移到 AB 环境之外的环境，然后将数据共享给 A 和 B 这两个环境。虽然这种架构对隔离性会产生一定的影响，但本文我不会展开详述。
 
-## <span id="inline-toc">2.</span> Kubernetes 的滚动更新
+## Kubernetes 的滚动更新
 
 ----
 
 如果你的应用部署在 Kubernetes 中，完全可以通过 `Deployment` 来实现应用的无缝升级。
 
-> Deployment 控制器为 Pod 和 ReplicaSet 提供了声明式更新。关于声明式的详细信息可以参考：[Kubernetes 设计与开发原则](https://icloudnative.io/posts/kubernetes-design-and-development-explained/)
+> Deployment 控制器为 Pod 和 ReplicaSet 提供了声明式更新。关于声明式的详细信息可以参考：[Kubernetes 设计与开发原则](/posts/kubernetes-design-and-development-explained/)
 
 > 你可以在 Deployment 对象中声明期望的状态，Deployment Controller 可以通过不同的策略来不断调整实际状态，直到与期望状态保持一致。你可以选择让 Deployment 创建新的 ReplicaSet 来更新应用，或者删除旧的 Deployment，修改配置后重新创建新的 Deployment。
 
@@ -85,7 +85,7 @@ spec:
 
 光看理论可能不太好理解，下面我们通过一些示例来理解它的工作原理。
 
-## <span id="inline-toc">3.</span> Kubernetes 滚动更新实践
+## Kubernetes 滚动更新实践
 
 ----
 
@@ -100,7 +100,7 @@ spec:
 
 上面的示例 yaml 表示更新过程中最多允许比期望的 Pod 数量多一个 Pod（`maxSurge` = 1），且最多允许比期望的 Pod 数量少 0 个 Pod（`maxUnavailable` = 0）。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/superbed/2019/04/27/5cc4078e3a213b0417146775.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/5cc4078e3a213b0417146775.jpg)
 
 通过该配置，Kubernetes 会创建一个新 Pod，然后再删除一个旧 Pod，不断迭代下去。如果有其他计算节点可以运行新的 Pod，调度系统就会将新 Pod 调度到其他节点，否则就会调度到已有的计算节点，和节点上的其他 Pod 共同竞争计算资源。
 
@@ -108,7 +108,7 @@ spec:
 
 如果想在更新过程中最多允许比期望的 Pod 数量多 0 个 Pod，且最多允许比期望的 Pod 数量少 1 个 Pod，可以令 `maxSurge` = 0，`maxUnavailable` = 1。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/superbed/2019/04/27/5cc407bd3a213b0417146d62.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/5cc407bd3a213b0417146d62.jpg)
 
 通过该配置，Kubernetes 会删除一个旧 Pod，然后再创建一个新 Pod，不断迭代下去。这种方式的好处是当集群的计算资源不足时，可以保持工作负载的数量不会大于现有的数量。
 
@@ -116,11 +116,11 @@ spec:
 
 如果想在更新过程中最多允许比期望的 Pod 数量多 1 个 Pod，且最多允许比期望的 Pod 数量少 1 个 Pod，可以令 `maxSurge` = 1，`maxUnavailable` = 1。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/superbed/2019/04/27/5cc408253a213b041714778f.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/5cc408253a213b041714778f.jpg)
 
 这种配置会尽快更新所有 Pod，大大减少了在应用版本之间切换所需的时间，但包含了前两种方式的所有缺点。
 
-## <span id="inline-toc">4.</span> 考虑应用启动耗时
+## 考虑应用启动耗时
 
 ----
 
@@ -155,7 +155,7 @@ spec:
 
 现在我们已经知道了如何正确处理像 “Hello World” 这种类型的应用，但 Kubernetes 的滚动更新会遇到与蓝绿部署相同的问题：数据库的数据结构变更需要向前向后兼容。
 
-## <span id="inline-toc">5.</span> 滚动更新与数据结构的兼容性
+## 滚动更新与数据结构的兼容性
 
 ----
 
@@ -163,11 +163,11 @@ spec:
 
 假设数据库的数据结构如下：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/superbed/2019/04/27/5cc408453a213b0417147a70.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/5cc408453a213b0417147a70.jpg)
 
 使用这种数据结构，`PERSON` 和 `ADDRESS` 之间的界限比较模糊，为了划清界限，可以将数据结构改成如下的形式：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/superbed/2019/04/27/5cc4085b3a213b0417147c91.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/5cc4085b3a213b0417147c91.jpg)
 
 假设原来数据结构界限比较模糊的应用已经在生产环境中开始使用，现在我们的目标是在零宕机的情况下将数据结构更换成上图的最终架构。
 
@@ -191,7 +191,7 @@ spec:
 
 <span id="blue">3.</span> 继续滚动更新，标签改为 2.3。更新过程中需要从 `PERSON` 表中删除多余的字段，最终变成上文所述的最终数据结构。从这一步回滚到上一步也是向前兼容的，因为 2.2 版本的应用的所有数据都来自 `ADDRESS` 表，2.3 版本只是删除了 `PERSON` 表中的某些字段，所以 2.2 版本的应用完全可以处理 2.3 版本应用的数据结构。
 
-## <span id="inline-toc">6.</span> 总结
+## 总结
 
 ----
 

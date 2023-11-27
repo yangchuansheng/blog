@@ -21,9 +21,9 @@ categories: Network
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 
-上篇文章给大家介绍了如何[使用 wg-gen-web 来方便快捷地管理 WireGuard 的配置和秘钥](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)，文末埋了两个坑：一个是 `WireGuard` 的全互联模式（full mesh），另一个是使用 WireGuard 作为 `Kubernetes` 的 CNI 插件。今天就来填第一个坑。
+上篇文章给大家介绍了如何[使用 wg-gen-web 来方便快捷地管理 WireGuard 的配置和秘钥](/posts/configure-wireguard-using-wg-gen-web/)，文末埋了两个坑：一个是 `WireGuard` 的全互联模式（full mesh），另一个是使用 WireGuard 作为 `Kubernetes` 的 CNI 插件。今天就来填第一个坑。
 
-首先解释一下什么是全互联模式（full mesh），全互联模式其实就是一种网络连接形式，即所有结点之间都直接连接，不会通过第三方节点中转流量。和前面提到的[点对多点架构](https://icloudnative.io/posts/why-not-why-not-wireguard/#7-wireguard-真的很快吗) 其实是一个意思。
+首先解释一下什么是全互联模式（full mesh），全互联模式其实就是一种网络连接形式，即所有结点之间都直接连接，不会通过第三方节点中转流量。和前面提到的[点对多点架构](/posts/why-not-why-not-wireguard/#7-wireguard-真的很快吗) 其实是一个意思。
 
 ## 1. 全互联模式架构与配置
 
@@ -49,8 +49,8 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 配置一目了然，每个 Peer 和其他所有 Peer 都是直连，根本没有 VPN 网关这种角色。当然，现实世界的状况没有图中这么简单，有些 Peer 是没有公网 IP 的，躲在 NAT 后面，这里又分两种情况：
 
-1. NAT 受自己控制。这种情况可以在公网出口设置端口转发，其他 Peer 就可以通过这个公网 IP 和端口连接当前 Peer。如果公网 IP 是动态的，可以通过 DDNS 来解决，但 DDNS 会出现一些小问题，解决方法可以参考 [WireGuard 的优化](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/#动态-ip)。
-2. NAT 不受自己控制。这种情况无法在公网出口设置端口转发，只能通过 UDP 打洞来实现互联，具体可以参考 [WireGuard 教程：使用 DNS-SD 进行 NAT-to-NAT 穿透](https://icloudnative.io/posts/wireguard-endpoint-discovery-nat-traversal/)。
+1. NAT 受自己控制。这种情况可以在公网出口设置端口转发，其他 Peer 就可以通过这个公网 IP 和端口连接当前 Peer。如果公网 IP 是动态的，可以通过 DDNS 来解决，但 DDNS 会出现一些小问题，解决方法可以参考 [WireGuard 的优化](/posts/configure-wireguard-using-wg-gen-web/#动态-ip)。
+2. NAT 不受自己控制。这种情况无法在公网出口设置端口转发，只能通过 UDP 打洞来实现互联，具体可以参考 [WireGuard 教程：使用 DNS-SD 进行 NAT-to-NAT 穿透](/posts/wireguard-endpoint-discovery-nat-traversal/)。
 
 **接着上述方案再更进一步，打通所有 Peer 的私有网段，让任意一个 Peer 可以访问其他所有 Peer 的私有网段的机器**。上述配置只是初步完成了全互联，让每个 Peer 可以相互访问彼此而已，要想相互访问私有网段，还得继续增加配置，还是直接看图：
 
@@ -62,14 +62,14 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 对如何配置有了清晰的思路之后，接下来就可以进入实践环节了。我不打算从 WireGuard 安装开始讲起，而是以前几篇文章为基础添砖加瓦。所以我建议读者先按顺序看下这两篇文章：
 
-+ [WireGuard 快速安装教程](https://icloudnative.io/posts/wireguard-install/)
-+ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)
++ [WireGuard 快速安装教程](/posts/wireguard-install/)
++ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](/posts/configure-wireguard-using-wg-gen-web/)
 
-咱们直接从配置开始说起。手撸配置的做法是不明智的，因为当节点增多之后工作量会很大，我还是建议通过图形化界面来管理配置，首选 [wg-gen-web](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)。
+咱们直接从配置开始说起。手撸配置的做法是不明智的，因为当节点增多之后工作量会很大，我还是建议通过图形化界面来管理配置，首选 [wg-gen-web](/posts/configure-wireguard-using-wg-gen-web/)。
 
 现在还是假设有上节所述的 4 个 Peer，我们需要从中挑选一个 Peer 来安装 `wg-gen-web`，然后通过 `wg-gen-web` 来生成配置。挑选哪个 Peer 无所谓，这个没有特殊限制，这里假设挑选 `AWS` 来安装 `wg-gen-web`。
 
-安装的步骤直接略过，不是本文的重点，不清楚的可以阅读我之前的文章 [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)。Server 配置如图：
+安装的步骤直接略过，不是本文的重点，不清楚的可以阅读我之前的文章 [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](/posts/configure-wireguard-using-wg-gen-web/)。Server 配置如图：
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210224161202.png)
 

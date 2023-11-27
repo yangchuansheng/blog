@@ -22,7 +22,7 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - Firefox
-categories: share
+categories: tech
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/Mozilla-Foundation-accepts-Dogecoin-DOGE-users-threaten-to-stop-using.jpg
 ---
 

@@ -10,8 +10,10 @@ date: 2019-08-20T14:18:15+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["kubernetes"]
+categories: 
+- cloud-native
+tags:
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-20-03dy3zv6.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -22,7 +24,7 @@ Kubernetes 的授权控制原则与大多数系统一样 : **在授予访问权�
 
 Kubernetes 从 1.6 开始支持基于角色的访问控制机制（Role-Based Access，RBAC），集群管理员可以对用户或服务账号的角色进行更精确的资源访问控制。先简单回顾一下 RBAC 的原理。
 
-## <span id="inline-toc">1.</span> RBAC 基础概念
+## RBAC 基础概念
 
 ----
 
@@ -41,7 +43,7 @@ rules:
 
 关于 RBAC 的更多详细文档请参考 [Kubernetes 官方文档](https://kubernetes.io/docs/reference/access-authn-authz/rbac/)或 [CNCF 的博客](https://www.cncf.io/blog/2018/08/01/demystifying-rbac-in-kubernetes/)。
 
-## <span id="inline-toc">2.</span> RBAC 实践
+## RBAC 实践
 
 ----
 
@@ -102,7 +104,7 @@ rules:
 
 这个方法的问题在于无法过滤集群中不存在的资源，这意味着如果资源的名称是动态变化的，那么就无法创建相应的 Role，除非在创建 Role 的同时创建资源。
 
-## <span id="inline-toc">3.</span> 审计很重要
+## 审计很重要
 
 ----
 
@@ -120,7 +122,7 @@ rules:
 
 下面提供几种命令行工具来帮助大家更方便地审计 RBAC。
 
-## <span id="inline-toc">4.</span> Kubectl Can-I
+## Kubectl Can-I
 
 ----
 
@@ -206,7 +208,7 @@ rules:
   verbs: ["impersonate"]
 ```
 
-## <span id="inline-toc">5.</span> Kubectl Who Can
+## Kubectl Who Can
 
 ----
 
@@ -234,7 +236,7 @@ cluster-admin          system:masters      Group
 
 输出信息也很一目了然，没什么可说的。提醒一下，该工具只支持查看 create、update 和 delete 这几个访问权限，不支持 [use](https://kubernetes.io/docs/concepts/policy/pod-security-policy/#authorizing-policies)。use 用来将 Pod Security Policy 绑定到相应的 Role。
 
-## <span id="inline-toc">6.</span> Rakkess
+## Rakkess
 
 ----
 
@@ -242,7 +244,7 @@ cluster-admin          system:masters      Group
 
 使用方法也很简单，如果想查看当前用户对所有资源的访问权限，可使用如下命令：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-19-062815.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-19-062815.png)
 
 如果想查看某个特定的 Service Account 对所有资源的访问权限，可以使用如下命令：
 
@@ -252,7 +254,7 @@ $ kubectl access-matrix --as system:serviceaccount:kube-ovn:ovn -n kube-ovn
 
 更多用例可以参考官方文档。
 
-## <span id="inline-toc">7.</span> RBack
+## RBack
 
 ----
 
@@ -273,9 +275,9 @@ $ kubectl get sa,roles,rolebindings \
   | rback | dot -Tpng > rback.png
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-19-rback.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-19-rback.png)
 
-## <span id="inline-toc">8.</span> RBAC-View
+## RBAC-View
 
 ----
 
@@ -290,9 +292,9 @@ serving RBAC View and http://localhost:8800
 
 在浏览器中打开链接 `http://localhost:8800`。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-19-090524.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-19-090524.png)
 
-## <span id="inline-toc">9.</span> 终极测试
+## 终极测试
 
 ----
 
@@ -304,7 +306,7 @@ $ kubectl get secrets \
   -o yaml
 ```
 
-## <span id="inline-toc">10.</span> 模拟攻击
+## 模拟攻击
 
 ----
 
@@ -384,7 +386,7 @@ $ kubectl get secrets \
    $ kubectl get pod
    ```
    
-## <span id="inline-toc">11.</span> 总结
+## 总结
 
 ----
 

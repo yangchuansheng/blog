@@ -3,6 +3,7 @@ keywords:
 - 米开朗基杨
 - font-spider
 - font-spider-plus
+- webfont
 title: "使用 font-spider 对 webfont 网页字体进行压缩"
 subtitle: "让你的网站用上炫酷的中文字体"
 description: 本文将会告诉你如何使用 font-spider-plus 对网页字体进行压缩，并使用 base64 进行编码。
@@ -10,8 +11,10 @@ date: 2019-12-08T16:42:03+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "hugo"
-tags: ["hugo"]
+categories:
+- Blog
+tags:
+- Hugo
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191208145932.webp"
 ---
 
@@ -19,7 +22,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191208145932
 
 例如，个人博客的首页字体：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191208000933.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208000933.png)
 
 CSS3 引入的 `@font-face ` 这一属性可以很好的解决这个问题，可以帮助我们非常灵活的使用一些特殊的字体，即使用户电脑里面没有安装这个字体，网页也可以显示。
 
@@ -59,33 +62,33 @@ body {
 
 测试效果：Chrome，Firefox，IE7-IE11 均可以实现
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191208004937.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208004937.png)
 
-## <span id="inline-toc">1.</span> 字体难题
+## 字体难题
 
 ----
 
 自定义中文字体虽炫酷，但有一个弊端，那就是中文字体太大了，很耗费资源，具体的原因其实很简单：英文只有 26 个字母，一张 ASCII 码表上 128 个字符集几乎可以表示任何英文语句。由于字符集小，字体文件也可以做的非常小；中文字体就完全不同，单单 `GB2313` 编码的中文字符（含符号）就达到 7445 个，字符数量是 `ASCII` 码表的 58 倍，而字体设计师需要为每一个中文字符设计字体，简单计算下，中文字体文件大小也几乎达到英文字体文件的数十倍。
 
-## <span id="inline-toc">2.</span> 解决思路
+## 解决思路
 
 ----
 
 解决思路其实也很简单，只在字库中保留页面中出现的文字，将其他大量不用的文字删掉，生成一个只包含特定字符的小字体文件，便可以大大减少字体文件，从而提高访问速度。现在思路有了，那么有没有现成的工具呢？
 
-## <span id="inline-toc">3.</span> 裁剪工具
+## 裁剪工具
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191208145932.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208145932.png)
 
 还真有。经过我一番搜寻，找到了两款工具：一个是华人开发的「[字蛛](http://font-spider.org/)」，英文名 `font-spider`，依赖 Node.js 环境，是一款命令行工具。主要思路是采集线上网页使用到的字体，从字体文件中分离出来，完成大幅度压缩。另一个是腾讯的大佬改版后的 font-soider，叫 [font-spider-plus](https://github.com/allanguys/font-spider-plus)。它们的工作原理如下：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191208150540.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208150540.png)
 
 我选择使用 font-spider-plus，毕竟改版过的，bug 更少，功能更多，还支持线上动态渲染的页面。唯一的不足就是官方文档写的太含糊了，许多人看了根本不知道怎么用。下面我将给我一个详细的范例，手把手教你如何使用 font-spider-plus。
 
-## <span id="inline-toc">4.</span> font-spider-plus 使用方法
+## font-spider-plus 使用方法
 
 ----
 
@@ -127,9 +130,9 @@ $ mkdir index
 + 请将`<div class="test"> </div>` 中的文字换成你自己的网站的文字。你可以选择将你的博客所有文章内容全选，然后粘贴到此处。
 + 下载你想使用的字体到 `fonts` 文件夹，然后将 index.html 中的 `<font>` 换成你下载的字体的前缀。
 
-{{< notice note >}}
+{{< alert >}}
 特别说明： `@font-face` 中的 `src` 定义的 .ttf 文件必须存在，其余的格式将由工具自动生成
-{{<  /notice>}}
+{{< /alert >}}
 
 下面是中文字体对应的英文名称：
 
@@ -297,7 +300,7 @@ body {
 
 表示如果 `STKaiti` 字体不可用，将使用 `Cambria` 字体。到这里就大功告成了，具体的效果可以参考我的网站：[https://icloudnative.io/](https://icloudnative.io/)。
 
-## <span id="inline-toc">5.</span> 总结
+## 总结
 
 ----
 
@@ -305,7 +308,7 @@ body {
 
 项目地址：[https://github.com/yangchuansheng/font-spider-plus](https://github.com/yangchuansheng/font-spider-plus)
 
-## <span id="inline-toc">6.</span> 参考资料
+## 参考资料
 
 ----
 

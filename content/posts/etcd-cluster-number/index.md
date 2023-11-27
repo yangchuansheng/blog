@@ -11,13 +11,14 @@ date: 2019-01-30T13:13:56+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["etcd", "kubernetes"]
+categories: 
+- cloud-native
+tags:
+- Etcd
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/EKaPQZuXsAMpAd0.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
-
-<!--more-->
 
 etcd 使用 [raft](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) 协议保证各个节点之间的状态一致。根据 raft 算法原理，节点数目越多，会降低集群的写性能。这是因为每一次写操作，需要集群中大多数节点将日志落盘成功后，`Leader` 节点才能将修改内部状态机，并返回将结果返回给客户端。但是根据 etcd 分布式数据冗余策略，集群节点越多，容错能力(Failure Tolerance)越强。所以关于集群大小的优化，其实就是容错和写性能的一个平衡。
 
@@ -25,7 +26,7 @@ etcd 使用 [raft](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) 协议保�
 
 你可能会在很多文章中看到 etcd 推荐使用奇数作为集群节点个数。因为奇数个节点与和其配对的偶数个节点相比(比如 3 节点和 4 节点对比)，容错能力相同，却可以少一个节点。但却没有人告诉你为什么会这样，今天我就给你们带来详细解读。
 
-## <span id="inline-toc">1.</span> 选举方法
+## 选举方法
 
 ----
 
@@ -36,11 +37,11 @@ etcd 使用 [raft](https://ramcloud.stanford.edu/~ongaro/thesis.pdf) 协议保�
 + leader 节点依靠定时向 follower 发送 `heartbeat` 来保持其地位。
 + 任何时候如果其它 follower 在 `election timeout` 期间都没有收到来自 leader 的 heartbeat，同样会将自己的状态切换为 candidate 并发起选举。每成功选举一次，新 leader 的任期（Term）都会比之前 leader 的任期大 1。
 
-{{< notice note >}}
+{{< alert >}}
 请注意：这里说的超过半数节点接受投票，是包括 <code>candidate</code> 自身在内的！而且这里的半数是以<strong>原集群大小</strong>作为总数来计算的！举个例子：假设某个 etcd 集群有 <code>N</code> 个节点，挂了一个节点之后，如果重新发起选举，一定要有超过 <code>N/2</code> 个节点接受投票（包括 candidate 在内），即最少需要 <code>(N+1)/2</code> 个节点接受投票，参加选举的节点才能成为 leader。
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">2.</span> 集群大小与容错
+## 集群大小与容错
 
 ----
 

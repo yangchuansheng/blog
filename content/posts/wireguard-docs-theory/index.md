@@ -16,7 +16,9 @@ enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
-categories: Network
+categories:
+- Network
+- VPN
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 

@@ -12,18 +12,15 @@ draft: false
 author: 米开朗基杨
 toc: true
 categories: service-mesh
-tags: ["istio", "service mesh"]
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/751332-637074676275676382.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
 Istio 要求集群中 [VirtualService](https://istio.io/zh/docs/reference/config/istio.networking.v1alpha3/#virtualservice) 定义的所有目标主机都是唯一的。当使用目标主机的短名称时（不包含 `'.'` 的目标主机，例如使用 `reviews`，而不是 `reviews.default.svc.cluster.local`），Istio 会将该短名称转换为 VirtualService 规则所在的命名空间的 [FQDN](https://www.wikiwand.com/zh/%E5%AE%8C%E6%95%B4%E7%B6%B2%E5%9F%9F%E5%90%8D%E7%A8%B1)，而不是转换为目标主机所在的命名空间的 FQDN。因此，当在不同的命名空间中定义 VirtualService 资源时允许目标主机的短名称重复。当你的目标主机包含 `*` 通配符前缀、IP 地址或 Web 地址时，VirtualService 不会将其视为短名称，也就不会尝试将其转换为 FQDN。反正无论如何，目标主机必须是唯一的。
 
-## <span id="inline-toc">1.</span> 目标主机冲突示例
-
-----
+## 目标主机冲突示例
 
 下面举几个目标主机冲突的例子，以帮助大家加深对这方面的理解。
 
@@ -79,7 +76,7 @@ spec:
   ...
 ```
 
-优化方案请参考下文的 [使目标主机唯一](https://icloudnative.io/posts/conflictingvirtualservicehost/#make-the-hostnames-unique)。
+优化方案请参考下文的 [使目标主机唯一](/posts/conflictingvirtualservicehost/#make-the-hostnames-unique)。
 
 ### 示例 3
 
@@ -119,11 +116,9 @@ spec:
         host: mail.foo.svc.cluster.local
 ```
 
-优化方案请参考下文的 [合并冲突的 VirtualService](https://icloudnative.io/posts/conflictingvirtualservicehost/#merge-the-conflicting-virtualServices)。
+优化方案请参考下文的 [合并冲突的 VirtualService](/posts/conflictingvirtualservicehost/#merge-the-conflicting-virtualServices)。
 
-## <span id="inline-toc">2.</span> 优化方案
-
-----
+## 优化方案
 
 这里给出两个优化准则，可以改进上文的不恰当写法。
 

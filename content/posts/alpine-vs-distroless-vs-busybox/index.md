@@ -1,16 +1,18 @@
 ---
 keywords:
 - Alpine
+- Docker Alpine
+- Alpine Docker
 - Busybox
 - Distroless
 - Multi-Call binary
 - docker image
 - 容器
 - 镜像
-title: "Alpine vs Distroless vs Busybox"
+title: "Docker Alpine：轻量级容器镜像的终极选择"
 date: 2021-09-05T14:41:44Z
 lastmod: 2021-09-05T14:41:44Z
-description: 本文对 Alpine、Busybox 和 Distroles 这几个容器镜像进行对比，探究它们的底层镜像压缩技术。
+description: 探索 Docker Alpine、busybox 和 google/distroless 作为云原生环境中基础镜像受欢迎的原因。了解它们的紧凑体积、Busybox 中的 Multi-Call binary 等独特特性，以及它们如何通过精简设计最小化漏洞。适合对高效且安全的基础镜像感兴趣的容器化爱好者。
 draft: false
 author: 米开朗基杨
 hideToc: false
@@ -19,8 +21,9 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- docker
-categories: containers
+- Docker
+- Containers
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109061101268.png
 ---
 
@@ -69,11 +72,11 @@ Busybox 里面的函数可以通过两种方式来调用：
 
 ## Alpine
 
-看完了 Busybox，我们再来看看 Alpine 是怎么做的。
+看完了 Busybox，我们再来看看 Docker Alpine 是怎么做的。
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109041238238.png)
 
-巧了，Alpine 的二进制文件竟然是指向 busybox 二进制文件的，这就很明显了，Alpine 镜像的底层使用了 busybox 二进制文件。除此之外，Alpine 还包含了 `apk` 包管理器和一些额外的可执行文件，所以 Alpine 镜像的体积才会比 Busybox 大。
+巧了，Docker Alpine 的二进制文件竟然是指向 busybox 二进制文件的，这就很明显了，Alpine 镜像的底层使用了 busybox 二进制文件。除此之外，Alpine 还包含了 `apk` 包管理器和一些额外的可执行文件，所以 Alpine 镜像的体积才会比 Busybox 大。
 
 ## Distroless
 

@@ -25,13 +25,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 最近我一直被一个间歇性连接重置的 bug 所困扰，经过一段时间的调试之后，发现该 bug 是由几个不同的网络子系统联合导致的。通过这几天的深入挖掘和调试，我对 Kubernetes 的网络机制更加熟悉了，对此也有了一些经验总结，分享给社区。
 
-## <span id="inline-toc">1.</span> 症状
+## 症状
 
 ----
 
 最近我们收到了一份用户报告，声称他们在使用 `ClusterIP` 类型的 Service 将大型文件提供给在同一群集中运行的 Pod时，会出现连接重置的情况。初步调试之后，没有发现任何有效信息：网络连接很正常，下载文件也没有遇到任何问题。但当我们通过多个客户端并行运行多个工作负载时，该问题就重现了。神奇的是，如果你只使用虚拟机，不使用 Kubernetes，就不会遇到该问题。该问题可以通过一个[简单的 app](https://github.com/tcarmet/k8s-connection-reset) 来复现，现在可以确定的是这肯定与 Kubernetes 的网络有关，但问题到底出在哪呢？
 
-## <span id="inline-toc">2.</span> Kubernetes 网络基础
+## Kubernetes 网络基础
 
 ----
 
@@ -64,7 +64,7 @@ Kubernetes 通过 `kube-proxy` 组件来实现这些功能，每台计算节点�
 
 TCP 连接在 Pod 和 Service 之间的工作流程如下图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/BIA066.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/BIA066.jpg)
 
 TCP 连接的生命周期：
 
@@ -76,7 +76,7 @@ TCP 连接的生命周期：
 
 整个流程看起来工作的很完美。
 
-## <span id="inline-toc">3.</span> 导致连接重置的原因是什么？
+## 导致连接重置的原因是什么？
 
 ----
 
@@ -84,9 +84,9 @@ TCP 连接的生命周期：
 
 如下图所示，我们将数据包的生命周期分为 5 个阶段，问题就出在第三阶段。当 conntrack 不能识别返回的包时，就会将其标记为 `INVALID` 状态，包括以下几种情况：由于内存溢出，conntrack 无法继续跟踪连接；数据包超过了 TCP 窗口长度；等等。被 conntrack 标记为 `INVALID` 的数据包，没有相应的 iptables 规则来丢弃它，所以会被转发到客户端，但源地址没有被修改（图中的第4阶段）。因为该响应包的源 IP 是 Pod 的 IP，不是 Service 的 IP，所以客户端无法识别该响应包。这时客户端会说：“等一下，我不记得和这个 IP 有过任何连接，为什么这个家伙要向我发送这个数据包？” 然后客户端就会发送一个 `RST` 包给服务端的 Pod，也就是图中的第 5 阶段。不幸的是，这是 Pod 到 Pod 之间的合法数据包，会被安全送达服务端的 Pod。服务端 Pod 并不知道 DNAT 的过程，从它的视角来看，数据包 5 和 数据包 2 与 3 一样是合法的，现在服务端 Pod 只知道：“客户端准备跑路了，不想和我继续通信了，那我们就关闭连接吧！” 当然，如果想要正常关闭 TCP 连接，`RST` 包必须也是合法的，比如要使用正确的 TCP 序列号等。协商完成后，客户端与服务端都各自关闭了连接。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/IXQkKj.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/IXQkKj.jpg)
 
-## <span id="inline-toc">4.</span> 如何避免连接重置？
+## 如何避免连接重置？
 
 ----
 
@@ -125,7 +125,7 @@ spec:
             echo done
 ```
 
-## <span id="inline-toc">5.</span> 总结
+## 总结
 
 ----
 

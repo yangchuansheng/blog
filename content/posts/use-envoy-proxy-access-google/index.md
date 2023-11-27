@@ -10,12 +10,14 @@ date: 2019-12-28T15:47:03+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["envoy", "gfw"]
+categories: 
+- GFW
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191228184723.png"
 ---
 
-[上篇文章](https://icloudnative.io/posts/file-based-dynamic-routing-configuration/)介绍了如何基于文件系统动态更新 `Envoy` 配置，还没看过的同学可以去恶补一下。今天要介绍一个新的基于 `Envoy` 的奇技淫巧，其实很简单，几句话就可以说完。但鉴于网上并无与此相关的资料，决定还是写出来吧，目测我是用此方法的第一人，至少国内如此。
+[上篇文章](/posts/file-based-dynamic-routing-configuration/)介绍了如何基于文件系统动态更新 `Envoy` 配置，还没看过的同学可以去恶补一下。今天要介绍一个新的基于 `Envoy` 的奇技淫巧，其实很简单，几句话就可以说完。但鉴于网上并无与此相关的资料，决定还是写出来吧，目测我是用此方法的第一人，至少国内如此。
 
 想必大部分小朋友看标题就知道我要讲的是啥，没错，是用 `Envoy` 来反向代理 `Google`。网上铺天盖地都是 Nginx 反代 Google 的文章，看得我是真难受，还得添加各种模块自己编译，你累不累啊？今天让我用 Envoy 教你如何正确优雅地反代 Google，看懂的掌声。
 
@@ -110,10 +112,10 @@ $ bash apply.sh
 
 现在就可以愉快地访问 Google 了：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191228175224.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191228175224.png)
 
 已添加到我的博客首页，快快收藏起来：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191228180052.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191228180052.png)
 
 以后请叫我云原生奇技淫巧之神。

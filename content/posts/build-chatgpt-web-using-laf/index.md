@@ -27,8 +27,7 @@ tags:
 - Laf
 - Serverless
 - FaaS
-- 云开发
-categories: Serverless
+categories: AI
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-03-12-14-53-XgkLbO.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-03-12-14-52-2glypD.jpg
 ---

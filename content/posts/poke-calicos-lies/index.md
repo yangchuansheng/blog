@@ -18,7 +18,7 @@ Calico 是一个纯三层的数据中心网络方案，而且无缝集成像 Ope
 
 简单来说，Calico 在主机上创建了一堆的 veth pair，其中一端在主机上，另一端在容器的网络命名空间里，然后在容器和主机中分别设置几条路由，来完成网络的互联。
 
-## <span id="inline-toc">1.</span> Calico 网络模型揭秘
+## Calico 网络模型揭秘
 
 ----
 
@@ -64,7 +64,7 @@ $ ip neigh
 
 这里我就不绕弯子了，实际上 Calico 利用了网卡的代理 ARP 功能。代理 ARP 是 ARP 协议的一个变种，当 ARP 请求目标跨网段时，网关设备收到此 ARP 请求，会用自己的 MAC 地址返回给请求者，这便是代理 ARP（Proxy ARP）。举个例子：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-07-30-061928.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-30-061928.jpg)
 
 上面这张图中，电脑发送 ARP 请求服务器 8.8.8.8 的 MAC 地址，路由器（网关）收到这个请求时会进行判断，由于目标 8.8.8.8 不属于本网段（即跨网段），此时便返回自己的接口 MAC 地址给 PC，后续电脑访问服务器时，目标 MAC 直接封装为 MAC254。
 
@@ -111,13 +111,13 @@ listening on calicba2f87f6bb, link-type EN10MB (Ethernet), capture size 262144 b
 1. Calico 通过一个巧妙的方法将 workload 的所有流量引导到一个特殊的网关 169.254.1.1，从而引流到主机的 calixxx 网络设备上，最终将二三层流量全部转换成三层流量来转发。
 2. 在主机上通过开启代理 ARP 功能来实现 ARP 应答，使得 ARP 广播被抑制在主机上，抑制了广播风暴，也不会有 ARP 表膨胀的问题。
 
-## <span id="inline-toc">2.</span> 模拟组网
+## 模拟组网
 
 ----
 
 既然我们已经掌握了 Calico 的组网原理，接下来就可以手动模拟验证了。架构如图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-07-30-calico-test.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-30-calico-test.jpg)
 
 先在 Host0 上执行以下命令：
 

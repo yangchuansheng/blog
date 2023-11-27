@@ -5,25 +5,19 @@ date: 2018-10-10T22:23:51+08:00
 toc: true
 draft: false
 author: 米开朗基杨
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/f7a4a7fb-envoy.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<p id="div-border-left-red">
-<strong>转载自：</strong><a href="http://www.servicemesher.com/blog/envoy-xds-protocol/" target="_blank">Envoy 中的 xDS REST 和 gRPC 协议详解</a>
-<br />
-<strong>原文地址：</strong><a href="https://github.com/envoyproxy/data-plane-api/blob/master/XDS_PROTOCOL.md" target="_blank">https://github.com/envoyproxy/data-plane-api/blob/master/XDS_PROTOCOL.md</a>
-<br />
-<strong>作者：</strong>狄卫华
-<br />
-<strong>修订：</strong>米开朗基杨
-</p>
+> 原文链接：[xDS REST and gRPC protocol](https://www.envoyproxy.io/docs/envoy/latest/api-docs/xds_protocol)
 
 Envoy 通过查询文件或管理服务器来动态发现资源。这些发现服务及其相应的 API 被统称为 `xDS`。Envoy 通过订阅（`subscription`）方式来获取资源，如监控指定路径下的文件、启动 gRPC 流（streaming）或轮询 REST-JSON URL。后两种方式会发送 [DiscoveryRequest](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#discoveryrequest) 请求消息，发现的对应资源则包含在响应消息 [DiscoveryResponse](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#discoveryrequest) 中。下面，我们将具体讨论每种订阅类型。
 
-## <span id="inline-toc">1.</span> 文件订阅
+## 文件订阅
 
 ----
 
@@ -41,13 +35,13 @@ Envoy 通过查询文件或管理服务器来动态发现资源。这些发现�
 
 文件订阅方式可提供统计数据和日志信息，但是缺少 ACK/NACK 更新的机制。如果更新的配置被拒绝，xDS API 则继续使用最后一个有效配置。
 
-{{< notice note >}}
+{{< alert >}}
 <li><code>ACK</code> 在 TCP 连接中是数据包确认消息，在 TCP 连接中，数据接收端在接收到一个数据包的时候会立即发送一个 ACK 消息给发送端，通知已经接收到此数据包，然后发送端再继续发送下一个数据包。</li>
 <li>NACK 与 ACK 刚好相反，在 UDP 通信中，数据接收端接收到数据包后是不需要通知发送端的，发送端始终不断的发送数据包而不关心对方是否正确收到，亦不关心所发生的数据包是否有序到达。只有在接收端意识到有某个或某几个数据包没有接收到的情况下才会构造一个 <code>NACK</code> 消息包发送给发送端。请求发送端重发丢失包。 </li>
 比如接收端收到数据包 100， 101， 103，105，然后发现 102， 104 丢了，会构造一个 NACK 包发送给发送端。
-{{< /notice >}}
+{{< /alert >}}
 
-## <span id="inline-toc">2.</span> gRPC 流式订阅
+## gRPC 流式订阅
 
 ----
 
@@ -106,27 +100,24 @@ nonce: A
 
 Envoy 在处理 `DiscoveryResponse` 响应后，将通过流发送一个新的请求，请求包含应用成功的最后一个版本号和管理服务器提供的 `nonce`。如果本次更新已成功应用，则 `version_info `的值设置为 X，如下序列图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/simple-ack.svg)
-
-<center>*ack 更新*</center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/simple-ack.svg "ack 更新")
 
 在此序列图及后续章节中，将统一使用以下缩写格式：
 
 + `DiscoveryRequest` ：(V=`version_info`，R=`resource_names`，N=`response_nonce`，T=`type_url`)
 + `DiscoveryResponse` ： (V=`version_info`，R=`resources`，N=`nonce`，T=`type_url`)
 
-{{< notice note >}}
+{{< alert >}}
 在<a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E8%A8%8A%E5%AE%89%E5%85%A8">信息安全</a>中，<strong>Nonce</strong> 是一个在加密通信只能使用一次的数字。在认证协议中，它往往是一个<a href="https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA">随机</a>或<a href="https://zh.wikipedia.org/wiki/%E4%BC%AA%E9%9A%8F%E6%9C%BA">伪随机</a>数，以避免<a href="https://zh.wikipedia.org/wiki/%E9%87%8D%E6%94%BE%E6%94%BB%E5%87%BB">重放攻击</a>。Nonce 也用于<a href="https://zh.wikipedia.org/wiki/%E6%B5%81%E5%AF%86%E7%A0%81">流密码</a>以确保安全。如果需要使用相同的密钥加密一个以上的消息，就需要 Nonce 来确保不同的消息与该密钥加密的密钥流不同。（引用自<a href="https://zh.wikipedia.org/wiki/Nonce">维基百科</a>）在本文中 <code>nonce</code> 是每次更新的数据包的唯一标识。
-{{< /notice >}}
+{{< /alert >}}
 
 有了版本（`version_info`）这个概念，就可以为 Envoy 和管理服务器共享当前应用配置，以及提供了通过 ACK/NACK 来进行配置更新的机制。如果 Envoy 拒绝了配置更新 X，则回复 [error_detail](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#envoy-api-field-discoveryrequest-error-detail) 及前一个版本号，在本例中为空的初始版本号，`error_detail` 包含了有关错误的更加详细的信息：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/simple-nack.svg)
-<center>*nack 更新*</center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/simple-nack.svg "nack 更新")
 
 重新发送 DiscoveryRequest 后，API 更新可能会在新版本 Y 上成功应用：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/later-ack.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/later-ack.svg)
 
 每个流都有自己的版本概念，但不同的资源类型不能共享资源版本。在不使用 ADS 的情况下，每个资源类型可能具有不同的版本，因为 Envoy API 允许不同的 EDS/RDS 资源配置指向不同的 `ConfigSources`。
 
@@ -146,9 +137,9 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 对于 EDS/RDS ，Envoy 可以为每个给定类型的资源生成不同的流（如每个 `ConfigSource` 都有自己的上游管理服务器集群）或当指定资源类型的请求发送到同一个管理服务器的时候，允许将多个资源请求组合在一起发送。虽然可以单个实现，但管理服务器应具备为每个请求中的给定资源类型处理一个或多个 `resource_names` 的能力。下面的两个序列图都可用于获取两个 EDS 资源 `{foo，bar}`：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/eds-same-stream.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/eds-same-stream.svg)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/eds-distinct-stream.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/eds-distinct-stream.svg)
 
 #### 资源更新
 
@@ -156,15 +147,15 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 例如，如果 Envoy 在 EDS 版本 **X** 时仅知道集群 `foo`，但在随后收到的 CDS 更新时额外获取了集群 `bar` ，它可能会为版本 **X** 发出额外的 `DiscoveryRequest` 请求，并将 `{foo，bar}` 作为请求的 `resource_names`。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/cds-eds-resources.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/cds-eds-resources.svg)
 
 这里可能会出现竞争状况；如果 Envoy 在版本 **X** 上发布了资源提示更新请求，但在管理服务器处理该请求之前发送了新的版本号为 **Y** 的响应，针对 `version_info` 为 **X** 的版本，资源提示更新可能会被解释为拒绝 **Y** 。为避免这种情况，通过使用管理服务器提供的 `nonce`，Envoy 可用来保证每个 `DiscoveryRequest` 对应到相应的 `DiscoveryResponse`：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/update-race.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/update-race.svg)
 
 管理服务器不应该为含有过期 `nonce` 的 `DiscoveryRequest` 发送 `DiscoveryResponse` 响应。如果向 Envoy 发送的 `DiscoveryResponse` 中包含了的新 `nonce`，则此前的 `nonce` 将过期。在确定新版本可用之前，管理服务器不需要向 Envoy 发送更新。同版本的早期请求将会过期。在新版本就绪时，管理服务器可能会处理同一个版本号的多个 `DiscoveryRequests` 请求。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/stale-requests.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/stale-requests.svg)
 
 上述资源更新序列表明 Envoy 并不能期待其发出的每个 `DiscoveryRequest` 都得到 `DiscoveryResponse` 响应。
 
@@ -188,7 +179,7 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 当管理服务器进行资源分发时，通过上述保证交互顺序的方式来避免流量被丢弃是一项很有挑战的工作。ADS 允许单一管理服务器通过单个 gRPC 流来提供所有的 API 更新。配合仔细规划的更新顺序，ADS 可规避更新过程中的流量丢失。使用 ADS，在单个流上可通过类型 URL 来进行复用多个独立的 `DiscoveryRequest`/`DiscoveryResponse` 序列。对于任何给定类型的 URL，以上 `DiscoveryRequest` 和 `DiscoveryResponse` 消息序列都适用。 更新序列可能如下所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/ads.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/ads.svg)
 
 每个 Envoy 实例可使用单独的 ADS 流。
 
@@ -237,13 +228,13 @@ xDS 增量 `session` 始终位于 gRPC 双向流的上下文中。这允许 xDS 
 
 在下面的示例中，客户端连接并接收它的第一个更新并 ACK。第二次更新失败，客户端发送 NACK 拒绝更新。xDS客户端后续会自发地请求 `wc` 相关资源。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/incremental.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/incremental.svg)
 
 在下面的示例中，当 xDS 客户端断开重新连接时，支持增量的 xDS 客户端可能会告诉服务器其已经获取的资源从而避免服务端通过网络重新发送它们。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/incremental-reconnect.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/incremental-reconnect.svg)
 
-## <span id="inline-toc">3.</span> REST-JSON 轮询订阅
+## REST-JSON 轮询订阅
 
 ----
 

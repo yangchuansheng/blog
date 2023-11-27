@@ -22,7 +22,7 @@ libraries:
 
 如下图所示（我随手画的，不要介意），设向量p是向量b在向量a上面的投影，向量e垂直于向量p及a。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/1.png)
 
 于是我们可以得到这样的一个等式：
 
@@ -55,7 +55,7 @@ $${P = \frac{a \cdot a^T}{a^T \cdot a}}\tag{4}$$
 
 为了让你们能够有一个直观的认识，我仍然用我高超的画艺画了一幅美图：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/3.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/3.png)
 
 假设图中的那个平面由向量$a_1$和$a_2$构成，令
 

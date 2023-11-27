@@ -12,8 +12,8 @@ lastmod: 2020-12-23T22:16:22+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "gfw"
-tags: ["coredns", "gfw"]
+categories: "GFW"
+tags: ["CoreDNS", "Linux"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/DNS.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -40,7 +40,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > CoreDNS is powered by plugins.
 
-## <span id="inline-toc">1.</span> Corefile 介绍
+## Corefile 介绍
 
 ----
 
@@ -135,7 +135,7 @@ tls://example.org:1443 {
 }
 ```
 
-## <span id="inline-toc">2.</span> 插件的工作模式
+## 插件的工作模式
 
 ----
 
@@ -158,7 +158,7 @@ tls://example.org:1443 {
 
   请求被插件处理，并在其响应中添加了某些信息（hint）后继续交由下一个插件处理。这些额外的信息将组成对客户端的最终响应，如 `metric` 插件；
 
-## <span id="inline-toc">3.</span> CoreDNS 如何处理 DNS 请求
+## CoreDNS 如何处理 DNS 请求
 
 ----
 
@@ -191,7 +191,7 @@ example.net:53 {
 
 从配置文件来看，我们定义了两个 server（尽管有 4 个区块），分别监听在 `5300` 和 `53` 端口。其逻辑图可如下所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/jYHoLN.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/jYHoLN.jpg)
 
 每个进入到某个 server 的请求将按照 `plugin.cfg` 定义顺序执行其已经加载的插件。
 
@@ -201,7 +201,7 @@ example.net:53 {
   + **Normal 插件**：参与请求相关的逻辑，且插入到插件链中；
   + **其他插件**：不参与请求相关的逻辑，也不出现在插件链中，只是用于修改 server 的配置，如 `health`，`tls` 等插件；
   
-## <span id="inline-toc">4.</span> 配置 CoreDNS
+## 配置 CoreDNS
 
 ----
 
@@ -574,13 +574,9 @@ youtube-ui.l.google.com.	A    	IN   	293s	142.250.68.14           	127.0.0.1:53
 
 搞定。
 
-什么？你问我 `doggo` 是个啥？扫描下方二维码关注公众号：
+什么？你问我 `doggo` 是个啥？自己谷歌。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200813101211.png)
-
-公众号后台回复 doggo 即可获取你想要的东西😬
-
-## <span id="inline-toc">5.</span> 参考资料
+## 参考资料
 
 ----
 

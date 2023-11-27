@@ -24,7 +24,7 @@ tags:
 - GitOps
 - DevOps
 - Kubernetes
-categories: GitOps
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-07-03-11-41-iuCXxS.jpg
 ---
 

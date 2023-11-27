@@ -1,29 +1,36 @@
 ---
+keywords:
+- service mesh
+- 服务网格
+- istio
+- kubernetes
+- egress
 title: "控制 Egress 流量"
 subtitle: "服务网格内部的 ServiceEntry 配置深度解析以及 Egress 流量的访问策略管理"
 date: 2018-08-16T13:40:27+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh", "kubernetes"]
+categories: 
+- service-mesh
+tags:
+- Istio
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203170514.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-<p id="div-border-left-red">本文主要内容来自 <a href="https://istio.io/zh/docs/tasks/traffic-management/egress/" target="_blank">Istio 官方文档</a>，并对其进行了大量扩展和补充。</p>
+> 本文主要内容来自 <a href="https://istio.io/zh/docs/tasks/traffic-management/egress/" target="_blank">Istio 官方文档</a>，并对其进行了大量扩展和补充。
 
 缺省情况下，Istio 服务网格内的 Pod，由于其 iptables 将所有外发流量都透明的转发给了 `Sidecar`，所以这些集群内的服务无法访问集群之外的 URL，而只能处理集群内部的目标。
 
 本文的任务描述了如何将外部服务暴露给 Istio 集群中的客户端。你将会学到如何通过定义 [ServiceEntry](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#ServiceEntry) 来调用外部服务；或者简单的对 Istio 进行配置，要求其直接放行对特定 IP 范围的访问。
 
-## <span id="inline-toc">1.</span> 开始之前
+## 开始之前
 
 ----
 
-+ 根据[安装指南](https://icloudnative.io/posts/istio-1.0-deploy/)的内容，部署 Istio。
++ 根据[安装指南](/posts/istio-1.0-deploy/)的内容，部署 Istio。
 + 启动 [sleep](https://github.com/istio/istio/tree/release-1.0/samples/sleep) 示例应用，我们将会使用这一应用来完成对外部服务的调用过程。 如果启用了 [Sidecar 的自动注入功能](https://istio.io/zh/docs/setup/kubernetes/sidecar-injection/#sidecar-%E7%9A%84%E8%87%AA%E5%8A%A8%E6%B3%A8%E5%85%A5)，运行：
 
 ```bash
@@ -38,7 +45,7 @@ $ kubectl apply -f <(istioctl kube-inject -f samples/sleep/sleep.yaml)
 
 实际上任何可以 `exec` 和 `curl` 的 Pod 都可以用来完成这一任务。
 
-## <span id="inline-toc">2.</span> Istio 中配置外部服务
+## Istio 中配置外部服务
 
 ----
 
@@ -127,9 +134,9 @@ $ curl https://www.baidu.com
 
 按照之前的惯例，还是先来解读一下 HTTP 协议的 `ServiceEntry` 映射到 Envoy 配置层面具体是哪些内容，这样才能对 ServiceEntry 有更加深刻的认识。
 
-{{< notice note >}}
+{{< alert >}}
 创建一个 <code>HTTP</code> 协议的 ServiceEntry（不指定 <code>GateWay</code>） 本质上是在服务网格内的<strong>所有应用的所有 Pod</strong>上创建相应的路由规则和与之对应的 Cluster。指定 GateWay 的 ServiceEntry 遵循的是另一套法则，后面我们再说。
-{{< /notice >}}
+{{< /alert >}}
 
 可以通过 istioctl 来验证一下（以 `httpbin-ext` 为例）：
 
@@ -212,9 +219,9 @@ $ istioctl pc clusters sleep-5bc866558c-89shb --fqdn httpbin.org -o json
 
 `HTTPS` 协议的 ServiceEntry 与 Envoy 配置文件的映射关系与 HTTP 协议有所不同。
 
-{{< notice note >}}
+{{< alert >}}
 创建一个 <code>HTTPS</code> 协议的 ServiceEntry（不指定 <code>GateWay</code>） 本质上是在服务网格内的<strong>所有应用的所有 Pod</strong>上创建相应的<strong>监听器</strong>和与之对应的 Cluster。指定 GateWay 的 ServiceEntry 我会另行发文详说。
-{{< /notice >}}
+{{< /alert >}}
 
 可以通过 istioctl 来验证（以 `baidu` 为例）。为了更精确地分析该 ServiceEntry，可以先把 `VirtualService` 删除：
 
@@ -404,7 +411,7 @@ sys     0m0.004s
 这一次会在 3 秒钟之后收到一个内容为 `504 (Gateway Timeout)` 的响应。虽然 httpbin.org 还在等待他的 5 秒钟，Istio 却在 3 秒钟的时候切断了请求。
 
 
-## <span id="inline-toc">3.</span> 直接调用外部服务
+## 直接调用外部服务
 
 ----
 
@@ -427,7 +434,7 @@ $ export SOURCE_POD=$(kubectl get pod -l app=sleep -o go-template='{{range .item
 $ kubectl exec -it $SOURCE_POD -c sleep curl http://httpbin.org/headers
 ```
 
-## <span id="inline-toc">4.</span> 总结
+## 总结
 
 ----
 
@@ -440,7 +447,7 @@ $ kubectl exec -it $SOURCE_POD -c sleep curl http://httpbin.org/headers
 
 第二种方式越过了 Istio sidecar proxy，让服务直接访问到对应的外部地址。然而要进行这种配置，需要了解云供应商特定的知识和配置。
 
-## <span id="inline-toc">5.</span> 清理
+## 清理
 
 ----
 

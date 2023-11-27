@@ -1,19 +1,30 @@
 ---
+keywords:
+- 云原生
+- cloud native
+- kubernetes
+- kube-router
+- lvs
+- ipvs
+- calico
 title: "Kube-router 使用指南"
 subtitle: "使用 Kube-router 作为 Kubernetes 负载均衡器"
 date: 2018-04-20T04:36:40Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["kubernetes","lvs"]
+categories: 
+- cloud-native
+tags:
+- Kubernetes
+- LVS
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204205005.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
 [Kube-router](https://github.com/cloudnativelabs/kube-router) 是一个挺有想法的项目，兼备了 `calico` 和 `kube-proxy` 的功能，是基于 Kubernetes 网络设计的一个集负载均衡器、防火墙和容器网络的综合方案。
 
-## <span id="inline-toc">1.</span> 体系架构
+## 体系架构
 
 ----
 
@@ -25,7 +36,7 @@ Kube-router 是围绕 <span id="inline-blue">观察者</span> 和 <span id="inli
 
 `Kube-router` 由3个核心控制器和多个观察者组成，如下图所示。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/sMs3sm.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/sMs3sm.jpg)
 
 ### 流程分析
 
@@ -97,7 +108,7 @@ Cleanup() {
 }
 ```
 
-## <span id="inline-toc">2.</span> 主要功能
+## 主要功能
 
 ----
 
@@ -122,7 +133,7 @@ Kube-router 的负载均衡器功能，会在物理机上创建一个虚拟的 `
 
 + [Kubernetes network services prox with IPVS/LVS](https://link.jianshu.com/?t=https://cloudnativelabs.github.io/post/2017-05-10-kube-network-service-proxy/)
 + [Kernel Load-Balancing for Docker Containers Using IPVS](https://link.jianshu.com/?t=https://blog.codeship.com/kernel-load-balancing-for-docker-containers-using-ipvs/)
-+ [LVS负载均衡之持久性连接介绍](https://icloudnative.io/posts/lvs-persistent-connection/)
++ [LVS负载均衡之持久性连接介绍](/posts/lvs-persistent-connection/)
 
 ### 容器网络 | `--run-router`
 
@@ -144,7 +155,7 @@ Kube-router 支持 `networking.k8s.io/NetworkPolicy` 接口或网络策略 V1/GA
 
 + [Enforcing Kubernetes network policies with iptables](https://link.jianshu.com/?t=https://cloudnativelabs.github.io/post/2017-05-1-kube-network-policies/)
 
-## <span id="inline-toc">3.</span> 使用 kube-router 替代 kube-proxy
+## 使用 kube-router 替代 kube-proxy
 
 ----
 
@@ -278,7 +289,7 @@ $ ipvsadm -S -n
 -a -t 10.254.226.105:8080 -r 172.20.104.9:8080 -m -w 1
 ```
 
-可以看到 lvs 的规则条目里多了个 `persistent`，即 lvs 的持久连接，关于 lvs 持久连接的具体内容可以参考我的另一篇博文 [LVS负载均衡之持久性连接介绍](https://icloudnative.io/posts/lvs-persistent-connection/)。
+可以看到 lvs 的规则条目里多了个 `persistent`，即 lvs 的持久连接，关于 lvs 持久连接的具体内容可以参考我的另一篇博文 [LVS负载均衡之持久性连接介绍](/posts/lvs-persistent-connection/)。
 
 可以通过设置 `service.spec.sessionAffinityConfig.clientIP.timeoutSeconds` 的值来修改 lvs 的 `persistence_timeout` 超时时间。
 
@@ -364,7 +375,7 @@ $ kubectl annotate service my-service "kube-router.io/service.scheduler=sh"
 $ kubectl annotate service my-service "kube-router.io/service.scheduler=dh"
 ```
 
-## <span id="inline-toc">4.</span> 问题解决
+## 问题解决
 
 ----
 
@@ -497,7 +508,7 @@ done
 
 如果想要在创建 `service` 时自动修改路由表，最好还是将该 fix 整合进 kube-router 的源码中。
 
-## <span id="inline-toc">5.</span> 参考
+## 参考
 
 ----
 

@@ -3,6 +3,7 @@ keywords:
 - 米开朗基杨
 - envoy
 - uds
+- nginx
 title: "Envoy 基础教程：使用 Unix Domain Socket（UDS） 与上游集群通信"
 date: 2020-04-23T00:41:26+08:00
 lastmod: 2020-04-23T00:41:26+08:00
@@ -14,17 +15,16 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- envoy
-- service mesh
+- Envoy
 categories: service-mesh
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200426205419.png
 ---
 
-Envoy Proxy 在大多数情况下都是作为 `Sidecar` 与应用部署在同一网络环境中，每个应用只需要与 Envoy（`localhost`）交互，不需要知道其他服务的地址。然而这并不是 Envoy 仅有的使用场景，它本身就是一个七层代理，通过模块化结构实现了流量治理、信息监控等核心功能，比如流量治理功能就包括自动重连、熔断、全局限速、流量镜像和异常检测等多种高级功能，因此 Envoy 也常常被用于**边缘代理**，比如 Istio 的 `Ingress Gateway`、基于 Envoy 实现的 Ingress Controller（[Contour](https://icloudnative.io/posts/use-envoy-as-a-kubernetes-ingress/)、[Ambassador](https://www.getambassador.io)、[Gloo](https://github.com/solo-io/gloo) 等）。
+Envoy Proxy 在大多数情况下都是作为 `Sidecar` 与应用部署在同一网络环境中，每个应用只需要与 Envoy（`localhost`）交互，不需要知道其他服务的地址。然而这并不是 Envoy 仅有的使用场景，它本身就是一个七层代理，通过模块化结构实现了流量治理、信息监控等核心功能，比如流量治理功能就包括自动重连、熔断、全局限速、流量镜像和异常检测等多种高级功能，因此 Envoy 也常常被用于**边缘代理**，比如 Istio 的 `Ingress Gateway`、基于 Envoy 实现的 Ingress Controller（[Contour](/posts/use-envoy-as-a-kubernetes-ingress/)、[Ambassador](https://www.getambassador.io)、[Gloo](https://github.com/solo-io/gloo) 等）。
 
 我的博客也是部署在轻量级 `Kubernetes` 集群上的（其实是 `k3s` 啦），一开始使用 `Contour` 作为 `Ingress Controller`，暴露集群内的博客、评论等服务。但好景不长，由于我在集群内部署了各种奇奇怪怪的东西，有些个性化配置 `Contour` 无法满足我的需求，毕竟大家都知道，**每抽象一层就会丢失很多细节**。换一个 Controller 保不齐以后还会遇到这种问题，索性就直接裸用 `Envoy` 作为边缘代理，大不了手撸 `YAML` 呗。
 
-当然也不全是手撸，虽然没有所谓的**控制平面**，但仪式感还是要有的，我可以基于文件来动态更新配置啊，具体的方法参考 [Envoy 基础教程：基于文件系统动态更新配置](https://icloudnative.io/posts/file-based-dynamic-routing-configuration/)。
+当然也不全是手撸，虽然没有所谓的**控制平面**，但仪式感还是要有的，我可以基于文件来动态更新配置啊，具体的方法参考 [Envoy 基础教程：基于文件系统动态更新配置](/posts/file-based-dynamic-routing-configuration/)。
 
 ## 1. UDS 介绍
 

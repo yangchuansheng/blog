@@ -1,17 +1,24 @@
 ---
+keywords:
+- service mesh
+- 服务网格
+- istio
+- gateway
 title: "暴露 Istio Service Mesh 中的 Gateway"
 subtitle: "使用 Envoy 作为 Ingress Gateway 的前端代理"
 date: 2018-09-17T13:14:55+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203163009.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-在之前的文章 [Istio 服务网格中的网关](https://icloudnative.io/posts/istio-ingress/) 中，我已经介绍了简单的暴露 `Ingress Gateway` 的方案。当时的方案只是用于临时测试，不适合在大规模场景下使用，本文将探讨更加优化的暴露 Ingress Gateway 的方案。
+在之前的文章 [Istio 服务网格中的网关](/posts/istio-ingress/) 中，我已经介绍了简单的暴露 `Ingress Gateway` 的方案。当时的方案只是用于临时测试，不适合在大规模场景下使用，本文将探讨更加优化的暴露 Ingress Gateway 的方案。
 
 ## HostNetwork
 
@@ -19,7 +26,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 第一种方法比较简单，可以直接使用 `HostNetwork` 模式运行 Ingress Gateway。但你会发现无法启动 ingressgateway 的 Pod，因为如果 Pod 设置了 `HostNetwork=true`，则 dnsPolicy 就会从 `ClusterFirst` 被强制转换成 `Default`。而 Ingress Gateway 启动过程中需要通过 DNS 域名连接 `pilot` 等其他组件，所以无法启动。
 
-我们可以通过强制将 `dnsPolicy` 的值设置为 `ClusterFirstWithHostNet` 来解决这个问题，详情参考：[Kubernetes DNS 高阶指南](https://icloudnative.io/posts/kubernetes-dns/)。
+我们可以通过强制将 `dnsPolicy` 的值设置为 `ClusterFirstWithHostNet` 来解决这个问题，详情参考：[Kubernetes DNS 高阶指南](/posts/kubernetes-dns/)。
 
 修改后的 ingressgateway deployment 配置文件如下：
 
@@ -206,6 +213,6 @@ $ kubectl -n istio-system create -f front-envoy-deploy.yaml
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

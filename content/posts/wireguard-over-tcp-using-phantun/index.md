@@ -19,7 +19,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 - Phantun
-categories: Network
+categories: ["Network", "VPN"]
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-58-NGnKZp.jpg
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-58-QXJLuQ.jpeg
 ---

@@ -19,9 +19,11 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - Sealos
-- kubernetes
-- docker
-categories: share
+- Kubernetes
+- Docker
+- Vaultwarden
+- Bitwarden
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-09-08-15-42-kQdLol.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-09-08-15-40-wGBd19.png
 ---

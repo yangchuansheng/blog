@@ -20,11 +20,11 @@ categories: Network
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210121152522.png
 ---
 
-之前花了很大的篇幅介绍了 WireGuard 的[工作原理](https://icloudnative.io/posts/wireguard-docs-theory/)和[配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)，可这里面的内容实在太多了，大部分人根本没兴趣深究，只是将其当成参考书来看。WireGuard 虽然组网逻辑很简洁明了，但秘钥和配置文件的管理是个麻烦事，需要手工配置。为了让大部分读者能够快速上手 WireGuard，体验 WireGuard 的优雅和强大，我决定新开一个 WireGuard 快速上手系列，第一篇之前已经发出来了：
+之前花了很大的篇幅介绍了 WireGuard 的[工作原理](/posts/wireguard-docs-theory/)和[配置详解](/posts/wireguard-docs-practice/)，可这里面的内容实在太多了，大部分人根本没兴趣深究，只是将其当成参考书来看。WireGuard 虽然组网逻辑很简洁明了，但秘钥和配置文件的管理是个麻烦事，需要手工配置。为了让大部分读者能够快速上手 WireGuard，体验 WireGuard 的优雅和强大，我决定新开一个 WireGuard 快速上手系列，第一篇之前已经发出来了：
 
-+ [WireGuard 快速安装教程](https://icloudnative.io/posts/wireguard-install/)
++ [WireGuard 快速安装教程](/posts/wireguard-install/)
 
-这篇文章仅仅介绍了如何快速安装 WireGuard，并没有涉及到如何配置使其正常工作。本文主要介绍如何方便优雅地管理 WireGuard 的配置和秘钥。当然了，这里不会详细解读各个配置参数的含义，也不会告诉你通过哪个命令来创建公钥私钥，如果你对此部分感兴趣，可以查看我之前发布的 [WireGuard 配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)。
+这篇文章仅仅介绍了如何快速安装 WireGuard，并没有涉及到如何配置使其正常工作。本文主要介绍如何方便优雅地管理 WireGuard 的配置和秘钥。当然了，这里不会详细解读各个配置参数的含义，也不会告诉你通过哪个命令来创建公钥私钥，如果你对此部分感兴趣，可以查看我之前发布的 [WireGuard 配置详解](/posts/wireguard-docs-practice/)。
 
 ## 1. wg-gen-web 配置
 
@@ -87,7 +87,7 @@ services:
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210120115544.png)
 
-各项配置的含义我就不解释了，都很好理解，实在不理解的请查看 [WireGuard 配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)。
+各项配置的含义我就不解释了，都很好理解，实在不理解的请查看 [WireGuard 配置详解](/posts/wireguard-docs-practice/)。
 
 填写好配置信息后，直接点击 `UPDATE SERVER CONFIGURATION` 保存，同时会生成配置文件 `wg0.conf`：
 
@@ -207,7 +207,7 @@ Environment=WG_ENDPOINT_RESOLUTION_RETRIES=infinity
 WantedBy=multi-user.target
 ```
 
-如果你按照 [WireGuard 快速安装教程](https://icloudnative.io/posts/wireguard-install/) 这篇文章的步骤来安装 WireGuard，`ExecReload` 默认已经被加进去了，到这一步不需要做任何改动。后面再更新配置文件时，直接 reload 就行了：
+如果你按照 [WireGuard 快速安装教程](/posts/wireguard-install/) 这篇文章的步骤来安装 WireGuard，`ExecReload` 默认已经被加进去了，到这一步不需要做任何改动。后面再更新配置文件时，直接 reload 就行了：
 
 ```bash
 🐳  → systemctl reload wg-quick@wg0

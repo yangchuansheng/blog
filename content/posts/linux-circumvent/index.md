@@ -6,8 +6,8 @@ draft: false
 author: 米开朗基杨
 toc: true
 weight: 101 
-categories: "gfw"
-tags: ["gfw"]
+categories: "GFW"
+tags: ["Linux", "Iptables"]
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-gfw.webp"
 ---
 
@@ -18,9 +18,9 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-gfw.webp"
 ------
 这里有两种方案，都可以实现全局智能分流。第一种方案的思路是使用 `ipset` 载入 `chnroute` 的 `IP` 列表并使用 `iptables` 实现带自动分流国内外流量的全局代理。为什么不用 `PAC` 呢？因为 `PAC` 这种东西只对浏览器有用。难道你在浏览器之外就不需要科学上网了吗？反正我是不信的……
 
-**<font color=Blue>本教程所用系统为 `Archlinux`，其他发型版类似，请自行参考相关资料。</font>**
+**本教程所用系统为 `Archlinux`，其他发型版类似，请自行参考相关资料。**
 
-## <span id="inline-toc">1.</span> 通过 iptables 实现智能分流
+## 通过 iptables 实现智能分流
 
 ----
 
@@ -304,7 +304,7 @@ net.ipv4.tcp_synack_retries = 5
 $ sysctl -p
 ```
 
-## <span id="inline-toc">2.</span> 通过 nftables 实现智能分流
+## 通过 nftables 实现智能分流
 
 ----
 
@@ -433,7 +433,7 @@ $ systemctl enable shadowsocks-libev@shadowsocks
 
 同上
 
-## <span id="inline-toc">3.</span> 通过策略路由实现智能分流
+## 通过策略路由实现智能分流
 
 ----
 
@@ -590,9 +590,4 @@ net.ipv4.tcp_synack_retries = 5
 ```bash
 $ sysctl -p
 ```
-
-----
-
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
-<center>扫一扫关注微信公众号</center>
 

@@ -3,15 +3,18 @@ keywords:
 - tcpdump
 - libcap
 - wireshark
-title: "Tcpdump 示例教程"
+- tcpdump 使用
+title: "Tcpdump 使用教程"
 subtitle: "网络抓包神器 Tcpdump 使用指南"
 description: 本文主要介绍了 tcpdump 的基本语法和使用方法，并通过一些示例来展示它强大的过滤功能。
 date: 2020-02-10T23:22:34+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: Network
-tags: ["tcpdump"]
+categories: 
+- network
+tags: 
+- Tcpdump
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200210234336.webp"
 ---
 
@@ -472,7 +475,7 @@ $ ssh root@remotesystem 'tcpdump -s0 -c 1000 -nn -w - port 53' | /Applications/W
 
 抓取到的数据：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20200210170101.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20200210170101.png)
 
 `-c` 选项用来限制抓取数据的大小。如果不限制大小，就只能通过 `ctrl-c` 来停止抓取，这样一来不仅关闭了 tcpdump，也关闭了 wireshark。
 

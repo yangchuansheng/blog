@@ -24,13 +24,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 一旦 Pod 启动之后 `kube-scheduler` 便不会再尝试重新调度它。根据环境的不同，你可能会有很多需要手动调整 Pod 的分布，例如：如果集群中新加入了一个节点，那么已经运行的 Pod 并不会被分摊到这台节点上，这台节点可能只运行了少量的几个 Pod，这并不理想，对吧？
 
-## <span id="inline-toc">1.</span> Descheduler 如何工作？
+## Descheduler 如何工作？
 
 ----
 
 [Descheduler](https://github.com/kubernetes-incubator/descheduler) 会检查 Pod 的状态，并根据自定义的策略将不满足要求的 Pod 从该节点上驱逐出去。Descheduler 并不是 `kube-scheduler` 的替代品，而是要依赖于它。该项目目前放在 Kubernetes 的孵化项目中，还没准备投入生产，但经过我实验发现它的运行效果很好，而且非常稳定。那么该如何安装呢？
 
-## <span id="inline-toc">2.</span> 部署方法
+## 部署方法
 
 ----
 
@@ -219,13 +219,13 @@ I0505 11:55:08.160964       1 node_affinity.go:72] Evicted 0 pods
 
 哇哦，现在你的集群中已经运行了一个 descheduler！
 
-## <span id="inline-toc">3.</span> 总结
+## 总结
 
 ----
 
 Kubernetes 的默认调度器已经做的很好，但由于集群处于不断变化的状态中，某些 Pod 可能运行在错误的节点上，或者你想要均衡集群资源的分配，这时候就需要 descheduler 来帮助你将某些节点上的 Pod 驱逐到正确的节点上去。我很期待正式版的发布！
 
-## <span id="inline-toc">4.</span> 原文链接
+## 原文链接
 
 ----
 

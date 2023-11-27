@@ -4,17 +4,15 @@ subtitle: "记一次 mTLS 趟坑经历"
 date: 2018-10-11T15:59:54+08:00
 draft: false
 author: 米开朗基杨
-categories: service-mesh
-tags: ["istio", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/error-503.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<p id="div-border-left-red">
-<strong>原文链接：</strong><a href="https://bani.com.br/2018/08/istio-mtls-debugging-a-503-error/" target="_blank">Istio, mTLS, debugging a 503 error</a>
-<br />
-<strong>译者：</strong>米开朗基杨
-</p>
+> 原文链接：[Istio, mTLS, debugging a 503 error](https://bani.com.br/2018/08/istio-mtls-debugging-a-503-error/)
 
 大家好，本文我将与你们分享我在 Istio 官方文档中尝试[熔断](https://istio.io/zh/docs/tasks/traffic-management/circuit-breaking/)教程时遇到的问题。我会记录下解决此问题的所有步骤，希望对你们有所帮助。至少对我自己来说，在整个排错过程中学到了很多关于 Istio 的知识。
 
@@ -138,11 +136,11 @@ cluster.outbound|8000||httpbin.foo.svc.cluster.local.upstream_rq_pending_total: 
 
 `upstream_rq_pending_overflow` 的值是 `0`，说明没有任何调用被标记为熔断。
 
-{{< notice note >}}
+{{< alert >}}
 Istio sidecar（名为 <code>istio-proxy</code> 的 Envoy 容器）暴露出 15000 端口以提供一些实用的功能，可以通过 HTTP 访问这个端口，例如打印相关服务的一些统计信息。
 
 因此，在上面的的命令中，我们在客户端 Pod（sleep-5b597748b4-77kj5）的 sidecar 容器（-c istio-proxy）中执行 curl（curl localhost:15000/stats），过滤出我们要检查的服务的统计信息（| grep httpbin），然后过滤出熔断器挂起状态（| grep pending）。
-{{< /notice >}}
+{{< /alert >}}
 
 为了确认 `DestinationRule` 才是罪魁祸首，我决定将它删除然后再尝试调用：
 
@@ -235,7 +233,7 @@ $ kubectl -n foo logs -f httpbin-94fdb8c79-h9zrq -c istio-proxy
 
 当在 Istio 中谈到 SSL 时，一般指的是双向 TLS。然后我就去查看 Istio 官方文档，视图找到与我的问题相关的内容，最后终于在 [基础认证策略](https://istio.io/zh/docs/tasks/security/authn-policy/) 这篇文档中找到了我想要的东西。
 
-<font color=red>我发现我在部署 Istio 时启用了 Sidecar 之间的双向 TLS 认证！</font>
+**我发现我在部署 Istio 时启用了 Sidecar 之间的双向 TLS 认证！**
 
 检查一下：
 
@@ -319,9 +317,4 @@ kubectl -n foo exec -it -c sleep sleep-5b597748b4-77kj5 -- curl -v http://httpbi
 + 所有的目标规则都适用相同的优先顺序，具体的规则会覆盖全局的规则。
 + 有时候可以充分利用 Sidecar 的管理接口（本地端口 15000）。
 + 仔细阅读官方文档。:blush:
-
-----
-
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
-<center>扫一扫关注微信公众号</center>
 

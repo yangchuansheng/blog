@@ -17,10 +17,12 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- goland
-- jetbrains
-- kubernetes
-categories: share
+- Goland
+- Jetbrains
+- Kubernetes
+categories: 
+- tech-social
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210326141559.png
 ---
 
@@ -126,7 +128,7 @@ NAME               TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
 projector-goland   ClusterIP   10.106.190.178   <none>        80/TCP    3m38s
 ```
 
-如果你能够[直接访问集群的 Service IP](https://icloudnative.io/posts/use-wireguard-as-kubernetes-cni/)，就可以直接通过 Service IP 访问 Goland 网页版了：
+如果你能够[直接访问集群的 Service IP](/posts/use-wireguard-as-kubernetes-cni/)，就可以直接通过 Service IP 访问 Goland 网页版了：
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323224346.png)
 

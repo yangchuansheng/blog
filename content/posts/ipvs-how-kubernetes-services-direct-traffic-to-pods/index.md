@@ -5,6 +5,9 @@ keywords:
 - iptables
 - dummy
 - hairpin
+- kubernetes
+- networking
+- network
 title: "kube-proxy IPVS 模式的工作原理"
 date: 2021-04-08T11:56:04+08:00
 lastmod: 2021-06-13T11:56:04+08:00
@@ -17,8 +20,8 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- kubernetes
-- lvs
+- Kubernetes
+- LVS
 categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210607013921.png
 ---

@@ -4,6 +4,8 @@ keywords:
 - cgroup
 - cpuset
 - numa
+- linux cgroup
+- isolcpus
 title: "Linux Cgroup 入门教程：cpuset"
 subtitle: "把运行的进程绑定到指定的 CPU 核心上运行"
 description: 通过具体的示例来演示如何通过 cgroup 来将运行的进程绑定到指定的 CPU 核心上运行
@@ -12,8 +14,10 @@ lastmod: 2020-03-28T11:40:35+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "cgroup"]
+categories: 
+- Linux
+tags:
+- Cgroup
 series:
 - Linux Cgroup 入门系列
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200328224033.webp"
@@ -21,11 +25,11 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200328224033
 
 这是 Cgroup 系列的第四篇，往期回顾：
 
-+ [Linux Cgroup 入门教程：基本概念](https://icloudnative.io/posts/understanding-cgroups-part-1-basics/)
-+ [Linux Cgroup 入门教程：CPU](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)
-+ [Linux Cgroup 入门教程：内存](https://icloudnative.io/posts/understanding-cgroups-part-3-memory/)
++ [Linux Cgroup 入门教程：基本概念](/posts/understanding-cgroups-part-1-basics/)
++ [Linux Cgroup 入门教程：CPU](/posts/understanding-cgroups-part-2-cpu/)
++ [Linux Cgroup 入门教程：内存](/posts/understanding-cgroups-part-3-memory/)
 
-通过[上篇文章](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)的学习，我们学会了如何查看当前 cgroup 的信息，如何通过操作 `/sys/fs/cgroup` 目录来动态设置 cgroup，也学会了如何设置 CPU shares 和 CPU quota 来控制 `slice` 内部以及不同 `slice` 之间的 CPU 使用时间。本文将继续探讨对 CPU 使用时间的限制。
+通过[上篇文章](/posts/understanding-cgroups-part-2-cpu/)的学习，我们学会了如何查看当前 cgroup 的信息，如何通过操作 `/sys/fs/cgroup` 目录来动态设置 cgroup，也学会了如何设置 CPU shares 和 CPU quota 来控制 `slice` 内部以及不同 `slice` 之间的 CPU 使用时间。本文将继续探讨对 CPU 使用时间的限制。
 
 对于某些 CPU 密集型的程序来说，不仅需要获取更多的 CPU 使用时间，还要减少工作负载在节流时引起的上下文切换。现在的多核系统中每个核心都有自己的缓存，如果频繁的调度进程在不同的核心上执行势必会带来缓存失效等开销。那么有没有方法针对 CPU 核心进行隔离呢？准确地说是把运行的进程绑定到指定的核心上运行。虽然对于操作系统来说，所有程序生而平等，**但有些程序比其他程序更平等。**
 
@@ -143,13 +147,13 @@ GRUB_DISABLE_RECOVERY="true"
 $ grub2-mkconfig -o /boot/grub2/grub.cfg
 ```
 
-重启系统之后，系统将不再使用逻辑核心 2，3 和 4，只会使用核心 1。找个程序把 CPU 跑满（[上篇文章](https://icloudnative.io/posts/understanding-cgroups-part-2-cpu/)用的程序），使用命令 top 查看 CPU 的使用状况：
+重启系统之后，系统将不再使用逻辑核心 2，3 和 4，只会使用核心 1。找个程序把 CPU 跑满（[上篇文章](/posts/understanding-cgroups-part-2-cpu/)用的程序），使用命令 top 查看 CPU 的使用状况：
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163214.png)
 
-{{< notice note >}}
+{{< alert >}}
 执行 `top` 命令后，在列表页按数字 1 键，就可以看到所有 CPU 了。
-{{< /notice >}}
+{{< /alert >}}
 
 可以看到系统只使用了核心 1，下面我们来看看如何将程序绑到特定的 CPU 核心上。
 
@@ -323,7 +327,7 @@ WantedBy=multi-user.target
 
 只有 `Cpu1` 达到了 `100%`，其它的 CPU 并未被容器使用。
 
-如果你看过该系列的[第一篇文章](https://icloudnative.io/posts/understanding-cgroups-part-1-basics/)，应该知道，在新的使用 `systemd` 实现 `init` 的系统中（比如 `ConetOS 7`），系统默认创建了 3 个顶级 `slice`：`System`, `User` 和 `Machine`，其中 `machine.slice` 是所有虚拟机和 Linux 容器的默认位置，而 Docker 其实是 `machine.slice` 的一个变种，你可以把它当成 `machine.slice` 。
+如果你看过该系列的[第一篇文章](/posts/understanding-cgroups-part-1-basics/)，应该知道，在新的使用 `systemd` 实现 `init` 的系统中（比如 `ConetOS 7`），系统默认创建了 3 个顶级 `slice`：`System`, `User` 和 `Machine`，其中 `machine.slice` 是所有虚拟机和 Linux 容器的默认位置，而 Docker 其实是 `machine.slice` 的一个变种，你可以把它当成 `machine.slice` 。
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163218.png)
 

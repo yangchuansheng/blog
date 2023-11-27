@@ -3,6 +3,7 @@ keywords:
 - k3s
 - WireGuard
 - flannel
+- Kubernetes
 title: "跨云厂商部署 k3s 集群"
 date: 2020-06-14T13:44:03+08:00
 lastmod: 2020-06-14T13:44:03+08:00
@@ -14,9 +15,12 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- k3s
+- K3s
 - WireGuard
-categories: cloud-native
+- Kubernetes
+- Flannel
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200615100550.png
 ---
 

@@ -49,7 +49,7 @@ KubeSphere 目前最新的版本为高级版 `2.0.2`，并且所有版本 100% �
 
 KubeSphere 官网大致提供了两种安装方式，一种是安装 k8s 集群和 KubeSphere，一种是在现有的 k8s 集群上安装 KubeSphere。我想大多数用户的需求肯定是在现有的集群上安装，但官方文档给出的部署方案有很多奇怪的坑，本文就来为大家一一填平这些坑。
 
-## <span id="inline-toc">1.</span> 环境准备
+## 环境准备
 
 ----
 
@@ -87,7 +87,7 @@ $ sealos init --master 192.168.0.2 \
 
 下面就正式进入 KubeSphere 的安装环节。
 
-## <span id="inline-toc">2.</span> 安装 KubeSphere
+## 安装 KubeSphere
 
 ----
 
@@ -271,7 +271,7 @@ kubesphere-installer   1/1           2m9s       3h10m
 
 如果上面用于安装的 Job 是完成状态的话，证明 KubeSphere 已经安装成功了。
 
-可以创建一个 [IngressRoute](https://icloudnative.io/posts/use-envoy-as-a-kubernetes-ingress/) 对象来访问 KubeSphere：
+可以创建一个 [IngressRoute](/posts/use-envoy-as-a-kubernetes-ingress/) 对象来访问 KubeSphere：
 
 ```yaml
 apiVersion: contour.heptio.com/v1beta1
@@ -291,18 +291,18 @@ spec:
 
 将域名信息加入本地电脑的 hosts 中，就可以在浏览器中访问 KubeSphere 的 Dashboard 了。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-121541.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-09-19-121541.png)
 
 默认的集群管理员账号为：
 
 + 用户名：admin
 + 密码：P@88w0rd
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-139.198.0.142_30880_dashboard.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-09-19-139.198.0.142_30880_dashboard.png)
 
 详细的使用方式可以参考官方文档：[https://kubesphere.io/docs/zh-CN/](https://kubesphere.io/docs/zh-CN/)
 
-## <span id="inline-toc">3.</span> 参考资料
+## 参考资料
 
 ----
 

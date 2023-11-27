@@ -1,12 +1,21 @@
 ---
+keywords:
+- envoy
+- envoy proxy
+- docker
+- shim
+- docker-proxy
 title: "使用 envoy-docker-shim 替代 docker-proxy"
 subtitle: "Docker 端口映射的新姿势"
 date: 2018-06-22T08:22:07Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["docker"]
+categories:
+- cloud-native
+tags:
+- Docker
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203221426.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -20,7 +29,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 要想真正掌握 Envoy，只有通过实践融入该语境才能真正理解这门技术，而目前能够找到的最佳实践项目就是 [Envoy Docker Shim](https://github.com/Nitro/envoy-docker-shim)。在实践该项目之前，你需要了解 Envoy 中的基本术语和概念，可以参考 Jimmy Song 的文章：[Envoy 的架构与基本术语](https://jimmysong.io/posts/envoy-archiecture-and-terminology/)。下面我就为大家简单地介绍下这个项目。
 
-## <span id="inline-toc">1.</span> Envoy Docker Shim
+## Envoy Docker Shim
 
 ----
 
@@ -33,7 +42,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 通过将这些组件结合在一起，就形成了一个通过 Envoy 来代理 HTTP 和 TCP 流量的系统，对 `UDP` 流量的处理继续使用 docker-proxy 的代码逻辑，目前暂不支持 `SCTP` 协议。
 
-## <span id="inline-toc">2.</span> 安装步骤
+## 安装步骤
 
 ----
 
@@ -118,11 +127,11 @@ $ docker run -d --name envoyproxy --restart always --net host --cap-add NET_ADMI
 
 该 Envoy 容器还提供了一个 UI 来展示指标和路由，可以通过在浏览器中输入 url：`http://host_ip:8081` 来打开 UI 界面：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/PTNe2v.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/PTNe2v.jpg)
 
 至此，Envoy Docker Shim 已经完美地完成了替代 docker-proxy 的工作，接下来就可以不通过 iptables 而使用 Envoy 来实现 Docker 容器的端口映射啦！
 
-## <span id="inline-toc">3.</span> 容器配置
+## 容器配置
 
 ----
 
@@ -140,7 +149,7 @@ $ docker run -d -p 80:80 -p 443:443 -l EnvironmentName=proxy -l ServiceName=ngin
 
 打开 Envoy UI：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/T7W8BJ.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/T7W8BJ.jpg)
 
 可以看到 nginx 的服务名为 `nginx-proxy`。
 

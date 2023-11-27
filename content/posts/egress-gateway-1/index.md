@@ -5,31 +5,28 @@ date: 2018-11-26T14:43:51+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh", "kubernetes"]
+categories: 
+- service-mesh
+tags:
+- Istio
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1_TYaxJKWKaw6smCdt5uwpZw.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
+在上一篇文章 [Istio 出口流量的 TLS](/posts/egress-tls-origination/) 中，我演示了如何在网格内部直接通过 HTTP 协议访问外部加密服务，并揭示了其背后 Envoy 的配置逻辑。
 
-在上一篇文章 [Istio 出口流量的 TLS](https://icloudnative.io/posts/egress-tls-origination/) 中，我演示了如何在网格内部直接通过 HTTP 协议访问外部加密服务，并揭示了其背后 Envoy 的配置逻辑。
-
-本文将会通过 `Egress Gateway` 来引导 Istio 的出口流量，与 [Istio 出口流量的 TLS](https://icloudnative.io/posts/egress-tls-origination/) 任务中描述的功能的相同，唯一的区别就是，这里会使用 `Egress Gateway` 来完成这一任务。
+本文将会通过 `Egress Gateway` 来引导 Istio 的出口流量，与 [Istio 出口流量的 TLS](/posts/egress-tls-origination/) 任务中描述的功能的相同，唯一的区别就是，这里会使用 `Egress Gateway` 来完成这一任务。
 
 Istio 0.8 引入了 i[ngress 和 Egress gateway](https://preliminary.istio.io/zh/docs/reference/config/istio.networking.v1alpha3/#gateway) 的概念。 Ingress Gateway 允许定义进入服务网格的流量入口，所有入站流量都通过该入口；`Egress Gateway` 与之相对，它定义了网格的流量出口。 Egress Gateway 允许将 Istio  的流量治理功能（例如，监控和路由规则）应用于 Egress 流量。
 
-## <span id="inline-toc">1.</span> 用例 {#use-case}
-
-----
+## 用例
 
 设想一个具有严格安全要求的组织。根据这些要求，服务网格的所有出口流量必须流经一组专用节点。这些节点与运行其他应用的节点分开，通过策略来控制出口流量。相比其他节点而言，对这些专用节点的监控也更加详细。
 
 另一个用例是设想一个集群，它的应用程序所在的节点没有外网 IP，因此在其上运行的网格内服务无法访问外网服务。通过定义 `Egress Gateway`，并将公共 IP 分配给 `Egress Gateway` 节点，然后通过它引导所有出口流量，就可以控制网格内服务访问外网服务了。
 
-## <span id="inline-toc">2.</span> 前提条件 {#before-you-begin}
-
-----
+## 前提条件
 
 + 按照[安装指南](https://preliminary.istio.io/zh/docs/setup/)中的说明设置 Istio 。
 + 启动 [sleep](https://github.com/istio/istio/tree/master/samples/sleep) 示例，它将作为外部调用的测试源。
@@ -54,9 +51,7 @@ $ kubectl apply -f <(istioctl kube-inject -f samples/sleep/sleep.yaml)
 $ export SOURCE_POD=$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})
 ```
 
-## <span id="inline-toc">3.</span> 定义 Egress Gateway 来引导 Istio 的出口 HTTP 流量 {#egress-gateway-for-http-traffic}
-
-----
+## 定义 Egress Gateway 来引导 Istio 的出口 HTTP 流量
 
 首先创建一个 `ServiceEntry` 以允许网格内服务访问外部服务。
 
@@ -99,7 +94,7 @@ Content-Length: 151654
 ...
 ```
 
-此处的返回结果应该与 [Istio 出口流量的 TLS](https://icloudnative.io/posts/egress-tls-origination/) 中没有配置 TLS 发起的情况下的返回结果相同。
+此处的返回结果应该与 [Istio 出口流量的 TLS](/posts/egress-tls-origination/) 中没有配置 TLS 发起的情况下的返回结果相同。
 
 <span id=blue>3.</span> 为 `edition.cnn.com` 的 80 端口创建一个 Egress Gateway（假设没有启用[双向 TLS 认证](https://preliminary.istio.io/zh/docs/tasks/security/mutual-tls/)）。
 
@@ -261,7 +256,7 @@ $ istioctl pc route sleep-5bc866558c-5nl8k --name 80 -o json|grep "edition.cnn.c
 
 **该 VirtualService 的作用就是将目的地址是 `edition.cnn.com:80` 的流量重定向到 `Egress Gateway`。**
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1543226447622-e17653c5-4dd3-4768-9b8f-cb1f3b0ef6a5.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/1543226447622-e17653c5-4dd3-4768-9b8f-cb1f3b0ef6a5.svg)
 
 这里我们将流量打向了 subset 为 `cnn` 的 Cluster，但现在不存在这个 Cluster，所以还需要通过 `DestinationRule` 定义一个 Cluster：
 
@@ -338,13 +333,7 @@ $ istioctl -n istio-system pc route istio-egressgateway-f8b6469db-fj6zr -o json
 
 **该 VirtualService 的作用是通过 Egress Gateway 访问目的地址 `edition.cnn.com:80`。**这里 Egress Gateway 将流量路由到 Cluster `outbound|80||edition.cnn.com`，最后将流量转发到服务 `edition.cnn.com:80`。完整的流量转发流程如下图所示：
 
-<div class="gallery">
-    <a href="https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/istio-egress%20%282%29.svg" data-lightbox="image-1" data-title="通过 Egress Gateway 引导 Istio 的出口 HTTP 流量">
-    <img src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/istio-egress%20%282%29.svg">
-    </a>
-</div>
-
-<center><p id=small>通过 Egress Gateway 引导 Istio 的出口 HTTP 流量</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-27-11-19-GfJU4t.svg "通过 Egress Gateway 引导 Istio 的出口 HTTP 流量")
 
 <span id=blue>5.</span> 重新发送 HTTP 请求到 [http://edition.cnn.com/politics](http://edition.cnn.com/politics)。
 
@@ -379,9 +368,7 @@ $ kubectl logs $(kubectl get pod -l istio=egressgateway -n istio-system -o jsonp
 
 > 这里我们只将到 80 端口的 HTTP 流量重定向到 Egress Gateway，到 443 端口的 HTTPS 流量直接转到 `edition.cnn.com` 。
 
-## <span id="inline-toc">4.</span> 清理 {#cleanup}
-
-----
+## 清理
 
 删除 Gateway、VirtualService、DestinationRule 和 ServiceEntry。
 
@@ -392,8 +379,6 @@ $ kubectl delete virtualservice direct-cnn-through-egress-gateway
 $ kubectl delete destinationrule egressgateway-for-cnn
 ```
 
-## <span id="inline-toc">5.</span> 参考 {#reference}
-
-----
+## 参考
 
 + [配置 Egress gateway](https://preliminary.istio.io/zh/docs/examples/advanced-gateways/egress-gateway/)

@@ -4,6 +4,7 @@ keywords:
 - calico
 - prometheus-operator
 - prometheus
+- 监控
 title: "使用 Prometheus-Operator 监控 Calico"
 date: 2020-06-26T17:40:15+08:00
 lastmod: 2020-06-26T17:40:15+08:00
@@ -15,9 +16,11 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- calico
-- prometheus
-categories: monitoring
+- Calico
+- Prometheus
+categories: 
+- monitoring
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200626235211.png
 ---
 
@@ -25,9 +28,9 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 由此可见，对于我们的监控来说，监控 Calico 的核心便是监控 `Felix`，`Felix` 就相当于 Calico 的大脑。本文将学习如何使用 `Prometheus-Operator` 来监控 Calico。
 
-{{< notice note >}}
+{{< alert >}}
 本文不会涉及到 `Calico` 和 `Prometheus-Operator` 的部署细节，如果不知道如何部署，请查阅官方文档和相关博客。
-{{< /notice >}}
+{{< /alert >}}
 
 ## 1. 配置 Calico 以启用指标
 
@@ -1724,4 +1727,4 @@ Calico 官方没有单独 dashboard json，而是将其放到了 [ConfigMap](htt
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/felix-dashboard.webp)
 
-如果你对我截图中 Grafana 的主题配色很感兴趣，可以参考这篇文章：[Grafana 自定义主题](https://icloudnative.io/posts/customize-grafana-theme/)。
+如果你对我截图中 Grafana 的主题配色很感兴趣，可以参考这篇文章：[Grafana 自定义主题](/posts/customize-grafana-theme/)。

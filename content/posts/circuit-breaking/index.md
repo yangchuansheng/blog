@@ -1,12 +1,19 @@
 ---
+keywords:
+- envoy
+- envoy proxy
+- 熔断
+- 雪崩
 title: "Envoy 基础教程：熔断器的原理和使用"
 subtitle: "使用熔断器来预防服务出现雪崩效应"
 date: 2018-07-13T09:22:49Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories: 
+- cloud-native
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203195651.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -15,7 +22,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 <span id="inline-purple">熔断器</span> 是分布式系统的关键组件，默认情况下处于关闭状态，这时请求被允许通过熔断器。它调用失败次数积累，如果当前健康状况低于设定阈值则启动熔断机制，这时请求被禁止通过。这样做可以实现更优雅的故障处理，并在问题被放大之前做出及时的响应。你可以选择在基础架构层面实现熔断机制，但熔断器本身会很容易受到故障的影响。为了更好地实现熔断机制，可以在 Envoy 的网络层面配置熔断器，这样做的好处是 `Envoy` 在网络级别强制实现断路，而不必为每个应用程序单独配置或编程。
 
-## <span id="inline-toc">1.</span> 熔断器配置
+## 熔断器配置
 
 ----
 
@@ -37,7 +44,7 @@ circuit_breakers:
 + <span id="inline-blue">max_connections</span> : Envoy 将为上游集群中的所有主机建立的最大连接数，默认值是 `1024`。实际上，这仅适用于 HTTP/1.1集群，因为 HTTP/2 使用到每个主机的单个连接。
 + <span id="inline-blue">max_requests</span> : 在任何给定时间内，集群中所有主机可以处理的最大请求数，默认值也是 1024。实际上，这适用于仅 HTTP/2 集群，因为 HTTP/1.1 集群由最大连接断路器控制。
 
-## <span id="inline-toc">2.</span> 基本的熔断策略
+## 基本的熔断策略
 
 ----
 
@@ -48,7 +55,7 @@ circuit_breakers:
 
 这两个配置项都可以很好地实现熔断机制，主要取决于两个指标：服务的请求/连接数量和请求延时。例如，具有 1000个请求/second 和平均延迟 2 秒的 HTTP/1 服务通常会在任何给定时间内打开 `2000` 个连接。由于当存在大量非正常连接时熔断器会启动熔断机制，因此建议将参数 max_connections 的值最少设置为 `10 x 2000`，这样当最后 10 秒内的大多数请求未能返回正确的响应时就会打开熔断器。当然，具体的熔断器配置还得取决于系统的负载以及相关服务的具体配置。
 
-## <span id="inline-toc">3.</span> 高级熔断策略
+## 高级熔断策略
 
 ----
 
@@ -64,6 +71,6 @@ circuit_breakers:
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

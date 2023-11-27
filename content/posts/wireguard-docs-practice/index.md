@@ -15,11 +15,13 @@ enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
-categories: Network
+categories: 
+- Network
+- VPN
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 
-[上篇文章](https://icloudnative.io/posts/wireguard-docs-theory/)介绍了 `WireGuard` 相对于其他 VPN 协议的优点和 `WireGuard` 的工作原理，本文将会学习如何从零开始配置 `WireGuard`，这里会涉及到很多高级的配置方法，例如动态 IP、NAT 到 NAT、IPv6 等等。
+[上篇文章](/posts/wireguard-docs-theory/)介绍了 `WireGuard` 相对于其他 VPN 协议的优点和 `WireGuard` 的工作原理，本文将会学习如何从零开始配置 `WireGuard`，这里会涉及到很多高级的配置方法，例如动态 IP、NAT 到 NAT、IPv6 等等。
 
 ## 1. 快速开始
 
@@ -574,7 +576,7 @@ UDP 打洞的原理：
 
 为什么要这样做呢？好吧，我们假装是互联网上的一个 ICMP 跳越点，礼貌地告诉服务器它原来的 **ICMP 回应请求包**无法传递到 `3.3.3.3`。而你的 NAT 是一个聪明的设备，它会注意到 **ICMP 超时数据包**内的数据包与服务器发出 **ICMP 回应请求包**相匹配。然后它将 **ICMP 超时数据包**转发回 NAT 后面的服务器，包括来自客户端的完整 IP 数据包头，从而让服务端知道客户端 IP 地址是什么！
 
-现在这种类似的 UDP 打洞方法受到了很多的限制，详情可以参考[上篇文章](https://icloudnative.io/posts/wireguard-docs-theory/)，这里不过多阐述。除了 UDP 打洞之外，我们仍然可以使用硬编码的方式指定两个对等节点（peer）的公网地址和端口号，这个方法对大多数 NAT 网络都有效。
+现在这种类似的 UDP 打洞方法受到了很多的限制，详情可以参考[上篇文章](/posts/wireguard-docs-theory/)，这里不过多阐述。除了 UDP 打洞之外，我们仍然可以使用硬编码的方式指定两个对等节点（peer）的公网地址和端口号，这个方法对大多数 NAT 网络都有效。
 
 #### 源端口随机化
 

@@ -1,21 +1,28 @@
 ---
+keywords:
+- envoy
+- envoy proxy
+- xds
+- rds
 title: "Envoy 基础教程：通过控制平面提供路由"
 subtitle: "路由定义的最佳实践"
 date: 2018-07-06T06:16:02Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories:
+- cloud-native
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203200936.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-当微服务集群规模非常庞大时，控制平面包含了大量的 Envoy 配置项和基础设施状态，这时最好将数据平面与控制平面分离。控制平面最主要的功能包括自动重试和[集成服务发现](https://icloudnative.io/posts/integrating-service-discovery-with-envoy/)。
+当微服务集群规模非常庞大时，控制平面包含了大量的 Envoy 配置项和基础设施状态，这时最好将数据平面与控制平面分离。控制平面最主要的功能包括自动重试和[集成服务发现](/posts/integrating-service-discovery-with-envoy/)。
 
 单独创建控制平面的最大优势之一是可以为路由配置提供统一的来源。传统架构的路由定义分散存储在 Web 服务器的配置文件、负载均衡器配置文件和特定应用程序的配置中（如 `routes.rb`），使用单独的控制平面可以集中所有的路由配置，使它们更易于更改和管理，同时也为应用的迁移和发布提供了更高的灵活性。
 
-## <span id="inline-toc">1.</span> 通过 RDS 提供路由
+## 通过 RDS 提供路由
 
 ----
 
@@ -38,7 +45,7 @@ resources:
 
 开源项目 [go-control-plane](https://github.com/envoyproxy/go-control-plane)，[Istio Pilot](https://istio.io/docs/concepts/traffic-management/pilot.html) 和 商业项目 [Houston](http://turbinelabs.io/product) 都提供了 RDS 的 API，Envoy 官方文档也定义了一个[完整的 RDS 规范](https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview.html#v2-grpc-streaming-endpoints)。RDS 规范只是一种流量传输机制，如何对路由进行管理还是要取决于你。
 
-## <span id="inline-toc">2.</span> 路由定义的最佳实践
+## 路由定义的最佳实践
 
 ----
 
@@ -66,5 +73,5 @@ resources:
 
 为了更好地管理路由，团队内部必须要知道如何在两个时间点之间更改路由以及如何在必要时将其回滚，同时最好将这些操作收集到监控系统中。当你需要进一步优化时，这些操作记录是很有价值的（例如 git 历史记录在编写新代码时很有帮助）。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 

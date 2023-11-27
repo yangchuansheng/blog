@@ -1,19 +1,25 @@
 ---
+keywords:
+- docker
+- 容器
+- 镜像
 title: "docker 在本地如何管理 image（镜像）?"
 subtitle: "探索 image 的获取和存储方式"
 date: 2018-04-02T05:12:18Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["docker"]
+categories:
+- cloud-native
+tags:
+- Docker
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204213400.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
 docker 里面可以通过 `docker pull`、`docker build`、`docker commit`、`docker load`、`docker import` 等方式得到一个 image，得到 image 之后 docker 在本地是怎么存储的呢？本篇将以 `docker pull` 为例，简述 image 的获取和存储方式。
 
-## <span id="inline-toc">1.</span> 镜像相关的配置
+## 镜像相关的配置
 
 ----
 
@@ -23,15 +29,15 @@ docker 里面和 image 有关的目录为 `/var/lib/docker`，里面存放着 im
 --graph, -g /var/lib/docker Root of the Docker runtime
 ```
 
-## <span id="inline-toc">2.</span> 镜像的引用方式
+## 镜像的引用方式
 
 ----
 
 在需要引用 image 的时候，比如 docker pull 的时候，或者运行容器的时候，都需要指定一个image名称，引用一个镜像有多种方式，下面以 `alpine` 为例进行说明.
 
-{{< notice note >}}
+{{< alert >}}
 由于 sha256 码太长，所以用 abcdef... 来表示完整的 sha256，节约空间
-{{< /notice >}}
+{{< /alert >}}
 
 ### docker hub 上的官方镜像
 
@@ -60,7 +66,7 @@ docker 里面和 image 有关的目录为 `/var/lib/docker`，里面存放着 im
 
 对于某些 `image` 来说，可能在发布之后还会做一些更新，比如安全方面的，这时虽然镜像的内容变了，但镜像的名称和 `tag` 没有变，所以会造成前后两次通过同样的名称和 `tag` 从服务器得到不同的两个镜像的问题，于是 docker 引入了镜像的 `digest` 的概念，一个镜像的 `digest` 就是镜像的 `manifes` 文件的 `sha256` 码，当镜像的内容发生变化的时候，即镜像的 `layer` 发生变化，从而 `layer` 的 `sha256` 发生变化，而 `manifest` 里面包含了每一个 `layer` 的 `sha256`，所以 `manifest` 的 `sha256` 也会发生变化，即镜像的 `digest` 发生变化，这样就保证了 `digest` 能唯一的对应一个镜像。
 
-## <span id="inline-toc">3.</span> docker pull的大概过程
+## docker pull的大概过程
 
 ----
 
@@ -78,13 +84,13 @@ docker 里面和 image 有关的目录为 `/var/lib/docker`，里面存放着 im
 + 根据 docker 所用的后台文件系统类型，解压 tar 包并放到指定的目录
 + 等所有的 layer 都下载完成后，整个 image 下载完成，就可以使用了
 
-{{< notice note >}}
+{{< alert >}}
 对于 layer 来说，<code>config</code> 文件中 diffid 是 layer 的 <code>tar</code> 包的 sha256，而 <code>manifest</code> 文件中的 digest 依赖于 media type，比如 media type 是 <code>tar+gzip</code>，那 digest 就是 layer 的 tar 包经过 gzip 压缩后的内容的 sha256，如果 media type 就是 tar 的话，diffid 和 digest 就会一样。
-{{< /notice >}}
+{{< /alert >}}
 
 > dockerd 和 registry 服务器之间的协议为 [Registry HTTP API V2](https://docs.docker.com/registry/spec/api/)。
 
-## <span id="inline-toc">4.</span> image 本地存放位置
+## image 本地存放位置
 
 ----
 
@@ -100,9 +106,9 @@ ubuntu                                               latest              sha256:
 ......
 ```
 
-{{< notice note >}}
+{{< alert >}}
 对于本地生成的镜像来说，由于没有上传到 registry 上去，所以没有 digest，因为镜像的 manifest 由 registry 生成。
-{{< /notice >}}
+{{< /alert >}}
 
 ### repositories.json
 
@@ -198,9 +204,9 @@ sha256:db584c622b50c3b8f9b8b94c270cc5fe235e5f23ec4aacea8ce67a8c16e0fbad
 
 layer 的属性信息都放在了 `image/overlay2/layerdb` 目录下，目录名称是 layer 的 `chainid`，由于最底层的 layer 的 chainid 和 diffid 相同，所以这里我们用第二层（fe9a3f...）作为示例：
 
-{{< notice note >}}
+{{< alert >}}
 计算 chainid 时，用到了所有祖先 layer 的信息，从而能保证根据 chainid 得到的 rootfs 是唯一的。比如我在 debian 和 ubuntu 的 image 基础上都添加了一个同样的文件，那么 commit 之后新增加的这两个 layer 具有相同的内容，相同的 diffid，但由于他们的父 layer 不一样，所以他们的 chainid 会不一样，从而根据 chainid 能找到唯一的 rootfs。计算 chainid 的方法请参考 <a href="https://github.com/opencontainers/image-spec/blob/master/config.md" target="_blank">image spec</a>
-{{< /notice >}}
+{{< /alert >}}
 
 ```bash
 #计算 chainid
@@ -251,7 +257,7 @@ $ ll /var/lib/docker/image/overlay2/layerdb/sha256/14a40a140881d18382e13b37588b3
 -rw-r--r-- 1 root root 1.5K Apr  1 22:16 /var/lib/docker/image/overlay2/layerdb/sha256/14a40a140881d18382e13b37588b3aa70097bb4f3fb44085bc95663bdc68fe20/tar-split.json.gz
 ```
 
-## <span id="inline-toc">5.</span> layer数据
+## layer数据
 
 ----
 
@@ -288,10 +294,10 @@ lrwxrwxrwx 1 root root 77 Mar 29 06:24 36WQQRTYLT4P3J7DYLQAUMUPJE -> ../7ee9cc17
 ...
 ```
 
-{{< notice note >}}
+{{< alert >}}
 注意：由于 docker 所采用的文件系统不同，<code>/var/lib/docker/<storage-driver></code> 目录下的目录结构及组织方式也会不一样，要具体文件系统具体分析，本文只介绍 overlay2 这种情况。
 关于 aufs 和 btrfs 的相关特性可以参考 <a href="https://segmentfault.com/a/1190000008489207" target="_blank">Linux 文件系统之 aufs</a> 和 <a href="https://segmentfault.com/a/1190000008605135" target="_blank">Btrfs 文件系统之 subvolume 与 snapshot</a>
-{{< /notice >}}
+{{< /alert >}}
 
 还是以刚才的第二层 layer（88888b...）为例，看看实际的数据：
 
@@ -357,7 +363,7 @@ drwxr-xr-x 3 root root 18 Feb 28 14:13 usr/
 drwxr-xr-x 3 root root 17 Feb 28 14:14 var/
 ```
 
-## <span id="inline-toc">6.</span> manifest文件去哪了？
+## manifest文件去哪了？
 
 ----
 
@@ -367,7 +373,7 @@ drwxr-xr-x 3 root root 17 Feb 28 14:14 var/
 
 manifest 里面包含的内容就是对 config 和 layer 的 `sha256 + media type` 描述，目的就是为了下载 config 和 layer，等 image 下载完成后，manifest 的使命就完成了，里面的信息对于 image 的本地管理来说没什么用，所以 docker 在本地没有单独的存储一份 manifest 文件与之对应。
 
-## <span id="inline-toc">7.</span> 结束语
+## 结束语
 
 ----
 
@@ -377,7 +383,7 @@ manifest 里面包含的内容就是对 config 和 layer 的 `sha256 + media typ
 
 + `/var/lib/docker/image/overlay2/layerdb/mounts`: 创建 container 时，docker 会为每个 container 在 image 的基础上创建一层新的 layer，里面主要包含 /etc/hosts、/etc/hostname、/etc/resolv.conf 等文件，创建的这一层 layer 信息就放在这里，后续在介绍容器的时候，会专门介绍这个目录的内容。
 
-## <span id="inline-toc">8.</span> 参考
+## 参考
 
 ----
 

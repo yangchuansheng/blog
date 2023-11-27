@@ -3,6 +3,8 @@ keywords:
 - tcp
 - tcp reset attack
 - tcp 重置攻击
+- network
+- 网络
 title: "TCP 重置攻击的工作原理"
 date: 2020-06-10T10:59:04+08:00
 lastmod: 2020-06-10T10:59:04+08:00
@@ -14,8 +16,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- tcp
-categories: Network
+- TCP
+categories: 
+- network
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200615100722.png
 ---
 
@@ -84,9 +87,9 @@ TCP 总共有 `6` 个标志位，下文就会讲到其中的 `RST` 标志位。
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610182224.png)
 
-{{< notice note >}}
+{{< alert >}}
 TCP 头部包含了多个选项，其中有一个选择确认选项（`SACK`），如果使用该选项，那么当接收方收到了某个范围内的字节而不是连续的字节时，就会发送 `SACK` 告知对方。例如，只收到了字节 `1000~3000` 和 `4000~5000`，但没有收到 `3001~3999`。为了简单起见，下文讨论 TCP 重置攻击时将忽略选择确认选项。
-{{< /notice >}}
+{{< /alert >}}
 
 如果发送方发送了报文后在一段时间内没有收到 `ACK`，就认为报文丢失了，并重新发送报文，用相同的序列号标记。这就意味着，如果接收方收到了重复的报文，可以使用序列号来判断是否见过这个报文，如果见过则直接丢弃。网络环境是错综复杂的，往往并不是如我们期望的一样，先发送的数据包，就先到达目标主机，反而它很骚，可能会由于网络拥堵等乱七八糟的原因，会使得旧的数据包，先到达目标主机。一般分两种情况：
 
@@ -151,9 +154,9 @@ TCP 规范规定，接收方应该忽略任何序列号在接收窗口之外的�
 
 ## 4. 模拟攻击
 
-{{< notice note >}}
+{{< alert >}}
 以下实验是在 `OSX` 系统中完成的，其他系统请自行测试。
-{{< /notice >}}
+{{< /alert >}}
 
 现在来总结一下伪造一个 TCP 重置报文要做哪些事情：
 

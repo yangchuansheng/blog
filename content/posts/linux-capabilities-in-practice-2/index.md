@@ -17,9 +17,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- linux
-- capabilities
-categories: linux
+- Capabilities
+categories: 
+- Linux
 series:
 - Linux Capabilities 入门系列
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20201019215252.png
@@ -29,15 +29,15 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 该系列文章总共分为三篇：
 
-+ [Linux Capabilities 入门教程：概念篇](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)
-+ [Linux Capabilities 入门教程：基础实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-1/)
-+ [Linux Capabilities 入门教程：进阶实战篇](https://icloudnative.io/posts/linux-capabilities-in-practice-2/)
++ [Linux Capabilities 入门教程：概念篇](/posts/linux-capabilities-why-they-exist-and-how-they-work/)
++ [Linux Capabilities 入门教程：基础实战篇](/posts/linux-capabilities-in-practice-1/)
++ [Linux Capabilities 入门教程：进阶实战篇](/posts/linux-capabilities-in-practice-2/)
 
-Linux capabilities 非常晦涩难懂，为此我专门写了两篇文章来解释其[基本原理](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)和[设置方法](https://icloudnative.io/posts/linux-capabilities-in-practice-1/)。本文将会继续研究 Linux capabilities 更高级的应用案例，并结合 Docker 和 Kubernetes 来加深理解。
+Linux capabilities 非常晦涩难懂，为此我专门写了两篇文章来解释其[基本原理](/posts/linux-capabilities-why-they-exist-and-how-they-work/)和[设置方法](/posts/linux-capabilities-in-practice-1/)。本文将会继续研究 Linux capabilities 更高级的应用案例，并结合 Docker 和 Kubernetes 来加深理解。
 
 ## 1. 快速回顾
 
-如果你看过该系列教程的[第一篇](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)，那你应该大致了解下面的计算公式：
+如果你看过该系列教程的[第一篇](/posts/linux-capabilities-why-they-exist-and-how-they-work/)，那你应该大致了解下面的计算公式：
 
 > P'(ambient)     = (file is privileged) ? 0 : P(ambient)
 >
@@ -106,7 +106,7 @@ CapAmb:	0000000000000000
 
 ## 2. 为可执行文件分配 capabilities
 
-我在[上一篇文章](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/#span-idinline-toc3span-运行-execve-后-capabilities-的变化)中提到过，通过适当的配置，进程可以获取可执行文件的 `Bounding` 集合中的 capabilities。下面通过一个例子来加深理解。
+我在[上一篇文章](/posts/linux-capabilities-why-they-exist-and-how-they-work/#span-idinline-toc3span-运行-execve-后-capabilities-的变化)中提到过，通过适当的配置，进程可以获取可执行文件的 `Bounding` 集合中的 capabilities。下面通过一个例子来加深理解。
 
 以 `ping` 这个命令为例，它的二进制文件被设置了 `SUID`，所以可以以 root 身份运行：
 
@@ -198,7 +198,7 @@ $ $ capsh --decode=0000000000002000
 
 只有 `Permitted` 集合中包含了 `CAP_NET_RAW` capabilities，`Effective` 集合中并不包含，按常理 ping 是无法正常工作的。这是为啥呢？
 
-其实 ping 在执行过程中会将 Permitted 集合中的 `CAP_NET_RAW` capabilities 加入 `Effective` 集合中，打开 Socket 之后再将该 capabilities 从 `Effective` 集合中移除，所以 `grep` 是看不到的。其中这就是我在[第一篇文章](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/#span-idinline-toc4span-简单示例)提到的 ping 文件具有 **capabilities 感知能力**。可以通过 `stace` 跟踪系统调用来验证：
+其实 ping 在执行过程中会将 Permitted 集合中的 `CAP_NET_RAW` capabilities 加入 `Effective` 集合中，打开 Socket 之后再将该 capabilities 从 `Effective` 集合中移除，所以 `grep` 是看不到的。其中这就是我在[第一篇文章](/posts/linux-capabilities-why-they-exist-and-how-they-work/#span-idinline-toc4span-简单示例)提到的 ping 文件具有 **capabilities 感知能力**。可以通过 `stace` 跟踪系统调用来验证：
 
 ```bash
 $ sudo strace builddir/ping/ping -c 1 wwwww.baidu.com
@@ -411,7 +411,7 @@ $ docker run -p 8000:80 --security-opt=no-new-privileges:true \
 Cannot set cap: Operation not permitted
 ```
 
-详细解释可参考 [no_new_privs](https://icloudnative.io/posts/linux-capabilities-in-practice-1/#no_new_privs)。
+详细解释可参考 [no_new_privs](/posts/linux-capabilities-in-practice-1/#no_new_privs)。
 
 对于容器玩家，我的最终建议是：**移除所有非必要的 capabilities，并以非 root 身份运行。** 使用 `Ambient` 集合与可执行文件的 capabilities 进行逻辑运算可以得到一个相对安全的容器环境，大部分情况下应该不需要使用 `set_ambient` 这样的辅助程序。
 

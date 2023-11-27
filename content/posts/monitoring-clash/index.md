@@ -21,7 +21,9 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - Clash
-categories: gfw
+- Grafana
+- Loki
+categories: GFW
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-15-11-10-nOYkzx.png
 ---
 

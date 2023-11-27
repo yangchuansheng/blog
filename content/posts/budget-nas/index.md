@@ -23,7 +23,7 @@ tags:
 - NAS
 - TrueNAS
 - ZFS
-categories: share
+categories: tech
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-19-15-9buRzP.png
 ---
 
@@ -165,7 +165,7 @@ ZFS 的价值在于，如果其中一块硬盘坏了，可以直接换掉，不�
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-12-03-0xss7M.jpg)
 
-> ⚠️警告：我现在有点后悔选择了这个主板，参考[下面的讨论](https://icloudnative.io/posts/budget-nas/#%E4%B8%BB%E6%9D%BF-1)。
+> ⚠️警告：我现在有点后悔选择了这个主板，参考[下面的讨论](/posts/budget-nas/#%E4%B8%BB%E6%9D%BF-1)。
 > 
 
 [B450](https://www.newegg.com/asus-rog-strix-b450-i-gaming/p/N82E16813119143) 这个主板也不错，与 [ASUS Prime A320I-K](https://www.asus.com/Motherboards-Components/Motherboards/PRIME/PRIME-A320I-K/) 很相似，但价格却翻了一倍，目测对超频的支持更好，但我对这方面没什么需求。

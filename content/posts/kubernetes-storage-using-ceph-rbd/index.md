@@ -15,8 +15,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- ceph
-categories: cloud-native
+- Ceph
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200915133850.png
 ---
 

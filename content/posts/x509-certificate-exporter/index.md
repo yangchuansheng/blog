@@ -18,9 +18,9 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- prometheus
-- Kubesphere
-categories: Monitoring
+- Prometheus
+- Kubernetes
+categories: ["cloud-native", "Monitoring"]
 img: https://pek3b.qingstor.com/kubesphere-community/images/20210713231336.jpg
 ---
 

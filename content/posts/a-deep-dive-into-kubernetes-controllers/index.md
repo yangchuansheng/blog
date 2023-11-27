@@ -23,7 +23,7 @@ Kubernetes 中运行了一系列控制器来确保集群的当前状态与期望
 
 本文我将会带你深入了解 Kubernetes 控制器的内部结构、基本组件以及它的工作原理。本文使用的所有代码都是从 Kubernetes 控制器的当前实现代码中提取的，基于 Go 语言的 [client-go](https://github.com/kubernetes/client-go) 库。
 
-## <span id="inline-toc">1.</span> 控制器的模型
+## 控制器的模型
 
 ----
 
@@ -51,7 +51,7 @@ for {
 }
 ```
 
-## <span id="inline-toc">2.</span> 水平触发的 API
+## 水平触发的 API
 
 ----
 
@@ -62,9 +62,9 @@ Kubernetes 的 API 和控制器都是基于水平触发的，可以促进系统�
 
 Kubernetes 水平触发的 API 实现方式是：监视系统的实际状态，并与对象的 `Spec` 中定义的期望状态进行对比，然后再调用 `Reconcile` 函数来调整实际状态，使之与期望状态相匹配。
 
-{{< notice note >}}
+{{< alert >}}
 水平触发的 API 也叫声明式 API。
-{{< /notice >}}
+{{< /alert >}}
 
 水平触发的 API 有以下几个特点：
 
@@ -81,15 +81,15 @@ Kubernetes 水平触发的 API 实现方式是：监视系统的实际状态，�
 
 用户修改了某个 Deployment 的镜像，然后进行回滚。在回滚过程中发现容器陷入 crash 循环，需要增加内存限制。然后用户更新了 Deployment 的内容，调整内存限制，重新开始回滚。在水平触发系统中，控制器会立即停止上一次回滚动作，开始根据最新值进行回滚。而在边缘触发系统中，控制器必须等上一次回滚操作完成才能进行下一次回滚。
 
-## <span id="inline-toc">3.</span> 控制器的内部结构
+## 控制器的内部结构
 
 ----
 
 每个控制器内部都有两个核心组件：`Informer/SharedInformer` 和 `Workqueue`。其中 `Informer/SharedInformer` 负责 watch Kubernetes 资源对象的状态变化，然后将相关事件（evenets）发送到 `Workqueue` 中，最后再由控制器的 `worker` 从 `Workqueue` 中取出事件交给控制器处理程序进行处理。
 
-{{< notice note >}}
+{{< alert >}}
 <strong>事件</strong> = <strong>动作</strong>（create, update 或 delete） + <strong>资源的 key</strong>（以 <code>namespace/name</code> 的形式表示）
-{{< /notice >}}
+{{< /alert >}}
 
 ### Informer
 
@@ -117,9 +117,9 @@ store, controller := cache.NewInformer {
 
 尽管 Informer 还没有在 Kubernetes 的代码中被广泛使用（目前主要使用 `SharedInformer`，下文我会详述），但如果你想编写一个自定义的控制器，它仍然是一个必不可少的概念。
 
-{{< notice note >}}
+{{< alert >}}
 你可以把 <code>Informer</code> 理解为 API Server 与控制器之间的事件代理，把 `Workqueue` 理解为存储事件的数据结构。
-{{< /notice >}}
+{{< /alert >}}
 
 下面是用于构造 Informer 的三种模式：
 
@@ -200,7 +200,7 @@ workqueue.NewRateLimitingQueue(workqueue.DefaultControllerRateLimiter())
 
 `Workqueue` 提供了很多函数来处理 key，每个 key 在 `Workqueue` 中的生命周期如下图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/eENdLY.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/eENdLY.jpg)
 
 如果处理事件失败，控制器就会调用 `AddRateLimited()` 函数将事件的 key 放回 `Workqueue` 以供后续重试（如果重试次数没有达到上限）。如果处理成功，控制器就会调用 `Forget()` 函数将事件的 key 从 `Workqueue` 中移除。**注意：该函数仅仅只是让 `Workqueue` 停止跟踪事件历史，如果想从 `Workqueue` 中完全移除事件，需要调用 `Done()` 函数。**
 
@@ -230,11 +230,11 @@ controller.runWorker()
 
 所有处理流程如下所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-06-29-033816.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-06-29-033816.jpg)
 
 <center><p id=small>控制器处理事件的流程</p></center>
 
-## <span id="inline-toc">4.</span> 参考资料
+## 参考资料
 
 ----
 

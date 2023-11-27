@@ -134,7 +134,7 @@ $ /opt/wireguard.sh -s
 $ rm -rf /etc/wireguard/*
 ```
 
-然后手动生成秘钥和配置文件，具体的流程请参考：[WireGuard 的搭建使用与配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)。
+然后手动生成秘钥和配置文件，具体的流程请参考：[WireGuard 的搭建使用与配置详解](/posts/wireguard-docs-practice/)。
 
 如果你想通过 Web UI 来管理 WireGuard 的配置文件，可以看看这个项目：[Wg Gen Web](https://github.com/vx3r/wg-gen-web)
 

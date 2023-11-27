@@ -5,13 +5,17 @@ subtitle: "一种全新的 Ingress 实现方式——Envoy"
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["envoy", "kubernetes", "contour"]
+categories: 
+- cloud-native
+tags:
+- Envoy
+- Kubernetes
+- Contour
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-080723.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-080723.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-080723.png)
 
 在 Kubernetes 中运行大规模以 Web 为中心的工作负载，最关键的需求之一就是在 `L7` 层实现高效流畅的入口流量管理。自从第一批 `Kubernetes Ingress Controller` 开发完成以来，`Envoy`（由 Matt Klein 和 Lyft 团队开发）已经成为云原生生态系统中的新生力量。Envoy 之所以受到支持，因为它是一个 CNCF 托管的项目，与整个容器圈和云原生架构有着天然的支持。
 
@@ -27,7 +31,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 下面我们就来试用一下。
 
-## <span id="inline-toc">1.</span> 安装步骤
+## 安装步骤
 
 ----
 
@@ -49,11 +53,11 @@ Contour Ingress controller 由两个组件组成：
 + Contour 与 Envoy 之间通过双向认证的自签名证书进行通信，大大增强了安全性。
 + 升级 Contour 不需要重启 Envoy。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-080529.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-080529.jpg)
 
 听起来好像不错的样子。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-27-105941.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-27-105941.jpg)
 
 我们就采用第三种方案来部署，首先克隆官方仓库，进入 manifest 清单目录：
 
@@ -121,9 +125,9 @@ contour-certgen   1/1           2s         4m42s
 
 `contour-certgen` 是一个 Job，它会生成有效期为一年的 mTLS（双向认证）证书，并将其挂载到 Contour 和 Envoy 的容器中。如果你想自定义证书，可以参考[官方文档](https://github.com/heptio/contour/blob/master/docs/grpc-tls-howto.md)。
 
-> 如果你还没有部署 Kubernetes 集群怎么办？废话，当然是用 [sealos](https://icloudnative.io/posts/sealos/) 啊！分分钟搞起一个高可用集群。
+> 如果你还没有部署 Kubernetes 集群怎么办？废话，当然是用 [sealos](/posts/sealos/) 啊！分分钟搞起一个高可用集群。
 
-## <span id="inline-toc">2.</span> Ingress 测试
+## Ingress 测试
 
 ----
 
@@ -159,9 +163,9 @@ $ echo "$INGRESS_HOST kuard.local" >> /etc/hosts
 
 现在我们就可以在浏览器中输入域名 `kuard.local` 访问应用了：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-27-135235.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-27-135235.png)
 
-## <span id="inline-toc">3.</span> Contour 工作原理
+## Contour 工作原理
 
 ----
 
@@ -173,7 +177,7 @@ Contour 同时支持 `Ingress` 资源对象和 `IngressRoute` 资源对象（通
 
 Contour 将收集到的这些对象处理为虚拟主机及其路由规则的**有向非循环图**（DAG），这表明 Contour 将有权构建路由规则的顶级视图，并将群集中的相应服务和TLS秘钥连接在一起。一旦构建了这个新的数据结构，我们就可以轻松实现 `IngressRoute` 对象的验证，授权和分发。改数据结构导出的 `png` 图片如下图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/DQTYlY.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/DQTYlY.jpg)
 
 Envoy API 调用和 Kubernetes API 资源之间的映射关系如下：
 
@@ -183,7 +187,7 @@ Envoy API 调用和 Kubernetes API 资源之间的映射关系如下：
 
 + <span id="inline-blue">RDS</span> : 路由发现服务。映射为 Kubernetes 中的 `Ingress`。提供了虚拟主机名和前缀路由信息的 RDS 与 Ingress 匹配得更好。
 
-## <span id="inline-toc">4.</span> 映射关系详情
+## 映射关系详情
 
 ----
 
@@ -199,7 +203,7 @@ Envoy API 调用和 Kubernetes API 资源之间的映射关系如下：
 
 `RDS` 更像是 Kubernetes 中的 `Ingress` 资源。RDS 将前缀，路径或正则表达式之一路由到 Envoy 群集。Envoy 集群的名称可以从 Ingress 的 `IngressSpec` 的配置项中获取（比如：`namespace/serviceName_servicePort`），因为这是一个选择器，它会匹配 Service 对象被转换后返回的 CDS 对象。
 
-## <span id="inline-toc">5.</span> Contour 架构分析
+## Contour 架构分析
 
 ----
 
@@ -210,17 +214,17 @@ Contour Ingress controller 由两个组件组成：
 
 以本文的部署方式为例，在 Envoy 的 Pod 初始化期间，Contour 作为 `Init` 容器运行，并将 bootstrap（初始化）配置写入一个 temporary volume。该 `Volume` 被传递给 Envoy 容器并告诉 Envoy 将另一个 Deployment 中的 Contour 容器视为控制平面。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-27-143803.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-27-143803.png)
 
 初始化完成后，Envoy 容器启动，检索 Contour 写入的 bootstrap 配置，并开始轮询 Contour 以热更新配置。如果控制平面无法访问，Envoy 将会进行优雅重试。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-27-143825.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-27-143825.png)
 
 Contour 相当于 Kubernetes API 的客户端。它监视 `Ingress`，`Service` 和 `Endpoint` 对象，并通过将其对象缓存转换为相关的 `JSON` 字段来充当其 Envoy 的控制平面。
 
 从 Kubernetes 到 Contour 的信息转换是通过 `SharedInformer` 框架 watching API 来完成的；而从 Contour 到 Envoy 的信息转换是通过 Envoy 定期轮询来实现的。
 
-## <span id="inline-toc">6.</span> IngressRoute 介绍
+## IngressRoute 介绍
 
 ----
 
@@ -276,7 +280,7 @@ spec:
 
 对应关系很简单，我就不再详细介绍了，更多功能配置可以参考官方仓库的文档：[IngressRoute](https://github.com/heptio/contour/blob/master/docs/ingressroute.md)。
 
-## <span id="inline-toc">7.</span> Envoy 初始配置文件
+## Envoy 初始配置文件
 
 ----
 
@@ -288,7 +292,7 @@ $ kubectl -n heptio-contour exec envoy-lb8mm -- cat /config/envoy.json > envoy.j
 
 打开网站 [https://www.bejson.com/jsonviewernew/](https://www.bejson.com/jsonviewernew/)，将配置文件内容复制粘贴进去，可以看到配置文件的结构如图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-27-145403.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-27-145403.png)
 
 其中各个配置节点的内容如下：
 
@@ -446,23 +450,23 @@ $ kubectl -n heptio-contour exec envoy-lb8mm -- cat /config/envoy.json > envoy.j
 
 Envoy 配置初始化流程：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/contour-envoy.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/contour-envoy.svg)
 
 1. Envoy initContainer 根据启动参数和 K8S API Server 中的配置信息生成 Envoy 的初始配置文件 `envoy.json`，该文件告诉 Envoy 从 `xDS server` 中获取动态配置信息，并配置了 xDS server 的地址信息，即控制平面的 `Contour`。
 2. Envoy 使用配置文件 `envoy.json` 启动。
 3. Envoy 根据获取到的动态配置启动 Listener，并根据 Listener 的配置，结合 Route 和 Cluster 对进入的流量进行处理。
 
-## <span id="inline-toc">8.</span> IngressRoute 配置映射
+## IngressRoute 配置映射
 
 ----
 
 通过上节的分析我们知道，Envoy 中实际生效的配置是由初始化配置文件中的静态配置和从 Contour 获取的动态配置一起组成的，我们可以通过 Envoy 的管理接口来获取 Envoy 的完整配置，先打开 Envoy 的管理接口：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-033029.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-033029.png)
 
 然后点击 `config_dump`，就能看到 Envoy 的完整配置：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-033133.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-033133.png)
 
 我们在第二节创建了一个 ingressroute，现在来看看它是怎么映射到 Envoy 的配置文件中的。你可以到 `config_dump` 中查找相关配置，但还有更好的办法，我们可以通过 Contour 的命令行工具直接调用 Contour 的 xDS gRPC 接口来分别查看 Envoy 的 Listener、Route、Cluster 和 Endpoint 配置。
 
@@ -478,7 +482,7 @@ contour-767fd99989-kcjxz   0/1     Running   0          14h
 
 看看哪个是 leader：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8A%E5%8D%8811.53.32.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8A%E5%8D%8811.53.32.png)
 
 可以看到该实例不是 leader，我们到另一个实例中去查看 Envoy xDS 配置。
 
@@ -492,7 +496,7 @@ Listener 的配置可以通过下面的命令查看：
 $ kubectl -n heptio-contour exec -it contour-767fd99989-27qjw -- contour cli --cafile=/ca/cacert.pem --cert-file=/certs/tls.crt --key-file=/certs/tls.key lds
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%8812.02.20.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%8812.02.20.png)
 
 可以看到 Listener 被绑定到了 80 端口上，同时通过 RDS 配置了一个路由规则 `ingress_http`，在路由规则中再根据不同的请求目的地对请求进行处理。
 
@@ -506,7 +510,7 @@ Route 的配置可以通过下面的命令查看：
 $ kubectl -n heptio-contour exec -it contour-767fd99989-27qjw -- contour cli --cafile=/ca/cacert.pem --cert-file=/certs/tls.crt --key-file=/certs/tls.key rds
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%882.58.38.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%882.58.38.png)
 
 上面是 `ingress_http` 的路由配置，对应了两个 `virtual host`，其中一个是默认路由（图中省略），上面展示的是 kuard 的路由，对应到 Cluster `default/kuard/80/da39a3ee5e`。其中 `domains: "kuard.local:*"` 表示允许访问的域名为 kuard.local，端口可以是任意值。
 
@@ -520,7 +524,7 @@ Cluster 的配置可以通过下面的命令查看：
 $ kubectl -n heptio-contour exec -it contour-767fd99989-27qjw -- contour cli --cafile=/ca/cacert.pem --cert-file=/certs/tls.crt --key-file=/certs/tls.key cds
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%883.10.32.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%883.10.32.png)
 
 `cluster_name: "contour"` 表示通过 xDS 接口从 contour 控制平面动态获取 Endpoint 信息。获取到的 Endpoint 是 `default/kuard`。
 
@@ -534,7 +538,7 @@ Cluster 的配置可以通过下面的命令查看：
 $ kubectl -n heptio-contour exec -it contour-767fd99989-27qjw -- contour cli --cafile=/ca/cacert.pem --cert-file=/certs/tls.crt --key-file=/certs/tls.key eds|grep "default/kuard" -A 34 -B 2
 ```
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-071943.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-071943.png)
 
 验证一下：
 
@@ -545,7 +549,7 @@ NAME    ENDPOINTS                                                     AGE
 kuard   100.118.117.18:8080,100.119.55.150:8080,100.91.147.204:8080   17h
 ```
 
-## <span id="inline-toc">9.</span> 对接监控
+## 对接监控
 
 ----
 
@@ -555,9 +559,9 @@ Contour 和 Envoy 都暴露一些监控指标可以被 `Prometheus` 抓取，官
 
 Envoy 默认通过 admin 接口暴露监控指标，为了避免暴露 admin 接口，Contour 创建了一个静态 Listener，只将访问路径为 `/stats` 的流量转发到 `service-stats` Cluster，即 admin 接口，其他所有请求一律拒绝访问。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%884.28.00.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%884.28.00.png)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%884.31.22.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-28%20%E4%B8%8B%E5%8D%884.31.22.png)
 
 > 本文只是为了方便查看，才将 admin 接口的 IP 改为 0.0.0.0，生产环境建议不要改，默认值为 `127.0.0.1`。
 
@@ -814,7 +818,7 @@ $ echo "$INGRESS_HOST prometheus.sealos.io" >> /etc/hosts
 
 现在我们可以在浏览器中输入域名 `prometheus.sealos.io` 来查看 Prometheus Target 状态。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-29%20%E4%B8%8A%E5%8D%881.01.47.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-28-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-08-29%20%E4%B8%8A%E5%8D%881.01.47.png)
 
 可以看到这两个 Target 已经被抓取到了。
 
@@ -866,8 +870,8 @@ $ kubectl apply -f grafana-deployment.yaml
 
 现在在浏览器中输入域名 `grafana.sealos.io`，就可以看到 Contour 和 Envoy 的 Dashboard 了。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-29-060947.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-29-060947.png)
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-08-29-061037.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-08-29-061037.png)
 
 对接监控到这里就结束了，剩下的大家可以自己去探索，总体来说难度还是稍微有点大，希望我的细心讲解能够帮助到你。

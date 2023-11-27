@@ -11,7 +11,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204221704.png
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> Kubernetes 中服务暴露的方式
+## Kubernetes 中服务暴露的方式
 
 ----
 
@@ -175,7 +175,7 @@ spec:
 + 打通 k8s 网络和物理网络直通
 + 物理网络的 dns 域名服务直接调用 k8s-dns 域名服务直接互访
 
-## <span id="inline-toc">2.</span> 集群环境
+## 集群环境
 
 ----
 
@@ -269,7 +269,7 @@ dao-2048                          10.98.217.155    <none>        80/TCP         
 
 以下为该方案的实施步骤。
 
-## <span id="inline-toc">3.</span> 部署边界 dns 代理服务器
+## 部署边界 dns 代理服务器
 ----
 
 布署 dns 代理服务节点为外部提供 dns 服务,以 `hostNetwork: true` 为非 k8s 集群网络物理机节点提供 dns 服务
@@ -306,8 +306,8 @@ spec:
       containers:
       - name: default-http-backend
         # Any image is permissible as long as:
-        # <span id="inline-toc">1.</span> It serves a 404 page at /
-        # <span id="inline-toc">2.</span> It serves 200 on a /healthz endpoint
+        # It serves a 404 page at /
+        # It serves 200 on a /healthz endpoint
         image: gcr.io/google_containers/defaultbackend:1.4
         livenessProbe:
           httpGet:
@@ -565,7 +565,7 @@ deployment "nginx-udp-ingress-controller" created
 
 通过 nginx 反向代理 `kube-dns` 服务，同时以 `hostNetwork: true` 向集群外部暴露 53 端口，为非 k8s 集群网络物理机节点提供 dns 服务。
 
-## <span id="inline-toc">4.</span> 部署 gateway 边界网关节点
+## 部署 gateway 边界网关节点
 
 ----
 
@@ -702,7 +702,7 @@ $ systemctl enable kube-proxy
 $ systemctl start kube-proxy
 ```
 
-## <span id="inline-toc">5.</span> 测试网关和 dns 解析以及服务访问情况
+## 测试网关和 dns 解析以及服务访问情况
 
 ------
 
@@ -790,7 +790,7 @@ $ route ADD -p 172.28.0.0 MASK 255.255.0.0 192.168.2.173
 
 <p id="div-border-top-red"><font color="blue">PS：</font>如果你不想一台台机器加路由和 dns，你可以把路由信息加入物理路由器上，这样就不用每台机都加路由和 dns 了，直接打通所有链路。</p>
 
-## <span id="inline-toc">6.</span> 参考
+## 参考
 
 ----
 

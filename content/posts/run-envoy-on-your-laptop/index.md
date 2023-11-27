@@ -1,17 +1,22 @@
 ---
+keywords:
+- envoy
+- envoy proxy
 title: "Envoy 基础教程：入门篇"
 subtitle: "在你的笔记本上运行 Envoy"
 date: 2018-06-28T08:54:18Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "service-mesh"
-tags: ["envoy"]
+categories:
+- cloud-native
+tags: 
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203220605.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> 前言
+## 前言
 
 ----
 
@@ -25,7 +30,7 @@ Istio 这个大家庭的家庭成员很多，为了能够顺利打入 Istio 内�
 
 本篇是 Envoy 系列教程的第一篇，介绍如何在笔记本电脑上运行 Envoy、测试代理配置并观察结果，让我们开始吧！
 
-## <span id="inline-toc">2.</span> 前提
+## 前提
 
 ---- 
 
@@ -38,7 +43,7 @@ Istio 这个大家庭的家庭成员很多，为了能够顺利打入 Istio 内�
 
 我们使用 Docker 和 Docker Compose 来编排和运行 Envoy 的示例服务，使用 curl 来访问 Envoy 示例服务。
 
-## <span id="inline-toc">3.</span> 部署 Envoy
+## 部署 Envoy
 
 ---- 
 
@@ -75,7 +80,7 @@ frontproxy_service2_1      /bin/sh -c /usr/local/bin/ ...   Up      80/tcp
 该命令将会启动一个前端代理和两个服务实例：service1 和 service2。
 
 
-## <span id="inline-toc">3.</span> 配置 Envoy
+## 配置 Envoy
 
 ---- 
 
@@ -256,14 +261,14 @@ Envoy 的一大特色是内置的 Admin 服务，如果你在浏览器中访问 
 通过 API 管理端可以对 Envoy 进行动态配置，参考 [v2 API reference](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api)。
 
 
-## <span id="inline-toc">4.</span> 进一步探索
+## 进一步探索
 
 ----
 
 如果你有兴趣探索 Envoy 的更多其他功能，[Envoy 官方示例](https://github.com/envoyproxy/envoy/tree/master/examples)还有一些更复杂的拓扑结构，但这些示例仍然使用静态类型的服务发现。如果你还想了解有关如何在生产环境中使用 Envoy 的更多信息，请参阅 [Integrating Service Discovery with Envoy](https://www.learnenvoy.io/articles/service-discovery.html) 以了解将 Envoy 与现有环境集成的意义。如果你在测试 Envoy 的过程中遇到问题，请访问 [Getting Help](https://www.learnenvoy.io/articles/getting-help.html) 页面以获取更多的帮助信息。
 
 
-## <span id="inline-toc">5.</span> 参考
+## 参考
 
 ----
 
@@ -272,6 +277,6 @@ Envoy 的一大特色是内置的 Admin 服务，如果你在浏览器中访问 
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

@@ -3,7 +3,7 @@ keywords:
 - vmware
 - vmware fusion
 - vctl
-title: "VMare Fusion 管理 Docker 容器教程"
+title: "VMware Fusion 管理 Docker 容器教程"
 date: 2020-06-08T16:04:25+08:00
 lastmod: 2020-06-08T16:04:25+08:00
 description: VMware Fusion 迎来了重大更新，可以直接使用 Docker 镜像启动容器，还可以构建镜像、推送镜像到镜像仓库，不需要安装 Docker Desktop。
@@ -14,8 +14,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- vmware
-categories: vmware
+- VMware
+categories:
+- virtualization
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200609143056.png
 ---
 
@@ -47,9 +48,9 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 这是一个在前台运行的命令行实用程序，它可以将用户输入转发到 `containerd` 守护进程，和 containerd 进程进行交互，类似于 `crictl` 的功能。
 
-{{< notice note >}}
+{{< alert >}}
 vctl 运行的每个容器都跑在一个称作『CRX』虚拟机的轻量级虚拟机内。默认情况下，`CRX` 虚拟机在容器启动时创建并启动。容器停止时，将关闭并移除该虚拟机。`CRX` 虚拟机的名称与容器的名称相同。 
-{{< /notice >}}
+{{< /alert >}}
 
 ## 2. 启动 Containerd
 

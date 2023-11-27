@@ -5,31 +5,28 @@ date: 2018-11-16T15:56:49+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh", "kubernetes"]
+categories: 
+- service-mesh
+tags:
+- Istio
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/SSL_termination_proxy.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<p id="div-border-left-red">
-<strong>本文主要内容来自 </strong><a href="https://preliminary.istio.io/zh/docs/examples/advanced-gateways/egress-tls-origination/" target="_blank">Istio 官方文档</a>，并对其进行了大量扩展和补充。
-</p>
+> 本文主要内容来自 [Istio 官方文档](https://preliminary.istio.io/zh/docs/examples/advanced-gateways/egress-tls-origination/)，并对其进行了大量扩展和补充。
 
 [控制出口流量](https://preliminary.istio.io/zh/docs/tasks/traffic-management/egress/)任务演示了如何从网格内部的应用程序访问 Kubernetes 集群外部的 `HTTP` 和 `HTTPS` 服务, 如该主题中所述，默认情况下，启用了 Istio 的应用程序无法访问集群外的 URL, 要启用外部访问，必须定义外部服务的 [ServiceEntry](https://preliminary.istio.io/docs/reference/config/istio.networking.v1alpha3/#ServiceEntry)，或者在安装时配置为[直接访问外部服务](https://preliminary.istio.io/zh/docs/tasks/traffic-management/egress/#%E7%9B%B4%E6%8E%A5%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E6%9C%8D%E5%8A%A1)。
 
 本文描述了如何在 Istio 中配置出口流量的 `TLS`。
 
-## <span id="inline-toc">1.</span> 用例
-
-----
+## 用例
 
 考虑一个对外部站点执行 HTTP 调用的遗留应用程序, 假设运行应用程序的组织收到一个新要求，该要求规定必须加密所有外部流量, 使用 Istio，只需通过配置就可以实现这样的要求，而无需更改应用程序的代码。
 
 在此任务中，如果原始流量为 HTTP，则将 Istio 配置为打开与外部服务的 HTTPS 连接, 应用程序将像以前一样发送未加密的 HTTP 请求，Istio 将加密应用程序的请求。
 
-## <span id="inline-toc">2.</span> 前提条件
-
-----
+## 前提条件
 
 + 按照[安装指南](https://preliminary.istio.io/zh/docs/setup/)中的说明设置 Istio 。
 + 启动 [sleep](https://github.com/istio/istio/tree/master/samples/sleep) 示例，它将作为外部调用的测试源。
@@ -54,9 +51,7 @@ $ kubectl apply -f <(istioctl kube-inject -f samples/sleep/sleep.yaml)
 $ export SOURCE_POD=$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})
 ```
 
-## <span id="inline-toc">3.</span> 配置 HTTP 和 HTTPS 外部服务
-
-----
+## 配置 HTTP 和 HTTPS 外部服务
 
 首先，与[控制出口流量](https://preliminary.istio.io/zh/docs/tasks/traffic-management/egress/)任务相同的方式配置对 cnn.com 的访问。 请注意，在 `hosts` 中定义中使用 `*` 通配符：`*.cnn.com` , 使用通配符可以访问 www.cnn.com 以及 edition.cnn.com 。
 
@@ -110,9 +105,7 @@ Content-Length: 151654
 $ kubectl delete serviceentry cnn
 ```
 
-## <span id="inline-toc">4.</span> 出口流量的 TLS
-
-----
+## 出口流量的 TLS
 
 总共需要创建三个资源对象，先定义一个 `ServiceEntry` 以允许网格内部应用程序访问 edition.cnn.com ，然后定义一个 `VirtualService` 来执行请求端口的重定向，最后定义一个 `DestinationRule` 用来执行 TLS 发起。
 
@@ -140,11 +133,7 @@ EOF
 
 与上一节中的 ServiceEntry 不同，这里将端口 433 上的协议改为 `HTTP`，因为客户端将发送 HTTP 请求，而 Istio 将为它们执行 TLS 发起, 此外，在此示例中，必须将解析策略设置为 DNS 才能正确配置 Envoy。
 
-此处 `ServiceEntry` 与 Envoy 配置文件的映射关系可以参考我之前的文章 [控制 Egress 流量](https://icloudnative.io/posts/control-egress-traffic/) 中的 **HTTP ServiceEntry 配置深度解析**这一部分，具体细节不再赘述。
-
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/service-entry-1.svg)
-
-<center><p id=small>图 1：ServiceEntry 与 Envoy route 的映射关系</p></center>
+此处 `ServiceEntry` 与 Envoy 配置文件的映射关系可以参考我之前的文章 [控制 Egress 流量](/posts/control-egress-traffic/) 中的 **HTTP ServiceEntry 配置深度解析**这一部分，具体细节不再赘述。
 
 ### VirtualService
 
@@ -199,10 +188,6 @@ $ istioctl pc routes $SOURCE_POD --name 80 -o json
 ```
 
 该 VirtualService 的作用就是将目的地址是 `edition.cnn.com:80` 的流量重新路由到 Cluster `outbound|443||edition.cnn.com`，以此来**实现访问 80 端口重定向到 443 端口的功能**。
-
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/serviceentry2.svg)
-
-<center><p id=small>图 2：ServiceEntry + VirtualService 与 Envoy route 的映射关系</p></center>
 
 请注意 VirtualService 使用特定的主机 edition.cnn.com （没有通配符），因为 Envoy 代理需要确切地知道使用 HTTPS 访问哪个主机。
 
@@ -308,17 +293,13 @@ Content-Length: 151654
 
 请注意，这里使用的命令与上一节中的命令相同，如果你以编程方式访问外部服务的应用程序，配置出口流量的 TLS 之后代码也不需要更改。因此，您可以通过配置 Istio 来获得 TLS 的好处，而无需对代码进行更改。
 
-## <span id="inline-toc">5.</span> 其他安全因素
-
-----
+## 其他安全因素
 
 请注意，应用程序 pod 与本地主机上的 sidecar 之间的流量仍未加密，这意味着如果攻击者能够穿透应用程序所在的节点，他们仍然可以在该节点的本地网络上看到未加密的通信。在某些环境中，可能存在严格的安全要求，即必须加密所有流量，即使在节点的本地网络上也是如此，如果有这么严格的要求，应用程序应该只使用 HTTPS（TLS），此任务中描述的 TLS 是不够的。
 
 另外还需要注意，即使对于应用程序发起的 HTTPS ，虽然所有 HTTP 详细信息（主机名，路径，标头等）都是加密的，但攻击者可以通过检查[服务器名称指示（SNI）](https://en.wikipedia.org/wiki/Server_Name_Indication)得知加密请求中的主机名称，因为在 TLS 握手期间，发送 `SNI` 字段时是不加密的。使用 HTTPS 可防止攻击者了解特定的主题和文章，但这并不能阻止攻击者发现你访问的是 cnn.com。
 
-## <span id="inline-toc">6.</span> 清理
-
-----
+## 清理
 
 1. 删除创建的 Istio 资源对象：
 

@@ -1,17 +1,25 @@
 ---
+keywords:
+- kubernetes
+- cloud native
+- dns
+- coredns
+- dnspolicy
 title: "Kubernetes DNS 高阶指南"
 subtitle: "为你的 Pod 自定义 DNS"
 date: 2018-08-27T18:11:52+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["kubernetes"]
+categories: 
+- cloud-native
+tags:
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203164645.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-> 原文链接：[Kubernetes DNS setting in your Pod ](https://www.hwchiu.com/kubernetes-dns.html)
+> 原文链接：[Kubernetes DNS setting in your Pod ](https://www.hwchiu.com/docs/2018/kubernetes-dns)
 
 `DNS` 是 Kubernetes 的核心功能之一，Kubernetes 通过 `kube-dns` 或 `CoreDNS` 作为集群的必备扩展来提供命名服务，通过 DNS 扩展，每一个 `Service` 都会产生一个独一无二的 FQDN（Fully Qualified Domain Name）名称。
 
@@ -19,9 +27,9 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 接下来使用下面这张架构图来说明可能的使用场景：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/oVqcww.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/oVqcww.jpg)
 
-## <span id="inline-toc">1.</span> 为什么需要自定义 DNS
+## 为什么需要自定义 DNS
 
 ----
 
@@ -33,7 +41,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 存在于独立出来的网络架构中的这些特殊的 Pod 基本上没法跟 Kubernetes 集群内的 DNS 互连，而且这些应用还有可能在外部有自己的 `DNS Server`，所以在这种场景下，我们希望这些应用（Pod1/Pod2）能够使用自定义的 `DNS Server`。
 
-## <span id="inline-toc">2.</span> 如何自定义 DNS
+## 如何自定义 DNS
 
 ----
 
@@ -205,9 +213,9 @@ nameserver 10.0.2.3
 
 相对于上述的 Default，`ClusterFirst` 是完全相反的操作，它会预先把 `kube-dns`（或 CoreDNS）的信息当作预设参数写入到该 Pod 内的 DNS 配置。
 
-{{< notice note >}}
+{{< alert >}}
 ClusterFirst 是预设的行为，若没有在 Pod 內特別描述 PodPolicy, 则会将 dnsPolicy 预设为 ClusterFirst。
-{{< /notice >}}
+{{< /alert >}}
 
 使用下面的示例来进行测试：
 
@@ -375,7 +383,7 @@ options ndots:5
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 
 

@@ -4,6 +4,7 @@ keywords:
 - kubernetes
 - cgroup
 - oom
+- linux cgroup
 title: "Kubernetes 内存资源限制实战"
 subtitle: "通过实验来探索容器在什么情况下会被 OOM killed"
 description: 本文将会通过实验来探索容器在什么情况下会被 OOM killed，同时帮助你深入理解 Kubernetes 是如何通过 cgroup 来限制内存资源的。
@@ -11,8 +12,11 @@ date: 2019-04-29T11:43:29+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["kubernetes","cgroup"]
+categories: 
+- cloud-native
+tags:
+- Cgroup
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/0_htOFoCBI9_8VXPLa.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -23,7 +27,7 @@ Kubernetes 对内存资源的限制实际上是通过 cgroup 来控制的，cgro
 
 今天我们将通过实验来探索容器在什么情况下会被 oom-killed。
 
-## <span id="inline-toc">1.</span> 实验准备
+## 实验准备
 
 ---
 
@@ -137,7 +141,7 @@ $ cat memory.limit_in_bytes
 
 按照预想，一旦 Pod 消耗的内存资源超过这个限制，cgroup 就会杀死容器进程，我们来测试一下。
 
-## <span id="inline-toc">2.</span> 压力测试
+## 压力测试
 
 ---
 
@@ -218,9 +222,9 @@ stress: FAIL: [271] (451) failed run completed in 7s
 
 从宿主机的视角来看，PID 为 `32308` 的进程被 oom-killed 了，我们需要重点关注最后一段日志输出：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-28-144115.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-04-28-144115.jpg)
 
-对于刚刚创建的 Pod 而言，有好几个进程作为 OOM killer 的候选人，其中最重要的进程是 `pause`，用来为业务容器创建共享的 network namespace，其 `oom_score_adj` 值为 `-998`，可以确保不被杀死。`oom_score_adj` 值越低就越不容易被杀死。关于 Pod 的 QoS 与 OOM 值的对应关系，可以参考：[Kubernetes 资源管理概述](https://icloudnative.io/posts/kubernetes-resource-management/#qos-%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F)。
+对于刚刚创建的 Pod 而言，有好几个进程作为 OOM killer 的候选人，其中最重要的进程是 `pause`，用来为业务容器创建共享的 network namespace，其 `oom_score_adj` 值为 `-998`，可以确保不被杀死。`oom_score_adj` 值越低就越不容易被杀死。关于 Pod 的 QoS 与 OOM 值的对应关系，可以参考：[Kubernetes 资源管理概述](/posts/kubernetes-resource-management/#qos-%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F)。
 
 除了 `pause` 进程外，剩下的进程 `oom_score_adj` 值均为 `939`，我们可以根据 [Kubernetes 官方文档](https://kubernetes.io/docs/tasks/administer-cluster/out-of-resource/#node-oom-behavior)中公式来验证一下：
 
@@ -252,9 +256,9 @@ Allocatable:
 
 如果只设置了 limits，Kubernetes 会自动把 Pod 的 requests 设置成和 limits 一样。所以其他进程的 `oom_score_adj` 值为 `1000–123*1024/2041888=938.32`，这个值已经很接近 syslog 中输出的 939 了。
 
-{{< notice note >}}
+{{< alert >}}
 OOM killer 会根据进程的内存使用情况来计算 `oom_score` 的值，并根据 `oom_score_adj` 的值来进行微调。
-{{< /notice >}}
+{{< /alert >}}
 
 进程的 `oom_score` 值可以通过以下命令来查看：
 
@@ -266,7 +270,7 @@ $ cat /proc/32308/oom_score
 
 因为业务容器内所有进程的 `oom_score_adj` 值都相同，所以谁的内存使用量最多，`oom_score` 值就越高，也就越容易被杀死。因为第一个 stress 进程使的内存使用量最多（100M），`oom_score` 值最高（值为 1718），所以被杀死。
 
-## <span id="inline-toc">3.</span> 总结
+## 总结
 
 ---
 

@@ -20,7 +20,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - HTTPie
 - GitHub
-categories: share
+categories: tech-social
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-17-13-12-8VgFHO.png
 ---
 

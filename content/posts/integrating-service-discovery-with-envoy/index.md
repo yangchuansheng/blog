@@ -1,12 +1,19 @@
 ---
+keywords:
+- envoy
+- envoy proxy
+- cds
+- eds
 title: "Envoy 基础教程：集成服务发现"
 subtitle: "为 Envoy 配置 CDS 和 EDS"
 date: 2018-07-04T10:12:43Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories:
+- cloud-native
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203201843.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -22,7 +29,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 2. 将控制平面中定义的服务发布到 Envoy 的 `clusters` 中
 3. 将 主机/容器/实例 发布到 Envoy 的 `endpoints` 中
 
-## <span id="inline-toc">1.</span> 实现一个控制平面
+## 实现一个控制平面
 
 ----
 
@@ -32,7 +39,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 + <span id="inline-blue">go-control-plane</span> : Envoy 官方仓库提供了一个开源版本的控制平面：[go-control-plane](https://github.com/envoyproxy/go-control-plane)。如果你想弄清楚如何从服务发现服务中获取所有内容，可以好好研究一下这个项目。
 + <span id="inline-blue">Pilot</span> :  如果想将 Envoy 和 Kubernetes 集成，你可以选择 [Istio](https://istio.io/) 项目。Istio 中的控制平面是由 [Pilot](https://istio.io/docs/concepts/traffic-management/pilot.html) 组件来实现的，它会将 `YAMl` 文件的内容转换为相应的 xDS 响应。如果你不想使用 Istio，也不用担心，因为 Pilot 完全可以脱离 Istio 的其他组件（如 `Mixer`）来单独和 Envoy 集成。
 
-## <span id="inline-toc">2.</span> 将服务发布到 CDS
+## 将服务发布到 CDS
 
 ----
 
@@ -66,7 +73,7 @@ resources:
 
 设置好 CDS 之后，就可以为此集群设置端点发现服务（EDS）了。
 
-## <span id="inline-toc">3.</span> 将实例发布到 EDS
+## 将实例发布到 EDS
 
 ----
 
@@ -90,7 +97,7 @@ resources:
 
 Envoy 将 CDS 和 EDS 视为一份份的报告并保持服务发现的最终一致性。如果到该端点的请求经常失败，就会从负载均衡中删除该端点，直到再次恢复正常访问。
 
-## <span id="inline-toc">4.</span> 最佳实践：对配置进行分区
+## 最佳实践：对配置进行分区
 
 ----
 
@@ -101,7 +108,7 @@ Envoy 将 CDS 和 EDS 视为一份份的报告并保持服务发现的最终一�
 
 对配置进行分区可以降低对不同服务的运营和管理的难度，但它的代价是使控制平面变得更加复杂，但客户往往是不关心控制平面的，所以牺牲控制平面的复杂度还是很值得的。
 
-## <span id="inline-toc">5.</span> 下一步
+## 下一步
 
 ----
 
@@ -109,6 +116,6 @@ Envoy 将 CDS 和 EDS 视为一份份的报告并保持服务发现的最终一�
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

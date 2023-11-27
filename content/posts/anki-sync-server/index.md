@@ -20,7 +20,8 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - Anki
 - kubernetes
-categories: share
+- Sealos
+categories: tech-social
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-21-uFy94B.jpg
 ---
 

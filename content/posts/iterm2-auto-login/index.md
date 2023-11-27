@@ -4,11 +4,13 @@ keywords:
 - trigger
 - zmodem
 - expect
-title: "iTerm2 实现 ssh 自动登录，并使用 Zmodem 实现快速传输文件"
+- iTerm2 美化
+- iTerm2 配置
+title: "iTerm2 配置与美化：SSH 自动登录，并使用 Zmodem 实现快速传输文件"
 subtitle: iTerm2 优化教程
 date: 2021-01-09T16:12:11+08:00
 lastmod: 2021-01-09T16:12:11+08:00
-description: 本文详细介绍了 macOS 平台中的 iTerm2 如何使用触发器和 expect 来实现 ssh 自动登录远程服务器，以及如何在 macOS 下通过 Zmodem 快速传输文件。
+description: 本文主要介绍了 iTerm2 自身的配置和美化，使用触发器和 expect 来实现 ssh 自动登录远程服务器，以及如何在 macOS 下通过 Zmodem 快速传输文件。
 draft: false
 author: 米开朗基杨
 hideToc: false
@@ -17,10 +19,12 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- iterm2
+- iTerm2
 categories: macOS
 img: https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200310170530.webp
 ---
+
+[上篇文章](/posts/customize-iterm2-1)我们介绍了 iTerm2 自身的配置和美化，这篇文章我们就来介绍 iTerm2 连接远程服务器的配置和优化。
 
 对于 YAML 工程师来说，我们经常需要 ssh 登录不同的服务器，每次登录时都要经历两个步骤：
 

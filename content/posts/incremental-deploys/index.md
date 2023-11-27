@@ -1,12 +1,17 @@
 ---
+keywords:
+- envoy
+- envoy proxy
 title: "Envoy 基础教程：实现增量部署"
 subtitle: "基于请求头的路由和加权负载均衡"
 date: 2018-07-02T05:37:37Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["envoy", "service mesh"]
+categories:
+- cloud-native
+tags:
+- Envoy
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203203329.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -15,7 +20,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 本文将继续沿用前文使用的示例，在原有配置文件的基础上新增了个别服务的新版本来演示流量是如何切换的（包括基于请求头的路由和加权负载均衡）。
 
-## <span id="inline-toc">1.</span> 基于请求头的路由
+## 基于请求头的路由
 
 ----
 
@@ -98,7 +103,7 @@ Hello from behind Envoy (service 1a)! hostname: 569ee89eebc8 resolvedhostname: 1
 
 Envoy 基于头文件的路由功能解锁了[在生产环境中测试开发代码](https://opensource.com/article/17/8/testing-production)的能力。
 
-## <span id="inline-toc">2.</span> 加权负载均衡
+## 加权负载均衡
 
 ----
 
@@ -127,7 +132,7 @@ $ docker-compose up --build -d
 
 增量部署是个非常强大的功能，它还可以和监控配合使用，以确保服务的版本差异（或者后端服务的架构差异）不会对该服务的版本更新产生不良影响。如果想模拟新版本的成功发布，可以将 service1a 的权重设置为 `100`，然后所有的流量都会被转发到 service 1a。同样，如果新发布的版本有缺陷，你可以通过将 service1a 的权重设置为 `0` 来回滚到之前的版本。
 
-## <span id="inline-toc">3.</span> 最佳实践
+## 最佳实践
 
 ----
 

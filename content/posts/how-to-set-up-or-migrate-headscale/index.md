@@ -22,7 +22,9 @@ tags:
 - WireGuard
 - Tailscale
 - Headscale
-categories: Network
+categories: 
+- Network
+- VPN
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-11-15-sM5HES.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-01-WKkKHb.jpg
 ---
@@ -33,11 +35,11 @@ meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/
 
 部分小伙伴可能会选择使用 frp 等针对特定协议和端口的内网穿透方案，但这种方案还是不够酸爽，无法访问家庭内网任意设备的任意端口。更佳的选择还是通过 VPN 来组建大内网。至于该选择哪种 VPN，毫无疑问肯定是 WireGuard，WireGuard 就是 VPN 的未来。**我已经不止一次向大家推荐使用 WireGuard 了，我累了，不想再讲了，你爱 JB 用辣鸡 OpenVPN 之类的就用吧，你开心就好。**
 
-WireGuard 相比于传统 VPN 的核心优势是没有 VPN 网关，所有节点之间都可以点对点（P2P）连接，也就是我之前提到的[全互联模式（full mesh）](https://icloudnative.io/posts/wireguard-full-mesh/#1-全互联模式架构与配置)，效率更高，速度更快，成本更低。
+WireGuard 相比于传统 VPN 的核心优势是没有 VPN 网关，所有节点之间都可以点对点（P2P）连接，也就是我之前提到的[全互联模式（full mesh）](/posts/wireguard-full-mesh/#1-全互联模式架构与配置)，效率更高，速度更快，成本更低。
 
 WireGuard 目前最大的痛点就是上层应用的功能不够健全，因为 WireGuard 推崇的是 Unix 的哲学，WireGuard 本身只是一个内核级别的模块，只是一个数据平面，至于上层的更高级的功能（比如秘钥交换机制，UDP 打洞，ACL 等），需要通过用户空间的应用来实现。
 
-所以为了基于 WireGuard 实现更完美的 VPN 工具，现在已经涌现出了很多项目在互相厮杀。笔者前段时间一直在推崇 [Netmaker](https://icloudnative.io/posts/configure-a-mesh-network-with-netmaker/)，它通过可视化界面来配置 WireGuard 的全互联模式，它支持 UDP 打洞、多租户等各种高端功能，几乎适配所有平台，非常强大。然而现实世界是复杂的，无法保证所有的 NAT 都能打洞成功，且 Netmaker 目前还没有 fallback 机制，如果打洞失败，无法 fallback 改成走中继节点。Tailscale 在这一点上比 Netmaker 高明许多，它支持 fallback 机制，可以尽最大努力实现全互联模式，部分节点即使打洞不成功，也能通过中继节点在这个虚拟网络中畅通无阻。
+所以为了基于 WireGuard 实现更完美的 VPN 工具，现在已经涌现出了很多项目在互相厮杀。笔者前段时间一直在推崇 [Netmaker](/posts/configure-a-mesh-network-with-netmaker/)，它通过可视化界面来配置 WireGuard 的全互联模式，它支持 UDP 打洞、多租户等各种高端功能，几乎适配所有平台，非常强大。然而现实世界是复杂的，无法保证所有的 NAT 都能打洞成功，且 Netmaker 目前还没有 fallback 机制，如果打洞失败，无法 fallback 改成走中继节点。Tailscale 在这一点上比 Netmaker 高明许多，它支持 fallback 机制，可以尽最大努力实现全互联模式，部分节点即使打洞不成功，也能通过中继节点在这个虚拟网络中畅通无阻。
 
 没错，我移情别恋了，从 Netmaker 阵营转向了 Tailscale，是渣男没错了。
 
@@ -45,16 +47,16 @@ WireGuard 目前最大的痛点就是上层应用的功能不够健全，因为 
 
 Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似，**最大的区别在于 Tailscale 是在用户态实现了 WireGuard 协议，而 Netmaker 直接使用了内核态的 WireGuard**。所以 Tailscale 相比于内核态 WireGuard 性能会有所损失，但与 OpenVPN 之流相比还是能甩好几十条街的，Tailscale 虽然在性能上做了些许取舍，但在功能和易用性上绝对是完爆其他工具：
 
-1. 开箱即用
-  + 无需配置防火墙
-  + 没有额外的配置
-2. 高安全性/私密性 
-  + 自动密钥轮换
-  + 点对点连接
-  + 支持用户审查端到端的访问记录
-3. 在原有的 ICE、STUN 等 UDP 协议外，实现了 DERP TCP 协议来实现 NAT 穿透
-4. 基于公网的控制服务器下发 ACL 和配置，实现节点动态更新
-5. 通过第三方（如 Google） SSO 服务生成用户和私钥，实现身份认证
++ 开箱即用
+   + 无需配置防火墙
+   + 没有额外的配置
++ 高安全性/私密性 
+   + 自动密钥轮换
+   + 点对点连接
+   + 支持用户审查端到端的访问记录
++ 在原有的 ICE、STUN 等 UDP 协议外，实现了 DERP TCP 协议来实现 NAT 穿透
++ 基于公网的控制服务器下发 ACL 和配置，实现节点动态更新
++ 通过第三方（如 Google） SSO 服务生成用户和私钥，实现身份认证
 
 简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 WireGuard。
 
@@ -382,9 +384,9 @@ macOS 有 3 种安装方法：
 
 从 macOS 从 10.15 开始新增了[系统扩展](https://developer.apple.com/system-extensions/)，说白了就是运行在用户态的内核扩展，它相比于传统的网络扩展增强了很多功能，比如内容过滤、透明代理、DNS 代理等。Tailscale 独立于应用商店的安装包使用的就是**系统扩展**，通过 DMG 或者 zip 压缩包进行分发。
 
-{{< notice warning >}}
+{{< alert >}}
 不要同时安装应用商店版本和独立分发版本，同时只能装一个。
-{{< /notice >}}
+{{< /alert >}}
 
 而命令行工具既没有使用网络扩展也没有使用系统扩展，而是使用的 [utun 接口](https://en.wikipedia.org/wiki/TUN/TAP)，相比于 GUI 版本缺少了部分功能，比如 MagicDNS 和 Taildrop。
 
@@ -409,9 +411,9 @@ macOS 有 3 种安装方法：
 
 你只需要按照图中所述的步骤操作即可，本文就不再赘述了。
 
-{{< notice warning >}}
+{{< alert >}}
 非应用商店版本的 macOS 客户端需要将 `io.tailscale.ipn.macos` 替换为 `io.tailscale.ipn.macsys`。即：`defaults write io.tailscale.ipn.macsys ControlURL http://<HEADSCALE_PUB_IP>:8080`
-{{< /notice >}}
+{{< /alert >}}
 
 修改完成后重启 Tailscale 客户端，在 macOS 顶部状态栏中找到 Tailscale 并点击，然后再点击  `Log in`。
 
@@ -607,4 +609,4 @@ $ ip route show table 52|grep "192.168.100.0/24"
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-10-52-TzXGEZ.png)
 
-本文给大家介绍了 Tailscale 和 Headscale，包括 Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网。下篇文章将会给大家介绍[如何让 Tailscale 使用自定义的 DERP Servers](https://icloudnative.io/posts/custom-derp-servers/)（也就是中继服务器），See you~~
+本文给大家介绍了 Tailscale 和 Headscale，包括 Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网。下篇文章将会给大家介绍[如何让 Tailscale 使用自定义的 DERP Servers](/posts/custom-derp-servers/)（也就是中继服务器），See you~~

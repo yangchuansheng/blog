@@ -23,12 +23,14 @@ tags:
 - WireGuard
 - Tailscale
 - Headscale
-categories: Network
+categories:
+- network
+- VPN
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-bwBdE5.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-zGvtDx.png
 ---
 
-前面几篇文章给大家给介绍了 Tailscale 和 Headscale，包括 [Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网](https://icloudnative.io/posts/how-to-set-up-or-migrate-headscale/#%E6%80%BB%E7%BB%93)。同时还介绍了[如何自建私有的 DERP 服务器，并让 Tailscale 使用我们自建的 DERP 服务器](https://icloudnative.io/posts/custom-derp-servers/)。
+前面几篇文章给大家给介绍了 Tailscale 和 Headscale，包括 [Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网](/posts/how-to-set-up-or-migrate-headscale/#%E6%80%BB%E7%BB%93)。同时还介绍了[如何自建私有的 DERP 服务器，并让 Tailscale 使用我们自建的 DERP 服务器](/posts/custom-derp-servers/)。
 
 今天我们来探索一下更复杂的场景。想象有这么一个场景，我系统通过 Tailscale 方便的连接一台不完全属于我的设备， 这台设备可能还有其他人也在使用。如果我仅仅是安装一个 Tailscale， 那么所有能登录这台设备的人都可以通过 Tailscale 连接我所有的设备。
 
@@ -36,9 +38,9 @@ meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/
 
 这就是 Tailscale ACL（Access Control List）干的事情。ACL 可以严格限制特定用户或设备在 Tailscale 网络上访问的内容。
 
-{{< notice warning >}}
+{{< alert >}}
 虽然 Headscale 兼容 Tailscale 的 ACL，但还是有些许差异的。**本文所讲的 ACL 只适用于 Headscale**，如果你使用的是官方的控制服务器，有些地方可能跟预期不符，请自行参考 Tailscale 的官方文档。
-{{< /notice >}}
+{{< /alert >}}
 
 Tailscale/Headscale 的默认访问规则是 `default deny`，也就是黑名单模式，只有在访问规则明确允许的情况下设备之间才能通信。所以 Tailscale/Headscale 默认会使用 `allowall` 访问策略进行初始化，该策略允许加入到 Tailscale 网络的所有设备之间可以相互访问。
 
@@ -50,9 +52,9 @@ Tailscale/Headscale 通过使用 group 这种概念，可以**只用非常少的
 
 Tailscale ACL 需要保存为 HuJSON 格式，也就是 [human JSON](https://github.com/tailscale/hujson)。HuJSON 是 JSON 的超集，允许添加注释以及结尾处添加逗号。这种格式更易于维护，对人类和机器都很友好。
 
-{{< notice warning >}}
+{{< alert >}}
 Headscale 除了支持 HuJSON 之外，还支持使用 YAML 来编写 ACL。本文如不作特殊说明，默认都使用 YAML 格式。
-{{< /notice >}}
+{{< /alert >}}
 
 Headscale 的 ACL 策略主要包含以下几个部分：
 

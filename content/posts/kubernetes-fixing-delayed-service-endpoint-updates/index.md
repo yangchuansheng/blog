@@ -42,9 +42,9 @@ Endpoint Controller 内部运行了一组 `workers` 来处理这些事件并更�
 
 这两个参数的默认值是 20，但当集群中的主机数量非常多时，默认值显然不满足集群运行的工作负载。经过不断调试之后，我将参数 `--kube-api-qps` 的值设置为 300，将 `--kube-api-burst` 的值设置为 325，上面的日志信息便消失了，同时添加或移除 Pod 时 Endpoint 也能够立即更新。
 
-{{< notice note >}}
+{{< alert >}}
 <code>--kube-api-qps</code> 和 <code>--kube-api-burst</code> 参数的值越大，kube-apiserver 和 etcd 的负载就越高。在我的集群中，通过适当地增加一些负载来解决这个问题是很值得的。
-{{< /notice >}}
+{{< /alert >}}
 
 ## 原文链接
 

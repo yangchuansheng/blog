@@ -10,8 +10,10 @@ date: 2020-02-29T16:31:23+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "monitoring"
-tags: ["grafana"]
+categories:
+- monitoring
+tags:
+- Grafana
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200229183341.webp"
 ---
 

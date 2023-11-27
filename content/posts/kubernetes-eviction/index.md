@@ -23,7 +23,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 当不可压缩资源不足时，Kubernetes 是通过 `kubelet` 来驱逐 Pod 的。kubelet 也不是随机驱逐的，它有自己的一套驱逐机制，每个计算节点的 kubelet 都会通过抓取 `cAdvisor` 的指标来监控节点的资源使用量，下面我们来具体分析每种情况。
 
-## <span id="inline-toc">1.</span> 存储资源不足
+## 存储资源不足
 
 ----
 
@@ -62,7 +62,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 可以看到在本例中，QoS 等级为 `Guaranteed` 的 Pod 最先被驱逐。
 
-## <span id="inline-toc">2.</span> 内存资源不足
+## 内存资源不足
 
 ----
 
@@ -106,7 +106,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > 当内存资源不足时，kubelet 在驱逐 Pod 时只会考虑 requests 和 Pod 的内存使用量，不会考虑 limits。
 
-## <span id="inline-toc">3.</span> Node OOM (Out Of Memory)
+## Node OOM (Out Of Memory)
 
 ----
 
@@ -123,7 +123,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > 容器使用的内存占系统内存的百分比 + oom_score_adj = oom_score
 
-OOM killer 会杀掉 `oom_score_adj` 值最高的容器，如果有多个容器的 `oom_score_adj` 值相同，就会杀掉内存使用量最多的容器（其实是因为内存使用量最多的容器的 oom_score 值最高）。关于 OOM 的更多内容请参考：[Kubernetes 内存资源限制实战](https://icloudnative.io/posts/memory-limit-of-pod-and-oom-killer/)。
+OOM killer 会杀掉 `oom_score_adj` 值最高的容器，如果有多个容器的 `oom_score_adj` 值相同，就会杀掉内存使用量最多的容器（其实是因为内存使用量最多的容器的 oom_score 值最高）。关于 OOM 的更多内容请参考：[Kubernetes 内存资源限制实战](/posts/memory-limit-of-pod-and-oom-killer/)。
 
 假设某节点运行着 4 个 Pod，且每个 Pod 中只有一个容器。每个 QoS 类型为 `Burstable` 的 Pod 配置的内存 requests 是 `4Gi`，节点的内存大小为 `30Gi`。每个 Pod 的 `oom_score_adj` 值如下所示：
 
@@ -136,7 +136,7 @@ OOM killer 会杀掉 `oom_score_adj` 值最高的容器，如果有多个容器�
 
 当调用 OOM killer 时，它首先选择 `oom_score_adj` 值最高的容器（1000），这里有两个容器的 `oom_score_adj` 值都是 1000，OOM killer 最终会选择内存使用量最多的容器。
 
-## <span id="inline-toc">4.</span> 总结
+## 总结
 
 ----
 

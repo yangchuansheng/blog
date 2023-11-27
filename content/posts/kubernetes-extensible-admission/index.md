@@ -11,7 +11,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203154107.png
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> 什么是准入控制
+## 什么是准入控制
 
 ----
 
@@ -25,7 +25,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 准入阶段由不同的插件组成，每个插件都能 “各司其职”，并明确知道自己要检查的对象结构。例如：`PodNodeSelector`（影响调度决策），`PodSecurityPolicy`（防止升级的容器）和 `ResourceQuota`（为每个 Namespace 限制资源配额）。 
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/5VRe5t.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/5VRe5t.jpg)
 
 准入分为两个阶段：
 
@@ -49,7 +49,7 @@ Admission 的 Mutation 阶段允许在资源内容生成前进行修改。因为
 
 下面将对准入控制工作流做一番详解。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/E2ykx1.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/E2ykx1.jpg)
 
 API Server 接收到客户端请求后首先进行认证鉴权，认证鉴权通过后才会进行后续的 `endpoint handler` 处理。
 
@@ -60,7 +60,7 @@ API Server 接收到客户端请求后首先进行认证鉴权，认证鉴权通
 + `Admission Controller validate`，可以自定义任何的对象校验规则。
 + internal object 转化为 versioned object，并且持久化存储到 etcd。
 
-## <span id="inline-toc">2.</span> 如何使用准入控制
+## 如何使用准入控制
 
 ----
 
@@ -71,7 +71,7 @@ Kubernetes 1.10 之前的版本可以使用 `--admission-control` 打开准入�
 
 值得一提的是，有些准入控制器可能会使用 `Alpha` 版本的 API，这时必须首先使能其使用的 API 版本。否则准入控制器不能工作，可能会影响系统功能。
 
-## <span id="inline-toc">3.</span> Admission Webhook
+## Admission Webhook
 
 ----
 
@@ -138,9 +138,9 @@ webhooks:
 
 + ⑤ <span id="inline-blue">caBundle</span> : 注意 API server 调用 Webhook 时一定是通过 TLS 认证的，所以 MutatingWebhookConfiguration 中一定要配置 caBundle。
 
-{{< notice note >}}
+{{< alert >}}
 对比 <code>initializerConfiguration</code>，ValidatingWebhookConfiguration 和 MutatingWebhookConfiguration 在 <code>rule</code> 的定义时，增加了 operations field，在 resources 定义时候可以指定 <code>subresource</code>，格式为 resource/subresource。
-{{< /notice >}}
+{{< /alert >}}
 
 ### 认证和信任
 
@@ -160,7 +160,7 @@ webhooks:
 
 对于在集群内运行的 Admission Webhook 来说，一个巧妙构建的 Webhook Admission Server 和拓扑结构，就是能够利用 Admission 插件中内置的安全默认值，并具有可从任何 API server 运行的安全、可移植和零配置的拓扑结构。
 
-## <span id="inline-toc">4.</span> 简单安全，可移植的拓扑结构
+## 简单安全，可移植的拓扑结构
 
 ----
 
@@ -174,11 +174,11 @@ webhooks:
 
 + 	因为中间会经过 kube-apiserver 这个安全的前端代理，所以 extension API servers 不会将其 `service account token` 泄漏给 Webhook。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/dte9NC.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/dte9NC.jpg)
 
 **简而言之：一个安全的拓扑结构可以使用 API server 聚合 (API server aggregation) 的所有安全机制，不需要额外的配置。**其他的拓扑结构也是可行的，但是需要额外的手动配置以及创建安全设置工作。尤其是像 `service catalog` 这种 extension API servers，上面的拓扑结构就是零配置，并且可移植到任何 Kubernetes 集群中。
 
-## <span id="inline-toc">5.</span> 如何使用 Admission Webhook
+## 如何使用 Admission Webhook
 
 ----
 
@@ -440,7 +440,7 @@ spec:
 
 Istio 就是使用 `ValidatingAdmissionWebhooks` 验证 Istio 配置，使用 `MutatingAdmissionWebhooks` 自动将 sidecar 代理注入至用户 pod。可以参考：[动态准入 Webhooks 概述](https://istio.io/zh/help/ops/setup/webhook/)。
 
-## <span id="inline-toc">6.</span> 总结
+## 总结
 
 ----
 
@@ -449,7 +449,7 @@ Istio 就是使用 `ValidatingAdmissionWebhooks` 验证 Istio 配置，使用 `M
 + webhook 可动态扩展 Admission 能力，满足自定义客户的需求。
 + 不需要重启 API Server，可通过创建 webhook configuration **热加载** webhook admission。
 
-## <span id="inline-toc">7.</span> 参考
+## 参考
 
 ----
 
@@ -458,6 +458,6 @@ Istio 就是使用 `ValidatingAdmissionWebhooks` 验证 Istio 配置，使用 `M
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

@@ -14,9 +14,10 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- kubevirt
-- kubernetes
-categories: cloud-native
+- Kubevirt
+- Kubernetes
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201126104701.png
 ---
 

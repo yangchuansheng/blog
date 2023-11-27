@@ -15,8 +15,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- grafana
-categories: monitoring
+- Grafana
+categories: 
+- monitoring
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201215135816.jpg
 ---
 
@@ -348,7 +349,7 @@ jobs:
 
 构建好镜像后，就可以直接运行容器来进行备份和恢复操作了。如果你想在集群内操作，可以通过 Deployment 或 Job 来实现；如果你想在本地或 k8s 集群外操作，可以选择 docker run，我不反对，你也可以选择 docker-compose，这都没问题。但我要告诉你一个更骚的办法，可以骚到让你无法自拔。
 
-首先需要在本地或集群外安装 Podman，如果操作系统是 `Win10`，可以考虑通过 `WSL` 来安装；如果操作系统是 Linux，那就不用说了；如果操作系统是 MacOS，请参考我的上篇文章：[在 macOS 中使用 Podman](https://icloudnative.io/posts/use-podman-in-macos/)。
+首先需要在本地或集群外安装 Podman，如果操作系统是 `Win10`，可以考虑通过 `WSL` 来安装；如果操作系统是 Linux，那就不用说了；如果操作系统是 MacOS，请参考我的上篇文章：[在 macOS 中使用 Podman](/posts/use-podman-in-macos/)。
 
 装好了 Podman 之后，就可以进行骚操作了，请睁大眼睛。
 

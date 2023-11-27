@@ -1,17 +1,27 @@
 ---
+keywords:
+- Device Mapper
+- devicemapper
+- docker
+- 容器
+- 云原生
+- Thin Provisioning
 title: "Device Mapper系列基础教程：Thin Provisioning 实践"
 subtitle: "Thin Provisioning Snapshot 演练"
 date: 2018-01-22T16:00:22+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "containers"
-tags: ["docker", "devicemapper"]
+categories:
+- cloud-native
+tags:
+- Docker
+- Device Mapper
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191205105752.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-## <span id="inline-toc">1.</span> Thin Provisioning Snapshot 演示
+## Thin Provisioning Snapshot 演示
 ------
 
 上一篇我们介绍了 `Device Mapper` 框架的技术原理及其核心概念，下面，我们用一系列的命令来演示一下 Device Mapper 的 `Thin Provisioning Snapshot` 是怎么玩的。
@@ -213,7 +223,7 @@ hello world, I am a base
 
 好了，我相信你看到了分层镜像的样子了。
 
-## <span id="inline-toc">2.</span> Docker 的 devicemapper
+## Docker 的 devicemapper
 ------
 
 上面基本上就是 Docker 的玩法了，我们可以看一下 docker 的 loopback 设备：

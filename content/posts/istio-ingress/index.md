@@ -1,31 +1,33 @@
 ---
+keywords:
+- service mesh
+- 服务网格
+- istio
+- kubernetes
+- ingress
 title: "Istio 服务网格中的网关"
 subtitle: "使用 Istio 控制 Ingress 流量"
 date: 2018-08-02T13:29:08+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh"]
+categories: 
+- service-mesh
+tags: 
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203192635.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
 在一个典型的网格中，通常有一个或多个用于终结外部 TLS 链接，将流量引入网格的负载均衡器（我们称之为 gateway）。 然后流量通过边车网关（sidecar gateway）流经内部服务。 应用程序使用外部服务的情况也很常见（例如访问 Google Maps API），一些情况下，这些外部服务可能被直接调用；但在某些部署中，网格中所有访问外部服务的流量可能被要求强制通过专用的出口网关（Egress gateway）。 下图描绘了网关在网格中的使用情况。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/gateways.svg)
-
-<center>*Istio服务网格中的网关*</center>
+![Istio服务网格中的网关](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/gateways.svg "Istio服务网格中的网关")
 
 其中 `Gateway` 是一个独立于平台的抽象，用于对流入专用中间设备的流量进行建模。下图描述了跨多个配置资源的控制流程。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/virtualservices-destrules.svg)
+![不同v1alpha3元素之间的关系](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/virtualservices-destrules.svg "不同v1alpha3元素之间的关系")
 
-<center>*不同v1alpha3元素之间的关系*</center>
-
-## <span id="inline-toc">1.</span> Gateway 介绍
-
-----
+## Gateway 介绍
 
 [Gateway](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#Gateway) 用于为 HTTP / TCP 流量配置负载均衡器，并不管该负载均衡器将在哪里运行。 网格中可以存在任意数量的 Gateway，并且多个不同的 Gateway 实现可以共存。 实际上，通过在配置中指定一组工作负载（Pod）标签，可以将 Gateway 配置绑定到特定的工作负载，从而允许用户通过编写简单的 Gateway Controller 来重用现成的网络设备。
 
@@ -50,7 +52,7 @@ spec:
     - bookinfo.com
 ```
 
-要为进入上面的 Gateway 的流量配置相应的路由，必须为同一个 host 定义一个 [VirtualService](https://icloudnative.io/posts/istio-traffic-management/)（参考上一篇博文），并使用配置中的 `gateways` 字段绑定到前面定义的 `Gateway` 上：
+要为进入上面的 Gateway 的流量配置相应的路由，必须为同一个 host 定义一个 [VirtualService](/posts/istio-traffic-management/)（参考上一篇博文），并使用配置中的 `gateways` 字段绑定到前面定义的 `Gateway` 上：
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -74,9 +76,7 @@ Gateway 可以用于建模边缘代理或纯粹的内部代理，如第一张图
 
 下面通过一个示例来演示如何配置 Istio 以使用 Istio  Gateway 在服务网格外部公开服务。
 
-## <span id="inline-toc">2.</span> 使用 Istio 网关配置 Ingress
-
-----
+## 使用 Istio 网关配置 Ingress
 
 让我们看看如何为 Gateway 在 HTTP 80 端口上配置流量。
 
@@ -136,7 +136,7 @@ Gateway 可以用于建模边缘代理或纯粹的内部代理，如第一张图
       
 3. 使用 curl 访问 httpbin 服务。
 
-    首先获取 Ingress Gateway 的 IP 和 端口，参考上一篇文章：[Istio 流量管理](https://icloudnative.io/posts/istio-traffic-management/)
+    首先获取 Ingress Gateway 的 IP 和 端口，参考上一篇文章：[Istio 流量管理](/posts/istio-traffic-management/)
     
     ```bash
     $ curl -I -HHost:httpbin.example.com http://$INGRESS_HOST:$INGRESS_PORT/status/200
@@ -164,9 +164,7 @@ Gateway 可以用于建模边缘代理或纯粹的内部代理，如第一张图
     transfer-encoding: chunked
     ```
 
-## <span id="inline-toc">3.</span> 使用浏览器访问 Ingress 服务
-
-----
+## 使用浏览器访问 Ingress 服务
 
 如果你想在浏览器中输入 httpbin 服务的 URL 来访问是行不通的，因为我们没有办法像使用 curl 一样告诉浏览器假装访问 `httpbin.example.com`，只能通过向 `/etc/hosts` 文件中添加 hosts 来解决这个问题。
 
@@ -249,11 +247,9 @@ $  cat <<EOF | istioctl replace -f -
 
 接下来就可以在浏览器中输入 URL：`http://httpbin.example.com/headers` 来访问服务啦！
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/aV9pPs.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/aV9pPs.jpg)
 
-## <span id="inline-toc">4.</span> 清理
-
-----
+## 清理
 
 删除 Gateway、VirtualService 和 httpbin 服务：
 
@@ -263,15 +259,13 @@ $ istioctl delete virtualservice httpbin
 $ kubectl delete --ignore-not-found=true -f samples/httpbin/httpbin.yaml
 ```
 
-## <span id="inline-toc">5.</span> 参考
-
-----
+## 参考
 
 + [控制 Ingress 流量](https://istio.io/zh/docs/tasks/traffic-management/ingress/)
 + [Gateway](https://istio.io/zh/docs/concepts/traffic-management/#gateway)
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 
 

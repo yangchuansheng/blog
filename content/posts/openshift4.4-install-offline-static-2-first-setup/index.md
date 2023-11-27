@@ -16,14 +16,15 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- openshift
-categories: openshift
+- Openshift
+categories:
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200601144925.png
 libraries:
 - katex
 ---
 
-[上篇文章](https://icloudnative.io/posts/openshift4.4-install-offline-static-1-requirement/)准备了离线安装 OCP 所需要的离线资源，包括安装镜像、所有样例 `Image Stream` 和 `OperatorHub` 中的所有 RedHat Operators。本文就开始正式安装 `OCP`（Openshift Container Platform） 集群，包括 DNS 解析、负载均衡配置、`ignition` 配置文件生成和集群部署。
+[上篇文章](/posts/openshift4.4-install-offline-static-1-requirement/)准备了离线安装 OCP 所需要的离线资源，包括安装镜像、所有样例 `Image Stream` 和 `OperatorHub` 中的所有 RedHat Operators。本文就开始正式安装 `OCP`（Openshift Container Platform） 集群，包括 DNS 解析、负载均衡配置、`ignition` 配置文件生成和集群部署。
 
 `OCP` 安装期间需要用到多个文件：安装配置文件、Kubernetes 部署清单、Ignition 配置文件（包含了 machine types）。**安装配置文件将被转换为 Kubernetes 部署清单，然后将清单包装到 `Ignition` 配置文件中。** 安装程序使用这些 `Ignition` 配置文件来创建 Openshift 集群。运行安装程序时，所有原始安装配置文件都会修改，因此在安装之前应该先备份文件。
 
@@ -754,9 +755,9 @@ e4df49b4d36a1       8 hours ago         Ready               etcd-bootstrap-membe
 
 如果验证无问题，则可以一边继续下面的步骤一边观察日志：`journalctl -b -f -u bootkube.service`
 
-{{< notice note >}}
+{{< alert >}}
 RHCOS 的默认用户是 `core`，如果想获取 root 权限，可以执行命令 `sudo su`（不需要输入密码）。
-{{< /notice >}}
+{{< /alert >}}
 
 ### Master
 

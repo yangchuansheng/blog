@@ -5,13 +5,13 @@ date: 2018-11-12T15:30:35+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "hugo"
-tags: ["hugo"]
+categories:
+- blog
+tags:
+- Hugo
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/hugo-static-site-generator.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
-
-<!--more-->
 
 [不蒜子](http://busuanzi.ibruce.info/) 是 Bruce 开发的一款轻量级的网页计数器，它的口号是（非官方）：
 
@@ -28,9 +28,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > 非官方，但好用。
 
-## <span id="inline-toc">1.</span> 分析问题
-
-----
+## 分析问题
 
 不蒜子之所以被成为「geek 的计数器」，就是因为它的安装使用非常简单——只需要加载计数器 `js` 脚本，以及使用 `span` 标签显示计数器结果就可以了。其余所有的事情，都交给用户的 `css` 去控制。因此，自然，这个「所有的事情」也包括了最终显示的值是多少。因此，我们可以在最终显示的数字上做一些手脚。
 
@@ -40,12 +38,12 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 <span id="busuanzi_value_site_pv"></span>
 ```
 
-{{< notice note >}}
+{{< alert >}}
 <li>PV 即 <code>Page View</code>，网站浏览量</li>
 指页面的浏览次数，用以衡量网站用户访问的网页数量。用户没打开一个页面便记录 1 次 PV，多次打开同一页面则浏览量累计。
 <li>UV 即 <code>Unique Visitor</code>，独立访客数</li>
 指 1 天内访问某站点的人数，以 <code>cookie</code> 为依据。1 天内同一访客的多次访问只计为 1 个访客。
-{{< /notice >}}
+{{< /alert >}}
 
 既然如此，我们只需要在页面上用 `js` 取得这个标签中的值，而后加上一个偏移量作为初始值就可以了。如果使用 `jQuery`，可以这样做：
 
@@ -83,9 +81,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 </script>
 ```
 
-## <span id="inline-toc">2.</span> Hugo 的解法
-
-----
+## Hugo 的解法
 
 在上面的分析中，我们实际上已经有了完整的解法。不过，这样的解法可定制性非常差。试想，在需要修改初始值的时候，都需要深入到代码中去，而后修改 `var busuanziSiteOffset = parseInt(10000);` 的值。这种事情，想想就令人崩溃。
 
@@ -168,7 +164,7 @@ $ cat themes/beautifulhugo/layouts/partials/footer.html
 
 展示效果：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/bXybBs.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/bXybBs.jpg)
 
 添加页面 `PV`：
 
@@ -191,12 +187,10 @@ $ cat themes/beautifulhugo/layouts/partials/postmeta.html
 
 展示效果：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/2ont92.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2ont92.jpg)
 
 大家可以根据自己的审美，功能来定制主题，首先需要对主题的结构，调用等信息清楚，然后再添加自己的改动。
 
-## <span id="inline-toc">3.</span> 参考资料
-
-----
+## 参考资料
 
 + [不蒜子计数器初始化的非官方办法](https://liam.page/2017/04/29/busuanzi-offset-setting/)

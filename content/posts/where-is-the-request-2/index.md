@@ -1,12 +1,21 @@
 ---
+keywords:
+- service mesh
+- 服务网格
+- istio
+- kubernetes
+- ingress
 title: "数据包在 Istio 网格中的生命周期（下）"
 subtitle: "服务网格内部的 VirtualService 和 DestinationRule 配置深度解析"
 date: 2018-08-13T16:30:30+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh", "kubernetes"]
+categories: 
+- service-mesh
+tags:
+- Istio
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203172524.jpeg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -15,7 +24,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 在继续追踪请求之前，先对之前的内容做一个补充说明。
 
-## <span id="inline-toc">1.</span> Pod 在服务网格之间如何通信？
+## Pod 在服务网格之间如何通信？
 
 ----
 
@@ -61,7 +70,7 @@ $ curl http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|9080||productpage.def
 
 从这里可以看出，各个微服务之间是直接通过 `PodIP + Port` 来通信的，Service 只是做一个逻辑关联用来定位 Pod，实际通信的时候并没有通过 Service。
 
-## <span id="inline-toc">2.</span> 部署 bookinfo 应用的时候发生了什么？
+## 部署 bookinfo 应用的时候发生了什么？
 
 ----
 
@@ -76,7 +85,7 @@ NAME                              READY     STATUS    RESTARTS   AGE
 productpage-v1-76474f6fb7-pmglr   2/2       Running   0          7h
 ```
 
-<font color="#2780e3">1. 查看 productpage 的监听器的基本基本摘要</font>
+**1. 查看 productpage 的监听器的基本基本摘要**
 
 ```bash
 $ istioctl proxy-config listeners productpage-v1-76474f6fb7-pmglr
@@ -179,7 +188,7 @@ $ curl http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|53||kube-dns.kube-sys
 
 可以看出，服务网格内的应用仍然通过 ClusterIP 与网格外的应用通信，但有一点需要注意 :** 这里并没有 `kube-proxy` 的参与！**Envoy 自己实现了一套流量转发机制，当你访问 ClusterIP 时，Envoy 就把流量转发到具体的 Pod 上去，**不需要借助 kube-proxy 的 `iptables` 或 `ipvs` 规则**。
 
-<font color="#2780e3">2. 从上面的摘要中可以看出，每个 Sidecar 都有一个绑定到 `0.0.0.0:15001` 的监听器，IP tables 将 pod 的所有入站和出站流量路由到这里。此监听器把 `useOriginalDst` 设置为 true，这意味着它将请求交给最符合请求原始目标的监听器。如果找不到任何匹配的虚拟监听器，它会将请求发送给返回 404 的 `BlackHoleCluster`。</font>
+**2. 从上面的摘要中可以看出，每个 Sidecar 都有一个绑定到 `0.0.0.0:15001` 的监听器，IP tables 将 pod 的所有入站和出站流量路由到这里。此监听器把 `useOriginalDst` 设置为 true，这意味着它将请求交给最符合请求原始目标的监听器。如果找不到任何匹配的虚拟监听器，它会将请求发送给返回 404 的 `BlackHoleCluster`。**
 
 ```bash
 $ istioctl proxy-config listeners productpage-v1-76474f6fb7-pmglr --port 15001 -o json
@@ -212,7 +221,7 @@ $ istioctl proxy-config listeners productpage-v1-76474f6fb7-pmglr --port 15001 -
 ]
 ```
 
-<font color="#2780e3">3. 我们的请求是到 `9080` 端口的 HTTP 出站请求，这意味着它被切换到 `0.0.0.0:9080` 虚拟监听器。然后，此监听器在其配置的 RDS 中查找路由配置。在这种情况下，它将查找由 Pilot 配置的 RDS 中的路由 `9080`（通过 ADS）。</font>
+**3. 我们的请求是到 `9080` 端口的 HTTP 出站请求，这意味着它被切换到 `0.0.0.0:9080` 虚拟监听器。然后，此监听器在其配置的 RDS 中查找路由配置。在这种情况下，它将查找由 Pilot 配置的 RDS 中的路由 `9080`（通过 ADS）。**
 
 ```bash
 $ istioctl proxy-config listeners productpage-v1-76474f6fb7-pmglr --address 0.0.0.0 --port 9080 -o json
@@ -228,7 +237,7 @@ $ istioctl proxy-config listeners productpage-v1-76474f6fb7-pmglr --address 0.0.
 ...
 ```
 
-<font color="#2780e3">4. `9080` 路由配置仅为每个服务提供虚拟主机。我们的请求正在前往 reviews 服务，因此 Envoy 将选择我们的请求与域匹配的虚拟主机。一旦在域上匹配，Envoy 会查找与请求匹配的第一条路径。在这种情况下，我们没有任何高级路由，因此只有一条路由匹配所有内容。这条路由告诉 Envoy 将请求发送到 `outbound|9080||reviews.default.svc.cluster.local` 集群。</font>
+**4. `9080` 路由配置仅为每个服务提供虚拟主机。我们的请求正在前往 reviews 服务，因此 Envoy 将选择我们的请求与域匹配的虚拟主机。一旦在域上匹配，Envoy 会查找与请求匹配的第一条路径。在这种情况下，我们没有任何高级路由，因此只有一条路由匹配所有内容。这条路由告诉 Envoy 将请求发送到 `outbound|9080||reviews.default.svc.cluster.local` 集群。**
 
 ```bash
 $ istioctl proxy-config routes productpage-v1-76474f6fb7-pmglr --name 9080 -o json
@@ -266,7 +275,7 @@ $ istioctl proxy-config routes productpage-v1-76474f6fb7-pmglr --name 9080 -o js
 ...
 ```
 
-<font color="#2780e3">5. 此集群配置为从 Pilot（通过 ADS）检索关联的端点。因此，Envoy 将使用 `serviceName` 字段作为密钥来查找端点列表并将请求代理到其中一个端点。</font>
+**5. 此集群配置为从 Pilot（通过 ADS）检索关联的端点。因此，Envoy 将使用 `serviceName` 字段作为密钥来查找端点列表并将请求代理到其中一个端点。**
 
 ```bash
 $ istioctl proxy-config clusters productpage-v1-76474f6fb7-pmglr --fqdn reviews.default.svc.cluster.local -o json
@@ -294,7 +303,7 @@ $ istioctl proxy-config clusters productpage-v1-76474f6fb7-pmglr --fqdn reviews.
 
 上面的整个过程就是在不创建任何规则的情况下请求从 `productpage` 到 `reviews` 的过程，从 reviews 到网格内其他应用的流量与上面类似，就不展开讨论了。接下来分析创建规则之后的请求转发过程。
 
-## <span id="inline-toc">3.</span> VirtualService 和 DestinationRule 配置解析
+## VirtualService 和 DestinationRule 配置解析
 
 ----
 
@@ -363,11 +372,11 @@ $ istioctl proxy-config routes productpage-v1-76474f6fb7-pmglr --name 9080 -o js
 
 你可以尝试搜索一下有没有 `outbound|9080|v1|reviews.default.svc.cluster.local` 这个集群，如果不出意外，你将找不到 `SUBSET=v1` 的集群。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/IbLzV0.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/IbLzV0.jpg)
 
 由于找不到这个集群，所以该路由不可达，这就是为什么你打开 productpage 的页面会出现如下的报错：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/IifCY8.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/IifCY8.jpg)
 
 ### DestinationRule
 
@@ -456,9 +465,9 @@ $ curl http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|9080|v1|reviews.defau
 
 现在再次用浏览器访问 productpage，你会发现报错已经消失了。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/PahU33.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/PahU33.jpg)
 
-## <span id="inline-toc">4.</span> 参考
+## 参考
 
 ----
 
@@ -466,7 +475,7 @@ $ curl http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|9080|v1|reviews.defau
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 
 

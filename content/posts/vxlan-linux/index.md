@@ -14,15 +14,16 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- vxlan
-- linux
-categories: Network
+- Vxlan
+- Linux
+categories: 
+- network
 libraries:
 - katex
 img: https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-vxlan-bridge-mini.png 
 ---
 
-[上篇文章](https://icloudnative.io/posts/vxlan-protocol-introduction/)结尾提到 `Linux` 是支持 `VXLAN` 的，我们可以使用 Linux 搭建基于 `VXLAN` 的 overlay 网络，以此来加深对 VXLAN 的理解，毕竟光说不练假把式。
+[上篇文章](/posts/vxlan-protocol-introduction/)结尾提到 `Linux` 是支持 `VXLAN` 的，我们可以使用 Linux 搭建基于 `VXLAN` 的 overlay 网络，以此来加深对 VXLAN 的理解，毕竟光说不练假把式。
 
 ## 1. 点对点的 VXLAN
 
@@ -34,9 +35,9 @@ img: https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-vxlan-bridge-mi
 
 为了不影响主机的网络环境，我们可以使用 Linux `VRF` 来隔离 root network namespace 的路由。VRF（Virtual Routing and Forwarding）是由路由表和一组网络设备组成的路由实例，你可以理解为轻量级的 `network namespace`，只虚拟了三层的网络协议栈，而 `network namespace` 虚拟了整个网络协议栈。详情参看 [Linux VRF(Virtual Routing Forwarding)的原理和实现](https://blog.csdn.net/dog250/article/details/78069964)。
 
-{{< notice note >}}
+{{< alert >}}
 Linux Kernel 版本大于 `4.3` 才支持 VRF，建议做本文实验的同学先升级内核。
-{{< /notice >}}
+{{< /alert >}}
 
 当然了，如果你有专门用来做实验的干净主机，可以不用 VRF 来隔离。
 
@@ -140,7 +141,7 @@ $ ping 172.18.1.3 -I vrf0
 $ ssh root@192.168.57.54 'tcpdump -i any -s0 -c 10 -nn -w - port 4789' | /Applications/Wireshark.app/Contents/MacOS/Wireshark -k -i -
 ```
 
-具体含义我就不解释了，参考 [Tcpdump 示例教程](https://icloudnative.io/posts/tcpdump-examples/#%E5%B0%86%E8%BE%93%E5%87%BA%E5%86%85%E5%AE%B9%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0-wireshark)。
+具体含义我就不解释了，参考 [Tcpdump 示例教程](/posts/tcpdump-examples/#%E5%B0%86%E8%BE%93%E5%87%BA%E5%86%85%E5%AE%B9%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0-wireshark)。
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723162240.jpg)
 
@@ -290,9 +291,9 @@ $ ip -n ns0 link set eth0 up
 
 我们先来看看多播是怎么实现的，分布式控制中心留到下一篇再讲。
 
-{{< notice note >}}
+{{< alert >}}
 如果 VXLAN 要使用多播模式，需要底层的网络支持多播功能，多播地址范围为 `224.0.0.0~239.255.255.255`。
-{{< /notice >}}
+{{< /alert >}}
 
 和上面的 点对点 VXLAN + Bridge 模式相比，这里只是将对端的参数改成 `group` 参数，其他不变，命令如下：
 

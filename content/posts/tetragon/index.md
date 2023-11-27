@@ -22,7 +22,8 @@ tags:
 - eBPF
 - Cilium
 - Tetragon
-categories: eBPF
+- Kubernetes
+categories: ["cloud-native", "network"]
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-20-09-oHCpKx.png
 ---
 

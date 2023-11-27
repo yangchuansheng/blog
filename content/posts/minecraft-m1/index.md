@@ -6,6 +6,8 @@ keywords:
 - M1 Max
 - HMCL
 - LWJGL
+- Java
+- Zulu
 title: "在 M1 Macbook 中使用原生 Java 运行 Minecraft"
 date: 2022-02-20T19:06:37+08:00
 lastmod: 2022-02-20T19:06:37+08:00
@@ -19,7 +21,8 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - Minecraft
-categories: share
+- macOS
+categories: tech
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/uPic/2022-02-22-13-41-fSSeXu.png
 ---
 
@@ -141,9 +144,7 @@ Minecraft 中文名又叫《我的世界》，**它提供了一个和现实世�
 
 最近元宇宙的概念非常火热，成为了众多国内外科技巨头的抢手货，他们纷纷在各自领域布局未来的元宇宙计划。Minecraft 其实就非常有可能发展为元宇宙的载体，它有着非常高的用户基础，共识性强，而且背靠微软老爹，前不久疫情期间，伯克利学院还在 Minecraft 中举办了毕业典礼，看看这阵仗，妥妥的元宇宙啊。
 
-<div style="position: relative; margin-bottom: 25px; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-	<iframe class="lazyload" data-src="//player.bilibili.com/player.html?aid=625673780&bvid=BV1Ct4y117FW&cid=191953898&page=1&high_quality=1&danmaku=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen="true"></iframe>
-</div>
+{{< bilibili BV1Ct4y117FW >}}
 
 ## 参考资料
 

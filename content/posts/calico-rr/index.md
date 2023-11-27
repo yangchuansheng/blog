@@ -13,7 +13,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/Two%20Steps%20From%20Hell%20-%20Star%20Sky.mp3"></iframe>
 
-## <span id="inline-toc">1.</span> 名词解释
+## 名词解释
 ------
 
 - `endpoint`：接入到网络中的设备称为 endpoint :heart:
@@ -24,7 +24,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 - `workloadEndpoint`：Calico 网络中的分配虚拟机、容器使用的 endpoint
 - `hostEndpoints`：Calico 网络中的物理机(node)的地址
 
-## <span id="inline-toc">2.</span> 组网原理
+## 组网原理
 ------
 
 `Calico` 组网的核心原理就是IP路由，每个容器或者虚拟机会分配一个 `workload-endpoint`(wl)。
@@ -69,7 +69,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 通过这种方式每个 node 知晓了每个 `workload-endpoint` 的下一跳地址。
 
-## <span id="inline-toc">3.</span> BGP 与 AS
+## BGP 与 AS
 ------
 
 `BGP` 是路由器之间的通信协议，主要用于 `AS`（Autonomous System,自治系统）之间的互联。
@@ -127,7 +127,7 @@ RR 必须与所有的 `BGP Speaker` 建立 BGP 连接，以保证能够得到全
 
 关闭了全互联模式后，再将 RR 作为 `Global Peers` 添加到 Calico 中，Calico 网络就切换到了 RR 模式，可以支撑容纳更多的 node。
 
-## <span id="inline-toc">4.</span> RR 模式部署
+## RR 模式部署
 ------
 
 集群环境：
@@ -403,7 +403,7 @@ protocol bgp Global_10_10_31_168 from bgp_template {
 # ------------- Node-specific peers -------------
 ```
 
-## <span id="inline-toc">5.</span> 多 cluster ID 实例拓扑
+## 多 cluster ID 实例拓扑
 ------
 
 当拓扑包含了多个反射路由时,BGP 利用集群 id 来保证分配路由时不陷入循环路由。
@@ -417,7 +417,7 @@ For example, the topology outlined in the diagram below is based on the Top of R
 - Each node (server in the rack) peers with a redundant set of route reflectors specific to that rack.
 - All of the ToR route reflectors form a full mesh with each other.
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/mesh-topology.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/mesh-topology.png)
 
 For example, to set up the topology described above, you would:
 

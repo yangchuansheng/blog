@@ -16,9 +16,10 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- openshift
-- quay
-categories: openshift
+- Openshift
+- Quay
+categories:
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200601144925.png
 ---
 
@@ -32,9 +33,9 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 除此之外还需要部署一个私有镜像仓库，以供 OCP 安装和运行时使用，**要求支持 version 2 schema 2 (manifest list)**，我这里选择的是 `Quay 3.3`。镜像仓库需要部署在另外一台节点，因为需要用到 `443` 端口，与后面的负载均衡端口冲突。
 
-{{< notice note >}}
+{{< alert >}}
 很多人误以为必须联系 Red Hat 销售，签单之后才能使用 OCP4，其实不然，注册一个[开发者账号](https://developers.redhat.com/)后就可以获得 `quay.io` 和 `registry.redhat.io` 的拉取密钥了。
-{{< /notice >}}
+{{< /alert >}}
 
 ## 2. 准备离线安装介质
 
@@ -198,9 +199,9 @@ Images:
 $ hostnamectl set-hostname registry.openshift4.example.com
 ```
 
-{{< notice note >}}
+{{< alert >}}
 所有节点主机名都要采用三级域名格式，如 `master1.aa.bb.com`。
-{{< /notice >}}
+{{< /alert >}}
 
 接着安装 `podman`：
 

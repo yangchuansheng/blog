@@ -3,6 +3,9 @@ keywords:
 - stargz
 - containerd
 - snapshotter
+- OCI
+- 容器
+- 镜像
 title: "Containerd 使用 Stargz Snapshotter 延迟拉取镜像"
 date: 2020-08-18T15:15:35+08:00
 lastmod: 2020-08-18T15:15:35+08:00
@@ -14,8 +17,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- containerd
-categories: containers
+- Containerd
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200820145127.png
 ---
 

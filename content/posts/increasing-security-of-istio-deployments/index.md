@@ -5,19 +5,21 @@ date: 2018-09-21T13:10:18+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh"]
+categories: 
+- service-mesh
+tags:
+- Istio
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/vMXgIX.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<p id="div-border-left-red">原文链接：<a href="https://blog.openshift.com/increasing-security-of-istio-deployments-by-removing-the-need-for-privileged-containers/" target="_blank">Increasing Security of Istio Deployments by Removing the Need for Privileged Containers</a></p>
+> 原文链接：[Increasing Security of Istio Deployments by Removing the Need for Privileged Containers](https://blog.openshift.com/increasing-security-of-istio-deployments-by-removing-the-need-for-privileged-containers/)
 
 随着 1.0 版本的发布，`Istio` 正在为开发云原生应用并希望采用服务网格解决方案的公司准备黄金时间。但是，有一个潜在的问题可能会降低这些公司的采用率：服务网格内的 `Pod` 需要提升权限才能正常运行。
 
 为了从一定程度上缓解这个问题，本文将介绍一个新的工具：[istio-pod-network-controller](https://github.com/sabre1041/istio-pod-network-controller).
 
-## <span id="inline-toc">1.</span> 问题
+## 问题
 
 ----
 
@@ -35,13 +37,13 @@ $ oc adm policy add-scc-to-user privileged -z default -n <target-namespace>
 
 虽然这个问题一直困扰着 Istio 社区，但迄今为止 Kubernetes 还没有提供一种机制来控制给予 Pod 的权限。从 [Kubernetes 1.11](https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.11.md) 开始，[Pod 安全策略（PSP）](https://kubernetes.io/docs/concepts/policy/pod-security-policy/)功能已经作为 `beta feature` 引入，PSP 与 SCC 的功能类似。一旦其他 Kubernetes 发行版开始支持开箱即用的 PSP，Istio 网格中的 Pod 就需要提升权限才能正常运行。
 
-## <span id="inline-toc">2.</span> 解决方案
+## 解决方案
 
 ----
 
 解决这个问题的一种方法是将配置 Pod 的 iptables 规则的逻辑移出 Pod 本身。该方案通过一个名叫 `istio-pod-network-controller` 的 DaemonSet 控制器，来监视新 Pod 的创建，并在创建后立即在这些新 Pod 中配置相应的 iptables 规则。下图描绘了该解决方案的整体架构：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/vMXgIX.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/vMXgIX.jpg)
 
 流程如下：
 
@@ -56,7 +58,7 @@ $ oc adm policy add-scc-to-user privileged -z default -n <target-namespace>
 
 现在，我们通过给 `istio-pod-network-controller` 提供 privileged 配置文件和 `NET_ADMIN` capability 来允许它修改其他 Pod 的 iptables 规则，这通常是可以接受的方案，因为该组件将由集群管理员以与 Istio 控制平面类似的方式安装和管理。
 
-## <span id="inline-toc">3.</span> 安装指南
+## 安装指南
 
 ----
 
@@ -79,7 +81,7 @@ $ kubectl apply -f examples/bookinfo.yaml -n bookinfo
 
 其他部署方案请参考[官方仓库的文档](https://github.com/sabre1041/istio-pod-network-controller)。
 
-## <span id="inline-toc">4.</span> 总结
+## 总结
 
 ----
 
@@ -87,6 +89,6 @@ $ kubectl apply -f examples/bookinfo.yaml -n bookinfo
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

@@ -15,21 +15,14 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- kubernetes
-- containerd
-categories: cloud-native
+- Kubernetes
+- Containerd
+categories: 
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201207155224.jpg
 ---
 
-前两天闹得沸沸扬扬的事件不知道大家有没有听说，Google 竟然将 `Docker` 踢出了 `Kubernetes` 的群聊，不带它玩了。。。
-
-具体的解释请看《听说 K8s 要甩了 Docker 了》，我这里简单描述下，Kubernetes 是通过 CRI 来对接容器运行时的，而 Docker 本身是没有实现 CRI 的，所以 Kubernetes 内置了一个 “为 Docker 提供 CRI 支持” 的 `dockershim` 组件。现在 Kubernetes 宣布不再维护这个组件了，大概的意思就是：**Docker 虽然好用，但那是对人来说的，Kubernetes 又不是人，不需要那些花里胡哨的东西！**
-
-Kubernetes 这是话里有话，说白了就是：**我特么以前为了兼容你，我集成在我自己这里，现在我就想自己单纯一点，要么你自己写 CRI 的接口 要么就再见。**
-
-众 YAML 工程师直呼 Containerd 真香！
-
-下面进入今天的主题，Kubernetes 具有对机器的资源进行分配和使用的能力，比如可以指定容器最多使用多少内存以及使用多少 CPU 计算资源。那么问题来了，一般来说容器就是使用 CPU 和内存资源，那么对于需要使用显卡的 Pod，Kubernetes 也能够支持吗？答案当然是可以啦！目前 Kubernetes 不仅支持容器请求 `GPU` 资源，还支持请求几块显卡的 GPU 资源，这使得 Kubernetes 在深度学习和区块链等场景下也有了用武之地。
+Kubernetes 具有对机器的资源进行分配和使用的能力，比如可以指定容器最多使用多少内存以及使用多少 CPU 计算资源。那么问题来了，一般来说容器就是使用 CPU 和内存资源，那么对于需要使用显卡的 Pod，Kubernetes 也能够支持吗？答案当然是可以啦！目前 Kubernetes 不仅支持容器请求 `GPU` 资源，还支持请求几块显卡的 GPU 资源，这使得 Kubernetes 在深度学习和区块链等场景下也有了用武之地。
 
 关于 Kubernetes 集群中 Docker 如何使用 GPU，Kubernetes 的官方文档已经说的很清楚了，网上也有铺天盖地的博客手把手教你怎么做。至于以 Containerd 作为容器运行时的集群如何使用 GPU，网上还找不到一篇像样的文档来告诉大家怎么做，今天我就来做吃螃蟹的第一人。
 

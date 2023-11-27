@@ -5,19 +5,21 @@ keywords:
 - oam
 - operator
 - open application model
-title: "Kubernetes 控制器的进化之旅"
+title: "K8s 控制器的进化之旅"
 subtitle: "从 Kubernetes 资源控制到开放应用模型"
-description: 本文描述了 Kubernets 控制器的工作原理，包括通过 Operator 来控制有状态应用，最后介绍了如何通过 OAM 来解耦运维与开发的职责。
+description: 本文描述了 K8s 控制器的工作原理，包括通过 Operator 来控制有状态应用，最后介绍了如何通过 OAM 来解耦运维与开发的职责。
 date: 2020-02-22T17:06:49+08:00
 draft: false
 author: 米开朗基杨
 toc: true
 categories: cloud-native
-tags: ["kubernetes","oam","operator"]
+tags:
+- Kubernetes
+- Operator
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200223122350.webp"
 ---
 
-我是一堆 Kubernetes 控制器。
+我是一堆 K8s 控制器。
 
 你可能会疑惑为什么是一堆，因为我不是一个人，我只是众多控制器中的一员，你也可以把我看成是众多控制器的集合。我的职责就是监控集群内资源的实际状态，一旦发现其与期望的状态不相符，就采取行动使其符合期望状态。
 
@@ -113,7 +115,7 @@ Deployment 控制器一惊，要把自己的秘密告诉别人？那别人把自
 
 而 ETCD Operator 将这些特定于 etcd 的操作手法编写到了它的控制循环中，你只需要通过修改自定义资源声明集群期望的成员数量，剩下的事情交给 Operator 就好了。
 
-本以为这是一个皆大欢喜的方案，但没过多久，就有开发 Operator 的小哥来抱怨了：”我们有很多开发的小伙伴都是不懂运维那一套的，什么高可用、容灾根本不懂啊，现在让我们将运维的操作知识编写到软件中，臣妾做不到啊。。“
+本以为这是一个皆大欢喜的方案，但没过多久，就有开发 Operator 的小哥来抱怨了：“我们有很多开发的小伙伴都是不懂运维那一套的，什么高可用、容灾根本不懂啊，现在让我们将运维的操作知识编写到软件中，臣妾做不到啊。。”
 
 这确实是个问题，这样一来就把开发和运维的工作都塞到了开发手里，既懂开发又懂运维的可不多啊，为了照顾大家，还得继续想办法把开发和运维的工作拆分开来。
 
@@ -123,7 +125,7 @@ Deployment 控制器一惊，要把自己的秘密告诉别人？那别人把自
 
 这时候阿里和微软发力了，他们联合发布了一个开放应用模型，叫 [Open Application Model ](https://cloudblogs.microsoft.com/opensource/2019/10/16/announcing-open-application-model/)（OAM）。这个模型就是为了解决上面提到的问题，将开发和运维的职责解耦，不同的角色履行不同的职责，并形成一个统一的规范，如下图所示：
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20200223122350.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20200223122350.png)
 
 这个规范告诉我们：
 

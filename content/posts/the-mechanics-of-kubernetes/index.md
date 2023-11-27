@@ -20,12 +20,12 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 <strong>原文地址：</strong><a href="https://medium.com/@dominik.tornow/the-mechanics-of-kubernetes-ac8112eaa302" target="_blank">The Mechanics of Kubernetes</a>
 </p>
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/3a3GzB.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/3a3GzB.jpg)
 
 `Kubernetes` 是一个用于在一组节点（通常称之为集群）上托管容器化应用程序的容器编排引擎。本系列教程旨在通过系统建模的方法帮助大家更好地理解 `Kubernetes` 及其基本概念。
 
-+ [深入理解 Kubernetes API Server](https://icloudnative.io/posts/kubernetes-api-server-part-1/)
-+ [Kubernetes 设计哲学](https://icloudnative.io/posts/the-mechanics-of-kubernetes/)
++ [深入理解 Kubernetes API Server](/posts/kubernetes-api-server-part-1/)
++ [Kubernetes 设计哲学](/posts/the-mechanics-of-kubernetes/)
 
 本文可以帮助你理解 Kubernetes 对象存储和控制器的工作原理。
 
@@ -33,13 +33,13 @@ Kubernetes 是一个声明式容器编排引擎。在声明式系统中，你可
 
 Kubernetes 不会基于系统当前状态和期望状态来来确定接下来要执行的一组经过精确计算的相互协调的命令，而是仅基于系统当前状态确定下一个要执行的命令，然后不断迭代，直到没有下一个命令可以执行，系统就达到了稳定状态。
 
-## <span id="inline-toc">1.</span> 状态转换机制
+## 状态转换机制
 
 ----
 
 下面我将用一个抽象模型来表示 Kubernetes 的状态转换机制。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/mkYnsM.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/mkYnsM.jpg)
 
 ```als
 fact {
@@ -70,7 +70,7 @@ pred Steady(k8s : K8s) { NextCommand[k8s] = none }
 
 所有的状态组成一个状态序列，状态序列的终止状态是 `k8s.last`，该状态的 `NextCommand` 函数不会产生下一个命令，此时系统就会进入稳定（steady）状态。
 
-## <span id="inline-toc">2.</span> Kubernetes 资源对象
+## Kubernetes 资源对象
 
 ----
 
@@ -96,7 +96,7 @@ spec:
 + `.spec.replicas` 等于 3.
 + `.spec.template.spec.containers[0].image` 等于 `BusyBox`。
 
-## <span id="inline-toc">3.</span> Kubernetes 控制器
+## Kubernetes 控制器
 
 ----
 
@@ -147,15 +147,15 @@ Kubernetes 的控制器可以相互级联启用，他们是层层控制的关系
 + 给定一个当前状态 `k8s`，如果启用了控制器 `C`，`C` 会执行命令将状态转换为 `k8s'`。
 + 给定一个当前状态 `k8s'`，如果启用了控制器 `C'`，`C'` 会执行命令将状态转换为 `k8s''`。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/lgPiYz.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/lgPiYz.jpg)
 
 上图展示了用户将 Deployment 对象提交给 API Server 之后生成的级联命令。
 
-## <span id="inline-toc">4.</span> Kubernetes 是声明式系统吗？
+## Kubernetes 是声明式系统吗？
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/uuoKDr.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/uuoKDr.jpg)
 
 ```als
 fact {
@@ -170,7 +170,7 @@ fact {
 
 上述规范语言描述了严格意义上的声明式系统的状态转换机制：给定一个期望状态，系统将找到一系列命令让自己从当前状态 `sys.first` 转换为期望状态 `sys.last`。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/IsG3gM.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/IsG3gM.jpg)
 
 如果我们不把 Kubernetes 的资源对象看成对实际描述的数据的记录，而是看成对最终期望的结果的记录，就可以认为 Kubernetes 是一个声明式系统。例如，我们可以将前文提到的 Deployment 对象解释为 :** 最终期望的结果是存在 `3` 个 Pod 对象。**
 
@@ -186,13 +186,13 @@ fact {
 + 只要有一个 `ReplicaSet` 对象，k8s 的 `Deployment` 对象就会进入稳定状态（Deployment 控制器不会产生命令）。
 + 只要有一组 `Pod` 对象，k8s 的 `ReplicaSet` 对象就会进入稳定状态（ReplicaSet 控制器不会产生命令）。
 
-## <span id="inline-toc">5.</span> 总结
+## 总结
 
 ----
 
 在大多数情况下，如果定义不是很严格，Kubernetes 可以被看成声明式系统，Kubernetes 资源对象被当成对最终期望的结果的记录。但当涉及到 Kubernetes 的行为时，你要知道它并不会像真正意义上的声明式系统那样通过一系列相互协作的命令来过渡到理想状态，而是通过持续迭代方式一步一步过渡到稳定状态。
 
-## <span id="inline-toc">6.</span> 后记
+## 后记
 
 ----
 

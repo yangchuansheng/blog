@@ -15,13 +15,13 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- podman
-- hyperkit
-categories: containers
+- Podman
+- Hyperkit
+categories: cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20201108222714.png
 ---
 
-`Podman` 是一个无守护程序与 `Docker` 命令兼容的下一代 Linux 容器工具，该项目由 `RedHat` 主导，其他的细节可以参考 [Podman 使用指南](https://icloudnative.io/posts/podman-sidecar/)，本文的重点不是这个。
+`Podman` 是一个无守护程序与 `Docker` 命令兼容的下一代 Linux 容器工具，该项目由 `RedHat` 主导，其他的细节可以参考 [Podman 使用指南](/posts/podman-sidecar/)，本文的重点不是这个。
 
 Podman 一直以来只能跑在 Linux 系统上，`macOS` 和 `Windows` 只能通过 CLI 远程连接 Podman 的 `API` 来管理容器。事实上 Docker 也不支持 macOS 和 Windows，但 Docker 针对 Windows 和 macOS 推出了专门的客户端，客户端里面集成了虚拟化相关的设置，通过嵌套一层虚拟化来支持 Docker。对于 `Podman` 来说，想要在 macOS 上运行也只能通过虚拟化来实现，网上也有不少方案，基本上都是通过 `Virtualbox` 来实现，都不太优雅。本文将介绍一种相对更优雅的方案，虽然不是很完美，但我已经尽力做到接近完美了。。
 

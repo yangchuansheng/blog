@@ -5,6 +5,8 @@ keywords:
 - alpine 镜像
 - slim 镜像
 - rust 镜像
+- docker image
+- docker 镜像
 title: "Docker 镜像制作教程：针对不同语言的精简策略"
 date: 2020-05-16T12:17:31+08:00
 lastmod: 2020-05-16T12:17:31+08:00
@@ -16,8 +18,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- docker
-categories: containers
+- Docker
+categories:
+- cloud-native
 series:
 - Docker 镜像制作系列
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200516214250.png
@@ -27,9 +30,9 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 本系列文章将分为三个部分：
 
-第一部分着重介绍多阶段构建（multi-stage builds），因为这是镜像精简之路至关重要的一环。在这部分内容中，我会解释静态链接和动态链接的区别，它们对镜像带来的影响，以及如何避免那些不好的影响。中间会穿插一部分对 `Alpine` 镜像的介绍。链接：[Docker 镜像制作教程：减小镜像体积](https://icloudnative.io/posts/docker-images-part1-reducing-image-size/)
+第一部分着重介绍多阶段构建（multi-stage builds），因为这是镜像精简之路至关重要的一环。在这部分内容中，我会解释静态链接和动态链接的区别，它们对镜像带来的影响，以及如何避免那些不好的影响。中间会穿插一部分对 `Alpine` 镜像的介绍。链接：[Docker 镜像制作教程：减小镜像体积](/posts/docker-images-part1-reducing-image-size/)
 
-第二部分将会针对不同的语言来选择适当的精简策略，其中主要讨论 `Go`，同时也涉及到了 `Java`，`Node`，`Python`，`Ruby` 和 `Rust`。这一部分也会详细介绍 Alpine 镜像的避坑指南。什么？你不知道 `Alpine` 镜像有哪些坑？我来告诉你。链接：[Docker 镜像制作教程：针对不同语言的精简策略](https://icloudnative.io/posts/docker-images-part2-details-specific-to-different-languages/)
+第二部分将会针对不同的语言来选择适当的精简策略，其中主要讨论 `Go`，同时也涉及到了 `Java`，`Node`，`Python`，`Ruby` 和 `Rust`。这一部分也会详细介绍 Alpine 镜像的避坑指南。什么？你不知道 `Alpine` 镜像有哪些坑？我来告诉你。链接：[Docker 镜像制作教程：针对不同语言的精简策略](/posts/docker-images-part2-details-specific-to-different-languages/)
 
 第三部分将会探讨适用于大多数语言和框架的通用精简策略，例如使用常见的基础镜像、提取可执行文件和减小每一层的体积。同时还会介绍一些更加奇特或激进的工具，例如 `Bazel`，`Distroless`，`DockerSlim` 和 `UPX`，虽然这些工具在某些特定场景下能带来奇效，但大多情况下会起到反作用。
 
@@ -178,9 +181,9 @@ COPY --from=0 hello .
 CMD ["./hello"]
 ```
 
-{{< notice note >}}
+{{< alert >}}
 必须安装 `build-base`，如果安装 `gcc`，就只有编译器，没有标准库。build-base 相当于 Ubuntu 的 `build-essentials`，引入了编译器、标准库和 make 之类的工具。
-{{< /notice >}}
+{{< /alert >}}
 
 最后来对比一下不同构建方法得到的 『hello world』镜像大小：
 

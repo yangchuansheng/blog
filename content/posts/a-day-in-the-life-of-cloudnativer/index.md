@@ -16,8 +16,8 @@ enableTocContent: false
 tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- share
-categories: share
+- Kubernetes
+categories: tech-social
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109151325055.png
 ---
 

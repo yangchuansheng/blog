@@ -22,7 +22,8 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - ChatGPT
 - Sealos
-categories: ChatGPT
+- gpt4free
+categories: AI
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-00-45-IMHpwX.jpg
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-00-43-7RAoGE.jpg
 ---

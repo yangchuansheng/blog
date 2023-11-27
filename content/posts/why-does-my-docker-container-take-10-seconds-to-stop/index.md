@@ -14,8 +14,9 @@ enableToc: true
 enableTocContent: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
-- docker
-categories: containers
+- Docker
+categories:
+- cloud-native
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200527230726.jpg
 ---
 
@@ -162,9 +163,9 @@ ENTRYPOINT ["/sbin/tini", "--", "./popcorn.sh"]
 
 现在 `tini` 就是 PID 1，它会将收到的系统信号转发给子进程 `popcorn.sh`。
 
-{{< notice note >}}
+{{< alert >}}
 如果你想直接通过 docker 命令来运行容器，可以直接通过参数 `--init` 来使用 tini，不需要在镜像中安装 tini。如果是 `Kubernetes` 就不行了，还得老老实实安装 tini。
-{{< /notice >}}
+{{< /alert >}}
 
 ## 3. 使用 tini 后应用还需要处理 SIGTERM 吗？
 

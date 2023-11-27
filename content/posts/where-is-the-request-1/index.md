@@ -1,12 +1,21 @@
 ---
+keywords:
+- service mesh
+- 服务网格
+- istio
+- kubernetes
+- ingress
 title: "数据包在 Istio 网格中的生命周期（上）"
 subtitle: "Istio 网关中的 Gateway 和 VirtualService 配置深度解析"
 date: 2018-08-08T16:56:31+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: service-mesh
-tags: ["istio", "service mesh", "kubernetes"]
+categories: 
+- service-mesh
+tags:
+- Istio
+- Kubernetes
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191203175223.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
@@ -15,11 +24,11 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 在开始之前，需要先搞清楚我们创建的这些对象资源最后都交给谁来处理了，负责处理这些资源的就是 pilot。
 
-## <span id="inline-toc">1.</span> pilot总体架构
+## pilot总体架构
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/pilot.svg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pilot.svg)
 
 首先我们回顾一下 pilot 总体架构，上面是[官方关于pilot的架构图](https://github.com/istio/old_pilot_repo/blob/master/doc/design.md)，因为是 old_pilot_repo 目录下，可能与最新架构有出入，仅供参考。所谓的 pilot 包含两个组件：`pilot-agent` 和 `pilot-discovery`。图里的 `agent` 对应 pilot-agent 二进制，`proxy` 对应 Envoy 二进制，它们两个在同一个容器中，`discovery service` 对应 pilot-discovery 二进制，在另外一个跟应用分开部署的单独的 Deployment 中。
 
@@ -30,7 +39,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 简单来说 Istio 做为管理面，集合了配置中心和服务中心两个功能，并把配置发现和服务发现以一组统一的 `xDS` 接口提供出来，数据面的 Envoy 通过 xDS 获取需要的信息来做服务间通信和服务治理。
 
-## <span id="inline-toc">2.</span> pilot-discovery 为 Envoy 提供的 xds 服务
+## pilot-discovery 为 Envoy 提供的 xds 服务
 
 ----
 
@@ -176,7 +185,7 @@ $ curl http://$PILOT_SVC_IP:8080/debug/cdsz
 $ curl http://$PILOT_SVC_IP:8080/debug/adsz
 ```
 
-## <span id="inline-toc">3.</span> Envoy 基本术语回顾
+## Envoy 基本术语回顾
 
 ----
 
@@ -189,11 +198,11 @@ $ curl http://$PILOT_SVC_IP:8080/debug/adsz
 
 更多详细信息可以参考 [Envoy 的架构与基本术语](https://jimmysong.io/posts/envoy-archiecture-and-terminology/)，本文重点突出 `Listener`、`Route` 和 `Cluster` 这三个基本术语，同时需要注意流量经过这些术语的先后顺序，请求首先到达 `Listener`，然后通过 `Http Route Table` 转到具体的 `Cluster`，最后由具体的 Cluster 对请求做出响应。
 
-## <span id="inline-toc">4.</span> Gateway 和 VirtualService 配置解析
+## Gateway 和 VirtualService 配置解析
 
 ----
 
-还是拿之前 [Istio 流量管理](https://icloudnative.io/posts/istio-traffic-management/) 这篇文章中的例子来解析吧，首先创建了一个 `Gateway`，配置文件如下：
+还是拿之前 [Istio 流量管理](/posts/istio-traffic-management/) 这篇文章中的例子来解析吧，首先创建了一个 `Gateway`，配置文件如下：
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -243,9 +252,9 @@ spec:
 
 `VirtualService` 映射的就是 Envoy 中的 `Http Route Table`，大家可以注意到上面的 VirtualService 配置文件中有一个 `gateways` 字段，如果有这个字段，就表示这个 Http Route Table 是绑在 `ingressgateway` 的 `Listener` 中的；如果没有这个字段，就表示这个 Http Route Table 是绑在 Istio 所管理的所有微服务应用的 Pod 上的。
 
-{{< notice note >}}
+{{< alert >}}
 为了分清主次，我决定将本文拆分成两篇文章来讲解，本篇主要围绕 ingressgateway 来解析 Gateway 和 VirtualService，而微服务应用本身的 VirtualService 和 DestinationRule 解析放到下一篇文章再说。
-{{< /notice >}}
+{{< /alert >}}
 
 显而易见，上面这个 VirtualService 映射的 Http Route Table 是被绑在 ingressgateway 中的，可以通过 `istioctl` 来查看，istioctl 的具体用法请参考：[调试 Envoy 和 Pilot](https://istio.io/zh/help/ops/traffic-management/debugging-pilot-envoy/)。
 
@@ -342,7 +351,7 @@ $ istioctl -n istio-system pc routes istio-ingressgateway-b6db8c46f-qcfks --name
 + VirtualService 中的 `prefix` 字段对应 Http Route Table 中 `routes.match` 配置项的 `prefix` 字段。
 + VirtualService 中的 `route.destination` 配置项对应 Http Route Table 中 `routes.route` 配置项的 `cluster` 字段。
 
-关于 Envoy 中的 HTTP 路由解析可以参考我之前的文章：[HTTP 路由解析](https://icloudnative.io/posts/routing-basics/)。
+关于 Envoy 中的 HTTP 路由解析可以参考我之前的文章：[HTTP 路由解析](/posts/routing-basics/)。
 
 查看 `Cluster` 配置项：
 
@@ -372,13 +381,13 @@ $ istioctl -n istio-system pc clusters istio-ingressgateway-b6db8c46f-qcfks --fq
 
 可以看到，`Cluster` 最终将集群外通过 ingressgateway 发起的请求转发给实际的 `endpoint`，也就是 Kubernetes 集群中的 Service `productpage` 下面的 Pod（由 serviceName 字段指定）。
 
-{{< notice note >}}
+{{< alert >}}
 实际上 istioctl 正是通过 pilot 的 xds 接口来查看 Listener 、Route 和 Cluster 等信息的。
-{{< /notice >}}
+{{< /alert >}}
 
 好了，现在请求已经转交给 productpage 了，那么接下来这个请求将会如何走完整个旅程呢？请听下回分解！
 
-## <span id="inline-toc">5.</span> 参考
+## 参考
 
 ----
 
@@ -388,5 +397,5 @@ $ istioctl -n istio-system pc clusters istio-ingressgateway-b6db8c46f-qcfks --fq
 
 ----
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/wechat.gif)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 

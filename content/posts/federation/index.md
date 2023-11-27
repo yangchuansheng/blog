@@ -25,14 +25,14 @@ K8s 的设计定位是单一集群在同一个地域内，因为同一个地区�
 
 集群联邦（Federation）可以一定程度上解决这些问题。`Federation` 是可以将分布在多个 Region 或者多个云厂商的 Kubernetes 集群整合成一个大的集群，统一管理与调度。
 
-## <span id="inline-toc">1.</span> Kubernetes集群联邦介绍
+## Kubernetes集群联邦介绍
 ------
 
 ### 管理多个 kuberntes 集群
 
 **集群联邦**在架构上同 kubernetes 集群很相似。有一个**集群联邦**的 API server 提供一个标准的 Kubernetes API，并且通过 etcd 来存储状态。不同的是，一个通常的Kubernetes 只是管理节点计算，而**集群联邦**管理所有的 kubernetes 集群。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/PJSV9a.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/PJSV9a.jpg)
 
 Federation主要包括三个组件：
 
@@ -54,7 +54,7 @@ Kubernetes 服务是由一组 kubernetes POD 组成的，这些 POD 是一些已
 
 假如我们有一个 kubernetes 集群，这个集群里面有一个服务叫做 mysql，这个服务是由一组 mysql POD 组成的。在这个 kubernetes 集群中，其他应用可以通过 DNS 来访问这个 mysql 服务。
 
-![](https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/aRaBGQ.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/aRaBGQ.jpg)
 
 ### 跨集群调度
 
@@ -70,7 +70,7 @@ Kubernetes 服务是由一组 kubernetes POD 组成的，这些 POD 是一些已
 
 集群联邦可以跨集群冗馀部署，当某个集群所在区域出现故障时，并不影响整个服务。集群联邦还可以检测集群是否为不可用状态，如果发现某个集群为不可用状态时，可以将失败的任务重新分配给集群联邦中其他可用状态的集群上。
 
-## <span id="inline-toc">2.</span> 使用集群联邦实现多集群管理
+## 使用集群联邦实现多集群管理
 ------
 
 ### 系统环境
@@ -128,9 +128,9 @@ $ kubectl config use-context kubernetes
 
 生成的 kubeconfig 被保存到 `~/.kube/config` 文件。
 
-{{< notice note >}}
+{{< alert >}}
 ~/.kube/config 文件拥有对该集群的最高权限，请妥善保管。
-{{< /notice >}}
+{{< /alert >}}
 
 配置结果如下：
 
@@ -378,9 +378,9 @@ coredns-endpoints = <coredns-server-ip>:<port>
 + `zones` 是 CoreDNS 被授权的联邦区域，其值与 `kubefed init` 的 –-dns-zone-name 参数相同。
 + `coredns-endpoints` 是访问 CoreDNS 服务器的端点。 这是一个 1.7 版本开始引入的可选参数。
 
-{{< notice note >}}
+{{< alert >}}
 CoreDNS 配置中的 <code>plugins.etcd.zones</code> 与 kubefed init 的 `--dns-zone-name` 参数应匹配。
-{{< /notice >}}
+{{< /alert >}}
 
 给所有 node 打上 `region` 和 `zone` 的标签：
 
@@ -475,9 +475,9 @@ $ kubefed init federation \ # 联邦的名字
     *         kubernetes   kubernetes   admin
     ```
 
-{{< notice note >}}
+{{< alert >}}
 默认情况下，<code>kubefed init</code> 通过动态创建 PV 的方式为 etcd 创建持久化存储。如果 kubernetes 集群不支持动态创建 PV，则可以预先创建 PV，注意 PV 要匹配 `kubefed` 的 PVC。或者使用 <code>hostpath</code>，同时指定调度节点。
-{{< /notice >}}
+{{< /alert >}}
 
 #### 添加集群至 federation
 
@@ -559,7 +559,7 @@ No resources found.
 $ kubectl delete ns federation-system
 ```
 
-## <span id="inline-toc">3.</span> Federation 支持的服务
+## Federation 支持的服务
 ------
 
 集群联邦支持以下联邦资源，这些资源会自动在所有注册的 `kubernetes` 集群中创建。
@@ -682,7 +682,7 @@ $ kubectl exec etcd-cluster-fznzsrttt9 etcdctl ls /skydns/com/example/yangpu/
 /skydns/com/example/yangpu/svc
 ```
 
-## <span id="inline-toc">4.</span> 参考文档
+## 参考文档
 ------
 
 + [Kubernetes federation](https://kubernetes.io/docs/concepts/cluster-administration/federation/)

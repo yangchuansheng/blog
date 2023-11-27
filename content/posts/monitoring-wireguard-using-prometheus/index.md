@@ -18,6 +18,7 @@ tocFolding: false
 tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
+- Prometheus
 categories: Network
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210313011349.png
 ---
@@ -50,20 +51,20 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/202
 
 如果看到这篇文章的你仍然是个 `WireGuard` 新手，请务必按照以下顺序阅读每一篇文章：
 
-+ [WireGuard 教程：WireGuard 的工作原理](https://icloudnative.io/posts/wireguard-docs-theory/)
-+ [WireGuard 快速安装教程](https://icloudnative.io/posts/wireguard-install/)
-+ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)
-+ [Wireguard 全互联模式（full mesh）配置指南](https://icloudnative.io/posts/wireguard-full-mesh/)
++ [WireGuard 教程：WireGuard 的工作原理](/posts/wireguard-docs-theory/)
++ [WireGuard 快速安装教程](/posts/wireguard-install/)
++ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](/posts/configure-wireguard-using-wg-gen-web/)
++ [Wireguard 全互联模式（full mesh）配置指南](/posts/wireguard-full-mesh/)
 
 如果遇到不明白的，可以参考这篇文章的注解：
 
-+ [WireGuard 教程：WireGuard 的搭建使用与配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)
++ [WireGuard 教程：WireGuard 的搭建使用与配置详解](/posts/wireguard-docs-practice/)
 
 剩下这几篇文章是可选的，有兴趣就看看：
 
-+ [我为什么不鼓吹 WireGuard](https://icloudnative.io/posts/why-not-wireguard/)
-+ [Why not "Why not WireGuard?"](https://icloudnative.io/posts/why-not-why-not-wireguard/)
-+ [WireGuard 教程：使用 DNS-SD 进行 NAT-to-NAT 穿透](https://icloudnative.io/posts/wireguard-endpoint-discovery-nat-traversal/)
++ [我为什么不鼓吹 WireGuard](/posts/why-not-wireguard/)
++ [Why not "Why not WireGuard?"](/posts/why-not-why-not-wireguard/)
++ [WireGuard 教程：使用 DNS-SD 进行 NAT-to-NAT 穿透](/posts/wireguard-endpoint-discovery-nat-traversal/)
 
 WireGuard 本身是不暴露任何指标的，需要通过第三方的 `exporter` 来暴露指标。目前有两个版本的 exporter，单纯使用其中一个都不太完美，所以我干脆都用。
 

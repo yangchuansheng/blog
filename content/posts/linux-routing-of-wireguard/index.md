@@ -20,7 +20,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 - Linux
-categories: Network
+categories: ["Network", "VPN"]
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-12-24-nStmY2.jpg
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-12-25-UbKSO1.jpg
 libraries:

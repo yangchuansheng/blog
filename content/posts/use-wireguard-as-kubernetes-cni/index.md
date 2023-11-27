@@ -26,20 +26,20 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/202
 
 写了这么多篇 `WireGuard` 相关的保姆教程，今天终于牵扯到 `Kubernetes` 了，不然怎么对得起“云原生”这三个字。如果看到这篇文章的你仍然是个 `WireGuard` 新手，请务必按照以下顺序阅读每一篇文章：
 
-+ [WireGuard 教程：WireGuard 的工作原理](https://icloudnative.io/posts/wireguard-docs-theory/)
-+ [WireGuard 快速安装教程](https://icloudnative.io/posts/wireguard-install/)
-+ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/)
-+ [Wireguard 全互联模式（full mesh）配置指南](https://icloudnative.io/posts/wireguard-full-mesh/)
++ [WireGuard 教程：WireGuard 的工作原理](/posts/wireguard-docs-theory/)
++ [WireGuard 快速安装教程](/posts/wireguard-install/)
++ [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](/posts/configure-wireguard-using-wg-gen-web/)
++ [Wireguard 全互联模式（full mesh）配置指南](/posts/wireguard-full-mesh/)
 
 如果遇到不明白的，可以参考这篇文章的注解：
 
-+ [WireGuard 教程：WireGuard 的搭建使用与配置详解](https://icloudnative.io/posts/wireguard-docs-practice/)
++ [WireGuard 教程：WireGuard 的搭建使用与配置详解](/posts/wireguard-docs-practice/)
 
 剩下这几篇文章是可选的，有兴趣就看看：
 
-+ [我为什么不鼓吹 WireGuard](https://icloudnative.io/posts/why-not-wireguard/)
-+ [Why not "Why not WireGuard?"](https://icloudnative.io/posts/why-not-why-not-wireguard/)
-+ [WireGuard 教程：使用 DNS-SD 进行 NAT-to-NAT 穿透](https://icloudnative.io/posts/wireguard-endpoint-discovery-nat-traversal/)
++ [我为什么不鼓吹 WireGuard](/posts/why-not-wireguard/)
++ [Why not "Why not WireGuard?"](/posts/why-not-why-not-wireguard/)
++ [WireGuard 教程：使用 DNS-SD 进行 NAT-to-NAT 穿透](/posts/wireguard-endpoint-discovery-nat-traversal/)
 
 WireGuard 在云原生领域的应用有两个方面：**组网**和**加密**。不管是组网还是加密，其实都是和 `CNI` 有关，你可以在原有的组网方案上利用 WireGuard 进行加密，也可以直接利用 WireGuard 来进行组网。目前直接利用 WireGuard 进行组网的 CNI 有 [Flannel](https://github.com/flannel-io/flannel)、[Wormhole](https://github.com/gravitational/wormhole) 和 [Kilo](https://github.com/squat/kilo)，只利用 WireGuard 进行数据加密的 CNI 只有 [Calico](https://www.projectcalico.org/introducing-wireguard-encryption-with-calico/)，当然 `Flannel` 也可以和 `Kilo` 结合使用，这样就只利用 WireGuard 来进行加密了。
 
@@ -59,7 +59,7 @@ k3s server --flannel-backend none ...
 $ systemctl restart k3s
 ```
 
-具体可以参考 [k3s 控制平面的部署](https://icloudnative.io/posts/deploy-k3s-cross-public-cloud/#4-部署控制平面)。如果你是从零开始部署 k3s，请参考[跨云厂商部署 k3s 集群](https://icloudnative.io/posts/deploy-k3s-cross-public-cloud/)。
+具体可以参考 [k3s 控制平面的部署](/posts/deploy-k3s-cross-public-cloud/#4-部署控制平面)。如果你是从零开始部署 k3s，请参考[跨云厂商部署 k3s 集群](/posts/deploy-k3s-cross-public-cloud/)。
 
 ## 1. Kilo 网络拓扑
 
@@ -87,7 +87,7 @@ $ kgctl graph | circo -Tsvg > cluster.svg
 
 ### 全互联模式（Full Mesh）
 
-**全互联模式**其实就是**逻辑分组互联模式**的特例，即每一个节点都是一个逻辑区域，每个节点和其他所有节点都建立 WireGuard 隧道。关于全互联模式的更多详细内容请参考 [Wireguard 全互联模式（full mesh）配置指南](https://icloudnative.io/posts/wireguard-full-mesh/)。可以通过 Kilo 的启动参数 `--mesh-granularity=full` 来指定全互联模式。
+**全互联模式**其实就是**逻辑分组互联模式**的特例，即每一个节点都是一个逻辑区域，每个节点和其他所有节点都建立 WireGuard 隧道。关于全互联模式的更多详细内容请参考 [Wireguard 全互联模式（full mesh）配置指南](/posts/wireguard-full-mesh/)。可以通过 Kilo 的启动参数 `--mesh-granularity=full` 来指定全互联模式。
 
 通过 [kgctl](https://github.com/squat/kilo/blob/main/docs/kgctl.md) 可以获取网络拓扑架构图：
 
@@ -275,13 +275,13 @@ $ bridge link show kube-bridge
 
 为了便于理解，先来做个假设，假设有 4 个公有云节点，分别是 AWS、Azure、GCP、阿里云，再假设 `Service` 的子网是 `10.43.0.0/16`，`Pod` 的子网是 `10.42.0.0/16`，那么每台节点的 Pod 子网分别为 `10.42.0.0/24`、`10.42.1.0/24`、`10.42.2.0/24`、`10.42.3.0/24`。
 
-为了和 Kubernetes 集群网络分开，需要使用一个新的网络接口 `wg0`，网络架构还是建议使用全互联模式，具体可参考 [Wireguard 全互联模式（full mesh）配置指南](https://icloudnative.io/posts/wireguard-full-mesh/)。
+为了和 Kubernetes 集群网络分开，需要使用一个新的网络接口 `wg0`，网络架构还是建议使用全互联模式，具体可参考 [Wireguard 全互联模式（full mesh）配置指南](/posts/wireguard-full-mesh/)。
 
 为了让本地客户端能访问云上的 `Pod IP`，可以让本地访问 AWS 节点的 `10.42.0.0/24`，访问 Azure 节点的  `10.42.1.0/24`，以此类推。当然也可以直接让本地访问任意一个云上节点的 `10.42.0.0/16`，不过我还是不建议使用这种架构。
 
 至于 `Service IP`，并没有像 Pod 一样给每个节点划分一个更细粒度的子网，所有的节点都从同一个大的子网中分配，所以无法采用上面的方式，只能选择其中一个节点来集中转发本地客户端访问 `Service` 的流量，假设选择 `AWS` 的节点。
 
-还是和之前一样，继续使用 [wg-gen-web](https://icloudnative.io/posts/configure-wireguard-using-wg-gen-web/) 来管理 WireGuard 的配置，假设使用 `AWS` 的节点来安装 wg-gen-web。
+还是和之前一样，继续使用 [wg-gen-web](/posts/configure-wireguard-using-wg-gen-web/) 来管理 WireGuard 的配置，假设使用 `AWS` 的节点来安装 wg-gen-web。
 
 **这里有一个地方需要注意，`kilo0` 已经打通了 k3s 各个节点的私有网段，所以 `wg0` 不再需要打通私有网段，将 `k3s` 各个节点的私有网段删除即可：**
 

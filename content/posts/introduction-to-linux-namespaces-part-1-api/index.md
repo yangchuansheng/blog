@@ -13,8 +13,10 @@ date: 2020-01-17T21:35:19+08:00
 draft: false
 author: 米开朗基杨
 toc: true
-categories: "linux"
-tags: ["linux", "namespace"]
+categories:
+- Linux
+tags:
+- Namespace
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200117181939.webp"
 ---
 
@@ -218,7 +220,7 @@ uts.nodename in child:  bizarro
 uts.nodename in parent: antero
 ```
 
-除了 User namespace 之外，创建其他的 namespace 都需要特权，更确切地说，是需要相应的 `Linux Capabilities`，即 `CAP_SYS_ADMIN`。这样就可以避免设置了 SUID（Set User ID on execution）的程序因为主机名不同而做出一些愚蠢的行为。如果对 Linux Capabilities 不是很熟悉，可以参考我之前的文章：[Linux Capabilities 入门教程：概念篇](https://icloudnative.io/posts/linux-capabilities-why-they-exist-and-how-they-work/)。
+除了 User namespace 之外，创建其他的 namespace 都需要特权，更确切地说，是需要相应的 `Linux Capabilities`，即 `CAP_SYS_ADMIN`。这样就可以避免设置了 SUID（Set User ID on execution）的程序因为主机名不同而做出一些愚蠢的行为。如果对 Linux Capabilities 不是很熟悉，可以参考我之前的文章：[Linux Capabilities 入门教程：概念篇](/posts/linux-capabilities-why-they-exist-and-how-they-work/)。
 
 ## 2. proc 文件
 
