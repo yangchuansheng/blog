@@ -1,0 +1,59 @@
+<style>
+  .wxtip {
+    background: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 998;
+    display: none;
+  }
+
+  .wxtip-icon {
+    width: 52px;
+    height: 67px;
+    background: url('img/weixin-tip.png') no-repeat;
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+  }
+
+  .wxtip-txt {
+    margin-top: 107px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+</style>
+
+<div class="wxtip" id="JweixinTip">
+  <span class="wxtip-icon"></span>
+<p class="wxtip-txt">点击屏幕右上角的 ···<br />在弹出的窗口中选择 <span style="color:red">在浏览器中打开</span></p>
+<br>
+<br>
+<p><img style="width:85%; border-radius:10px;display:block;margin-left:auto;margin-right:auto;" src="/img/wechat-browser.png"></p>
+</div>
+
+<!-- 微信QQ跳转，防止被举报 -->
+<script>
+  if (is_weixn_qq()) {
+    // window.location.href = 'https://c.pc.qq.com/middle.html?pfurl='+window.location.href;
+    document.getElementById('JweixinTip').style.display = 'block';
+    document.getElementById('container').style.display = 'none';
+    document.getElementById('top-grrk').style.display = 'none';
+  }
+
+  function is_weixn_qq() {
+    // 判断当前是否微信/QQ浏览器
+    var ua = navigator.userAgent;
+    var isWeixin = !!/MicroMessenger/i.test(ua);
+    var isQQ = !!/QQ\//i.test(ua);
+    if (isWeixin || isQQ) {
+      return true;
+    }
+    return false;
+  }
+</script>

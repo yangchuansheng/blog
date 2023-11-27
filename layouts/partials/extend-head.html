@@ -9,6 +9,7 @@
 -->
 
 
+
 <!-- fps id geo-location -->
 
 <div id="fps" style="z-index:999;position:fixed;bottom:3px;right:3px;color:#FFF;font-size:10px;"></div>
@@ -27,11 +28,14 @@
 <!-- end -->
 
 
+
 <!-- start webpushr tracking code --> 
 <script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
 fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
 webpushr('setup',{'key':'BHIaDYldZcXlQt38kYXgH48NQZFQkowuo14rNhiIvrGEP5kFU5lb5h-VIMlUkjy-kxygxW4hEvb6GjijlYYlwCk' });</script>
 <!-- end webpushr tracking code -->
+
+
 
 <!-- umami -->
 <script async src="https://umami.icloudnative.io/oishii" data-website-id="f415abb1-1cb9-402e-a1c4-225ca9d792b0"></script>
@@ -45,6 +49,8 @@ webpushr('setup',{'key':'BHIaDYldZcXlQt38kYXgH48NQZFQkowuo14rNhiIvrGEP5kFU5lb5h-
   gtag('config', 'G-0VHVXWXJMQ');
 </script>
 
+
+
 <!--顶部阅读进度条-->
 <div class="top-scroll-bar" style="height: 5px; background-color: blue; width: 0; position: fixed; top: 0; z-index: 100;"></div>
 <script type="text/javascript">
@@ -56,5 +62,28 @@ $(document).ready(function () {
 </script>
 
 
+
 <!-- instant.page 预加载 -->
 <script src="https://jsd.onmicrosoft.cn/gh/instantpage/instant.page@master/instantpage.js" type="module"></script>
+
+
+
+<!--在用户切换网页时改变浏览器标题-->
+<script type="text/javascript">
+    /*  动态网页标题*/
+    var OriginTitile = document.title,
+    titleTime;
+    document.addEventListener("visibilitychange",
+    function() {
+        if (document.hidden) {
+            document.title = "你别走吖 Σ(っ °Д °;)っ";
+            clearTimeout(titleTime)
+        } else {
+            document.title = "你可算回来了 (｡•ˇ‸ˇ•｡)" + OriginTitile;
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile
+            },
+            2000)
+        }
+    });
+</script>
