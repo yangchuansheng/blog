@@ -1,13 +1,13 @@
 # -- Site Configuration --
 # Refer to the theme docs for more details about each of these parameters.
-# https://blowfish.page/docs/getting-started/
 
-theme = ["hugo-notice", "blowfish"]
-baseURL = "https://nunocoracao.github.io/blowfish"
+theme = ["blowfish"]
+baseURL = "https://icloudnative.io"
 defaultContentLanguage = "zh-cn"
+# 优化对中文、日文、韩文的处理
 hasCJKLanguage = true
-
-pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
+# 当显示内容列表（如文章、页面列表）时，以复数形式呈现  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
+pluralizeListTitles = "true"
 
 enableRobotsTXT = true
 paginate = 100
@@ -19,13 +19,7 @@ buildFuture = false
 [build]
   noJSConfigInAssets = true
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      hardWraps = true
-      unsafe = true
-      xHTML = true
-
+# 无论是缩放还是裁剪操作，都会以图像的中心点作为基准
 [imaging]
   anchor = 'Center'
 

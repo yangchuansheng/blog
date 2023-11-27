@@ -4,6 +4,8 @@
 [goldmark]
 [goldmark.renderer]
   unsafe = true
+  hardWraps = true
+  xHTML = true
 
 [highlight]
   noClasses = false

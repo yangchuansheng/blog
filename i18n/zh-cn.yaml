@@ -14,10 +14,10 @@ article:
   word_count:
     one: "{{ .Count }} 字"
     other: "{{ .Count }} 字"
-  part_of_series: "This article is part of a series."
+  part_of_series: "本文属于系列文章之一"
   part: "Part"
-  this_article: "This Article"
-  related_articles: "Related"
+  this_article: "本文"
+  related_articles: "相关文章"
   like: "喜欢"
 
 author:

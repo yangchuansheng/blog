@@ -38,11 +38,12 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/20
 
 本文我将会给大家介绍自己当初是如何选择硬件的，中间犯了哪些错误，最后会给有兴趣构建个人 NAS 服务器的小伙伴提供一些有参考价值的建议。
 
-<table><tr>
+<table style="margin-bottom:-2.5em;"><tr>
 <td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-11-19-eVso8i.jpg"></td>
 <td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-11-27-IPEJKe.jpg"></td>
 </tr></table>
-<center><small>组装 TrueNAS 服务器前后对比</small></center>
+
+<figcaption>组装 TrueNAS 服务器前后对比</figcaption>
 
 我还录制了一个视频，欢迎观看：
 
@@ -62,7 +63,7 @@ NAS 即[网络附加存储（Network-attached storage）](https://en.wikipedia.o
 
 我最大的数据来源是自己收藏的 DVD 和蓝光碟片，本人不太喜欢依赖流媒体服务来保存喜欢的影视作品，所以我至今仍然会购买影视作品的实体拷贝，一旦买到一张新的光盘，我就会将原影像翻录出来，并制作成一个可流式传输的视频文件。在原始 ISO 拷贝和可流式传输的 MP4 之间，一张光盘可以占用 60GB 的硬盘空间。
 
-![我仍然会为需要多次观看的影视作品购买 DVD 或蓝光碟片](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-11-58-cC78q3.jpg)
+![我仍然会为需要多次观看的影视作品购买 DVD 或蓝光碟片](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-11-58-cC78q3.jpg "我仍然会为需要多次观看的影视作品购买 DVD 或蓝光碟片")
 
 ### 什么是 Homelab？
 
@@ -76,7 +77,7 @@ NAS 即[网络附加存储（Network-attached storage）](https://en.wikipedia.o
 
 在组装自己的 Homelab NAS 之前，我已经使用了 7 年的 4 盘位[群晖 DS412+](https://www.newegg.com/synology-ds412/p/N82E16822108113)。我觉得群晖很好，性价比很高，如果你是 NAS 小白，建议直接买群晖吧。
 
-![为我服务了七年之久的 10TB 群晖 DS412+](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-12-10-zWiFAo.jpg)
+![为我服务了七年之久的 10TB 群晖 DS412+](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-12-10-zWiFAo.jpg "为我服务了七年之久的 10TB 群晖 DS412+")
 
 几个月前，我的群晖启动失败了，并开始发出咔咔的声音。这时我开始意识到自己对这台设备的依赖程度如此之重，想到这里后背就一阵发凉。因为群晖的服务器是不可修复的，如果其中一个零件在保修期之后出故障了，你只能更换整台服务器。如果你跟我一样不是技术大拿，而且使用了群晖专属的存储格式，也没有额外的群晖服务器，~~那么此时你就无法访问这台服务器上的数据，也无法恢复~~（[Hacker News 上的一位大佬](https://news.ycombinator.com/item?id=31549755)告诉我可以[从一个非群晖系统中恢复群晖的混合 RAID 卷](https://kb.synology.com/en-us/DSM/tutorial/How_can_I_recover_data_from_my_DiskStation_using_a_PC)）。
 
@@ -133,7 +134,9 @@ ZFS 提供了 3 种不同的磁盘阵列：raidz1，raidz2 和 raidz3，它们�
 
 最终我选择了 raidz1，因为我的硬盘数量不多，两个硬盘同时发生故障的概率比较低。
 
-⚠️注意：[ZFS 不是一种备份策略](https://www.raidisnotabackup.com/)。ZFS 可以保护你免受磁盘故障的影响，但还是有很多威胁是 ZFS 无能为力的，比如意外删除数据、恶意软件攻击或者物理盗窃。我选择使用 [restic](https://restic.net/) 将所有重要的东西备份到加密的云存储中。
+{{< alert >}}
+注意：[ZFS 不是一种备份策略](https://www.raidisnotabackup.com/)。ZFS 可以保护你免受磁盘故障的影响，但还是有很多威胁是 ZFS 无能为力的，比如意外删除数据、恶意软件攻击或者物理盗窃。我选择使用 [restic](https://restic.net/) 将所有重要的东西备份到加密的云存储中。
+{{< /alert >}}
 
 ZFS 的价值在于，如果其中一块硬盘坏了，可以直接换掉，不必求助于云备份。如果同时有两块硬盘坏了，我才会选择从云备份恢复（因为我使用的是 raidz1）。这个选择过程非常痛苦，但我仍然选择 raidz1，因为我觉得不值得为了 raidz2 而放弃服务器 20% 的可用存储空间。
 
@@ -149,7 +152,7 @@ ZFS 的价值在于，如果其中一块硬盘坏了，可以直接换掉，不�
 
 考虑到上述这些风险，我需要采取一些措施来减少两块硬盘同时发生故障的风险，办法也很简单粗暴，直接从两个不同的厂商那里购买两种相同型号的硬盘即可。这种方案虽然没有科学论证，但也没啥附加的成本，还能图个心理安慰，何乐而不为呢？😂
 
-![我从两个不同的厂商那里购买了两种相同型号的硬盘](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-11-52-t7b8im.jpg)
+![我从两个不同的厂商那里购买了两种相同型号的硬盘](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-11-52-t7b8im.jpg "我从两个不同的厂商那里购买了两种相同型号的硬盘")
 
 ## 如何挑选硬件
 
@@ -176,7 +179,7 @@ ZFS 的价值在于，如果其中一块硬盘坏了，可以直接换掉，不�
 
 我选择 CPU 的主要标准是必须要支持 Radeon 图像处理技术，这样我就可以使用 A320 主板的板载 HDMI 输出。
 
-![AMD Athlon 3000G价格低廉，并且原生支持 Radeon 图像处理技术](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-12-30-vQkYi2.jpg)
+![AMD Athlon 3000G价格低廉，并且原生支持 Radeon 图像处理技术](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-12-30-vQkYi2.jpg "AMD Athlon 3000G价格低廉，并且原生支持 Radeon 图像处理技术")
 
 最终我选择了 AMD Athlon 3000G，仅售 $105，物超所值，还支持 Radeon 图像处理技术，[CPU 基准测试](https://www.cpubenchmark.net/cpu.php?cpu=AMD+Athlon+3000G&id=3614)也表现良好。
 
@@ -184,7 +187,7 @@ ZFS 的价值在于，如果其中一块硬盘坏了，可以直接换掉，不�
 
 我最喜欢的电脑机箱是 Fractal Design，所以我选择了 Fractal Design Node 304 Black。这是一个紧凑的迷你 ITX 机箱，不像传统的塔式机箱，它的设计样式更接近于立方体，而且有 6 个硬盘托架，不管是目前使用还是将来增加硬盘都够用了。
 
-![The Fractal Design Node 304 Black 是一款迷你 ITX 机箱，有 6 个硬盘托架](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-12-44-dn646B.jpg)
+![The Fractal Design Node 304 Black 是一款迷你 ITX 机箱，有 6 个硬盘托架](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-12-44-dn646B.jpg "The Fractal Design Node 304 Black 是一款迷你 ITX 机箱，有 6 个硬盘托架")
 
 ### 数据盘
 
@@ -198,17 +201,17 @@ ZFS 的价值在于，如果其中一块硬盘坏了，可以直接换掉，不�
 
 最终我选择了[东芝 N300](https://www.newegg.com/toshiba-n300-hdwg480xzsta-8tb/p/N82E16822149793) 和[希捷 IronWolf](https://www.newegg.com/seagate-ironwolf-st8000vn004-8tb/p/N82E16822184796)，主要是因为 TrueNAS 论坛和 Reddit 上面对这两款硬盘的评价都比较积极，而且价格也很合理，都在 $180-190 之间。
 
-<table><tr>
+<table style="margin-bottom:-2.5em;"><tr>
 <td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-09-09-25-Bck3ps.jpg"></td>
 <td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-09-09-26-INfHLg.jpg"></td>
 </tr></table>
-<center><small>东芝 N300（左） 和希捷 IronWolf（右）</small></center>
+<figcaption>东芝 N300（左） 和希捷 IronWolf（右）</figcaption>
 
 ### 系统盘
 
 TrueNAS 需要将系统安装在独立的硬盘中，但是对硬盘要求不高，只需要 2GB 的空间，而且不会经常读写。
 
-![金士顿 A400 固态硬盘，容量 120GB，价格 $32](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-09-09-33-wbaeWm.jpg)
+![金士顿 A400 固态硬盘，容量 120GB，价格 $32](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-09-09-33-wbaeWm.jpg "金士顿 A400 固态硬盘，容量 120GB，价格 $32")
 
 最终我选择了[金士顿 A400](https://www.newegg.com/kingston-a400-120gb/p/N82E16820242474)，因为价格便宜，120GB 只要 $32，而且是 M.2 固态硬盘。M.2 好啊，不需要连数据线也不需要连电源线，而且外形小巧纤薄，几乎不占用任何空间。
 
@@ -225,17 +228,17 @@ TrueNAS 需要将系统安装在独立的硬盘中，但是对硬盘要求不高
 
 最终我选择了 [CORSAIR Vengeance LPX 32GB CMK32GX4M2A2400C14 (2 x 16GB)](https://www.newegg.com/corsair-32gb-288-pin-ddr4-sdram/p/N82E16820233854)，价格只有 $128。
 
-![CORSAIR Vengeance LPX 32GB CMK32GX4M2A2400C14 (2 x 16GB) 与 A320I-K 主板兼容，价格合理](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-09-09-53-hMdypj.jpg)
+![CORSAIR Vengeance LPX 32GB CMK32GX4M2A2400C14 (2 x 16GB) 与 A320I-K 主板兼容，价格合理](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-09-09-53-hMdypj.jpg "CORSAIR Vengeance LPX 32GB CMK32GX4M2A2400C14 (2 x 16GB) 与 A320I-K 主板兼容，价格合理")
 
 ### 电源（power supply unit，PSU）
 
 如果只看电源功率，基本上选择任何消费级 PSU 都够用了。根据 [PCPartPicker 的数据](https://pcpartpicker.com/)，我的系统只需要 218 瓦的电源。本来我想买的是 300-400 瓦的 PSU，但市面上没有这个功率的半模组 PSU，最终只能选择 500 瓦的 [EVGA 110-BQ-0500-K1](https://www.newegg.com/evga-500-bq-110-bq-0500-k1-500w/p/N82E16817438101)。
 
-![EVGA 110-BQ-0500-K1 是一款半模组 PSU，功率为 500 瓦，完全够用](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-09-27-Rq6Zh4.jpg)
+![EVGA 110-BQ-0500-K1 是一款半模组 PSU，功率为 500 瓦，完全够用](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-09-27-Rq6Zh4.jpg "EVGA 110-BQ-0500-K1 是一款半模组 PSU，功率为 500 瓦，完全够用")
 
 ### 90 度角 SATA 电缆
 
-![由于机箱空间限制，我需要一个 90 度角 SATA 电缆](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-09-31-jhLwIW.jpg)
+![由于机箱空间限制，我需要一个 90 度角 SATA 电缆](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-09-31-jhLwIW.jpg "由于机箱空间限制，我需要一个 90 度角 SATA 电缆")
 
 在这之前我从来没有用过 90 度角 SATA 电缆，但我的主板和 PSU 之间的空间太小了，放不下标准的 SATA 电缆，只能使用 90 度角的 SATA 电缆来解决这个问题。
 
@@ -300,29 +303,29 @@ NAS 一般都需要一个[主机总线适配器](https://www.truenas.com/communi
 
 ## 组装花絮
 
-![所有零部件](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-11-19-eVso8i.jpg)
+![所有零部件](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-03-11-19-eVso8i.jpg "所有零部件")
 
-![在 Fractal Design 迷你 ITX 机箱中安装主板](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-39-sH6D1y.jpg)
+![在 Fractal Design 迷你 ITX 机箱中安装主板](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-39-sH6D1y.jpg "在 Fractal Design 迷你 ITX 机箱中安装主板")
 
-![我太喜欢 M.2 SSD 了，不需要数据线，拧个螺丝就完了](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-40-Kcbhdk.jpg)
+![我太喜欢 M.2 SSD 了，不需要数据线，拧个螺丝就完了](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-40-Kcbhdk.jpg "我太喜欢 M.2 SSD 了，不需要数据线，拧个螺丝就完了")
 
-![这是我组装的第一个不把 PSU 的背面暴露在机箱外的系统，机箱有一条很短的 NEMA 延长线，将内部 PSU 引向机箱自身的外部电源输入。](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-42-IrkT0q.jpg)
+![这是我组装的第一个不把 PSU 的背面暴露在机箱外的系统，机箱有一条很短的 NEMA 延长线，将内部 PSU 引向机箱自身的外部电源输入。](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-42-IrkT0q.jpg "这是我组装的第一个不把 PSU 的背面暴露在机箱外的系统，机箱有一条很短的 NEMA 延长线，将内部 PSU 引向机箱自身的外部电源输入。")
 
-<table><tr>
+<table style="margin-bottom:-2.5em;"><tr>
 <td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-44-Gw48KA.jpg"></td>
 <td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-45-KAgBmk.jpg"></td>
 </tr></table>
-<center><small>主板的 SATA 接口和 PSU 之间的空间非常狭窄，只能使用特殊的 90 度角 SATA 电缆。</small></center>
+<figcaption>主板的 SATA 接口和 PSU 之间的空间非常狭窄，只能使用特殊的 90 度角 SATA 电缆。</figcaption>
 
-![将所有东西都接到主板后面（CPU 风扇除外）](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-57-Lrpf3x.jpg)
+![将所有东西都接到主板后面（CPU 风扇除外）](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-10-57-Lrpf3x.jpg "将所有东西都接到主板后面（CPU 风扇除外）")
 
-![大功告成](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-11-02-V7U8gD.jpg)
+![大功告成](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-11-02-V7U8gD.jpg "大功告成")
 
 ## 使用 TinyPilot 管理服务器
 
 老读者应该还记得，我用 Raspberry Pi 创建了一个专门用于初始化和管理服务器的工具叫 [TinyPilot](https://mtlynch.io/tinypilot/)。这台 NAS 是我用 TinyPilot 搭建的第三个服务器，也是我用 TinyPilot 最新版本 [TinyPilot Voyager 2](https://tinypilotkvm.com/product/tinypilot-voyager2?ref=mtlynch.io) 搭建的第一台服务器。
 
-![TinyPilot Voyager 2 可以在无需键盘、鼠标和显示器的情况下给服务器安装操作系统](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-11-13-EAs9bG.jpg)
+![TinyPilot Voyager 2 可以在无需键盘、鼠标和显示器的情况下给服务器安装操作系统](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-11-13-EAs9bG.jpg "TinyPilot Voyager 2 可以在无需键盘、鼠标和显示器的情况下给服务器安装操作系统")
 
 TinyPilot Voyager 2 真是太方便了！无需将键盘或显示器连接到服务器上，就可以启动 BIOS 并安装 TrueNAS 操作系统，所有的这一切都在我的浏览器中完成。
 
@@ -340,15 +343,15 @@ TinyPilot 还是有一些小问题的，不过无伤大雅。比如它虽然可�
 
 现在就比较尴尬了，这是一个先有鸡还是先有蛋的问题。。。因为只有 CPU 正常工作，我才好升级 BIOS。不过问题不大，我 [2017 年 Homelab 服务器](https://mtlynch.io/building-a-vm-homelab-2017/)中使用的 [Ryzen 7 CPU 和华硕 Prime A320 主板是兼容的](https://www.asus.com/us/Motherboards-Components/Motherboards/PRIME/PRIME-A320I-K/HelpDesk_CPU/)，我将那台服务器的 CPU 和 GPU 拿下来插到 NAS 服务器上，终于成功开机了！
 
-![使用旧的 Homelab 服务器 CPU 来升级 NAS 的 BIOS](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-14-23-KWLTRR.jpg)
+![使用旧的 Homelab 服务器 CPU 来升级 NAS 的 BIOS](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-14-23-KWLTRR.jpg "使用旧的 Homelab 服务器 CPU 来升级 NAS 的 BIOS")
 
 最让我无语的是，系统启动之后，主板显示我的 BIOS 版本仍然是 2203，也就是华硕声称它与 AMD Athlon 3000G CPU 兼容的 BIOS 版本。可是我明明已经将 BIOS 更新到了最新的 5862 版本，不管它了。。
 
-![华硕 Prime A320I-K 主板的 CPU 兼容性页面声称兼容 AMD Athlon 3000G CPU 的最低 BIOS 版本为 2203](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-14-27-ZMtbhc.png)
+![华硕 Prime A320I-K 主板的 CPU 兼容性页面声称兼容 AMD Athlon 3000G CPU 的最低 BIOS 版本为 2203](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-14-27-ZMtbhc.png "华硕 Prime A320I-K 主板的 CPU 兼容性页面声称兼容 AMD Athlon 3000G CPU 的最低 BIOS 版本为 2203")
 
 到这里问题还没有解决，系统启动后仍然看不到启动画面。排查了一通后发现我把 HDMI 线插到了 DisplayPort 接口中，我被自己蠢哭了😂
 
-![DisplayPort 接口为啥和 HDMI 这么像？很容易让人插错线诶](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-14-38-NqULSp.jpg)
+![DisplayPort 接口为啥和 HDMI 这么像？很容易让人插错线诶](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-10-14-38-NqULSp.jpg "DisplayPort 接口为啥和 HDMI 这么像？很容易让人插错线诶")
 
 现在在回过头来看一下之前的问题，细思极恐，问题真的是 BIOS 和 CPU 不兼容吗？现在没法验证了，我想大概有两种可能：
 

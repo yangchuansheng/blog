@@ -26,6 +26,8 @@ tags:
 categories:
 - network
 - VPN
+series:
+- Tailscale 系列教程
 img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-bwBdE5.png
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-zGvtDx.png
 ---
