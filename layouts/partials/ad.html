@@ -1,0 +1,52 @@
+<style>
+.slideContent {
+  width: 100%;
+  height: 464px;
+
+  &>* {
+    user-select: none;
+  }
+
+  .swiper-slide {
+    a {
+      height: 100%;
+    }
+
+    img {
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+</style>
+
+<link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/9.0.2/swiper-bundle.min.css">
+<script src="https://cdn.staticfile.org/Swiper/9.0.2/swiper-bundle.min.js"></script>
+
+<div class="swiper slideContent" id="slider">
+  <div class="swiper-wrapper">
+    {{ range .Site.Params.slideImages }}
+    <div class="swiper-slide">
+      <a data-umami-event="{{ .linkEvent }}" href="{{ .linkAddress }}" target="_blank">
+        <img class="nozoom" id="support-img" src="{{ .imgAddress | relURL }}" style="border: none;width: 100%;max-width: 100%;display: inline-block;" />
+      </a>
+    </div>
+    {{ end }}
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
+
+<script>
+  var mySwiper = new Swiper('#slider', {
+  direction: 'horizontal',
+  loop: true,
+  autoplay: {
+    delay: 5000,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  }
+})
+</script>
