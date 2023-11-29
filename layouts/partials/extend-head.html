@@ -8,6 +8,25 @@
 <link href="https://fonts.loli.net/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 -->
 
+<!-- 不蒜子 busuanzi -->
+<script defer pjax src="https://ymvhjeyojtri.cloud.sealos.top/js"></script>
+
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 100);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_site_pv").html(parseInt($("#busuanzi_site_pv").html()) + 1360325);
+            }
+            if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_site_uv").html(parseInt($("#busuanzi_site_uv").html()) + 731632);
+            }
+        }
+    });
+</script>
+
 
 
 <!-- fps id geo-location -->

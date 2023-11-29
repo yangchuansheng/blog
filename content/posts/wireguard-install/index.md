@@ -15,7 +15,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 
 WireGuard 的安装和使用条件**非常苛刻**，对内核版本要求极高，不仅如此，在不同的系统中，**内核，内核源码包，内核头文件**必须存在且这三者版本要一致。所以一般不建议在生成环境中安装，除非你对自己的操作很有把握。Red Hat、CentOS、Fedora 等系统的**内核，内核源码包，内核头文件**包名分别为 `kernel`、`kernel-devel`、`kernel-headers`，Debian、Ubuntu 等系统的**内核，内核源码包，内核头文件**包名分别为 `kernel`、`linux-headers`。

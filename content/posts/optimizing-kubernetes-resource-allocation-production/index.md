@@ -17,11 +17,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/1_K61jVANfqr3kl5bQ
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<!--more-->
-
-<p id="div-border-left-red">
-原文链接：<a href="https://opensource.com/article/18/12/optimizing-kubernetes-resource-allocation-production?sc_cid=70160000001273HAAQ" target="_blank">Optimizing Kubernetes resource allocation in production</a>
-</p>
+> 原文链接：<a href="https://opensource.com/article/18/12/optimizing-kubernetes-resource-allocation-production?sc_cid=70160000001273HAAQ" target="_blank">Optimizing Kubernetes resource allocation in production</a>
 
 我和 Kubernetes 的初次接触就涉及到将应用容器化并部署到生产环境集群中，当时我的工作重点是把 buffer 吞吐量最高（低风险）的某个端点从单个应用程序中分离出来，因为这个特殊的端点会给我们带来很大的困扰，偶尔还会影响到其他更高优先级的流量。
 
@@ -136,8 +132,6 @@ memory: 50Mi # 50 Mebibytes
 ### Kubescope cli
 
 [Kubescope cli](https://github.com/hharnisc/kubescope-cli) 是一个可以运行在本地或 Kubernetes 中的工具，可直接从 Docker Daemon 中收集容器指标并可视化。和 `cAdvisor` 等其他集群指标收集服务一样， `kubescope cli` 收集指标的周期是 1 秒（而不是 10-15 秒）。如果周期是 10-15 秒，你可能会在测试期间错过一些引发性能瓶颈的问题。如果你使用 cAdvisor 进行测试，每次都要使用新的 Pod 作为测试对象，因为 Kubernetes 在超过资源限制时就会将 Pod 杀死，然后重新启动一个全新的 Pod。而 `kubescope cli` 就没有这方面的忧虑，它直接从 Docker Daemon 中收集容器指标（你可以自定义收集指标的时间间隔），并使用正则表达式来选择和过滤你想要显示的容器。
-
-![](http://ycs.ylck.me/kubescope-cli.gif)
 
 ## 总结
 

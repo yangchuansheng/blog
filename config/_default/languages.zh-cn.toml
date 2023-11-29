@@ -22,7 +22,7 @@ contentDir = "content"
   links = [
     { rss = "/index.xml" },
     { x-twitter = "https://twitter.com/CarsonYangk8s" },
-    { wechat = "https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/tmpm1ykjt96.webp" },
+    { wechat = "https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/tmpm1ykjt96.webp" },
     { github = "https://github.com/yangchuansheng" },
     { telegram = "https://t.me/cloudnativer" },
   ]

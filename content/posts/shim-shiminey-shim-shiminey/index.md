@@ -20,7 +20,7 @@ tags:
 - Docker
 - Conatiners
 categories: cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-13-11-19-PIPRRh.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-05-13-11-19-PIPRRh.png
 ---
 
 > 原文链接：[https://container42.com/2022/01/10/shim-shiminey-shim-shiminey/](https://container42.com/2022/01/10/shim-shiminey-shim-shiminey/)

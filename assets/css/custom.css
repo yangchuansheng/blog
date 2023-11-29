@@ -500,7 +500,7 @@ ul > li::marker {
 
 /* 评论区样式 */
 
-.comment-list .comment-item-content p {
+.comment-list .comment-item-content p, .comment-list, .comment-item-children {
   color: rgba(var(--color-neutral-700), 1);
   .dark & {
     color: rgba(var(--color-neutral-300), 1);

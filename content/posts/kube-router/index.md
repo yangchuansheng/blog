@@ -120,7 +120,7 @@ Kube-router 的负载均衡器功能，会在物理机上创建一个虚拟的 `
 
 基于 Kubernetes 网络服务代理的 Kube-router IPVS 演示
 
-[![asciicast](https://asciinema.org/a/120312.png)](https://asciinema.org/a/120312)
+[![asciicast](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-48-94sE6Q.png)](https://asciinema.org/a/120312)
 
 特征：
 

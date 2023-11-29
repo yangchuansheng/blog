@@ -18,7 +18,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 
 上篇文章给大家介绍了如何[使用 wg-gen-web 来方便快捷地管理 WireGuard 的配置和秘钥](/posts/configure-wireguard-using-wg-gen-web/)，文末埋了两个坑：一个是 `WireGuard` 的全互联模式（full mesh），另一个是使用 WireGuard 作为 `Kubernetes` 的 CNI 插件。今天就来填第一个坑。
@@ -31,7 +31,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 举个例子，假设有 `4` 个节点，分别是 A/B/C/D，且这 4 个节点都不在同一个局域网，常规的做法是选取一个节点作为 VPN 网关，架构如图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210223233520.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210223233520.png)
 
 这种架构的缺点我在之前的文章里也介绍过了，缺点相当明显：
 
@@ -41,11 +41,11 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 那么全互联模式是什么样的架构呢？还是假设有 A/B/C/D 四个节点，每个节点都和其他节点建立 WireGuard 隧道，架构如图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210224111030.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210224111030.png)
 
 这种架构带来的直接优势就是快！任意一个 Peer 和其他所有 Peer 都是直连，无需中转流量。那么在 WireGuard 的场景下如何实现全互联模式呢？其实这个问题不难，难点在于配置的繁琐程度，本文的主要目标就是精简 WireGuard 全互联模式的配置流程。为了让大家更容易理解，咱们还是先通过架构图来体现各个 Peer 的配置：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210224141416.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210224141416.png)
 
 配置一目了然，每个 Peer 和其他所有 Peer 都是直连，根本没有 VPN 网关这种角色。当然，现实世界的状况没有图中这么简单，有些 Peer 是没有公网 IP 的，躲在 NAT 后面，这里又分两种情况：
 
@@ -54,7 +54,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 **接着上述方案再更进一步，打通所有 Peer 的私有网段，让任意一个 Peer 可以访问其他所有 Peer 的私有网段的机器**。上述配置只是初步完成了全互联，让每个 Peer 可以相互访问彼此而已，要想相互访问私有网段，还得继续增加配置，还是直接看图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210224150109.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210224150109.png)
 
 红色字体部分就是新增的配置，表示允许访问相应 Peer 的私有网段，就是这么简单。详细的配置步骤请看下一节。
 
@@ -71,15 +71,15 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 安装的步骤直接略过，不是本文的重点，不清楚的可以阅读我之前的文章 [WireGuard 配置教程：使用 wg-gen-web 来管理 WireGuard 的配置](/posts/configure-wireguard-using-wg-gen-web/)。Server 配置如图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210224161202.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210224161202.png)
 
 生成 `Azure` 的配置：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210224154416.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210224154416.png)
 
 SUBMIT 之后再点击 `EDIT`，添加私有网段：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210303003000.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210303003000.png)
 
 查看 `wg0.conf` 的内容：
 
@@ -105,7 +105,7 @@ AllowedIPs = 10.0.0.2/32, 192.168.20.0/24
 
 下载 Azure 配置文件：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210303003624.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210303003624.png)
 
 可以看到配置文件内容为：
 
@@ -126,7 +126,7 @@ Endpoint = aws.com:51820
 
 先不急着修改，一鼓作气生成所有 Peer 的配置文件：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210303003858.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@three/img/20210303003858.png)
 
 这时你会发现 `wg0.conf` 中已经包含了所有 Peer 的配置：
 

@@ -164,8 +164,6 @@ coredns-64b597b598-7547d   192.168.123.250
 
 `Kube-prompt` 可以让你在 Kubernetes 客户端输入相当于交互式命令会话的东西，并为每个命令提供自动填充的背景信息，你不必键入 kubectl 来为每个命令添加前缀。
 
-![](http://hugo-picture.oss-cn-beijing.aliyuncs.com/kube-prompt.gif)
-
 ## [Kubectl Aliases](https://github.com/ahmetb/kubectl-aliases)：生成 kubectl 别名
 
 如果你需要频繁地使用 kubectl 和 kubernetes api 进行交互，使用别名将会为你节省大量的时间，开源项目 [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases) 可以通过编程的方式生成 kubectl 别名，别名生成规则如下：

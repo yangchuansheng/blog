@@ -22,10 +22,10 @@ tags:
 - kubernetes
 - Sealos
 categories: tech-social
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-21-uFy94B.jpg
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-21-uFy94B.jpg
 ---
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-07-WURNlT.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-07-WURNlT.png)
 
 ## Anki 介绍
 
@@ -35,7 +35,7 @@ Anki 是一个辅助记忆软件，其本质是一个卡片排序工具--**即�
 
 闪卡的核心制作原则就是：**一个知识点一张卡**。因此非常适合用来学习英文，也可以用来记忆历史事件时间、公式等等。给大家看下我制作的闪卡：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-10-52-H2ZWUZ.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-10-52-H2ZWUZ.png)
 
 每张卡片只有一个英文单词，与之配套的是该单词的音标、发音、图片、英文解释、例句。**所有的版块都是英文，绝对不要出现中文！** 卡片的核心是图片和例句，通过图片可以猜到这个单词大概是什么意思，通过例句可以验证自己对单词意思的猜测是否正确，如果还不放心，可以看下英文解释，这一套流程下来绝对可以正确理解单词的意思，**完全不需要中文的干涉，这才是学习英文单词最完美的方式**。
 
@@ -65,19 +65,19 @@ Anki 是一个辅助记忆软件，其本质是一个卡片排序工具--**即�
 
 首先在浏览器地址栏输入网址 [https://cloud.sealos.io/](https://cloud.sealos.io/) 进入 Sealos 桌面。然后打开「应用管理」：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-54-EIVahX.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-54-EIVahX.jpg)
 
 点击「新建应用」：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-55-NDkuEg.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-55-NDkuEg.jpg)
 
 依次输入应用名和镜像名，容器暴露端口是 `27701`，并开启外网访问：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-59-FxJE12.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-59-FxJE12.png)
 
 继续向下，展开「高级配置」，点击「编辑环境变量」：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-01-DKect7.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-01-DKect7.png)
 
 将以下内容粘贴到环境变量输入框中：
 
@@ -88,39 +88,39 @@ ANKISYNCD_PASSWORD=<PASSWD>
 
 请将 `<USERNAME>` 替换为你自己的用户名，将 `<PASSWD>` 替换为你自己的密码。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-05-CWczxm.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-05-CWczxm.png)
 
 点击「新增存储卷」：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-06-lvv6ms.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-06-lvv6ms.png)
 
 挂载路径填入 `/app`，然后点击确认：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-07-s8W7iu.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-07-s8W7iu.png)
 
 最后点击右上角的部署应用即可。
 
 部署完成后点击「详情」进入应用详情界面。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-09-RslDGj.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-09-RslDGj.png)
 
 这里可以看到实例的运行状态，一定要等到状态是 running 才算是部署成功。如果一段时间以后状态还不是 running，可以点击「详情」查看故障原因：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-Vs9ccy.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-Vs9ccy.png)
 
 部署成功后，可以看到应用的运行情况，包括 CPU 占用、内存占用等。点击外网地址即可通过外网域名直接打开同步服务器的 Web 界面。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-YFHPYc.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-YFHPYc.png)
 
 如果出现以下的界面，则表示部署成功：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-FwsbfW.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-FwsbfW.png)
 
 查看日志的方法也很简单，直接点击实例右侧的「三个点」，然后点击「日志」即可查看日志：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-hdHfxP.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-hdHfxP.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-nwrxrv.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-nwrxrv.png)
 
 ## 客户端设置
 
@@ -130,19 +130,19 @@ ANKISYNCD_PASSWORD=<PASSWD>
 
 1. 先打开「首选项」
 
-   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-24-QHYKZt.png)
+   ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-24-QHYKZt.png)
 
 2. 点击「**网络**」，往下看，可以看到标有 `self-hosted sync server(自定义同步服务器)` 的方框，在里面填写您的服务端的地址：
 
-   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-26-HYOaBJ.png)
+   ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-26-HYOaBJ.png)
 
 3. 重启 Anki，然后点击「**同步**」：
 
-   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-28-ccnUOj.png)
+   ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-28-ccnUOj.png)
 
 4. 这时候会弹出一个输入框让你输入用户名和密码，你需要将你之前设置的用户名和密码输入进去：
 
-   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-29-z5E9gi.png)
+   ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-29-z5E9gi.png)
 
 5. 点击确认后，就会开始同步了。
 
@@ -151,7 +151,7 @@ ANKISYNCD_PASSWORD=<PASSWD>
 
 安卓端也是直接配置即可，我的 AnkiDroid 版本是 `2.15.6`。你可以通过「设置 -> 高级设置 -> 自定义同步服务器」找到配置页面。
 
-<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-31-vrNHJU.png">
+<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-31-vrNHJU.png">
 
 再填写用户名和密码：
 
@@ -160,8 +160,8 @@ ANKISYNCD_PASSWORD=<PASSWD>
 这样就算配置完成了，所有的牌组都同步过来了。
 
 <table><tr>
-<td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-ADfk8T.png"></td>
-<td><img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-1iudM0.png"></td>
+<td><img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-ADfk8T.png"></td>
+<td><img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-1iudM0.png"></td>
 </tr></table>
 官方的版本实在是太老了，如果你想使用更激进的社区版本，可以到这个页面下载最新的 Beta 版：
 
@@ -171,7 +171,7 @@ ANKISYNCD_PASSWORD=<PASSWD>
 
 安装完成后，可以通过「设置 -> 同步 -> 自定义同步服务器」找到配置页面：
 
-<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-39-1jsF0t.jpeg">
+<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-39-1jsF0t.jpeg">
 
 再填写用户名和密码：
 
@@ -191,6 +191,6 @@ AnkiMobile 也已经支持和自建的同步服务器同步了。至少对于版
 
 大家如果对我的卡片模板比较感兴趣，可以扫码关注公众号：
 
-<img style="width: 200px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/00022-1916295141.jpg">
+<img style="width: 200px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/00022-1916295141.jpg">
 
 后台聊天框发送暗号 **anki**，即可获取我的卡片+模板。

@@ -16,7 +16,7 @@ tags:
 - GitHub
 categories:
 - tech-social
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200701101716.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200701101716.png
 ---
 
 微软现在大搞副业，就是不肯在 Windows 系统上下功夫，最近又改了 `GitHub` UI 布局设计。核心思想是好的，利用了屏幕的宽度，首屏展示了更多的信息，元素设计上也更现代了一些。好看不好看不说，理念上的确先进了不少。
@@ -27,28 +27,28 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 使用插件前：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200630141923.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200630141923.png)
 
 使用插件后：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200630142033.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200630142033.png)
 
 ② 高亮选中的 header
 
 使用插件前：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200630142246.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200630142246.png)
 
 使用插件后：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200630142340.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200630142340.png)
 
 ③ 使用经典的按钮样式，移除图片圆角
 
 使用插件前：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200630143007.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200630143007.png)
 
 使用插件后：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200630143108.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200630143108.png)

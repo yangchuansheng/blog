@@ -19,7 +19,7 @@ tags:
 - Kubernetes
 categories: 
 - cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201130153130.jpg
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20201130153130.jpg
 ---
 
 对于大部分 Kubernetes 用户来说，安全是无关紧要的，或者说没那么紧要，就算考虑到了，也只是敷衍一下，草草了事。实际上 Kubernetes 提供了非常多的选项可以大大提高应用的安全性，只要用好了这些选项，就可以将绝大部分的攻击抵挡在门外。为了更容易上手，我将它们总结成了几个最佳实践配置，大家看完了就可以开干了。当然，本文所述的最佳安全实践仅限于 Pod 层面，也就是容器层面，于容器的生命周期相关，至于容器之外的安全配置（比如操作系统啦、k8s 组件啦），以后有机会再唠。
@@ -158,4 +158,4 @@ spec:
 
 最后，请记住：你需要万分小心你的 YAML 文件内容缩进，如果你的 YAML 文件非常多，眼睛看花了，希望下面的神器可以助你一臂之力：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201126170306.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20201126170306.png)

@@ -24,10 +24,10 @@ tags:
 categories: 
 - Network
 - VPN
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111101345322.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111101345322.png
 ---
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111101352665.jpeg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111101352665.jpeg)
 
 熟悉我的小伙伴都知道我是一名与时俱进的 [WireGuard](/posts/wireguard-docs-theory/) 舔狗，我早就把所有的跨云组网都换成了 WireGuard。
 
@@ -45,7 +45,7 @@ WireGuard 利用内核空间处理来提升性能（更高吞吐和更低延迟�
 
 光说不练假把式，为了让大家更容易带入，咱们还是来模拟一下实际场景。假设我有 4 个不同的节点，这 4 个节点的操作系统分别是 `Ubuntu`、`macOS`、`OpenWrt` 和 `Android`，且分别处于不同的局域网中，即每个节点的公网出口都不同。先来看下架构图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111061845425.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111061845425.png)
 
 ## 创建网络
 
@@ -53,17 +53,17 @@ WireGuard 利用内核空间处理来提升性能（更高吞吐和更低延迟�
 
 先创建一个网络，命名为 demo。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111061929782.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111061929782.png)
 
 创建完成后，还可以继续修改该网络的相关元数据，比如**允许节点在不使用秘钥的情况下加入 VPN 网络**。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111062158090.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111062158090.png)
 
 ## 加入节点
 
 如果部署 Netmaker 时开启了环境变量 `CLIENT_MODE: "on"`，Netmaker 就会将自身所在的主机也作为一个网络节点，名字默认为 `netmaker`。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111062215376.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111062215376.jpg)
 
 其他节点的加入流程也很简单，但不同的操作系统又不尽相同。
 
@@ -87,11 +87,11 @@ $ ./netclient join --dnson no --name <HOSTNAME> --network demo --apiserver <Netm
 
 到 Netmaker UI 中批准加入节点的请求。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111062216547.webp)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111062216547.webp)
 
 批准之后就可以看到两个节点之间已经握手成功了。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111062246656.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111062246656.png)
 
 如果没有握手成功，你需要检查一下 Netmaker 的防火墙是否放行了 UDP 端口（本文是 `51821` 端口）。
 
@@ -195,7 +195,7 @@ peer: Z6oCQdV5k4/AVXsUhhGNW69D2hnqcgJe7i3w8qzGJBY=
 
 除了 Netmaker Server 节点之外，Ubuntu 节点和 macOS 节点的 UDP 监听端口都是随机的，而且他们的防火墙都没有放行相应的 UDP 端口，竟然也握手成功了！那是因为他们都**开启了 UDP 打洞**，这就是 UDP 打洞的神奇之处。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071706395.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071706395.png)
 
 我们可以来验证下 macOS 和 Ubuntu 之间的连通性：
 
@@ -355,11 +355,11 @@ EOF
 
 Netclient 目前只支持 Linux、macOS 和 Windows，如果 Android 和 iOS 端想要加入 VPN  私有网络，只能通过 WireGuard 原生客户端来进行连接。要想做到这一点，需要管理员事先创建一个 External  Client，它会生成一个 WireGuard 配置文件，WireGuard 客户端可以下载该配置文件或者扫描二维码进行连接。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071940467.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071940467.png)
 
 当然，在创建 External Client 之前，需要先设置其中一个节点为 Ingress Gateway。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071937462.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071937462.png)
 
 **需要说明的是，目前移动设备通过 External Client 接入只是权宜之计，随着 Netclient 对更多操作系统的支持，最终所有的客户端都应该使用 netclient 来连接。**
 
@@ -373,15 +373,15 @@ Netclient 目前只支持 Linux、macOS 和 Windows，如果 Android 和 iOS 端
 
 操作步骤很傻瓜化，先点击 OpenWrt 节点左边的 **“MAKE openwrt AN EGRESS GATEWAY MODE?”**：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071820971.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071820971.png)
 
 填写局域网的网段和出口网卡，如果你有多个网段需要打通（比如 OpenWrt 上的容器网段），可以用 "," 隔开。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071828160.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071828160.png)
 
 配置完成后，就会在 OpenWrt 节点配置的 Postup 和 Postdown 中添加相关的 iptables 规则。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071836056.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071836056.png)
 
 具体的规则为：
 
@@ -397,7 +397,7 @@ iptables -D FORWARD -i nm-demo -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0
 
 除了添加 Postup 和 Postdown 之外，还会在其他节点 WireGuard 配置的 `AllowedIps` 中添加 OpenWrt 的局域网网段：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting2@main/img/202111071842208.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting2@main/img/202111071842208.png)
 
 除此之外还会在其他所有节点中添加相关路由表：
 

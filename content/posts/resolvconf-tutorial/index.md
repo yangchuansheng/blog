@@ -19,7 +19,7 @@ tags:
 - DNS
 categories: 
 - Linux
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20201007172159.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20201007172159.png
 ---
 
 随着 Linux 的不断发展壮大，涌现出了各种各样的 DNS 自动管理程序，它们都想要直接获得 `/etc/resolv.conf` 的控制权，有些人欣然接受，有些人则无法接受。如果你是无法接受的那一方，那么请继续往下看，我会教你如何识别出是哪些程序在控制你的 `/etc/resolv.conf` 文件，以及如何夺回控制权。

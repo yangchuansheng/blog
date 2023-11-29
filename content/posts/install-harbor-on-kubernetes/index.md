@@ -21,7 +21,7 @@ tags:
 - Kubernetes
 categories: 
 - cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210107115844.jpg
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210107115844.jpg
 ---
 
 **系统环境：**
@@ -754,7 +754,7 @@ harbor-harbor-nginx   ClusterIP   10.109.50.142   <none>        80/TCP,443/TCP  
 
 进入后可以看到 Harbor 的管理后台：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201230163549.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20201230163549.png)
 
 ## 5. 服务器配置镜像仓库
 
@@ -855,7 +855,7 @@ elapsed: 2.2 s                                                                  
 
 镜像仓库中也能看到：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201230171408.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20201230171408.png)
 
 将之前的下载的镜像删除，然后测试从 `harbor.example.net` 下载镜像进行测试：
 

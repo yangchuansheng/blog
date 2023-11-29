@@ -17,7 +17,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - kubernetes
 categories: cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200817090632.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200817090632.png
 ---
 
 > 原文链接：[Introducing Hierarchical Namespaces](https://kubernetes.io/blog/2020/08/14/introducing-hierarchical-namespaces/)

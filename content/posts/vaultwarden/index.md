@@ -24,8 +24,8 @@ tags:
 - Vaultwarden
 - Bitwarden
 categories: cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-09-08-15-42-kQdLol.png
-meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-09-08-15-40-wGBd19.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-09-08-15-42-kQdLol.png
+meta_image: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2023-09-08-15-40-wGBd19.png
 ---
 
 ## 我与 LastPass 的曲折恋情
@@ -40,13 +40,13 @@ meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/
 
 说到密码管理器，大家是不是想起了 LastPass… 我一开始用的确实是 LastPass，但是 LastPass 的价格策略频繁调整，从一开始的免费，到后来逐渐收费，让我开始对其提高警惕。而且，尽管它的安全记录相对来说比较良好，但经历过数次的漏洞曝出，让我对于其中的数据安全产生了疑虑。最让我失望的是，随着其越来越多的商业化操作，一些原本免费的功能也被限制或转移到了付费版本。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-19-49-XHN6Lp.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-19-49-XHN6Lp.png)
 
 ## Bitwarden：密码管理革命者
 
 一次偶然的机会，Bitwarden 闯入了我的视线。作为新一代开源的跨平台密码管理器，Bitwarden 的透明度让我对数据安全有了更大的信心。它使用 AES-256 位加密和 PBKDF2 SHA-256 来保证所有信息的安全，并且拥有丰富的客户端支持，包括 Windows、Mac、Linux、iOS、Android 等多个平台。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-06-lhdqCm.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-06-lhdqCm.jpg)
 
 与 LastPass 相比，Bitwarden 具有以下优势：
 
@@ -67,7 +67,7 @@ Vaultwarden 是 Bitwarden 的轻量级版本，**原名 bitwarden_rs**，后来�
 
 Logo 完美结合了 Rust 和 Vaultwarden： 
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-39-ySJr3t.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-39-ySJr3t.png)
 
 Vaultwarden 使用 Rust 编写，默认使用 SQLite 数据库（同时还支持 MySQL 和 PostgreSQL），实现了 Bit­war­den API 的所有功能，**只需要 10M 内存**便可运行，几乎可以跑在任何硬件之上。
 
@@ -87,29 +87,29 @@ Vaultwarden 使用 Rust 编写，默认使用 SQLite 数据库（同时还支持
 
 啥都不用填，直接点击「部署应用」：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-51-JxiA1C.jpg)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-51-JxiA1C.jpg)
 
 部署完成后，点击确认跳转到应用详情页面，可以看到应用已经启动成功了。点击外网地址即可直接打开 Vaultwarden 的 Web 界面：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-41-Ia2FQ4.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-41-Ia2FQ4.png)
 
 创建你的密码管理账户：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-57-h2vXcA.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-20-57-h2vXcA.png)
 
 创建完成后开始登录：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-21-10-3XBNbR.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-21-10-3XBNbR.png)
 
 完结撒花！🎉🎉🎉
 
 客户端使用自定义服务器非常简单，以 macOS 客户端为例，登录时选择「自托管」：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-21-17-EL0dGQ.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-21-17-EL0dGQ.png)
 
 然后在弹出的界面中输入 Vaultwarden 的地址，并点击保存：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-42-Gh3TAt.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-42-Gh3TAt.png)
 
 然后输入邮箱和密码进行登录。
 
@@ -123,11 +123,11 @@ Vaultwarden 可以通过环境变量来自定义各种配置，它的所有环�
 
 Sealos 添加环境变量非常简单，在应用详情页面直接点击「变更」：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-15-bGzM8D.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-15-bGzM8D.png)
 
 然后展开「高级配置」，点击「编辑环境变量」：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-16-RqfqG4.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-16-RqfqG4.png)
 
 然后就可以在其中添加环境变量了。
 
@@ -137,13 +137,13 @@ Sealos 添加环境变量非常简单，在应用详情页面直接点击「变�
 ADMIN_TOKEN='xxxxx'
 ```
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-19-nVVJM4.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-19-nVVJM4.png)
 
 添加完成之后，点击「确认」，再点击右上角的「变更」就可以了。
 
 在你的域名后面加上 `/admin`，登录 Vaultwarden 管理后台，登陆密码为刚刚设置的 `ADMIN_TOKEN`：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-45-gtkvnK.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-45-gtkvnK.png)
 
 在这里可以根据情况对 Vaultwarden 进行一些可选设置，所有的设置项都可以通过鼠标悬停查看相应的说明，不了解的选项建议保持默认。
 
@@ -165,17 +165,17 @@ ADMIN_TOKEN='xxxxx'
 
 现在我们来评估一下在 Sealos 上运行 Vaultwarden 大概需要多少钱。点击「变更」：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-15-bGzM8D.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-22-15-bGzM8D.png)
 
 模板默认使用的 CPU 是 0.2C，内存是 256M，不过 Vaultwarden 只需要 10M 就能跑起来，个人使用完全不需要这么多内存，咱们直接把 CPU 和内存调到最低：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-21-43-sjJXTe.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-06-21-43-sjJXTe.png)
 
 最后点击「变更」。
 
 这下舒服了，每天只需要花费**两毛六分钱**。再加上 Sealos 超给力的充值优惠，折算下来每天只需要花费一毛多一点。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-07-09-54-fzC7ln.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-09-07-09-54-fzC7ln.png)
 
 而且**不需要操心什么反向代理，什么域名，什么证书，就是一把梭**，优雅。
 

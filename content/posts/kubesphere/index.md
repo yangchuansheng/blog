@@ -21,29 +21,11 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 KubeSphere 目前最新的版本为高级版 `2.0.2`，并且所有版本 100% 开源。它的 Dashboard 是这个样子的：
 
-<div class="gallery">
-    <a href="https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-091028.jpg" data-lightbox="image-1" data-title="KubeSphere 主界面">
-    <img src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-091028.jpg">
-    </a>
-</div>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-16-kaZw8G.png)
 
-<center><p id=small>KubeSphere 主界面</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-17-nOTXRc.png)
 
-<div class="gallery">
-    <a href="https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-091159.jpg" data-lightbox="image-2" data-title="Istio 微服务治理界面">
-    <img src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-091159.jpg">
-    </a>
-</div>
-
-<center><p id=small>Istio 微服务治理界面</p></center>
-
-<div class="gallery">
-    <a href="https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-139.198.0.142_30880_monitoring_monitor-cluster_etcd.png" data-lightbox="image-3" data-title="多维度监控界面">
-    <img src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/2019-09-19-139.198.0.142_30880_monitoring_monitor-cluster_etcd.png">
-    </a>
-</div>
-
-<center><p id=small>多维度监控界面</p></center>
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-17-cnH0Nu.png)
 
 这个颜值，比 Kubernetes Dashboard 不知道高到哪里去了，感兴趣的小伙伴可以给一个 Github Star 鼓励一下开发小哥。访问官网请戳这里：[kubesphere.io](https://kubesphere.io/)
 

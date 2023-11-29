@@ -62,7 +62,7 @@ $ cd envoy/examples/front-proxy
 
 整体架构如下：
 
-![](https://jimmysong.io/kubernetes-handbook/images/envoyproxy-docker-compose.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-40-0tx7WG.png)
 
 使用 docker-compose 启动容器：
 

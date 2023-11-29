@@ -1,20 +1,27 @@
 ---
+keywords:
+- calico
+- router reflector
+- bgp
+- kubernetes
+- cloud native
+- 云原生
 title: "calico Router reflection(RR) 模式介绍及部署"
 subtitle: "通过 calico RR 模式来使 K8S 支撑容纳更多的 node"
 date: 2018-02-01T11:03:49Z
 draft: false
 author: 米开朗基杨
 toc: true
-categories: cloud-native
-tags: ["kubernetes", "docker"]
+categories: 
+- cloud-native
+tags: 
+- Kubernetes
+- Calico
 img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/20191204222610.png"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 ---
 
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=0 height=0 src="https://hugo-picture.oss-cn-beijing.aliyuncs.com/images/Two%20Steps%20From%20Hell%20-%20Star%20Sky.mp3"></iframe>
-
 ## 名词解释
-------
 
 - `endpoint`：接入到网络中的设备称为 endpoint :heart:
 - `AS`：网络自治系统，一个完全自治的网络，通过 BGP 协议与其它 AS 交换路由信息
@@ -25,7 +32,6 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 - `hostEndpoints`：Calico 网络中的物理机(node)的地址
 
 ## 组网原理
-------
 
 `Calico` 组网的核心原理就是IP路由，每个容器或者虚拟机会分配一个 `workload-endpoint`(wl)。
 

@@ -18,7 +18,7 @@ tags:
 categories: 
 - Network
 - VPN
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 
 [上篇文章](/posts/wireguard-docs-theory/)介绍了 `WireGuard` 相对于其他 VPN 协议的优点和 `WireGuard` 的工作原理，本文将会学习如何从零开始配置 `WireGuard`，这里会涉及到很多高级的配置方法，例如动态 IP、NAT 到 NAT、IPv6 等等。

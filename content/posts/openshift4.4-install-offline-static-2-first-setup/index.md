@@ -19,7 +19,7 @@ tags:
 - Openshift
 categories:
 - cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200601144925.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200601144925.png
 libraries:
 - katex
 ---
@@ -45,7 +45,7 @@ libraries:
 
 引导安装过程完成以后，OCP 集群部署完毕。然后集群开始下载并配置日常操作所需的其余组件，包括创建计算节点、通过 `Operator` 安装其他服务等。
 
-![创建引导主机、控制平面和计算节点](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200602195135.png)
+![创建引导主机、控制平面和计算节点](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200602195135.png)
 
 ## 2. 准备服务器资源
 
@@ -659,11 +659,11 @@ $ wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.4/late
 本地下载 RHCOS 的 `ISO` 文件：[https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.4/latest/rhcos-4.4.3-x86_64-installer.x86_64.iso](https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.4/latest/rhcos-4.4.3-x86_64-installer.x86_64.iso)，然后上传到 `vSphere`。步骤如下：
 
 ① 首先登陆 vSphere，然后点击『存储』。
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605130737.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605130737.png)
     
 ② 选择一个『数据存储』，然后在右边的窗口中选择『上载文件』。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605131505.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605131505.png)
 
 ③ 选择刚刚下载的 ISO 文件，上传到 ESXI 主机。
 
@@ -685,7 +685,7 @@ ip=192.168.57.61::192.168.57.1:255.255.255.0:bootstrap.openshift4.example.com:en
 
 如图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605134815.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605134815.png)
 
 ③ 如果安装有问题会进入 `emergency shell`，检查网络、域名解析是否正常，如果正常一般是以上参数输入有误，reboot 退出 shell 回到第一步重新开始。
 
@@ -924,15 +924,15 @@ You are logged in as a temporary administrative user. Update the Cluster OAuth c
 
 ③ 在 Web Console 页面打开 `Global Configuration`：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605150947.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605150947.png)
 
 然后找到 `OAuth`，点击进入，然后添加 `HTPasswd` 类型的 `Identity Providers`，并上传 `users.htpasswd` 文件。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605151307.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605151307.png)
 
 ④ 退出当前用户，注意要退出到如下界面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605151646.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605151646.png)
 
 选择 `htpasswd`，然后输入之前创建的用户名密码登录。
 
@@ -952,13 +952,13 @@ $ oc adm policy add-cluster-role-to-user cluster-admin admin
 
 Web Console 部分截图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605152528.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605152528.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605152729.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605152729.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605152911.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605152911.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200605153048.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200605153048.png)
 
 如果想删除默认账号，可以执行以下命令：
 

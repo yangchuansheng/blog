@@ -19,7 +19,7 @@ tags:
 categories:
 - Network
 - VPN
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200704105149.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200704105149.png
 ---
 
 > 本文翻译自：[https://github.com/pirate/wireguard-docs](https://github.com/pirate/wireguard-docs)
@@ -30,7 +30,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 WireGuard 与其他 VPN 协议的性能测试对比：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200701114722.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200701114722.png)
 
 可以看到 WireGuard 直接碾压其他 VPN 协议。再来说说 `OpenVPN`，大约有 10 万行代码，而 WireGuard  只有大概 `4000` 行代码，代码库相当精简，简直就是件艺术品啊。你再看看 `OpenVPN` 的性能，算了不说了。
 
@@ -133,7 +133,7 @@ WireGuard 是支持漫游的，也就是说，双方不管谁的地址变动了�
 
 WireGuard 使用加密的 UDP 报文来封装所有的数据，UDP 不保证数据包一定能送达，也不保证按顺序到达，但隧道内的 TCP 连接可以保证数据有效交付。WireGuard 的报文格式如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200702142917.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200702142917.png)
 
 关于 WireGuard 报文的更多信息可以参考下面几篇文档：
 
@@ -147,7 +147,7 @@ WireGuard 声称其性能比大多数 VPN 协议更好，但这个事情有很�
 
 WireGuard 直接在内核层面处理路由，直接使用系统内核的加密模块来加密数据，和 Linux 原本内置的密码子系统共存，原有的子系统能通过 `API` 使用 WireGuard 的 `Zinc` 密码库。WireGuard 使用 UDP 协议传输数据，在不使用的情况下默认不会传输任何 UDP 数据包，所以比常规 VPN 省电很多，可以像 55 一样一直挂着使用，速度相比其他 VPN 也是压倒性优势。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200702153436.png)
+![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200702153436.png)
 
 关于性能比较的更多信息可以参考下面几篇文档：
 

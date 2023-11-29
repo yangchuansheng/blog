@@ -28,8 +28,8 @@ categories:
 - VPN
 series:
 - Tailscale 系列教程
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-bwBdE5.png
-meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-zGvtDx.png
+img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-bwBdE5.png
+meta_image: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2022-11-27-18-47-zGvtDx.png
 ---
 
 前面几篇文章给大家给介绍了 Tailscale 和 Headscale，包括 [Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网](/posts/how-to-set-up-or-migrate-headscale/#%E6%80%BB%E7%BB%93)。同时还介绍了[如何自建私有的 DERP 服务器，并让 Tailscale 使用我们自建的 DERP 服务器](/posts/custom-derp-servers/)。
