@@ -71,6 +71,6 @@ circuit_breakers:
 
 ----
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

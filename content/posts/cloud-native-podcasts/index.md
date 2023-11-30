@@ -21,10 +21,10 @@ tags:
 - Kubernetes
 - Podcast
 categories: cloud-native
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-20-2wpZVR.webp
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-20-2wpZVR.webp
 ---
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-20-M7A8Wj.webp)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-20-M7A8Wj.webp)
 
 虽然 PHP 是世界上最好的语言，但身为程序员、YAML 工程师和系统重启工程师，你必须学会的语言只有英语。网上铺天盖地都是英文资料和教程，就连 Youtube 上面的视频教程绝大多数都是英文，所以我们要想在互联网的世界里自由翱翔，就必须以最快的速度学会“英语”这门语言。
 
@@ -88,16 +88,16 @@ Software Engineering Daily 主要介绍软件工程领域的最新资讯，Cloud
 
 这个播客主要关注公有云的安全问题，案例都来自于真实的团队，不绑定公有云厂商。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-04-jgL8FT.webp)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-04-jgL8FT.webp)
 
 ## [The Art of Modern Ops](https://www.weave.works/podcast-the-art-of-modern-ops/)
 
 专注于现代云基础设施，由 Weaveworks 首席技术官 Cornelia Davis 和《云原生模式》一书的作者主持，通过对有经验的团队进行采访，来探讨数字化转型的使用案例。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-06-G2B2p9.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-06-G2B2p9.png)
 
 ## [EnterpriseReady](https://www.enterpriseready.io/podcast/)
 
 将对软件开发业内专家和企业创始人进行深入采访，并打破行业之间的壁垒，使用通俗易懂的语言向大家分享前辈们在构建世界上最好的企业软件过程中获得的经验教训。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-07-9T5wQo.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-09-12-07-9T5wQo.png)

@@ -27,7 +27,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 接下来使用下面这张架构图来说明可能的使用场景：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/oVqcww.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/oVqcww.jpg)
 
 ## 为什么需要自定义 DNS
 
@@ -383,7 +383,7 @@ options ndots:5
 
 ----
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 
 

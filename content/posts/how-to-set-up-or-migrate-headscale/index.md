@@ -27,11 +27,11 @@ categories:
 - VPN
 series:
 - Tailscale 系列教程
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-11-15-sM5HES.png
-meta_image: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-01-WKkKHb.jpg
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-11-15-sM5HES.png
+meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-01-WKkKHb.jpg
 ---
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting5@main/uPic/2022-11-29-10-20-bADiKL.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2022-11-29-10-20-bADiKL.png)
 
 目前国家工信部在大力推动三大运营商发展 IPv6，对家用宽带而言，可以使用的 IPv4 公网 IP 会越来越少。有部分地区即使拿到了公网 IPv4 地址，也是个大内网地址，根本不是真正的公网 IP，访问家庭内网的资源将会变得越来越困难。
 
@@ -62,7 +62,7 @@ Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似�
 
 简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 WireGuard。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-14-50-Q4bWmK.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-14-50-Q4bWmK.png)
 
 光有这些还不够，作为一个白嫖党，咱更关心的是**免费**与**开源**。
 
@@ -316,7 +316,7 @@ http://xxxxxx:8080/register?key=905cf165204800247fbd33989dbc22be95c987286c45aac3
 
 在浏览器中打开该链接，就会出现如下的界面：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-06-08qWbz.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-06-08qWbz.png)
 
 将其中的命令复制粘贴到 headscale 所在机器的终端中，并将 NAMESPACE 替换为前面所创建的 namespace。
 
@@ -409,7 +409,7 @@ macOS 有 3 种安装方法：
 
 安装完 GUI 版应用后还需要做一些骚操作，才能让 Tailscale 使用 Headscale 作为控制服务器。当然，Headscale 已经给我们提供了详细的操作步骤，你只需要在浏览器中打开 URL：`http://<HEADSCALE_PUB_IP>:8080/apple`，便会出现如下的界面：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-17-53-rjcTVg.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-17-53-rjcTVg.png)
 
 你只需要按照图中所述的步骤操作即可，本文就不再赘述了。
 
@@ -419,15 +419,15 @@ macOS 有 3 种安装方法：
 
 修改完成后重启 Tailscale 客户端，在 macOS 顶部状态栏中找到 Tailscale 并点击，然后再点击  `Log in`。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-43-pTW3r7.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-43-pTW3r7.png)
 
 然后立马就会跳转到浏览器并打开一个页面。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-46-AbzngB.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-46-AbzngB.png)
 
 接下来与之前 Linux 客户端相同，回到 Headscale 所在的机器执行浏览器中的命令即可，注册成功：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
 
 回到 Headscale 所在主机，查看注册的节点：
 
@@ -470,35 +470,35 @@ Android 客户端从 1.30.0 版本开始支持自定义控制服务器（即 coo
 
 安装完成后打开 Tailscale App，会出现如下的界面：
 
-<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-12-m2IYpv.jpeg">
+<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-12-m2IYpv.jpeg">
 
 
 
 点开右上角的“三个点”，你会看到只有一个 `About` 选项：
 
-<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-14-ghdl4A.jpeg">
+<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-14-ghdl4A.jpeg">
 
 接下来就需要一些骚操作了，你需要反复不停地**点开再关闭**右上角的“三个点”，重复三四次之后，便会出现一个 `Change server` 选项：
 
-<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-23-mcAexh.jpeg">
+<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-23-mcAexh.jpeg">
 
 点击 `Change server`，将 headscale 控制服务器的地址填进去：
 
-<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-37-fkRIxW.jpeg">
+<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-37-fkRIxW.jpeg">
 
 然后点击 `Save and restart` 重启，点击 `Sign in with other`，就会跳出这个页面：
 
-<img src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-09-30-bf83jv.jpeg" style="width: 400px;">
+<img src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-06-07-09-30-bf83jv.jpeg" style="width: 400px;">
 
 将其中的命令粘贴到 Headscale 所在主机的终端，将 **NAMESPACE** 替换为之前创建的 namespace，然后执行命令即可。注册成功后可将该页面关闭，回到 App 主页，效果如图：
 
-<img style="width: 400px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-48-M07ibg.jpeg">
+<img style="width: 400px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-48-M07ibg.jpeg">
 
 ### Windows
 
 Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 URL：`http://<HEADSCALE_PUB_IP>:8080/windows`，便会出现如下的界面：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-23-30-zcQX3F.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-23-30-zcQX3F.png)
 
 按照其中的步骤操作即可。
 
@@ -609,6 +609,6 @@ $ ip route show table 52|grep "192.168.100.0/24"
 ## 总结
 目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 [NAT 穿透的原理](https://tailscale.com/blog/how-nat-traversal-works/)，[中文版](https://arthurchiao.art/blog/how-nat-traversal-works-zh/)翻译自国内的 eBPF 大佬赵亚楠，墙裂推荐大家阅读。放一张图给大家感受一下：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-10-52-TzXGEZ.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-10-52-TzXGEZ.png)
 
 本文给大家介绍了 Tailscale 和 Headscale，包括 Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网。下篇文章将会给大家介绍[如何让 Tailscale 使用自定义的 DERP Servers](/posts/custom-derp-servers/)（也就是中继服务器），See you~~

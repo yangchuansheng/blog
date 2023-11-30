@@ -22,7 +22,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191208145932
 
 例如，个人博客的首页字体：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208000933.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/20191208000933.png)
 
 CSS3 引入的 `@font-face ` 这一属性可以很好的解决这个问题，可以帮助我们非常灵活的使用一些特殊的字体，即使用户电脑里面没有安装这个字体，网页也可以显示。
 
@@ -62,7 +62,7 @@ body {
 
 测试效果：Chrome，Firefox，IE7-IE11 均可以实现
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208004937.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/20191208004937.png)
 
 ## 字体难题
 
@@ -80,11 +80,11 @@ body {
 
 ----
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208145932.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/20191208145932.png)
 
 还真有。经过我一番搜寻，找到了两款工具：一个是华人开发的「[字蛛](http://font-spider.org/)」，英文名 `font-spider`，依赖 Node.js 环境，是一款命令行工具。主要思路是采集线上网页使用到的字体，从字体文件中分离出来，完成大幅度压缩。另一个是腾讯的大佬改版后的 font-soider，叫 [font-spider-plus](https://github.com/allanguys/font-spider-plus)。它们的工作原理如下：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/20191208150540.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/20191208150540.png)
 
 我选择使用 font-spider-plus，毕竟改版过的，bug 更少，功能更多，还支持线上动态渲染的页面。唯一的不足就是官方文档写的太含糊了，许多人看了根本不知道怎么用。下面我将给我一个详细的范例，手把手教你如何使用 font-spider-plus。
 

@@ -20,7 +20,7 @@ tags:
 - Envoy
 categories:
 - cloud-native
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200513123439.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200513123439.png
 
 ---
 
@@ -30,13 +30,13 @@ img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200513
 
 先来感受下速度：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210217224424.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210217224424.png)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210217224444.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210217224444.png)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210217224500.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210217224500.jpg)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210217224515.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210217224515.jpg)
 
 ## 1. 前提条件
 
@@ -104,7 +104,7 @@ exec "$@"
 
 一般来说，即使你要同时缓存 `docker.io`、`gcr.io`、`k8s.gcr.io`、`quay.io` 和 `ghcr.io`，一台 `1C 2G` 的云主机也足够了（前提是你不在上面跑其他的服务）。我的博客、评论服务和其他一堆乱七八糟的服务都要跑在云主机上，所以一台是不满足我的需求的，我直接买了两台腾讯云香港轻量级服务器。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210216182846.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210216182846.png)
 
 既然买了两台，肯定得[组个 k3s 集群](/posts/deploy-k3s-cross-public-cloud/)啦，看主机名就知道我是用来干啥的。其中 2C 4G 作为 master 节点，1C 2G 作为 node 节点。
 
@@ -842,7 +842,7 @@ spec:
 
 这样就可以通过 Dashboard 来清理镜像释放空间了。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210217172620.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210217172620.png)
 
 或者直接简单粗暴，定时删除整个存储目录的内容。例如，执行命令 `crontab -e`，添加如下内容：
 
@@ -980,5 +980,5 @@ spec:
 好了，现在我们来评估一下这一切的费用。首先你得有一个会魔法的服务器，国内的肯定不用考虑了，必须选择国外的，而且到国内的速度还过得去的，最低最低不会低于 **30 人民币/月** 吧。除此之外，你还得拥有一个个人域名，这个价格不好说，总而言之，加起来肯定不会低于 30 吧，多数人肯定是下不去这个手的。没关系，我有一个更便宜的方案，我已经部署好了一切，你可以直接用我的服务，当然我也是自己买的服务器，每个月也是要花钱的，如果你真的想用，**只需要每月支付 3 元**，以此来保障我每个月的服务器费用。当然肯定不止你一个人，目前大概有十几个用户，后面如果人数特别多，再考虑加服务器。这个需要你自己考虑清楚，有意者扫描下方的二维码向我咨询：
 
 <p>
-<img src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200430221955.png" width="400">
+<img src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200430221955.png" width="400">
 </p>

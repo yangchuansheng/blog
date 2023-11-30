@@ -23,10 +23,10 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - Firefox
 categories: tech
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/Mozilla-Foundation-accepts-Dogecoin-DOGE-users-threaten-to-stop-using.jpg
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/Mozilla-Foundation-accepts-Dogecoin-DOGE-users-threaten-to-stop-using.jpg
 ---
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-cnfjg.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-cnfjg.png)
 
 Firefox 和 Chrome 分别是当今世界最流行的浏览器之一，虽然这两款浏览器都有各自的优势，但随着时间的推移，Firefox 的受欢迎程度在逐渐下降，开始走下坡路。这无可厚非，并不是 Firefox 不行了，而是 Chrome 太强了，背靠 Google 顶级大厂，无缝整合 Google 服务，界面极度简洁，它就像一个十足精美的篮子，你往里面放的鸡蛋越多，它就越好用。
 
@@ -44,13 +44,13 @@ Mozilla 基金会对计算机领域最大的贡献是 Rust 编程语言，而 Fi
 
 另外，我觉得 Firefox 最大的一个〖杀手锏〗就是**高度可定制化**，你可以凭借自己的想象力把 Firefox 浏览器改造成自己想要的任意形态，而 **Chrome 却只能限定在一个可控范围内进行扩展和定制，就是画个圈圈，你只能在这个圈内自由活动**。如果你不太理解什么是改造成任意形态，我可以举个例子，比如我可以将 Firefox 的 about 界面 Logo 替换成任意图片：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-29-20-14-RzmddG.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-29-20-14-RzmddG.png)
 
 Chrome 有这个可能吗？
 
 再比如我可以将 Firefox 的地址栏做成如下炫酷的特效，还可以将标签页的样式改造成如下的“花里胡哨”的样式：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-29-22-49-agMPpf.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-29-22-49-agMPpf.png)
 
 Chrome 有这本事吗？
 
@@ -75,11 +75,11 @@ Firefox 最顶级的个性化方式就是用户样式和用户脚本来定制。
 
 Firefox 自 69 版本以后，为了更快的启动速度，默认不会去寻找定义样式的 `userChrome.css` 和 `userContent.css`，我们需要手动开启这一功能。在 Firefox 的地址栏访问 `about:config`，忽略警告，在接下来的界面搜索 `toolkit.legacyUserProfileCustomizations.stylesheets`，并将这一项目设置为 true，如下图：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-00-28-cueVKu.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-00-28-cueVKu.png)
 
 之后，我们找到 Firefox Profile 的根目录，我们需要在那里创建定义样式的 `userChrome.css`。在 Firefox 的地址栏访问 `about:support`，选择下方的 Profile Folder，点击 Open Folder。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-00-33-63s4XI.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-00-33-63s4XI.png)
 
 之后打开的文件夹即为 Firefox Profile 根目录。在这里，我们需要创建一个名叫 `chrome` 的文件夹，接下来的所有自定义样式都需要放入这一文件夹之中。
 
@@ -112,23 +112,23 @@ Firefox 自 69 版本以后，为了更快的启动速度，默认不会去寻�
 
 + [Photon Australis](https://github.com/wilfredwee/photon-australis) : 模仿 Chrome 设计风格的 Firefox 主题，将 Firefox 标签页的样式打磨得和 Chrome 圆角标签页近乎一致。
 
-  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-12-55-BuK4Wp.png)
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-12-55-BuK4Wp.png)
 
 + [FlyingFox](https://github.com/akshat46/FlyingFox) : 我认为这是最精美的 Firefox 主题，这也是我目前正在使用的主题。
 
-  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-00-ov5mOh.png)
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-00-ov5mOh.png)
 
 + [FirefoxCSS-Store](https://github.com/FirefoxCSS-Store/FirefoxCSS-Store.github.io) : 从名字就能看出来，这是一个 Firefox userchrome 主题商店，包含了各种主题任你挑选。
 
-  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-03-wrA7kV.jpg)
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-03-wrA7kV.jpg)
 
 + [firefox-csshacks](https://github.com/MrOtherGuy/firefox-csshacks) : 这个仓库包含了各种特定的样式，其中 chrome 文件夹包含了 userChrome.css 的样式，content 文件夹包含了 userContent.css 的样式。
 
-  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-16-8Jwi0L.jpg)
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-16-8Jwi0L.jpg)
 
 + [FirefoxCSS on Reddit](https://www.reddit.com/r/FirefoxCSS/) : 这是全球最大的 Firefox 样式分享社区，你可以在这里自由讨论、提问、分享自己的样式，或者拿走别人的样式。
 
-  ![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-23-JWJUmU.jpg)
+  ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-13-23-JWJUmU.jpg)
 
 感兴趣的小伙伴可以自己下载体验一番。
 
@@ -183,19 +183,19 @@ chrome
 
 重启 Firefox 浏览器就可以看到浏览器的工具栏中多了一个扩展的图标，实际上这不是一个浏览器扩展，而是通过 JavaScript 实现的。
 
-<img style="width: 400px" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-14-47-abcd.png" />
+<img style="width: 400px" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-14-47-abcd.png" />
 
 现在我们就可以编写自定义样式并实时调试了，方法很简单，点击上述 StyloaiX 图标，然后依次选择 〖New Style〗--> 〖Blank Style〗。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-06-qAN44a.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-06-qAN44a.png)
 
 然后就会打开一个编辑器的界面。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-08-E2Tp1Q.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-08-E2Tp1Q.png)
 
 然后就可以在里面调试样式了。比如我想对扩展界面进行自定义，就可以选择〖New Style〗--> 〖For this page〗，打开编辑器后会自动帮你设置 CSS 样式的生效页面。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-13-uaTRnw.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-13-uaTRnw.png)
 
 往里面加入如下的 CSS 内容：
 
@@ -276,15 +276,15 @@ chrome
 
 样式会立即生效，将扩展列表改为双栏显示。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-21-uZTpAs.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-21-uZTpAs.png)
 
 调试好了确认无误后，只需给该样式命名然后保存即可。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-24-Mtlr2g.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-24-Mtlr2g.png)
 
 如果你临时不想用这个样式了，可以点击 StyloaiX 图标，然后直接点击样式名，就会取消选中该样式，前面的图标会从〖打✅的圆〗变成〖空心圆〗。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-32-XlKBk4.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-32-XlKBk4.png)
 
 StyloaiX 的牛逼之处在于它可以渲染任何样式，不管是 userChrome 还是 userContent，甚至可以直接使用它来替代 stylus 等扩展。
 
@@ -296,7 +296,7 @@ StyloaiX 的牛逼之处在于它可以渲染任何样式，不管是 userChrome
 
 还是使用 [xiaoxiaoflood/firefox-scripts](https://github.com/xiaoxiaoflood/firefox-scripts) 这个仓库提供的方法，下载脚本 [rebuild_userChrome.uc.js](https://raw.githubusercontent.com/xiaoxiaoflood/firefox-scripts/master/chrome/rebuild_userChrome.uc.js)，然后将其拷贝到 chrome 文件夹中，重启浏览器之后就可以看到浏览器的工具栏中又多了一个扩展的图标。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-55-gFAgRB.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-16-55-gFAgRB.png)
 
 每一个脚本都有 6 种不同的操作方法，我就不解释了，大家应该都能看懂。
 
@@ -306,11 +306,11 @@ StyloaiX 的牛逼之处在于它可以渲染任何样式，不管是 userChrome
 
 除了上面的玩法之外，我们还可以使用自定义脚本管理浏览器的扩展，虽然某些浏览器扩展也可以实现这个功能，但是使用自定义脚本更省资源，也更高效。这就需要用到另外一个大佬的仓库 [aminomancer/uc.css.js](https://github.com/aminomancer/uc.css.js)，直接下载脚本 [extensionOptionsPanel.uc.js](https://github.com/aminomancer/uc.css.js/blob/master/JS/extensionOptionsPanel.uc.js)，然后将其拷贝到 chrome 文件夹的根目录，重启浏览器之后就可以看到浏览器的工具栏中又多了一个扩展的图标。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-17-15-S4d5cC.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-17-15-S4d5cC.png)
 
 现在你可以在同一个界面中管理所有的扩展，包括启用、禁用、设置、卸载等等。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-17-16-krpUNM.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-17-16-krpUNM.png)
 
 关于自定义脚本的内容我就讲这么多，玩法太多，我就不一一列举了，这篇文章只是提供一个方向，感兴趣的玩家可以自己去探索。除了前面提到的两个仓库之外，最后我再提供一些别人写好的脚本资源：
 
@@ -321,7 +321,7 @@ StyloaiX 的牛逼之处在于它可以渲染任何样式，不管是 userChrome
 
 如果大家对我的 Firefox 样式和脚本比较感兴趣，可以扫码关注公众号：
 
-<img style="width: 300px;" src="https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200813101211.png" />
+<img style="width: 300px;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200813101211.png" />
 
 后台发送暗号：**firefox**，即可获取我的所有样式和脚本。下载压缩包之后将解压出来的文件全部拷贝到 chrome 文件夹中即可，如果说有重复，则覆盖它。
 
@@ -356,7 +356,7 @@ user.js 的完整参数可参考 [arkenfox/user.js](https://github.com/arkenfox/
 
 目前支持油猴脚本的浏览器扩展有 [Greasemonkey](https://addons.mozilla.org/zh-CN/firefox/addon/greasemonkey/)、[Tampermonkey](https://addons.mozilla.org/zh-CN/firefox/addon/tampermonkey/) 和 [Violentmonkey](https://addons.mozilla.org/zh-CN/firefox/addon/violentmonkey/)，个人推荐使用 Violentmonkey，也就是暴力猴。安装好扩展之后，可以到 [Greasyfork](https://greasyfork.org/zh-CN) 这个网站中去安装自己感兴趣的脚本。例如，很多人看到我的屏幕后都会问我是怎么上 Google 的，问的人太多了我就很烦，所以当我们使用[这个脚本](https://greasyfork.org/zh-CN/scripts/372883-%E6%8A%8Agoogle%E6%90%9C%E7%B4%A2%E4%BC%AA%E8%A3%85%E6%88%90%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2)把 Google 的 Logo 换成百度，他们就不会问那么多问题了！
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-19-07-3GQALg.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-19-07-3GQALg.png)
 
 ### 自定义网页样式
 
@@ -364,7 +364,7 @@ user.js 的完整参数可参考 [arkenfox/user.js](https://github.com/arkenfox/
 
 安装好扩展之后，可以到 [userstyles.org](https://userstyles.org/) 这个网站中去安装自己感兴趣的样式。例如，我可以使用[这个样式](https://userstyles.org/styles/204545/github-ph-logo-design)将 GitHub 的 Logo 改成 **PornHub** 的风格。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-19-22-1qRfTh.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-04-30-19-22-1qRfTh.jpg)
 
 如果 userstyles.org 中提供的样式不能满足你的需求，你也可以自己编写样式，一切皆有可能。
 

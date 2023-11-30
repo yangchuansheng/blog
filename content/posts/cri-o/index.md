@@ -29,11 +29,11 @@ CRI-O 最出名的特点是它支持“受信容器”和“非受信容器”�
 
 当 Kubernetes 需要运行容器时，它会与 CRI-O 进行通信，CRI-O 守护程序与 `runc`（或另一个符合 OCI 标准的运行时）一起启动容器。当 Kubernetes 需要停止容器时，CRI-O 会来处理，它只是在幕后管理 Linux 容器，以便用户不需要担心这个关键的容器编排。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/OerlSo.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/OerlSo.jpg)
 
 CRI-O 有一个有趣的架构（见下图），它重用了很多基础组件，下面我们来看一下各个组件的功能及工作流程。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/iSdQap.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/iSdQap.jpg)
 
 + Kubernetes 通知 `kubelet` 启动一个 pod。
 

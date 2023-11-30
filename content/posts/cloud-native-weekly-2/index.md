@@ -24,11 +24,11 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [Kube Forwarder](https://kube-forwarder.pixelpoint.io/) : Kubernetes 端口转发的 GUI 客户端，支持多集群，断开后可自动重连（`kubectl` 可做不到这一点哦），可对多个 Service 同时进行端口转发。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-131408.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-131408.jpg)
 
 [Kube eagle](https://github.com/cloudworkz/kube-eagle) : 这是一个 Prometheus Exporter，用来更精确地抓取 Kubernetes 集群中 Pod 资源的 `requests`、`limits` 和实际使用量。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-132825.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-132825.jpg)
 
 [Kube-hunter](https://github.com/aquasecurity/kube-hunter) : Kubernetes 集群渗透测试工具，从事安全工作的相关人员可以关注一下。
 
@@ -64,21 +64,21 @@ spec:
 
 [Cluster version of VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics/tree/cluster) : VictoriaMetrics 是 Prometheus 支持的远程存储，而集群版 VictoriaMetrics 用来实现大规模 Prometheus 集群的高可用，并提供了全局视图和可靠的历史数据存储，与 [Thanos](https://github.com/improbable-eng/thanos) 的功能类似，但比 Thanos 的架构更简单，值得一试！
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-150300.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-150300.jpg)
 
 [Service Mesh Hub](https://github.com/solo-io/service-mesh-hub) : [solo.io](https://www.solo.io/) 开源的 `Service Mesh` 仓库，提供了一个 Dashboard 用来发现和部署不同类型的 Service Mesh，也可以管理每个 Service Mesh 的扩展。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-152250.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-152250.png)
 
 这是仓库里包含的所有扩展：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-152233.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-152233.png)
 
 [Kubernetes Standardized Glossary](https://kubernetes.io/docs/reference/glossary/) : 这是 Kubernetes 官方文档新出的标准术语表，对每种资源类型和组件都有标准化的解释。
 
 [netramesh](https://github.com/avito-tech/netramesh) : 这是一个轻量级的 Service Mesh 框架。你没有听错，这是一个全新的 Service Mesh 框架。据官方文档所述，它比 `Istio` 和 `Linkerd2` 的资源消耗更少，性能更高，每个 Sidecar 大约消耗 10-50Mb 的内存和 1ms 的延迟开销。这是它的架构图：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-154128.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-04-154128.jpg)
 
 [KubeOne](https://github.com/kubermatic/kubeone) : Golang 编写的 Kubernetes 高可用集群部署工具，底层使用的是 `kubeadm`。
 
@@ -86,7 +86,7 @@ spec:
 
 [Singer](https://github.com/pinterest/singer) : Printerest 开源的高性能可扩展日志收集 agent，可对接 Kafaka。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-05-075333.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-05-075333.jpg)
 
 ## 博客推荐
 

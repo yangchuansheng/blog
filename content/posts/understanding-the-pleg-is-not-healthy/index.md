@@ -52,7 +52,7 @@ PLEG 全称叫 `Pod Lifecycle Event Generator`，即 Pod 生命周期事件生�
 
 整体的工作流程如下图所示，虚线部分是 PLEG 的工作内容。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/orig-pleg-1.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/orig-pleg-1.png)
 
 ## PLEG is not healthy 是如何发生的？
 
@@ -60,7 +60,7 @@ PLEG 全称叫 `Pod Lifecycle Event Generator`，即 Pod 生命周期事件生�
 
 `Healthy()` 函数会以 “PLEG” 的形式添加到 `runtimeState` 中，Kubelet 在一个同步循环（`SyncLoop()` 函数）中会定期（默认是 10s）调用 `Healthy()` 函数。`Healthy()` 函数会检查 `relist` 进程（PLEG 的关键任务）是否在 3 分钟内完成。如果 relist 进程的完成时间超过了 3 分钟，就会报告 **PLEG is not healthy**。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-healthy-checks.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-healthy-checks.png)
 
 我会在流程的每一步通过源代码解释其相关的工作原理，源代码基于 Kubernetes 1.11（Openshift 3.11）。如果你不熟悉 Go 的语法也不用担心，只需要看代码中的注释就能明白其原理。我也会在放出代码之前先解读一番，并从源代码中裁剪掉不太重要的内容以提高代码的可读性。下面是调用 healthy() 函数的相关代码：
 
@@ -157,13 +157,13 @@ type PodLifecycleEvent struct {
 
 下面我们来看一下 `relist()` 函数的内部实现。完整的流程如下图所示：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-process.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-process.png)
 
 注意图中的 RPC 调用部分，后文将会拎出来详细解读。完整的源代码在[这里](https://github.com/openshift/origin/blob/release-3.11/vendor/k8s.io/kubernetes/pkg/kubelet/pleg/generic.go#L180-L284)。
 
 尽管每秒钟调用一次 `relist`，但它的完成时间仍然有可能超过 1s。因为下一次调用 `relist` 必须得等上一次 relist 执行结束，设想一下，如果容器运行时响应缓慢，或者一个周期内有大量的容器状态发生改变，那么 `relist` 的完成时间将不可忽略，假设是 5s，那么下一次调用 `relist` 将要等到 6s 之后。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-start-relist.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-start-relist.png)
 
 相关的源代码如下：
 
@@ -219,7 +219,7 @@ func (g *GenericPLEG) relist() {
 
 其中 `GetPods()` 函数的调用堆栈如下图所示：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-getpods.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-getpods.png)
 
 相关的源代码如下：
 
@@ -371,7 +371,7 @@ relist 的最后一个任务是检查是否有与 Pod 关联的事件，并按�
 
 `updateCache()` 的详细调用堆栈如下图所示，其中 `GetPodStatus()` 用来获取 Pod 的 spec 定义信息：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-updatecache.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-updatecache.png)
 
 完整的代码如下：
 
@@ -459,7 +459,7 @@ func (m *kubeGenericRuntimeManager) getPodContainerStatuses(uid kubetypes.UID, n
 
 我们可以通过监控 Kubelet 的指标来了解 `relist` 的延时。`relist` 的调用周期是 1s，那么 **relist 的完成时间 + 1s** 就等于 `kubelet_pleg_relist_interval_microseconds` 指标的值。你也可以监控容器运行时每个操作的延时，这些指标在排查故障时都能提供线索。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-kubelet-metrics-table.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-kubelet-metrics-table.png)
 
 你可以在每个节点上通过访问 URL `https://127.0.0.1:10250/metrics` 来获取 Kubelet 的指标。
 
@@ -520,7 +520,7 @@ kubelet_runtime_operations_latency_microseconds_count{operation_type="podsandbox
 
 可以通过 Prometheus 对其进行监控：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/pleg-prometheus-metrics.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/pleg-prometheus-metrics.png)
 
 ## 总结
 

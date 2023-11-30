@@ -17,7 +17,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - Envoy
 categories: service-mesh
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200426205419.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200426205419.png
 ---
 
 Envoy Proxy 在大多数情况下都是作为 `Sidecar` 与应用部署在同一网络环境中，每个应用只需要与 Envoy（`localhost`）交互，不需要知道其他服务的地址。然而这并不是 Envoy 仅有的使用场景，它本身就是一个七层代理，通过模块化结构实现了流量治理、信息监控等核心功能，比如流量治理功能就包括自动重连、熔断、全局限速、流量镜像和异常检测等多种高级功能，因此 Envoy 也常常被用于**边缘代理**，比如 Istio 的 `Ingress Gateway`、基于 Envoy 实现的 Ingress Controller（[Contour](/posts/use-envoy-as-a-kubernetes-ingress/)、[Ambassador](https://www.getambassador.io)、[Gloo](https://github.com/solo-io/gloo) 等）。
@@ -34,7 +34,7 @@ Envoy Proxy 在大多数情况下都是作为 `Sidecar` 与应用部署在同一
 
 现实世界中两个人进行信息交流的整个过程被称作一次通信（`Communication`），通信的双方被称为端点（`Endpoint`）。工具通讯环境的不同，端点之间可以选择不同的工具进行通信，距离近可以直接对话，距离远可以选择打电话、微信聊天。这些工具就被称为 `Socket`。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200426213301.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200426213301.png)
 
 同理，在计算机中也有类似的概念：
 
@@ -45,7 +45,7 @@ Envoy Proxy 在大多数情况下都是作为 `Sidecar` 与应用部署在同一
 
 `UDS` 与网络 Socket 最明显的区别在于，**网络 Socket** 地址是 IP 地址加端口号，而 `UDS` 的地址是一个 Socket 类型的文件在文件系统中的路径，一般名字以 `.sock` 结尾。这个 Socket 文件可以被系统进程引用，两个进程可以同时打开一个 `UDS` 进行通信，而且这种通信方式只会发生在系统内核里，不会在网络上进行传播。下面就来看看如何让 `Envoy` 通过 `UDS` 与上游集群 `Nginx` 进行通信吧，它们之间的通信模型大概就是这个样子：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200427143709.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200427143709.png)
 
 ## 2. Nginx 监听 UDS
 
@@ -164,7 +164,7 @@ spec:
 
 `System V` 共享内存能够使用的内存空间只受 `/proc/sys/kernel/shmmax` 限制；而用户通过挂载的 `/dev/shm`，默认为物理内存的 `1/2`。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200427124844.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200427124844.png)
 
 概括一下：
 

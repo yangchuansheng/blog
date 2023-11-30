@@ -100,7 +100,7 @@ nonce: A
 
 Envoy 在处理 `DiscoveryResponse` 响应后，将通过流发送一个新的请求，请求包含应用成功的最后一个版本号和管理服务器提供的 `nonce`。如果本次更新已成功应用，则 `version_info `的值设置为 X，如下序列图所示：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/simple-ack.svg "ack 更新")
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/simple-ack.svg "ack 更新")
 
 在此序列图及后续章节中，将统一使用以下缩写格式：
 
@@ -113,11 +113,11 @@ Envoy 在处理 `DiscoveryResponse` 响应后，将通过流发送一个新的�
 
 有了版本（`version_info`）这个概念，就可以为 Envoy 和管理服务器共享当前应用配置，以及提供了通过 ACK/NACK 来进行配置更新的机制。如果 Envoy 拒绝了配置更新 X，则回复 [error_detail](https://www.envoyproxy.io/docs/envoy/latest/api-v2/api/v2/discovery.proto#envoy-api-field-discoveryrequest-error-detail) 及前一个版本号，在本例中为空的初始版本号，`error_detail` 包含了有关错误的更加详细的信息：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/simple-nack.svg "nack 更新")
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/simple-nack.svg "nack 更新")
 
 重新发送 DiscoveryRequest 后，API 更新可能会在新版本 Y 上成功应用：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/later-ack.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/later-ack.svg)
 
 每个流都有自己的版本概念，但不同的资源类型不能共享资源版本。在不使用 ADS 的情况下，每个资源类型可能具有不同的版本，因为 Envoy API 允许不同的 EDS/RDS 资源配置指向不同的 `ConfigSources`。
 
@@ -137,9 +137,9 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 对于 EDS/RDS ，Envoy 可以为每个给定类型的资源生成不同的流（如每个 `ConfigSource` 都有自己的上游管理服务器集群）或当指定资源类型的请求发送到同一个管理服务器的时候，允许将多个资源请求组合在一起发送。虽然可以单个实现，但管理服务器应具备为每个请求中的给定资源类型处理一个或多个 `resource_names` 的能力。下面的两个序列图都可用于获取两个 EDS 资源 `{foo，bar}`：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/eds-same-stream.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/eds-same-stream.svg)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/eds-distinct-stream.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/eds-distinct-stream.svg)
 
 #### 资源更新
 
@@ -147,15 +147,15 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 例如，如果 Envoy 在 EDS 版本 **X** 时仅知道集群 `foo`，但在随后收到的 CDS 更新时额外获取了集群 `bar` ，它可能会为版本 **X** 发出额外的 `DiscoveryRequest` 请求，并将 `{foo，bar}` 作为请求的 `resource_names`。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/cds-eds-resources.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/cds-eds-resources.svg)
 
 这里可能会出现竞争状况；如果 Envoy 在版本 **X** 上发布了资源提示更新请求，但在管理服务器处理该请求之前发送了新的版本号为 **Y** 的响应，针对 `version_info` 为 **X** 的版本，资源提示更新可能会被解释为拒绝 **Y** 。为避免这种情况，通过使用管理服务器提供的 `nonce`，Envoy 可用来保证每个 `DiscoveryRequest` 对应到相应的 `DiscoveryResponse`：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/update-race.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/update-race.svg)
 
 管理服务器不应该为含有过期 `nonce` 的 `DiscoveryRequest` 发送 `DiscoveryResponse` 响应。如果向 Envoy 发送的 `DiscoveryResponse` 中包含了的新 `nonce`，则此前的 `nonce` 将过期。在确定新版本可用之前，管理服务器不需要向 Envoy 发送更新。同版本的早期请求将会过期。在新版本就绪时，管理服务器可能会处理同一个版本号的多个 `DiscoveryRequests` 请求。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/stale-requests.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/stale-requests.svg)
 
 上述资源更新序列表明 Envoy 并不能期待其发出的每个 `DiscoveryRequest` 都得到 `DiscoveryResponse` 响应。
 
@@ -179,7 +179,7 @@ LDS/CDS 资源提示信息将始终为空，并且期望管理服务器的每个
 
 当管理服务器进行资源分发时，通过上述保证交互顺序的方式来避免流量被丢弃是一项很有挑战的工作。ADS 允许单一管理服务器通过单个 gRPC 流来提供所有的 API 更新。配合仔细规划的更新顺序，ADS 可规避更新过程中的流量丢失。使用 ADS，在单个流上可通过类型 URL 来进行复用多个独立的 `DiscoveryRequest`/`DiscoveryResponse` 序列。对于任何给定类型的 URL，以上 `DiscoveryRequest` 和 `DiscoveryResponse` 消息序列都适用。 更新序列可能如下所示：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/ads.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/ads.svg)
 
 每个 Envoy 实例可使用单独的 ADS 流。
 
@@ -228,11 +228,11 @@ xDS 增量 `session` 始终位于 gRPC 双向流的上下文中。这允许 xDS 
 
 在下面的示例中，客户端连接并接收它的第一个更新并 ACK。第二次更新失败，客户端发送 NACK 拒绝更新。xDS客户端后续会自发地请求 `wc` 相关资源。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/incremental.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/incremental.svg)
 
 在下面的示例中，当 xDS 客户端断开重新连接时，支持增量的 xDS 客户端可能会告诉服务器其已经获取的资源从而避免服务端通过网络重新发送它们。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/incremental-reconnect.svg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/incremental-reconnect.svg)
 
 ## REST-JSON 轮询订阅
 

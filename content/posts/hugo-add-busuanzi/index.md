@@ -164,7 +164,7 @@ $ cat themes/beautifulhugo/layouts/partials/footer.html
 
 展示效果：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/bXybBs.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/bXybBs.jpg)
 
 添加页面 `PV`：
 
@@ -187,7 +187,7 @@ $ cat themes/beautifulhugo/layouts/partials/postmeta.html
 
 展示效果：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2ont92.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2ont92.jpg)
 
 大家可以根据自己的审美，功能来定制主题，首先需要对主题的结构，调用等信息清楚，然后再添加自己的改动。
 

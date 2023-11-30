@@ -73,7 +73,7 @@ cgroup 是 Linux 下的一种将进程按组进行管理的机制，在用户层
 
 如果我们将系统的资源看成一块馅饼，那么所有资源默认会被划分为 3 个 cgroup：`System`, `User` 和 `Machine`。每一个 cgroup 都是一个 `slice`，每个 slice 都可以有自己的子 slice，如下图所示：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200723163321.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163321.jpg)
 
 下面我们以 CPU 资源为例，来解释一下上图中出现的一些关键词。
 

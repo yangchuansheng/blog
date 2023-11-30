@@ -18,14 +18,14 @@ tags:
 - Ceph
 categories: 
 - cloud-native
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200915133850.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200915133850.png
 ---
 
 本文详细介绍了如何在 Kubernetes 集群中部署 `ceph-csi`（v3.1.0），并使用 `RBD` 作为持久化存储。
 
 需要的环境参考下图：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200914130840.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200914130840.png)
 
 **本文使用的环境版本信息：**
 
@@ -229,9 +229,9 @@ $ kubectl create -f csi-nodeplugin-psp.yaml
 
 将 `csi-rbdplugin-provisioner.yaml` 和 `csi-rbdplugin.yaml` 中的 kms 部分配置注释掉：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200914160558.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200914160558.png)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200914160627.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200914160627.png)
 
 部署 `csi-rbdplugin-provisioner`：
 

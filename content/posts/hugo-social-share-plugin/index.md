@@ -22,7 +22,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 还好我发现了一款简单高效的社交分享组件，只看一眼便可以确认这就是我要寻找的那个它。直接上预览，你看完一定会喜欢上：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/yURXT6.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/yURXT6.jpg)
 
 ## 简介
 

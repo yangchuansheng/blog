@@ -20,8 +20,8 @@ tags:
 - WireGuard
 - Phantun
 categories: ["Network", "VPN"]
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-58-NGnKZp.jpg
-meta_image: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-58-QXJLuQ.jpeg
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-58-NGnKZp.jpg
+meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-58-QXJLuQ.jpeg
 ---
 
 [WireGuard](https://icloudnative.io/tags/wireguard/) 作为一个更先进、更现代的 VPN 协议，比起传统的 IPSec、OpenVPN 等实现，效率更高，配置更简单，并且已经合并入 Linux 内核，使用起来更加方便，简直就是 VPN 中的战斗机。越来越多的高人利用 WireGuard 实现很多奇奇怪怪的需求。例如国内与国外机器通过 WireGuard 打通隧道，变成伪 IPLC 专线；或者打通本地与 Kubernetes 集群的网络。
@@ -32,7 +32,7 @@ meta_image: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2
 
 这就好办了，既然你对 TCP 连接睁一只眼闭一只眼，那我将 UDP 连接伪装成 TCP 连接不就蒙混过关了。目前支持将 UDP 流量伪装成 TCP 流量的主流工具是 [udp2raw](https://github.com/wangyu-/udp2raw-tunnel)，相信很多小伙伴对这个工具都轻车熟路了，但是很遗憾，今天的主角不是它，而是另一款比它更强大的新工具：[Phantun](https://github.com/dndx/phantun)。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-59-iz55Hr.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-15-59-iz55Hr.jpg)
 
 ## Phantun 介绍
 
@@ -63,7 +63,7 @@ Phantun 的 TCP 连接是按需创建的，只启动 Client 不会主动去连�
 
 ## Phantun 工作原理
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-16-00-r6RqnU.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-10-07-16-00-r6RqnU.jpg)
 
 Phantun 分为服务端和客户端，服务端会监听一个端口，比如 4567（通过 `--local` 参数指定），并将 UDP 数据包转发到 UDP 服务（这里指的就是服务端 WireGuard 的监听端口和地址，通过 `--remote` 参数指定）。
 

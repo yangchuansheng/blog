@@ -21,7 +21,7 @@ tags:
 - Flannel
 categories: 
 - cloud-native
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200615100550.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200615100550.png
 ---
 
 最近一两年各大云服务商都出了各种福利活动，很多小伙伴薅了一波又一波羊毛，比如腾讯云 1C2G `95/年` 真香系列，华为云和阿里云也都有类似的活动，薅个两三台就能搭建一个 `Kubernetes` 集群。但是跨云服务商搭建 `Kubernetes` 集群并不像我们想象中的那么容易，首先就是原生的 `Kubernetes` 组件本身对资源的消耗量很大，而云服务器的资源非常有限，经不起这么大家伙的折腾，对此我们可以选择使用轻量级 Kubernetes 发行版：`k3s`。

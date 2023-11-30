@@ -45,39 +45,39 @@ iTerm2 有一个非常强大的功能叫触发器（Trigger），**触发器是�
 
 本文将利用触发器来实现 ssh 自动登录的功能。首先点击 `Preference -> Profiles`，选中你要登录的服务器，`Command` 这里填写你的 ssh 登录的 ip 和用户名，如果端口不是 22 还要指定端口：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109164441.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109164441.png)
 
 然后点击 `Advanced`,找到 Trriggers,点击 `edit`：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109164721.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109164721.png)
 
 在 Regular Eexpression 中，填写你要匹配的正则表达式。由于这里是要在看到 `password` 的提示后输入密码，所以这里填写  `password`，如果你服务器的密码提示是 `passwd`，你要改成匹配这个正则，当然还有些服务器提示的是 `Password`，所以我们可以用正则 `(p|P)ass(word|wd):` 全部匹配。在 `Action` 中选择 `Send Text`，在 `Parameters` 中填写你的密码，最后增加一个 `\r` 字符。`\r` 是回车，这就相当于你输入了密码，并按了下回车。最后，要把 `Instant` 的复选框选中。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109171503.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109171503.png)
 
 我这里多加了一个正则表达式，因为第一次登录服务器时会提示 `Are you sure you want to continue connecting (yes/no)?`。
 
 现在在你的终端会话中双指轻按触控板，或者鼠标右击，就可以选择你的 Profile 自动登录了：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109165837.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109165837.png)
 
 到了这一步还没有结束，这个方法看似完美，其实是有问题的。假设你在这台服务器上再通过 ssh 去登录其他服务器，仍然会触发 Triggers；再假设其他服务器的密码和这台服务器的密码是不同的，这时候就会陷入尴尬的境地，不管你尝试多少次，触发器都会自动输入之前设置的密码，你将永远登录不上另一台服务器。
 
 还有一些其他的问题，比如你在终端中输入的任何命令只要匹配了触发器的正则，就会自动输入密码，使用体验非常不好：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109171420.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109171420.png)
 
 解决这个问题其实也很简单，只需要提高正则匹配的准确度就行了，直接看图：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109171246.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109171246.png)
 
 现在再通过 ssh 登录其他服务器，触发器再也不会自动输入密码了：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109171948.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109171948.png)
 
 在终端中输入的命令也不会匹配到 password 和 Password 等这些单词了：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109172103.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109172103.png)
 
 到这一步算是完美解决了自动登录的需求。但还是有一点小瑕疵，每台服务器的触发器正则表达式都是不一样的，如果你要登录的服务器很多，这个工作量将非常大，要不要用这种方法可以自己取舍。
 
@@ -127,11 +127,11 @@ $ sudo chmod +x /usr/local/bin/iterm2Login.sh
 
 将 Profile 中的 Command 部分替换成通过上面的脚本来登录：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109175137.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109175137.png)
 
 最后将触发器中的所有规则都删掉，只留下一个：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109175338.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109175338.png)
 
 大功告成！
 
@@ -198,7 +198,7 @@ $ chmod +x /usr/local/bin/iterm2-zmodem.sh
 
 打开 `iTerm2` ，点击 `Preferences` → `Profiles` 选择指定的 `Profile`。然后继续选择 `Advanced` → `Triggers`，并点击 `Edit` 添加两个触发器。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109164721.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109164721.png)
 
 按如下内容添加两个触发器，首先增加 `sz` 指令的触发器：
 
@@ -220,7 +220,7 @@ Instant: checked
 
 成功增加完成后的效果，类似下图：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109181319.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109181319.png)
 
 配置这两个触发器的作用就是让 `iTerm2` 根据终端上显示的字符通过指定的触发器调用相应的发送和接收脚本。
 
@@ -244,7 +244,7 @@ Instant: checked
 
 难道 expect 真的就没有办法了吗？那之前的工作岂不是都化为乌有了？别慌，不但有办法，而且这个办法非常简单，简单的让你想笑。只需要在 Profile 的 Command 命令前面加上一句 `export LC_CTYPE=en_US` 就行了：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@second/img/20210109182714.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210109182714.png)
 
 收工！
 

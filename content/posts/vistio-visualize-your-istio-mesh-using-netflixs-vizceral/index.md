@@ -23,13 +23,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [Vizceral](https://github.com/Netflix/vizceral) 是 `Netflix` 发布的一个开源项目，用于近乎实时地监控应用程序和集群之间的网络流量。[Vistio](https://github.com/nmnellis/vistio) 是使用 Vizceral 对 Istio 和网格监控的改进。它利用 `Istio Mixer` 生成的指标，然后将其输入 Prometheus。Vistio 查询 `Prometheus` 并将数据存储在本地以允许重播流量。关于 Vizceral 可以参考这篇文章：[Vizceral Open Source](https://medium.com/netflix-techblog/vizceral-open-source-acc0c32113fe)。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/QLT35D.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/QLT35D.jpg)
 
 Vizceral 有两个可视化级别，全局可视化和集群级别可视化。在全局范围内（如上所示），您可以通过 Istio Ingress Gateway 等入口点将从 Internet 到 Istio 服务网格网络的网络流量可视化，或者您可以在 Istio 服务网格网络中显示总网络流量。
 
 在集群级别（如下所示），您可以可视化内部网格的流量。通过设置警告和错误级别警报，当应用程序出现问题时可以被快速检测出来。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/81eYoC.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/81eYoC.jpg)
 
 ## 在 Istio 服务网格中安装 Vistio
 
@@ -55,7 +55,7 @@ Vizceral 有两个可视化级别，全局可视化和集群级别可视化。�
 
 如果您还尚未部署服务网格，可以按照此 [Istio Bookinfo Demo](https://istio.io/docs/guides/bookinfo/) 中的说明部署 Istio 及其示例应用程序。您需要能够在应用程序之间生成流量。要测试指标是否从 Mixer 正确发送到 Prometheus，您可以打开 Prometheus 查询 `istio_request_bytes_count`，应该会看到多个条目。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/r6foLP.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/r6foLP.jpg)
 
 ## 部署 Vistio
 
@@ -234,13 +234,13 @@ $Ingree_host vistio-api.istio.io
 
 vistio-web 调用 vistio-api 来渲染服务网格。访问 `http://vistio-api.istio.io/graph` 您应该会看到类似下列的输出。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/mA3qxn.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/mA3qxn.jpg)
 
 ### 访问 Vistio
 
 如果一切都已经启动并准备就绪，您就可以访问 Vistio UI，开始探索服务网格网络，访问`http://vistio-web.istio.io` 您将会看到类似下图的输出。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/zO6YHU.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/zO6YHU.jpg)
 
 ## 探索
 
@@ -248,11 +248,11 @@ vistio-web 调用 vistio-api 来渲染服务网格。访问 `http://vistio-api.i
 
 在全局范围内，您将看到Istio网格内所有请求的总和，如果你点击 `istio-mesh` 气泡，就能查看你的网状网络。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/vInWWw.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/vInWWw.jpg)
 
 在你的 Istio 网格中，您可以使用许多可视化工具来帮助您查明故障的应用程序。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/p3Rf9a.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/p3Rf9a.jpg)
 
 使用屏幕右上方的过滤器可以快速过滤出错误率较高的应用程序。通过高级配置，当错误率超过特定值时，也可以触发警报。警报将显示给定应用程序的当前错误率趋势。
 
@@ -262,7 +262,7 @@ vistio-web 调用 vistio-api 来渲染服务网格。访问 `http://vistio-api.i
 
 访问 `http://vistio-api.istio.io/graph`，如果你从 vistio-api 中看到以下输出，表示某些功能无法正常工作。正确的输出显示在教程上面。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/7N7vFf.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/7N7vFf.jpg)
 
 1. 检查 vistio-api 日志中是否有错误——在大多数情况下，vistio-api 将记录与 Prometheus 通信时遇到的任何问题。
 
@@ -283,5 +283,5 @@ vistio-web 调用 vistio-api 来渲染服务网格。访问 `http://vistio-api.i
 
 ----
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 

@@ -6,7 +6,7 @@ draft: False
 toc: true
 categories: "math"
 tags: ["vector", "matrix"]
-img: "https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting-test@main/uPic/2023-11-21-13-15-eTcNGs.jpg"
+img: "https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting-test@main/uPic/2023-11-21-13-15-eTcNGs.jpg"
 libraries:
 - katex
 ---
@@ -19,19 +19,19 @@ libraries:
 
 我们从一个五边形的面积开始说起
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-47-h24y1b.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-47-h24y1b.png)
 
 比如我们要求这个正五边形的面积，该怎样用向量求呢？
 
 先简化这个问题，不用考虑五边形，只需考虑三角形。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-47-ZeLv52.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-47-ZeLv52.png)
 
 现在，我们把正五边形分割成三个三角形，再把三角形的面积加起来，就得到了五边形的面积。
 
 那么问题来了：**怎样求三角形的面积？**
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-47-wMrggN.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-47-wMrggN.png)
 
 设三角形的面积为S，那么
 
@@ -68,7 +68,7 @@ $$
 
 作向量$\vec{A}$、$\vec{B}$，夹角记为$\theta$，将向量$\vec{A}$逆时针旋转 $90^\circ$ 得到 $\vec{A^\prime}$，如下图所示：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-48-aXMj2x.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-48-aXMj2x.png)
 
 通过上图给的条件，我们已知：
 
@@ -103,7 +103,7 @@ $$
 
 这个方法看起来不错，不过还有一点是不知道的，就是怎么求$\vec{A^\prime}$呢?
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-48-4QRf8h.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-48-4QRf8h.png)
 
 假设$\vec{A}$的坐标为$\left\langle a_1,a_2 \right\rangle$，由我画的图可知，逆时针旋转 $90^\circ$ 后，得到：$A^\prime=\left\langle -a_2,a_1 \right\rangle$ 。
 
@@ -300,7 +300,7 @@ $$
 
 下面我们回到最初提出的问题 :** 求平行六面体的体积**
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-48-4Tz7Rx.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-20-48-4Tz7Rx.png)
 
 如上图所示，我们要求由三个向量 $\vec{A}$,$\vec{B}$ 与 $\vec{C}$ 构成的平行六面体的体积。
 

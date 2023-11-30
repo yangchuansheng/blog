@@ -405,7 +405,7 @@ CNI 插件还会通过 `CNI_ARGS` 环境变量为 Pod 指定其他的元数据�
 
 上文所述的创建 Pod 整个过程的流程图如下所示：
 
-![Kubelet 创建 Pod 的流程](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/what-happens-when-k8s.svg "Kubelet 创建 Pod 的流程")
+![Kubelet 创建 Pod 的流程](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/what-happens-when-k8s.svg "Kubelet 创建 Pod 的流程")
 
 ## 原文链接
 

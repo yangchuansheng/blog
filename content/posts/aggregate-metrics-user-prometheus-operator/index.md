@@ -19,7 +19,7 @@ tags:
 - Prometheus
 categories: 
 - Monitoring
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805191357.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805191357.png
 ---
 
 `Promtheus` 本身只支持单机部署，没有自带支持集群部署，也不支持高可用以及水平扩容，它的存储空间受限于本地磁盘的容量。同时随着数据采集量的增加，单台 `Prometheus` 实例能够处理的时间序列数会达到瓶颈，这时 CPU 和内存都会升高，一般内存先达到瓶颈，主要原因有：
@@ -34,19 +34,19 @@ img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805
 
 Prometheus 主张根据功能或服务维度进行拆分，即如果要采集的服务比较多，一个 Prometheus 实例就配置成仅采集和存储某一个或某一部分服务的指标，这样根据要采集的服务将 Prometheus 拆分成多个实例分别去采集，也能一定程度上达到水平扩容的目的。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805145408.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805145408.png)
 
 在 Kubernetes 集群中，我们可以根据 namespace 来拆分 Prometheus 实例，例如将所有 Kubernetes 集群组件相关的监控发送到一个 Prometheus 实例，将其他所有监控发送到另一个 Prometheus 实例。
 
 Prometheus Operator 通过 CRD 资源名 `Prometheus` 来控制 Prometheus 实例的部署，其中可以通过在配置项 `serviceMonitorNamespaceSelector` 和 `podMonitorNamespaceSelector` 中指定标签来限定抓取 target 的 namespace。例如，将 namespace kube-system 打上标签 `monitoring-role=system`，将其他的 namespace 打上标签 `monitoring-role=others`。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805152252.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805152252.png)
 
 ## 2. 告警规则拆分
 
 将 Prometheus 拆分成多个实例之后，就不能再使用默认的告警规则了，因为默认的告警规则是针对所有 target 的监控指标的，每一个 Prometheus 实例都无法获取所有 target 的监控指标，势必会一直报警。为了解决这个问题，需要对告警规则进行拆分，使其与每个 Prometheus 实例的服务维度一一对应，按照上文的拆分逻辑，这里只需要拆分成两个告警规则，打上不同的标签，然后在 CRD 资源 `Prometheus` 中通过配置项 `ruleSelector` 指定规则标签来选择相应的告警规则。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805164650.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805164650.png)
 
 ## 3. 集中数据存储
 
@@ -54,7 +54,7 @@ Prometheus Operator 通过 CRD 资源名 `Prometheus` 来控制 Prometheus 实�
 
 为了解决这个问题，我们可以让 Prometheus 不负责存储数据，只将采集到的样本数据通过 `Remote Write` 的方式写入远程存储的 `Adapter`，然后将 Grafana 的数据源设为远程存储的地址，就可以在 Grafana 中查看全局视图了。这里选择 [VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics) 来作为远程存储。[VictoriaMetrics](https://github.com/VictoriaMetrics/VictoriaMetrics) 是一个高性能，低成本，可扩展的时序数据库，可以用来做 Prometheus 的长期存储，分为单机版本和集群版本，均已开源。如果数据写入速率低于每秒一百万个数据点，官方建议使用单节点版本而不是集群版本。本文作为演示，仅使用单机版本，架构如图：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805164722.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805164722.png)
 
 ## 4. 实践
 
@@ -434,15 +434,15 @@ Prometheus 拆分成功之后，最后还要修改 Grafana 的数据源为 `Vict
 
 打开 Grafana 的设置页面，将数据源修改为 `http://victoriametrics.kube-system.svc.cluster.local:8428`：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805180325.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805180325.png)
 
 点击 Explore 菜单：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805180325.webp)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805180325.webp)
 
 在查询框内输入 `up`，然后按下 Shift+Enter 键查询：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200805181156.webp)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200805181156.webp)
 
 可以看到查询结果中包含了所有的 `namespace`。
 

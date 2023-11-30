@@ -17,7 +17,7 @@ tags:
 - Docker
 categories:
 - cloud-native
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200527230726.jpg
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200527230726.jpg
 ---
 
 > 原文链接：[Why Does My Docker Container Take 10+ Seconds to Stop?](https://blog.true-kubernetes.com/why-does-my-docker-container-take-10-seconds-to-stop/)
@@ -32,7 +32,7 @@ img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200527
 
 如果要构建一个新的 Docker 镜像，肯定希望镜像越小越好，这样它的下载和启动速度都很快，一般我们都会选择一个瘦了身的操作系统（例如 `Alpine`，`Busybox` 等）作为基础镜像。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200527100705.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200527100705.png)
 
 问题就在这里，这些基础镜像的 [init 系统](https://en.wikipedia.org/wiki/Init)也被抹掉了，这就是问题的根源！
 

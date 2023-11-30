@@ -23,7 +23,7 @@ categories:
 - cloud-native
 series:
 - Docker 镜像制作系列
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200516214250.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200516214250.png
 ---
 
 > 原文链接：[Docker Images : Part II - Details Specific To Different Languages](https://www.ardanlabs.com/blog/2020/02/docker-images-part2-details-specific-to-different-languages.html)

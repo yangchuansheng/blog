@@ -18,20 +18,20 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - Kubernetes
 categories: tech-social
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109151325055.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109151325055.png
 ---
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109151326564.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109151326564.png)
 
 早上 6:00，起床，洗漱
 
 早上 6:30，由于干眼症，需要先滴眼药水，为了防止自己睡着，我需要坐着滴。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109151045924.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109151045924.jpg)
 
 滴眼药水的同时打开蓝牙音响，听听云原生领域相关的播客，学习一下大佬们都是**如何装逼**的。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109141753620.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109141753620.png)
 
 早上 7:00，将蓝牙从音响切换到 Bose 耳机，戴上耳机继续听播客，同时出门买早餐。
 
@@ -39,15 +39,15 @@ img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109151
 
 早上 8:00，开始打开 RSS 阅读器，筛选眼花缭乱的资讯和文章，将其作为素材打上不同的标签归类到 [Pocket](https://getpocket.com) 中，以备后用。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109141805497.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109141805497.png)
 
 上午 9:00，因为不想在 macOS 上装 Slack 应用，便研究一下如何将 FireFox 浏览器的网页保存为 PWA 应用，谷歌搜索：”firefox pwa“，经过一番查找，最后锁定了 [firefoxpwa](https://github.com/filips123/FirefoxPWA) 这个项目。经过一番摸索发现其对 macOS 的支持有很多小问题，于是提了几个 PR 和项目维护者交流了一番，最终把问题解决了。于是我把 code-server、[KubeSphere 官网](https://kubesphere.com.cn)和 Slack 都保存成了 PWA 应用，以后这几个网站就不会再受到 FireFox 浏览器重启的影响了。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109141817201.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109141817201.jpg)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109141822927.webp)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109141822927.webp)
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109141824533.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109141824533.jpg)
 
 上午 10:00，发布今天的[社区公众号推文](https://mp.weixin.qq.com/s/NIaPRpbTA7zHe6Tmtb2_rw)，包含[周四的直播预告](https://mp.weixin.qq.com/s/1cUIpq10aECD4OguxRYXhQ)。并将推文传播到微信社群和各大中文社区。本周的分享嘉宾是个妹子！博士！感兴趣的可以周四晚上8点埋伏一下。
 
@@ -55,27 +55,27 @@ img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109151
 
 上午 10:30，浏览一遍 [KubeSphere 中文论坛](https://kubesphere.com.cn/forum/)，回答部分社区用户提出的各种稀奇古怪的关于 Kubernetes 和 KubeSphere 的问题。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109142128229.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109142128229.jpg)
 
 上午 11:30，陪女朋友去小区外面的小餐馆进食，**饭后归来一起玩耍 1 小时。**
 
 中午 13:00，午休是不存在的，开始**多线程**刷 Twitter。收到了 Nebula Graph 开发者布道师古思为老师发来的感谢。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109142142434.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109142142434.png)
 
 下午 2:00，打开 KubeSphere Console 界面，检查一下我的 K3s 集群有没有生病，看看 Cilium 有没有出幺蛾子，保障[我的博客](https://icloudnative.io)和其他服务正常运行。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109142148133.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109142148133.png)
 
 顺便再观察一下我的博客访问量。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109142159494.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109142159494.png)
 
 下午 2:30，开始撰写新的技术文章，介绍如何创建 EKS Anywhere 集群，以及如何使用 KubeSphere 来管理 EKS Anywhere 集群。
 
 下午 3:30，Google Keep 开始提醒我起来活动筋骨。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting1@main/img/202109142212009.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/202109142212009.png)
 
 下午 4:00，参与 KubeSphere 社区宣传与外联特别兴趣小组（Advocacy and Outreach SIG）双周例会，探讨保姆级云原生课程录制相关事宜，具体内容暂时保密。
 

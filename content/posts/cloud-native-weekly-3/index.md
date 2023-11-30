@@ -26,13 +26,13 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [diving](https://github.com/vicanso/diving) : 基于 [dive](https://github.com/wagoodman/dive) 分析 docker 镜像，界面化展示了镜像每层的变动（增加、修改、删除等）、用户层数据大小等信息。便捷获取镜像信息和每层镜像内容的文件树，可以方便地浏览镜像信息。对于需要优化镜像体积时非常方便。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/demo.gif)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/demo.gif)
 
 [Wave](https://github.com/pusher/wave) : Kubernetes 的配置文件有两种，一种是 ConfigMap，用来存储明文；另一种是 Secret，用来存储密文。这两种配置文件应用都比较广泛，但遗憾的是，目前它们在大多数场景下都不支持热更新，只有当 ConfigMap 挂载为 Volume 时，才能支持热更新，其他场景均不支持。Wave 的做法比较机智，它向 API server 订阅来自指定的 Deployment（通过 annotations 识别） 的事件，一旦某个 Deployment 被执行了任何操作（Create/Read/Update/Delete），它就会通过算法来计算该 Deployment 中每个挂载的 ConfigMap and Secret 的 hash 值，如果挂载点发生了变化，或者挂载的数据发生了变化，都会改变 hash 值。由于该 hash 值被写到 [Pod Template](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#pod-template) 的 Annotation 中，所以 hash 更新就会触发 Deployment 的滚动更新。
 
 [kube-eventer](https://github.com/AliyunContainerService/kube-eventer) : Kubernetes 的核心设计思想是状态机。在 Kubernetes 中，事件分为两种，一种是 `Warning` 事件，表示产生这个事件的状态转换是在非预期的状态之间产生的；另外一种是 `Normal` 事件，表示期望到达的状态，和目前达到的状态是一致的。通过事件的机制，可以丰富 Kuernetes 在监控方面的维度和准确性，弥补其他监控方案的缺欠。kube-eventer 是为了弥补事件监控场景的缺失，支持将 Kubernetes 事件发送到钉钉机器人、SLS 日志服务、Kafka 开源消息队列、InfluxDB 时序数据库等等。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-021027.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-021027.jpg)
 
 [Kubernetes 修仙路径](https://github.com/caicloud/kube-ladder) : 目前云计算行业对于 Kubernetes 学习的需求日益增加，但市面上关于 Kubernetes 的资源良莠不齐，存在几个问题：
 
@@ -44,11 +44,11 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [YugaByte DB](https://www.yugabyte.com/) : YugaByte DB 是一个高性能、云原生的分布式 SQL 数据库。YugaByte DB 具有基于 Google Spanner 的存储架构和基于 `PostgreSQL` 的查询层，旨在为现代应用程序在云原生基础架构上提供分布式 SQL 中的体验（类似 Oracle）。完全开源之后，其工程团队将带领 YugaByte DB 比以往更快地向云原生模式发展。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-061938.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-061938.jpg)
 
 [GetEnvoy Project](https://www.getenvoy.io) : 如果你的工作内容涉及到大型分布式系统，那你可能会听说过 `Envoy`，它是一款为云原生应用而设计、开源的边缘和服务代理，也是 Istio Service Mesh 默认的数据平面。但目前最痛苦的问题是 Envoy 很难编译，为了解决这个问题，Tetrate 的工程师（包括 Envoy 的核心贡献者和维护者）发起了 `GetEnvoy` 项目，目标是利用一套经过验证的构建工具来构建 Envoy，并通过常用的软件包管理器来分发，包括：`apt`、`yum` 和 `Homebrew`。下图是我通过 Homebrew 安装的 Envoy：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-065746.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-065746.jpg)
 
 [GRBAC](https://github.com/storyicon/grbac) : Grbac 是一个快速，优雅和简洁的 RBAC 框架。它支持增强的通配符并使用 Radix 树匹配 HTTP 请求。令人惊奇的是，您可以在任何现有的数据库和数据结构中轻松使用它。
 
@@ -56,7 +56,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [ceph-study](https://github.com/blueboay/ceph-study) : Ceph 是一个可靠、自动均衡、自动恢复的分布式存储系统，通常可用于对象存储，块设备存储和文件系统存储。 Ceph 在存储的时候充分利用存储节点的计算能力，在存储每一个数据时都会通过计算得出该数据的位置，尽量的分布均衡。ceph-study 是网友整理的一份 ceph 学习指南，写的十分详细，欢迎初学者浏览学习。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-072619.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-072619.png)
 
 ## 博客推荐
 
@@ -64,7 +64,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [到底要不要把数据库运行在 Kubernetes 中](https://cloud.google.com/blog/products/databases/to-run-or-not-to-run-a-database-on-kubernetes-what-to-consider) : 如今越来越多的应用都跑在 Kubernetes 上，Kubernetes 已经成为云时代的 Linux 操作系统。尽管如此，数据库的部署方式并没有因为 Kubernetes 的浪潮而受到太多影响，因为要想容器化，就要考虑数据库能否自动重启、横向扩展，能否适应容器隔离技术的限制。本文将会通过合理的逻辑推理告诉你到底要不要把数据库运行在 Kubernetes。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-073917.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-073917.jpg)
 
 [Kubernetes 中的 Java 应用性能优化](https://medium.com/faun/java-application-optimization-on-kubernetes-on-the-example-of-a-spring-boot-microservice-cf3737a2219c) : 在 Kubernetes 中部署应用并没有想象中那么简单，如果配置不恰当，就会遇到频繁的 oom kills 和 重启，尤其是 Java 应用需要特别关注。本文以一个 Spring Boot 微服务应用为例，分析应用启动消耗的 CPU 和内存资源，然后告诉我们如何调整资源的 `requests` 和 `limits` 来提高应用的启动速度，并防止因为 OOM 机制被 kill 掉。
 
@@ -76,7 +76,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [papers-notebook](https://github.com/dyweb/papers-notebook) : 这是一篇论文阅读笔记，其中的论文一部分来自于在上海交通大学软件学院的研究生课上需要阅读的论文，这部分会比较偏安全和虚拟化。还有一部分论文是作者感兴趣，想去了解的，这部分可能比较偏虚拟化和分布式。论文笔记希望能够记录自己在读论文的时候的想法，其中包括但不限于论文的大致 idea，实现方式，以及自己对论文的评价等等。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-082510.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-082510.png)
 
 [从CNI到OVN](https://sealyun.com/blog/2019/07/08/ovn-vni/) : 本文主要介绍了 ovn ovs 怎么与 kubernetes 擦出火花。全文主要分为两个部分，第一部分先简单介绍 CNI 的工作原理，然后开始安装 OVS 和 OVN，并测试跨主机容器的连通性。第二部分主要介绍 Openflow 和 OVN 的工作原理和相关实践。
 
@@ -107,7 +107,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 **CIS Kubernetes Benchmark** : 该文档提供了一份为 Kubernetes 1.13 创建安全配置的说明指南，主要用来帮助应用管理员、安全专家和平台部署人员规划在 Kubernetes 平台上开发部署应用的解决方案。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-134240.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-134240.png)
 
 获取方式：公众号后台回复：kubernetes benchmark
 
@@ -117,11 +117,11 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [ENFI下载器](http://enfi.cloud/) : 这可能是最骚的百度网盘不限速下载器，不仅能为你提供高速下载，还能同时让你赚取收入，支持 Windows 和 MacOS 哦。来看看我赚的钱：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-101718.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-101718.png)
 
 下载速度基本满速，具体取决于你的带宽：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-101849.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-101849.jpg)
 
 测试链接：https://pan.baidu.com/s/1JlsJsTN0JpwzA3DUzvyeIA 提取码: 7uak
 
@@ -131,4 +131,4 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [baidu-netdisk-downloaderx](https://github.com/b3log/baidu-netdisk-downloaderx) : 另一款图形界面的百度网盘不限速下载器，支持 Windows、Linux 和 Mac。又是 Golang 写的，不多介绍了，自己看吧。
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-103824.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-07-21-103824.jpg)

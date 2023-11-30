@@ -17,7 +17,7 @@ tags:
 - VMware
 categories:
 - virtualization
-img: https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200609143056.png
+img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200609143056.png
 ---
 
 作为最好的虚拟机软件之一，`VMware Workstation` 是专为 `Linux` 和 `Windows` 系统设计的，为了照顾 Mac 平台的用户，VMware 原班人马又打造了 `VMware Fusion`，与 Workstation 体验基本一致。
@@ -145,11 +145,11 @@ mynginx   nginx:alpine   /docker-entrypoint.s...   192.168.134.129   n/a     run
 
 可以看到其资源占用非常低：
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200608172045.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200608172045.png)
 
 这一步神奇的事情就发生了！当容器被启动时，它的 `rootfs` 会被挂载到宿主机上，这就意味着我们可以直接使用 Finder 来浏览容器里的内容，并实时修改，就像在宿主机里编辑文件一样，简直太爽了！
 
-![](https://jsd.onmicrosoft.cn/gh/yangchuansheng/imghosting@master/img/20200608172717.jpg)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200608172717.jpg)
 
 查看容器详细信息：
 
