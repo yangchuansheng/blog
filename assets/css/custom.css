@@ -10,6 +10,38 @@ figcaption {
   text-align: center;
 }
 
+
+
+
+/* 自定义滚动条样式 */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #6BAF8D rgba(var(--color-neutral-300), 0.1);
+}
+
+/* 滚动条整体样式 */
+body::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* 滚动条里面轨道 */
+body::-webkit-scrollbar-track {
+  background: rgba(var(--color-neutral-200), 1);
+  border-radius: 10px;
+}
+
+.dark body::-webkit-scrollbar-track {
+  background: rgba(var(--color-neutral-600), 1);
+  border-radius: 10px;
+}
+
+/* 滚动条里面小方块 */
+body::-webkit-scrollbar-thumb {
+  background: #6BAF8D;
+  border-radius: 10px;
+}
+
+
 /* jetbrains-mono-regular */
 @font-face {
   font-family: "JetBrains Mono";
