@@ -1,5 +1,13 @@
 <!-- LXGW WenKai Screen version -->
-<link rel="stylesheet" href="https://jsdelivr.icloudnative.io/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" />
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var link = document.createElement('link');
+  link.href = 'https://jsd.onmicrosoft.cn/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css';
+  link.rel = 'stylesheet';
+
+  document.head.appendChild(link);
+});
+</script>
 
 <!-- Google Font JetBrains Mono -->
 <!--
@@ -27,8 +35,6 @@
     });
 </script>
 
-
-
 <!-- fps id geo-location -->
 
 <div id="fps" style="z-index:999;position:fixed;bottom:3px;right:3px;color:#FFF;font-size:10px;"></div>
@@ -38,20 +44,36 @@
 
 <!--web 弹窗弹层组件 -->
 
-<script type="text/javascript" src="https://cdn.staticfile.org/layer/3.5.1/layer.min.js"></script>
+<script defer type="text/javascript" src="https://cdn.staticfile.org/layer/3.5.1/layer.min.js"></script>
 
 <!-- fps 函数组件 弹窗信息在fps.js文件里修改-->
 
-<script type="text/javascript" src="{{ "js/fps.js" | absURL }}"></script>
+<script defer type="text/javascript" src="{{ "js/fps.js" | absURL }}"></script>
 
 <!-- end -->
 
 
 
 <!-- start webpushr tracking code --> 
-<script>(function(w,d, s, id) {if(typeof(w.webpushr)!=='undefined') return;w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};var js, fjs = d.getElementsByTagName(s)[0];js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
-fjs.parentNode.appendChild(js);}(window,document, 'script', 'webpushr-jssdk'));
-webpushr('setup',{'key':'BHIaDYldZcXlQt38kYXgH48NQZFQkowuo14rNhiIvrGEP5kFU5lb5h-VIMlUkjy-kxygxW4hEvb6GjijlYYlwCk' });</script>
+<script>
+  window.addEventListener('scroll', function loadScript(event) {
+    // 检查用户是否已向下滚动页面
+    if (window.scrollY > 100) { // 例如，用户向下滚动超过100px
+      (function(w,d, s, id) {
+        if(typeof(w.webpushr)!=='undefined') return;
+        w.webpushr=w.webpushr||function(){(w.webpushr.q=w.webpushr.q||[]).push(arguments)};
+        var js, fjs = d.getElementsByTagName(s)[0];
+        js = d.createElement(s); js.id = id;js.async=1;js.src = "https://cdn.webpushr.com/app.min.js";
+        fjs.parentNode.appendChild(js);
+      }(window,document, 'script', 'webpushr-jssdk'));
+
+      webpushr('setup',{'key':'BHIaDYldZcXlQt38kYXgH48NQZFQkowuo14rNhiIvrGEP5kFU5lb5h-VIMlUkjy-kxygxW4hEvb6GjijlYYlwCk' });
+
+      // 移除滚动监听器，防止重复执行
+      window.removeEventListener('scroll', loadScript);
+    }
+  });
+</script>
 <!-- end webpushr tracking code -->
 
 
@@ -95,7 +117,7 @@ $(document).ready(function () {
 
 
 <!-- instant.page 预加载 -->
-<script src="https://jsdelivr.icloudnative.io/gh/instantpage/instant.page@master/instantpage.js" type="module"></script>
+<script src="https://jsd.onmicrosoft.cn/gh/instantpage/instant.page@master/instantpage.js" type="module"></script>
 
 
 

@@ -1,32 +1,47 @@
 <img src="/img/wechat-qr.webp" alt="公众号二维码">
 
 <!-- 引入 iDisqus 的样式表 -->
+<!--
 <link rel="stylesheet" href="{{ "css/iDisqus.min.css" | absURL }}" />
+-->
 
 <!-- 设置评论区的容器 -->
 <div id="comment"></div>
 
-<script src="{{ "js/iDisqus.min.js" | absURL }}"></script>
+
 
 <!-- 使用 JavaScript 实现懒加载 -->
 <script>
 // 当文档加载完成后，执行以下函数
 document.addEventListener("DOMContentLoaded", function() {
+  var iDisqusScriptSrc = "/js/iDisqus.min.js";
   // 创建一个新的 IntersectionObserver 对象
   // 这个对象用于当某个元素进入视窗时触发回调函数
   var commentObserver = new IntersectionObserver(function(entries) {
     // 检查观察的元素是否进入视窗
     if (entries[0].isIntersecting) {
-      // 当评论区元素进入视窗时，初始化 iDisqus
-      var disq = new iDisqus('comment', {
-        forum: 'fuckcloudnative',
-        api: 'https://disqus.icloudnative.io',
-        site: 'https://icloudnative.io',
-        emojiPath: 'https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/emoji/',
-        mode: 2,
-        timeout: 15,
-        init: true
-      });
+      // 动态加载 iDisqus 的样式表
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = "/css/iDisqus.min.css";
+      document.head.appendChild(link);
+
+      // 动态加载 iDisqus 脚本
+      var script = document.createElement('script');
+      script.src = iDisqusScriptSrc;
+      script.onload = function() {
+        // 脚本加载完成后初始化 iDisqus
+        var disq = new iDisqus('comment', {
+          forum: 'fuckcloudnative',
+          api: 'https://disqus.icloudnative.io',
+          site: 'https://icloudnative.io',
+          emojiPath: 'https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/emoji/',
+          mode: 2,
+          timeout: 15,
+          init: true
+        });
+      };
+      document.body.appendChild(script);
       // 评论区加载后，断开 IntersectionObserver 的连接
       // 以避免重复执行初始化操作
       commentObserver.disconnect();
