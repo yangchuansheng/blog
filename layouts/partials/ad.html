@@ -1,7 +1,9 @@
 <style>
 .slideContent {
-  width: 100%;
-  height: 464px;
+  width: 80%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 
   &>* {
     user-select: none;
@@ -17,6 +19,11 @@
       object-fit: cover;
     }
   }
+}
+
+.swiper, swiper-container {
+  margin-left: inherit !important;
+  margin-bottom: -30px;
 }
 </style>
 
