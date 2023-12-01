@@ -1,0 +1,44 @@
+name: github pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main # Set a branch to deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0 # Fetch all history for .GitInfo and .Lastmod
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.120.4"
+          extended: true
+
+      - name: Build
+        run: |
+          hugo -v --gc --minify
+          git clone https://github.com/yangchuansheng/envoy-handbook ../envoy-handbook
+          cd ../envoy-handbook
+          hugo -v --gc --minify -d ../hugo-theme-zzo-magic/public/envoy-handbook
+
+      - uses: actions/checkout@v4
+        with:
+          repository: "yangchuansheng/jstc"
+          path: "public/jstc"
+
+      - name: Clean
+        run: |
+          rm -rf public/jstc/.git*
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          publish_dir: ./public

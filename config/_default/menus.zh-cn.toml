@@ -41,6 +41,13 @@
   url = "https://privatebin.icloudnative.io/"
   weight = 40
 
+[[main]]
+  name = "趣味截图"
+  parent = "百宝箱"
+  pre= "image"
+  url = "/jstc/"
+  weight = 50
+
 #[[main]]
 #  name = "Merch"
 #  url = "http://tee.pub/lic/qwSlWVBL5zc"
