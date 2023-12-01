@@ -493,12 +493,26 @@ ul > li::marker {
 }
 
 /* 和风天气 */
-#he-plugin-standard[data-v-75e43ed3] {
+#he-plugin-standard {
   margin: auto !important;
   top: 3%;
   background-color: rgba(var(--color-neutral-800), 0.4) !important;
+  width: 80% !important;
+  height: 80% !important;
+  font-size: 65% !important;
 }
 
+.wv-v-v-forecast {
+  padding: 4% 0.5em 1% !important;
+}
+
+.wv-v-v-line {
+  margin-top: 1% !important;
+}
+
+.wv-v-v-now {
+  padding: 1% 0.9em 0 !important;
+}
 
 
 

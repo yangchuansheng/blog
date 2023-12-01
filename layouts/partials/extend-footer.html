@@ -87,6 +87,25 @@
   </div>
 </div>
 
+<!-- 不蒜子 busuanzi -->
+<script defer src="https://ymvhjeyojtri.cloud.sealos.top/js"></script>
+
+<script>
+    $(document).ready(function() {
+        var int = setInterval(fixCount, 50);
+        function fixCount() {
+            if ($("#busuanzi_container_site_pv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_site_pv").html(parseInt($("#busuanzi_site_pv").html()) + 1360325);
+            }
+            if ($("#busuanzi_container_site_uv").css("display") != "none") {
+                clearInterval(int);
+                $("#busuanzi_site_uv").html(parseInt($("#busuanzi_site_uv").html()) + 731632);
+            }
+        }
+    });
+</script>
+
 
 <!-- 鼠标点击特效 -->
 <script type="text/javascript">
