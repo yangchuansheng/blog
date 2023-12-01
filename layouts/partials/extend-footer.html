@@ -140,3 +140,34 @@ function randomColor() {
     return colors[Math.floor(Math.random() * colors.length)];
 }
 </script>
+
+
+
+<!-- 自动调整右侧边栏舔狗日记卡片高度 -->
+<script>
+  function fetchData() {
+    fetch("https://api.suyanw.cn/api/tiangou?type=json")
+      .then((response) => response.json())
+      .then((data) => {
+        const textData = data.text;
+        document.getElementById("apiData").innerText = textData;
+
+        // 计算文本长度并调整容器高度
+        adjustContainerHeight(textData);
+      })
+      .catch((error) => console.error("Error:", error));
+  }
+
+  function adjustContainerHeight(text) {
+    const baseHeight = 180; // 基础高度，您可以根据需要调整
+    const additionalHeightPerChar = 1.2; // 每个字符增加的高度，您可以根据需要调整
+
+    const newHeight = baseHeight + text.length * additionalHeightPerChar;
+    document.getElementById('tiangou').style.height = `${newHeight}px`;
+  }
+
+  // 给 SVG 图标添加点击事件监听器
+  document.getElementById('refreshButton').addEventListener('click', fetchData);
+  // 页面加载时执行一次，以加载初始数据
+  fetchData();
+</script>

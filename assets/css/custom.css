@@ -198,6 +198,10 @@ ul > li::marker {
   animation: cursor 1s infinite;
 }
 
+
+
+/* 侧边栏样式 */
+
 .wrapper__left {
   position: fixed;
   top: 8.5%;
@@ -398,6 +402,72 @@ ul > li::marker {
 .button_left a::after {
   display: none;
 }
+
+
+
+.wrapper__right {
+  position: fixed;
+  top: 8.5%;
+  right: -0.5rem;
+  height: 100vh;
+  width: calc((100vw - 960px) / 2.5);
+  margin-right: 1%;
+}
+
+@media (max-width: 600px) {
+  .wrapper__right {
+    display: none;
+  }
+}
+
+
+/* 舔狗日记 */
+.content {
+  border-style: solid;
+  border-width: 2px;
+  padding: 15px;
+  line-height: 1.8;
+  background: var(--classD);
+  margin-bottom: 15px;
+  font-size: .77vw !important;
+  border-color: rgba(var(--color-neutral-600), 0.6);
+  .dark & {
+    border-color: rgba(var(--color-neutral-300), 0.6);
+  }
+}
+
+.content.type3 {
+  border-bottom-left-radius: 225px 15px;
+  border-bottom-right-radius: 15px 255px;
+  border-top-left-radius: 15px 225px;
+  border-top-right-radius: 255px 15px;
+}
+
+.change {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-top: 12px !important;
+  cursor: pointer;
+  border: 2px solid rgba(var(--color-neutral-800), 0.2);
+  .dark & {
+    border: 2px solid rgba(var(--color-neutral-300), 0.1);
+  }
+}
+
+/* 和风天气 */
+#he-plugin-standard[data-v-75e43ed3] {
+  margin: auto !important;
+  top: 3%;
+  background-color: rgba(var(--color-neutral-800), 0.4) !important;
+}
+
+
+
 
 .busuanzi {
   display: -webkit-box;

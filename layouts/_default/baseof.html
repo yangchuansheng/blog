@@ -23,7 +23,8 @@
   {{ end }}
   <div class="relative flex flex-col grow">
     {{- /* change */ -}}
-    {{ partial "main-left" . }}
+    {{ partial "main-left.html" . }}
+    {{ partial "main-right.html" . }}
     <main id="main-content" class="grow">
       {{ block "main" . }}{{ end }}
       {{ if and (.Site.Params.footer.showScrollToTop | default true) (gt .WordCount 1) }}
