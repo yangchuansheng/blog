@@ -32,6 +32,8 @@ meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/
 > 原文链接：[https://ln.hixie.ch/?start=1700627373](https://ln.hixie.ch/?start=1700627373)
 >
 > Hacker News 链接：[https://news.ycombinator.com/item?id=38381573](https://news.ycombinator.com/item?id=38381573)
+>
+> 我们公司虽小，也当引以为戒，不忘初心，贯彻工程师文化，为全体开发者们[打造一款伟大的云操作系统](https://forum.laf.run/d/1060)
 
 我于 2005 年 10 月加入谷歌，经历了 18 年的风雨历程后，终于在上周提交了我的离职申请，结束了我的谷歌之旅。
 
