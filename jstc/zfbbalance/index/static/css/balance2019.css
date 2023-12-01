@@ -1,0 +1,98 @@
+.iphone, .i-top, .i-body-wallet {
+    background-color: #1b82d2;
+}
+
+.i-top {
+    height: 32px;
+}
+
+.i-signal {
+    background: url(../images/i-top-signal5.png) no-repeat;
+    width: 54px;
+}
+
+.i-signal1 {
+    background: url(../images/i-top-signal1.png) no-repeat;
+}
+
+.i-signal2 {
+    background: url(../images/i-top-signal2.png) no-repeat;
+}
+
+.i-signal3 {
+    background: url(../images/i-top-signal3.png) no-repeat;
+}
+
+.i-signal4 {
+    background: url(../images/i-top-signal4.png) no-repeat;
+}
+
+.i-signal5 {
+    background: url(../images/i-top-signal5.png) no-repeat;
+}
+
+.i-carrier {
+    line-height: 40px;
+    color: #fff;
+    font-size: 22px;
+    width: 97px;
+}
+
+.i-c-dx {
+    background: url(../images/i-carrier-dx.png) center 0 no-repeat;
+}
+
+.i-c-yd {
+    background: url(../images/i-carrier-yd.png) center 0 no-repeat;
+}
+
+.i-c-lt {
+    background: url(../images/i-carrier-lt.png) center 0 no-repeat;
+}
+
+.i-body-ali-balance {
+    background: url(../images/balance-bg.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    top: 32px;
+    bottom: 0;
+}
+
+.i-w-wa-money {
+    margin-top: 189px;
+    margin-left: 19px;
+    text-align: left;
+}
+
+.i-w-wa-money span {
+    font-size: 116px;
+    color: #fff;
+    background: none;
+    padding-left: 19px;
+    display: inline-block;
+    margin-left: -5px;
+    margin-top: -10px;
+}
+
+.i-balance-zryeb {
+    position: absolute;
+    top: 615px;
+    left: 330px;
+    width: 250px;
+    text-align: right;
+    font-size: 25px;
+    color: #b4b4b4;
+    letter-spacing: 1px;
+}
+
+.i-balance-byj {
+    position: absolute;
+    top: 770px;
+    left: 330px;
+    width: 250px;
+    text-align: right;
+    font-size: 25px;
+    color: #b4b4b4;
+    letter-spacing: 1px;
+}

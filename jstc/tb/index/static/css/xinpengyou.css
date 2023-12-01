@@ -1,0 +1,14 @@
+@charset "utf-8";
+/* CSS Document */
+.i-n-wa-right{background:url(../images/new_friend_top_right.png) no-repeat;}
+.i-n-wa-left{background:url(../images/new_friend_top_left.png) no-repeat;}
+.i-n-wa-mid{background:url(../images/new_friend_top_mid.png) no-repeat;}
+#iphone{background:#ffffff;}
+.new_friend_box{padding:0;margin:0;margin-top:225px;}
+.new_friend_box li{width:100%;height:91px;border-bottom:1px solid #f0f0f0;list-style:none;}
+.new_friend_box li .tx{width:86px;height:91px;float:left;}
+.new_friend_box li .tx img{width:56px;height:56px;margin:13px 15px 22px 15px;}
+.new_friend_box li .text{height:60px;line-height:30px;padding:15px 0px;font-size:24px;float:left;font-weight:bold;}
+.new_friend_box li .text .text_hi{color:#888888;font-weight:normal;font-size:20px;}
+.new_friend_box li .status0{width:96px;height:91px;float:right;display:inline-block;background:url(../images/new_friend_status0.png) no-repeat;}
+.new_friend_box li .status1{width:96px;height:91px;float:right;display:inline-block;background:url(../images/new_friend_status1.png) no-repeat;}

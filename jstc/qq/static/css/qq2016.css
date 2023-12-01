@@ -1,0 +1,132 @@
+@charset "utf-8";
+/* CSS Document */
+
+.i-top {
+    z-index: 100;
+}
+.i-body {
+    overflow-y: scroll;
+    bottom: 150px;
+}
+
+.i-n-name span{color:#000000;}
+.i-top-time{color:#000000;}
+.i-top-berry-num{color:#000000;}
+.i-n-count{color:#252525;background:#dbdfe6;border-radius:16px;top:26px;left:50px;width:44px;font-size: 24px;height:36px;line-height:36px;display:inline-block;width:40px;}
+
+
+.i-signal {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-signal5_2.png") no-repeat scroll 0 0;
+    width: 85px;
+}
+.i-signal1 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-signal1_2.png") no-repeat scroll 0 0;
+}
+.i-signal2 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-signal2_2.png") no-repeat scroll 0 0;
+}
+.i-signal3 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-signal3_2.png") no-repeat scroll 0 0;
+}
+.i-signal4 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-signal4_2.png") no-repeat scroll 0 0;
+}
+.i-signal5 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-signal5_2.png") no-repeat scroll 0 0;
+}
+
+
+.i-c-dx {
+    background: rgba(0, 0, 0, 0) url("../images/i-carrier-dx_2.png") no-repeat scroll center 0;
+}
+.i-c-yd {
+    background: rgba(0, 0, 0, 0) url("../images/i-carrier-yd_2.png") no-repeat scroll center 0;
+}
+.i-c-lt {
+    background: rgba(0, 0, 0, 0) url("../images/i-carrier-lt_2.png") no-repeat scroll center 0;
+}
+
+.i-n-wifi {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-wifi_2.png") no-repeat scroll 0 0;
+}
+.i-n-e {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-e_2.png") no-repeat scroll center 0;
+    width: 35px;
+}
+.i-n-g {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-g_2.png") no-repeat scroll center 0;
+    width: 35px;
+}
+.i-n-3g {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-3g_2.png") no-repeat scroll center 0;
+    width: 50px;
+}
+.i-n-4g {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-4g_2.png") no-repeat scroll center 0;
+    width: 50px;
+}
+.i-top-berry, .i-top-berry2 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-berry1_2.png") no-repeat scroll 0 0;
+    position: relative;
+    width: 70px;
+}
+.i-top-berry2 {
+    background: rgba(0, 0, 0, 0) url("../images/i-top-berry2_2.png") no-repeat scroll right 0;
+    width: 95px;
+}
+.i-top-berry i em{background:#000000;}
+
+
+.i-top-dir{width: 30px;background: url(../images/i-top-dir_2.png) no-repeat;}
+
+.i-n-user{width:140px;background:url(../images/i-n-user-msg.png) no-repeat;}
+/*以上为修改顶部内容为黑色样式*/
+
+.i-b-rec-text div span, .i-b-sen-text div span{border-radius:4rem;}
+
+
+.i-b-sen-text div span{background:#02a7e3;border:none;color:#ffffff;}
+.i-b-sen-text div i{background:rgba(0, 0, 0, 0) url("../images/sen-txt-bg-qq.png") no-repeat scroll right -16px;right:-22px;}
+.i-b-rec-text div i{background:rgba(0, 0, 0, 0) url("../images/rec-txt-bg-qq.png") no-repeat scroll 1px -5px;left:-23px;}
+.i-b-sen-text div.i-b-voice b{background:rgba(0, 0, 0, 0) url("../images/sen-record-qq.png") no-repeat scroll 0 0}
+.i-b-sen-text div.i-b-voice em{left:-25px;top:4px;color:#ffffff;font-size:24px;}
+.i-b-rec-text div.i-b-voice em{left:65px;top:4px;font-size:24px;color:#333333;}
+.i-b-rec-text div.i-b-voice b{background:rgba(0, 0, 0, 0) url("../images/rec-record-qq.png") no-repeat scroll 0 0 / 100% auto;}
+
+
+.i-b-rec-text div.i-b-pay span, .i-b-sen-text div.i-b-pay span{background:rgba(0, 0, 0, 0) url("../images/i-pay-send-qq.png") no-repeat scroll 0 0;margin-left:0px;border-radius:0rem;}
+.i-b-sen-text .i-b-pay span.i-pay-send, .i-b-sen-text .i-b-pay span.i-pay-rec{background:rgba(0, 0, 0, 0) url("../images/i-pay-rec-qq.png") no-repeat scroll 0 0;margin-right:0px;border-radius:0rem;}
+.i-b-rec-text, .i-b-sen-text{position:relative;}
+
+
+.i-b-sen-text div.i-b-pay span,.i-b-rec-text div.i-b-pay span{width:217px;height:235.5px;}
+
+.i-b-sen-text .qqface_png{position:absolute;top:0;right:-82px;width:82px;height:82px;background:url("../images/qqface_png_2.png") no-repeat scroll 0 0 / 100% auto;z-index:999;}
+
+.i-b-rec-text .qqface_png{position:absolute;top:0;left:-82px;width:82px;height:82px;background:url("../images/qqface_png_2.png") no-repeat scroll 0 0 / 100% auto;z-index:999;}
+
+
+
+.i-bottom-qq{position: absolute;
+
+    width: 100%;
+    height: 150px;
+    bottom: 0;
+    left: 0;
+    background:url("../images/i-bottom-qq.png") no-repeat scroll 0 0 / 100% auto;
+}
+
+
+.money_box{width:100%;height:100%;position:absolute;top:0;left:0;z-index:9999;background:url("../images/money_box_bg.png") repeat;display:none;}
+.money_content{width:478px;height:630px;background:url("../images/money_box_small.png") no-repeat scroll 0 0 / 100% auto;z-index:1000;margin:0 auto;margin-top:200px;}
+.money_top{height:84px;}
+.money_face{width:103px;height:103px;margin:0px auto;position:relative;}
+.money_face img{width:103px;height:103px;}/*border-radius:4rem;*/
+.money_name{color:#fbedee;text-align:center;font-size:28px;line-height:30px;font-weight:normal;margin-top:30px;}
+.money_face_box{width:119px;height:113px;background:url("../images/money_face_box.png") no-repeat;position:absolute;top:-10px;left:-10px;}
+.money_number{font-size:85px;color:#ffdc73;height:85px;margin-top:0px;text-align:center;}
+.money_number #money_yuan{font-size:30px;}
+
+.i-n-user{width:140px;background:url(../images/i-n-user-qq3.png) no-repeat;}
+
+.i-nav{line-height:44px;}

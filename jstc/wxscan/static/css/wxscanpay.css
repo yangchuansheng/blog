@@ -1,0 +1,154 @@
+.i-signal {
+    width: 33px;
+    height: 20px;
+    background: url(../images/signal2.png) no-repeat;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.i-signal {
+    width: 33px;
+    height: 20px;
+    background: url(../images/signal5.png) no-repeat;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.i-signal1 {
+    background: url(../images/signal1.png) no-repeat;
+}
+
+.i-signal2 {
+    background: url(../images/signal2.png) no-repeat;
+}
+
+.i-signal3 {
+    background: url(../images/signal3.png) no-repeat;
+}
+
+.i-signal4 {
+    background: url(../images/signal4.png) no-repeat;
+}
+
+.i-signal5 {
+    background: url(../images/signal4.png) no-repeat;
+}
+
+.i-carrier {
+    width: 92px;
+    height: 23px;
+    background: url(../images/cnyd.png) no-repeat;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.i-c-yd {
+    background: url(../images/cnyd.png) no-repeat;
+}
+
+.i-c-lt {
+    background: url(../images/cnlt.png) no-repeat;
+}
+
+.i-c-dx {
+    background: url(../images/cndx.png) no-repeat;
+}
+.i-network {
+    width: 30px;
+    height: 20px;
+    background: url(../images/nw-wifi.png) no-repeat;
+    margin-top: 10px;
+    margin-left: 12px;
+}
+
+.i-n-wifi {
+    background: url(../images/nw-wifi.png) no-repeat;
+}
+
+.i-n-4g {
+    background: url(../images/nw-4g.png) no-repeat;
+}
+
+.i-n-5g {
+    background: url(../images/nw-5g.png) no-repeat;
+}
+
+.i-top-time, .i-top-berry-num {
+    color: #000;
+}
+
+.i-top-berry, .i-top-berry2 {
+    background: url(../images/i-top-berry1.png) no-repeat;
+}
+
+.i-top-berry i em {
+    background: rgb(0, 0, 0);
+}
+
+.modal-dialog{z-index: 2048;}
+#bglist li{list-style:none; float:left;margin:5px;}
+#bglist li img{height:200px;}
+.i-top{height:32px;z-index:10}
+.i-body{top:0; z-index:0;}
+.iphone,.i-top,.i-body-wallet{background-color:none}
+.i-top{background:none;}
+.i-nav-pay-detail{border:none;}
+.i-w-pay-money{font-weight:bold;}
+.i-w-wa-money{
+    margin-top: 189px;
+    margin-left: 19px;
+    text-align:left;
+    font-family: "黑体";
+}
+
+.i-w-wa-money span {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000;
+    background: none;
+    width: 584px;
+    text-align: center;
+    margin-left: 0;
+    margin-top: 92px;
+    font-family: "PingFang SC";
+    display: inline-block;
+    padding-left: 19px;
+}
+.i-zd-desc span{
+    font-size: 27px;
+    color: #000;
+    background: none;
+    width: 642px;
+    text-align: center;
+    position: absolute;
+    top: 234px;
+}
+.i-zd-desc2 span,.i-zd-desc3 span,.i-zd-desc4 span,.i-zd-desc5 span {
+    font-size: 22px;
+
+    color: #000;
+    background: none;
+    width: 400px;
+    position: absolute;
+    top: 496px;
+    left: 190px;
+}
+
+.i-zd-desc3 span{
+    top: 542px;
+    left: 190px;
+}
+
+.i-zd-desc4 span{
+    top: 588px;
+    left: 190px;
+}
+.i-zd-desc5 span{
+    top: 634px;
+    left: 190px;
+    width: 405px;
+    word-wrap: break-word;
+}
+
+
+.i-body-wallet{background-image:url(../images/scan-pay-bg.jpg);background-size:100%;}

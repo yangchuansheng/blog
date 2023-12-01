@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>淘宝订单生成器_微信对话生成器_在线微信转账生成器_支付宝转账生成器_QQ对话生成器生成图片</title>
+<meta name="keywords" content="生成图片微信对话生成器,QQ对话生成器,支付宝转帐截图,微信聊天在线生成器,微信对话生成器在线,微信对话在线制作,微信截图生成器,微信对话框生成器" />
+<meta name="description" content="生成图片微信对话生成器,一款在线微信、手机、QQ、支付宝生成工具，只需要输入对应的内容，就可以在线生成图片！非常的方便、快捷！只需要10秒就可以立即生成！微商、QQ营销利器！" />
+<meta name="renderer" content="webkit">
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+<meta content="telephone=no, address=no" name="format-detection">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link href="static/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="static/css/metismenu.min.css">
+<link href="static/css/sb-admin-2.css" rel="stylesheet">
+<link href="static/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="static/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<link href="static/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">
+<link href="static/css/dropdown.css" rel="stylesheet" type="text/css">
+<link href="static/css/common.css" rel="stylesheet">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]><script src="static/js/html5shiv.js">
+</script><script src="static/js/respond.min.js"></script>
+<![endif]--><!--[if IE 6]><script src="static/js/dd_belatedpng.js"></script><script>  DD_belatedPNG.fix('*');
+</script><![endif]--><!-- jQuery -->
+<script language="JavaScript" type="text/javascript" src="static/js/jquery-1.10.2.min.js"></script>
+<script>var is_check_brower = false;  //设为ture则自动检测
+var is_mobile = '';
+</script><script language="JavaScript" type="text/javascript" src="static/js/bootstrap.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/metismenu.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/imgpreview.jquery.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/html2canvas.min.js"></script>
+<script type="text/javascript" src="static/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="static/js/bootstrap-datetimepicker.zh-cn.js" charset="UTF-8"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/jquery.sglide.js"></script>
+<!-- 滑块 --><!--<script language="JavaScript" type="text/javascript" src="static/js/wdatepicker.js"></script>-->
+<script language="JavaScript" type="text/javascript" src="static/js/sb-admin-2.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/emoji.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/functions.js"></script>
+<script language="JavaScript" type="text/javascript" src="static/js/common.js"></script>
+<script>
+var wxid="";
+$(function(){
+	   //getname();
+	   // alert("a");
+	  wxid = getUrlParam("id");
+	  //alert("wxid == "+wxid);
+		  if(wxid == 1){
+			  loadStyles("static/css/index.css");// 微信聊天
+		 //alert("loadStyles == ");
+		  }else if(wxid == 2){
+			  loadStyles("static/css/index.css");// 微信转账
+		  }else if(wxid == 3){
+			  loadStyles("static/css/index.css");// 微信零钱余额
+		  }else if(wxid == 4){
+			  loadStyles("APP/Tpl/Index/make/software/alipay/balance.css");// 支付宝余额
+		  }else if(wxid == 5){
+			  loadStyles("APP/Tpl/Index/make/software/wechat/index.css");// 举牌照
+		  }else if(wxid == 6){
+			  loadStyles("APP/Tpl/Index/make/software/wechat/hongbao.css");// 微信领红包
+		  }else if(wxid == 7){
+			  loadStyles("APP/Tpl/Index/make/software/qq/index.css");// QQ在线对话
+		  }else if(wxid == 8){
+			  loadStyles("APP/Tpl/Index/make/software/alipay/alipay.css");// 支付宝转账
+		  }else if(wxid == 9){
+			  loadStyles("APP/Tpl/Index/make/software/alipay/index.css");// 支付宝聊天
+		  }else if(wxid == 10){
+			  loadStyles("APP/Tpl/Index/make/software/msg/index.css");// 手机短信聊天
+		  }else if(wxid == 11){
+			  loadStyles("APP/Tpl/Index/make/photos/shilibiao/index.css");// 视力表生成
+		  }else if(wxid == 12){
+			  loadStyles("APP/Tpl/Index/make/software/wechat/info.css");// 微信个人主页
+		  }else if(wxid == 13){
+			  loadStyles("APP/Tpl/Index/make/software/wechat/xinpengyou.css");// 微信新的朋友
+		  }else if(wxid == 14){
+			  loadStyles("APP/Tpl/Index/make/software/wechat/friend.css");// 微信朋友圈
+		  }else if(wxid == 15){
+			  loadStyles("APP/Tpl/Index/make/software/taobao/order.css");// 淘宝订单生成器
+		  }else{ 
+		  	  loadStyles("static/css/index.css");
+		  }
+			  
+	  
+	});
+function getUrlParam(name) {		  
+	var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象			
+	var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+	if (r != null) return unescape(r[2]); return null; //返回参数值
+}
+
+function loadStyles(url) {
+	var link = document.createElement("link");
+	 link.type = "text/css";
+	 link.rel = "stylesheet";
+	 link.href = url;
+	 document.getElementsByTagName("head")[0].appendChild(link);
+}
+     // 测试
+    
+</script>
+
+<!--<link href="static/css/order.css" rel="stylesheet">
+<link href="static/css/index.css" rel="stylesheet">
+<link href="static/css/hongbao.css" rel="stylesheet">
+<link href="static/css/info.css" rel="stylesheet">
+<link href="static/css/xinpengyou.css" rel="stylesheet">
+<link href="static/css/friend.css" rel="stylesheet">-->
+
+</head>
+<body>
+</body>
+</html>

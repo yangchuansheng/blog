@@ -1,0 +1,7 @@
+@charset "utf-8";
+/* CSS Document */
+.i-body-ali-balance{background: #f5f5f9;bottom: 0;}
+.i-nav-ali-balance{background: url(../images/i-nav-ali-balance.png) no-repeat #1b82d2;background-size: 100%;}
+
+.i-ali-ba-bg{background: url(../images/ali-balance-bg.png) no-repeat #1b82d2;width: 640px;height: 564px;background-size: 100%;}
+.i-ali-ba-money{position: absolute;top:80px;left:25px;font-size:110px;color: #ffffff;}

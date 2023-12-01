@@ -1,0 +1,180 @@
+.i-top {
+    height: 32px;
+    background-color: #fff;
+}
+.i-signal{
+    background: url(../images/i-top-signal5.png) no-repeat;
+    width: 54px;
+}
+.i-signal1{
+    background: url(../images/i-top-signal1.png) no-repeat;
+}
+.i-signal2{
+    background: url(../images/i-top-signal2.png) no-repeat;
+}
+.i-signal3{
+    background: url(../images/i-top-signal3.png) no-repeat;
+}
+.i-signal4{
+    background: url(../images/i-top-signal4.png) no-repeat;
+}
+.i-signal5{
+    background: url(../images/i-top-signal5.png) no-repeat;
+}
+.i-carrier{
+    line-height: 40px;
+    color: #fff;
+    font-size: 22px;
+    width: 97px;
+}
+.i-c-dx{
+    background: url(../images/i-carrier-dx.png) center 0 no-repeat;
+}
+.i-c-yd{
+    background: url(../images/i-carrier-yd.png) center 0 no-repeat;
+}
+.i-c-lt{
+    background: url(../images/i-carrier-lt.png) center 0 no-repeat;
+}
+.i-network{
+    width: 30px;
+}
+.i-n-wifi{
+    background: url(../images/i-top-wifi.png) no-repeat;
+}
+.i-n-e{
+    background: url(../images/i-top-e.png) center 0 no-repeat;
+    width: 35px;
+}
+.i-n-g{
+    background: url(../images/i-top-g.png) center 0 no-repeat;
+    width: 35px;
+}
+.i-n-3g{
+    background: url(../images/i-top-3g.png) center 0 no-repeat;
+    width: 50px;
+}
+.i-n-4g{
+    background: url(../images/i-top-4g.png) center 0 no-repeat;
+    width: 50px;
+}
+.i-n-5g{
+    background: url(../images/i-top-5g.png) center 0 no-repeat;
+    width: 50px;
+}
+
+.i-top-time {
+    width: 150px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -75px;
+    color: #000;
+    line-height: 42px;
+    text-align: center;
+    font-size: 24px;
+}
+.i-top-berry,
+.i-top-berry2{
+    width: 70px;
+    background: url(../images/i-top-berry1.png) no-repeat;
+    position: relative;
+}
+.i-top-berry2{
+    background: url(../images/i-top-berry2.png) right 0 no-repeat;
+    width: 95px;
+}
+.i-top-berry i{
+    position: absolute;
+    height: 16.5px;
+    width: 44px;
+    bottom: 11.25px;
+    left: 10px;
+    padding: 2px;
+    padding-left: 3px;
+}
+.i-top-berry2 i{
+    width: 52px;
+    height: 18px;
+    left: 11px;
+    bottom: 11.25px;
+}
+.i-top-berry i em{
+    width: 50%;
+    background: #000;
+    height: 100%;
+    display: block;
+}
+.i-top-berry2 i em{
+    background: #4cd964 !important;
+}
+.i-top-dir{
+    width: 30px;
+    background: url(../images/i-top-dir.png) no-repeat;
+}
+.i-top-berry-num{
+    color: #000;
+    font-size: 24px;
+    line-height: 42px;
+    margin-left: 8px;
+}
+
+.iphone{background-color: #f5f5f9;}
+.i-body-alipay{background-image: url(../images/zhuan-bg.jpg);background-size: 100% ; background-repeat: no-repeat; background-position: top;}
+.i-body{top: 32px;height: 100%;}
+.i-b-a-face_ali{
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    top: 101px;
+    left: 193px;
+    overflow: hidden;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.i-b-a-face_ali img{
+    width: 48px;
+    border-radius: 26px;
+}
+.i-b-a-username{text-align: center;width: 100%;left: 0;top: 106px;font-size: 25px;font-weight: bold;}
+.i-b-a-money{top: 166px;font-size: 60px;text-align: center;}
+.i-b-a-m-data{padding-right: 0;}
+.i-b-a-money span.i-b-a-plus,
+.i-b-a-money span.i-b-a-mines{
+    position: absolute;
+    left: -38px;
+    top: -9px;
+    font-size: 60px;
+}
+.i-b-a-pay-type{width: 500px;left: 97px;text-align: right;top: 337px;color: #181818;display: block;}
+.i-b-a-username-box{
+    position: absolute;
+    left: 132px;
+    top: 467px;
+    width:484px;
+    font-size: 24px;
+    color: #181818;
+    white-space:nowrap;
+    text-align:right;
+}
+.i-b-a-username2_n{
+    float:right;white-space:nowrap;
+
+}
+.i-b-a-email_n{
+    float:right;white-space:nowrap;
+    margin-left:5px;
+}
+.i-b-a-liyou{top: 408px;left: 314px;color: #181818;width: 300px;text-align: right;}
+.i-b-a-liyou2{position: absolute;font-size: 24px;left: 291px;color: #b4b4b4;width: 300px;text-align: right;top: 726px;}
+.i-b-a-time{top: 551px !important;left: 412px;font-size: 26px;color: #181818;}
+.i-b-a-trade{top: 618px !important;left: 161px;font-size: 25px;color: #181818;width: 480px;}
+.i-b-a-money span.i-b-a-mines{top: -9px;left: -19px;}
+
+.i-b-a-m-data-min{font-size: 55px;}
+.i-b-a-money .i-b-a-m-data-min span.i-b-a-plus{top: -12px;}
+
+.i-b-a-face{position: static;overflow: hidden;background-size:100%;background-repeat:no-repeat;display: inline-block;margin-right:17px;border-radius:25px;height: inherit;}
+
+.rounddiv{display: inline-block;position: relative;}
+.imground{width:56px !important;position: absolute;top: 0;left: -2px;height: 50px;border-radius: 0;}

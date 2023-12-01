@@ -1,0 +1,11 @@
+@charset "utf-8";
+/* CSS Document */
+.iphone-redbg{background:url(../images/red_bag_bg.png) no-repeat;}
+.i-top-redbag,.i-body-pay-detail, .i-bottom-pay-detail{background:none;}
+.i-w-pay-money{height:110px;height:110px;margin-top:62px;}
+.i-w-pay-money span{font-size:110px;height:110px;background:none;padding-left:0;}
+#red_yuan{font-size:24px;padding-top:20px;padding-left:3px;}
+.i-w-pay-detail-gou-box{width:127px;height:117px;margin:0px auto;margin-top:27px;position:relative;overflow:hidden;}
+.i-w-pay-detail-gou{position:absolute;top:0;left:0;z-index:99;width:127px;height:117px;background: rgba(0, 0, 0, 0) url("../images/red_bag_face_box.png") no-repeat scroll 0 0;margin-top:0;}
+.i-w-pay-detail-gou-box img{width:117px;height:117px;position:absolute;top:0;left:6px;}
+.red_bag_name{;font-size: 28px;font-weight: normal;line-height: 30px;height:30px;text-align: center;margin-top:19px;}

@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.i-nav-star{background: url(../images/i-top-nav-star.png) no-repeat;}
+
+.i-body-star-bg1{clear: both;height:827px;background: url(../images/star_bg1.png) no-repeat;}
+.i-body-star-bg2{height:706px;background: url(../images/star_bg2.png) no-repeat;}
+.i-body-star-bg3{height:575px;background: url(../images/star_bg3.png) no-repeat;}
+.i-body-star-bg4{height:626px;background: url(../images/star_bg4.png) no-repeat;}
+.i-body-star-bg5{height:537px;background: url(../images/star_bg5.png) no-repeat;}
+.i-body-star-bg6{height:587px;background: url(../images/star_bg6.png) no-repeat;}
+.i-body-star-bg7{height:669px;background: url(../images/star_bg7.png) no-repeat;}
+.i-body-star-bg8{height:574px;background: url(../images/star_bg8.png) no-repeat;}
+.i-body-star-bg9{height:405px;background: url(../images/star_bg9.png) no-repeat;}
+
+.i-body-star-name1{position:absolute;left:102px;top:165px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name2{position:absolute;left:124px;top:1550px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name3{position:absolute;left:244px;top:1591px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name4{position:absolute;left:102px;top:1729px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name5{position:absolute;left:124px;top:2090px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name6{position:absolute;left:124px;top:2131px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name7{position:absolute;left:149px;top:3197px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name8{position:absolute;left:124px;top:3253px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name9{position:absolute;left:124px;top:3296px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name10{position:absolute;left:149px;top:3820px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name11{position:absolute;left:124px;top:3917px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name12{position:absolute;left:149px;top:4408px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name13{position:absolute;left:124px;top:4544px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name14{position:absolute;left:124px;top:4584px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name15{position:absolute;left:124px;top:5083px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+.i-body-star-name16{position:absolute;left:124px;top:5123px;width:100%;font-size:23px;height:32px;line-height:32px;color:#435989;font-weight:normal;}
+
+
+.i-body-star-face1{width:70px;height:70px;position:absolute;left:17px;top:165px;}
+.i-body-star-face1 img{width:70px;height:70px;}
+.i-body-star-face2{width:141px;height:138px;position:absolute;left:247px;top:1815px;}
+.i-body-star-face2 img{width:141px;height:138px;}
+.i-body-star-face3{width:141px;height:138px;position:absolute;left:400px;top:2978px;}
+.i-body-star-face3 img{width:141px;height:138px;}
+.i-body-star-face4{width:222px;height:222px;position:absolute;left:107px;top:3517px;}
+.i-body-star-face4 img{width:222px;height:222px;}
+
+
+.i-body-star-name1 span,.i-body-star-name2 span,.i-body-star-name3 span,.i-body-star-name4 span,.i-body-star-name5 span,.i-body-star-name6 span,.i-body-star-name7 span,.i-body-star-name8 span,.i-body-star-name9 span,.i-body-star-name10 span,.i-body-star-name11 span,.i-body-star-name12 span,.i-body-star-name13 span,.i-body-star-name14 span,.i-body-star-name15 span,.i-body-star-name16 span{color:#535353;font-weight:normal;}

@@ -1,0 +1,15 @@
+@charset "utf-8";
+/* CSS Document */
+.i-n-wa-right{background:none;}
+.i-n-wa-left{background:none;}
+.i-n-wa-mid{background:url(../images/info_top_mid.png) no-repeat;}
+#iphone{background:#ffffff;}
+.i-body{height:1008px;}
+
+.info_wx_face_box{width:102px;height:102px;position:absolute;top:41px;left:21px;background:url(../images/info_face_box.png) no-repeat;z-index:10;}
+.info_wx_face{width:100px;height:100px;position:absolute;top:42px;left:21px;}
+.info_wx_name{color:#000000;position:absolute;top:52px;left:138px;font-size:26px;}
+.info_wx_number{color:#000000;position:absolute;top:98px;left:222px;font-size:20px;}
+.info_wx_msg{color:#ffffff;position:absolute;bottom:42px;left:90px;font-size:20px;background:#fe3c30;border-radius:15px;padding:2px 10px;}
+.info_wx_txl{color:#ffffff;position:absolute;bottom:42px;left:240px;font-size:20px;background:#fe3c30;border-radius:15px;padding:2px 10px;}
+.info_wx_find{color:#ffffff;position:absolute;bottom:42px;left:410px;font-size:20px;background:#fe3c30;border-radius:15px;padding:2px 10px;}

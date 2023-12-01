@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* css Document */
+.i-body{width:100%;}
+#get_info{color:#27931d;font-size:23px;line-height:32px;height:96px;overflow:hidden;position:absolute;top:167px;left:76px;width:485px;}
+#get_time{color:#9d9d9d;font-size:20px;line-height:32px;height:32px;overflow:hidden;position:absolute;top:260px;left:76px;width:255px;}
+#contact{color:#6d6d6d;font-size:23px;line-height:32px;height:32px;overflow:hidden;position:absolute;top:320px;left:170px;width:100px;}
+#mobile{color:#6d6d6d;font-size:23px;line-height:32px;height:32px;overflow:hidden;position:absolute;top:320px;left:466px;width:150px;}
+#addr{color:#6d6d6d;font-size:23px;line-height:30px;height:60px;overflow:hidden;position:absolute;top:358px;left:76px;width:590px;}
+#shop{color:#393e40;font-size:23px;line-height:32px;height:32px;overflow:hidden;position:absolute;top:468px;left:72px;width:300px;}
+#product{color:#393e40;font-size:23px;line-height:30px;height:60px;overflow:hidden;position:absolute;top:530px;left:166px;width:320px;}
+#price{color:#1e2426;font-size:23px;line-height:30px;height:30px;overflow:hidden;position:absolute;top:535px;right:20px;width:200px;text-align:right;}
+#nprice{color:#989898;font-size:23px;line-height:30px;height:30px;overflow:hidden;position:absolute;top:570px;right:20px;width:200px;text-align:right;}
+#pnum{color:#a1a1a1;font-size:20px;line-height:20px;height:20px;overflow:hidden;position:absolute;top:610px;right:20px;width:200px;text-align:right;}
+#freight{color:#3f4546;font-size:20px;line-height:20px;height:20px;overflow:hidden;position:absolute;top:768px;right:20px;width:200px;text-align:right;}
+#bnum{color:#ff4400;font-size:28px;line-height:28px;height:28px;overflow:hidden;position:absolute;top:798px;right:20px;width:220px;text-align:right;font-weight:bold;}
+
+#ppic{width:130px;height:130px;overflow:hidden;position:absolute;top:530px;left:18px;background:#ffffff;}
+#ppic img{width:130px;height:130px;}
+
+.a-u-pic-pic{width: 80px;height: 80px;background:url(../images/add-pic.png) no-repeat;background-size: 100%;cursor: pointer;}
+.a-u-pic-show-pic{position: relative;background: #fff;}
+.a-u-pic-show-pic img{width: 80px;height: 80px;vertical-align: top;}
+.a-u-pic-show-pic input{width: 80px;height: 80px;position: absolute;top: 0;left: 0;z-index: 99999999;cursor: pointer;opacity: 0;}
+.a-u-pic-show-pic p{position: absolute;margin: 0;width: 200px;top: 90px;font-size: 12px;color: #f00;}
+
+
