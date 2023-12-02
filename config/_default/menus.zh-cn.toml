@@ -60,18 +60,21 @@
 
 [[main]]
   identifier = "RSS"
+  title = "rss"
   pre = "rss"
   url = "/index.xml"
   weight = 200
 
 [[main]]
   identifier = "twitter"
+  title = "twitter"
   pre = "x-twitter"
   url = "https://twitter.com/CarsonYangk8s"
   weight = 400
 
 [[main]]
   identifier = "github"
+  title = "github"
   pre = "github"
   url = "https://github.com/yangchuansheng"
   weight = 600

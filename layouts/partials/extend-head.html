@@ -62,26 +62,64 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <!-- 百度统计 -->
 <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?efe96f04908ae320df234a4f5626879e";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
+  // 检测页面滚动并在达到指定距离时加载统计脚本
+  function loadScriptOnScroll() {
+    var scrollPosition = window.scrollY || window.pageYOffset;
+
+    // 检测页面是否已滚动超过100px
+    if (scrollPosition > 100) {
+      // 创建并插入统计脚本
+      var _hmt = _hmt || [];
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?efe96f04908ae320df234a4f5626879e";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+
+      // 移除滚动事件监听器，避免重复加载脚本
+      window.removeEventListener('scroll', loadScriptOnScroll);
+    }
+  }
+
+  // 添加滚动事件监听器
+  window.addEventListener('scroll', loadScriptOnScroll);
 </script>
+
 
 <!-- umami -->
 <script async src="https://umami.icloudnative.io/oishii" data-website-id="f415abb1-1cb9-402e-a1c4-225ca9d792b0"></script>
 
 <!-- Google tag (gtag.js) -->
-<script async src="https://eezgfvhagnzs.cloud.sealos.io/gtag/js?id=G-0VHVXWXJMQ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-0VHVXWXJMQ');
+  function loadAnalyticsScript() {
+    // 创建并插入 Google Analytics 脚本
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://eezgfvhagnzs.cloud.sealos.io/gtag/js?id=G-0VHVXWXJMQ';
+    document.head.appendChild(script);
+
+    // 初始化 Google Analytics
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+    gtag('config', 'G-0VHVXWXJMQ');
+
+    // 移除滚动事件监听器，确保脚本只加载一次
+    window.removeEventListener('scroll', onScrollLoadAnalytics);
+  }
+
+  function onScrollLoadAnalytics() {
+    // 检查用户是否已向下滚动页面
+    if (window.scrollY > 100) { // 例如，用户向下滚动超过100px
+      loadAnalyticsScript();
+    }
+  }
+
+  // 添加滚动事件监听器
+  window.addEventListener('scroll', onScrollLoadAnalytics);
 </script>
+
 
 
 

@@ -36,7 +36,7 @@ smartTOCHideUnfocusedChildren = false
   showScrollToTop = true
 
 [homepage]
-  layout = "background" # valid options: page, profile, hero, card, background, custom
+  layout = "profile" # valid options: page, profile, hero, card, background, custom
   # homepageImage = "/img/iceland.jpg" # used in: hero, and card
   showRecent = true
   showRecentItems = 12
@@ -150,3 +150,4 @@ smartTOCHideUnfocusedChildren = false
 [[slideImages]]
   imgAddress = "https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-02-05-16-18-ofcgZS.png"
   linkAddress = "https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200430221955.png"
+  linkEvent = "Contact me"

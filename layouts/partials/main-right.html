@@ -29,7 +29,17 @@
     }
   }
   </script>
-  <script defer src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+  <script defer>
+  document.addEventListener("DOMContentLoaded", function() {
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+      // 如果不是移动设备，加载脚本
+      var script = document.createElement("script");
+      script.src = "https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0";
+      document.body.appendChild(script);
+    }
+  });
+  </script>
+
 
   <div id="tiangou" class="join-us dark:text-black" style="top: 36%;">
     <svg style="display: inline-block;" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor">
@@ -48,5 +58,38 @@
       </svg>
     </div>
   </div>
+
+  <!-- 自动调整右侧边栏舔狗日记卡片高度 -->
+  <script defer>
+    function fetchData() {
+      fetch("https://api.suyanw.cn/api/tiangou?type=json")
+        .then((response) => response.json())
+        .then((data) => {
+          const textData = data.text;
+          document.getElementById("apiData").innerText = textData;
+  
+          // 计算文本长度并调整容器高度
+          adjustContainerHeight(textData);
+        })
+        .catch((error) => console.error("Error:", error));
+    }
+  
+    function adjustContainerHeight(text) {
+      const baseHeight = 180; // 基础高度，您可以根据需要调整
+      const additionalHeightPerChar = 1.2; // 每个字符增加的高度，您可以根据需要调整
+  
+      const newHeight = baseHeight + text.length * additionalHeightPerChar;
+      document.getElementById('tiangou').style.height = `${newHeight}px`;
+    }
+  
+    // 给 SVG 图标添加点击事件监听器
+    document.getElementById('refreshButton').addEventListener('click', fetchData);
+    // 页面加载时执行一次，以加载初始数据
+    if (!window.matchMedia("(max-width: 768px)").matches) {
+      // 如果不是移动设备，则添加事件监听器并首次调用 fetchData
+      document.getElementById('refreshButton').addEventListener('click', fetchData);
+      fetchData();
+    }
+  </script>
 </div>
 {{ end }}

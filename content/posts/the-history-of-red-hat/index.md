@@ -58,7 +58,7 @@ Young 曾感慨，手握历史学学位在职场上并没让他多少占到便�
 
 尽管 Young 将 Linux 刻录在 CD 上销售，但他对于自己所销售的产品尚未完全理解。在 Don Becker 的邀请下，他前往位于马里兰州格林贝尔特的 Goddard 太空飞行中心进行了访问。
 
-![这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-10-15-00-17-6t2Ari.jpg "这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29")
+![这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-03-13-50-o0UBwB.jpg "这是一张 NASA 的 Goddard 太空飞行中心照片，摄影者：NASA Goddard/Bill Hrybyk, 日期：2010-06-29")
 
 当时 Becker 大佬正在搞一个叫 [Beowulf](https://ntrs.nasa.gov/api/citations/20150001285/downloads/20150001285.pdf) 的项目，这是历史上第一台运行 Linux 的超级计算机。这款计算机实际上就是把一堆市面上的普通电脑拼在一起组成的一个集群。这款 “原始版” 超级计算机，用了十六台 486DX4 计算机，然后用双通道以太网给它们都串联起来。美国国家航空航天局 (NASA) 有个需求：一个能够进行吉浮点运算的工作站，预算不能超过 $50000 (按 2023 年的价值是 $105000)，同时，他们需要能够随意修改的软件。Beowulf 完美地满足了这两个需求。在此背景下，Linux 的开源特性显得至关重要。**尽管 Becker 和他的团队都认为 Solaris 是更为优秀的 UNIX 系统，但因为不能随心所欲地修改它，所以最终选择了 Linux**。Young 在看到 Beowulf 后，深刻地意识到 Linux 的潜力，它并不仅仅是 UNIX 的一个分支而已。
 

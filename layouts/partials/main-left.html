@@ -5,49 +5,61 @@
 
 {{ if eq .Type "posts" }}
 <div class="wrapper__left" style="left: 2px" data-pad="true" dir="ltr">
-<div class="join-us dark:text-black" style="margin-top: 3%;height: 39%;">
-  <img class="modalImage" style="max-width: 13%" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-03-01-22-59-x40tuN.png" alt="icon"></img>
-  <p><a data-umami-event="Sealos" href="https://github.com/labring/sealos" target="_blank">Sealos</a>，在云桌面中运行分布式应用程序，像使用个人电脑一样使用云</p>
-  <img class="modalImage" style="max-width: 92%" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-08-31-09-52-gLmSek.jpg" alt="icon"></img>
-  <p style="margin-top:1rem !important;text-align:center;"><a data-umami-event="Sealos" class="!rounded-md bg-primary-600 px-4 py-2 !text-neutral !no-underline hover:!bg-primary-500 dark:bg-primary-800 dark:hover:!bg-primary-700" href="https://sealos.run" target="_blank" role="button">去看看👀</a></p>
-</div>
-<div class="join-us" style="top: 42%; height: 53%;">
-  <img class="modalImage nozoom" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/modal-content.svg" alt="icon"></img>
-  <!--<h2>欢迎加入</h2>-->
-  <p>扫码加入微信群，和云原生大佬们一起探讨云原生和不可描述的事情！</p>
-  <div>
-    <img style="width: 88px;margin-top:2%;" src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/tmpm1ykjt96.webp"></img>
+  <div class="join-us dark:text-black" style="margin-top: 3%;height: 39%;">
+    <picture>
+      <source media="(min-width: 768px)" srcset="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-03-01-22-59-x40tuN.png">
+      <img class="modalImage" style="max-width: 13%;height:auto;" src="" alt="icon"></img>
+    </picture>
+    <p><a data-umami-event="Sealos" href="https://github.com/labring/sealos" target="_blank">Sealos</a>，在云桌面中运行分布式应用程序，像使用个人电脑一样使用云</p>
+    <picture>
+      <source media="(min-width: 768px)" srcset="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-03-11-06-2bH6Hc.webp">
+      <img class="modalImage" style="max-width: 92%;height:auto;" src="" alt="icon"></img>
+    </picture>
+    <p style="margin-top:1rem !important;text-align:center;"><a data-umami-event="Sealos" class="!rounded-md bg-primary-600 px-4 py-2 !text-neutral !no-underline hover:!bg-primary-500 dark:bg-primary-800 dark:hover:!bg-primary-700" href="https://sealos.run" target="_blank" role="button">去看看👀</a></p>
   </div>
-  <button class="button_left">
-    <a data-umami-event="Telegram cloud_native_share" href="https://t.me/cloudnativer" target="_blank">
-    <div class="icon_left">
-      <svg viewBox="0 0 16 16" class="bi bi-telegram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
-      </svg>
+  <div class="join-us" style="top: 42%; height: 53%;">
+    <picture>
+      <source media="(min-width: 768px)" srcset="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/modal-content.svg">
+      <img class="modalImage nozoom" id="modalImage" src="" alt="icon" /></img>
+    </picture>
+    <!--<h2>欢迎加入</h2>-->
+    <p>扫码加入微信群，和云原生大佬们一起探讨云原生和不可描述的事情！</p>
+    <div>
+      <picture>
+        <source media="(min-width: 768px)" srcset="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/tmpm1ykjt96.webp">
+        <img class="modalImage" style="width: 25%;height:auto;margin-top:2%;" src="" alt="wechat qr code" /></img>
+      </picture>
     </div>
-    </a>
-    <p>加入 Telegram</p>
-  </button>
-  <button class="button_left">
-    <a data-umami-event="Telegram cloud_native_share" href="https://t.me/cloud_native_share" target="_blank">
-    <div class="icon_left">
-      <svg viewBox="0 0 16 16" class="bi bi-telegram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
-      </svg>
-    </div>
-    </a>
-    <p>黑科技广播站</p>
-  </button>
     <button class="button_left">
-    <a data-umami-event="Telegram cloud_native_blogs" href="https://t.me/cloud_native_blogs" target="_blank">
-    <div class="icon_left">
-      <svg viewBox="0 0 16 16" class="bi bi-telegram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
-        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
-      </svg>
-    </div>
-    </a>
-    <p>高手博客收藏夹</p>
-  </button>
-</div>
+      <a data-umami-event="Telegram cloud_native_share" href="https://t.me/cloudnativer" target="_blank" title="Telegram cloud_native_share">
+      <div class="icon_left">
+        <svg viewBox="0 0 16 16" class="bi bi-telegram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
+        </svg>
+      </div>
+      </a>
+      <p>加入 Telegram</p>
+    </button>
+    <button class="button_left">
+      <a data-umami-event="Telegram cloud_native_share" href="https://t.me/cloud_native_share" target="_blank" title="Telegram cloud_native_share">
+      <div class="icon_left">
+        <svg viewBox="0 0 16 16" class="bi bi-telegram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
+        </svg>
+      </div>
+      </a>
+      <p>黑科技广播站</p>
+    </button>
+      <button class="button_left">
+      <a data-umami-event="Telegram cloud_native_blogs" href="https://t.me/cloud_native_blogs" target="_blank" title="Telegram cloud_native_blogs">
+      <div class="icon_left">
+        <svg viewBox="0 0 16 16" class="bi bi-telegram" fill="currentColor" height="16" width="16" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"></path>
+        </svg>
+      </div>
+      </a>
+      <p>高手博客收藏夹</p>
+    </button>
+  </div>
 </div>
 {{ end }}

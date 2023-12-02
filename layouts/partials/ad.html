@@ -2,7 +2,7 @@
 .slideContent {
   width: 80%;
   @media (max-width: 600px) {
-    width: 100%;
+    display: none !important;
   }
 
   &>* {
@@ -24,18 +24,50 @@
 .swiper, swiper-container {
   margin-left: inherit !important;
   margin-bottom: -30px;
+  @media (max-width: 600px) {
+    display: none !important;
+  }
 }
 </style>
 
-<link rel="stylesheet" href="https://cdn.staticfile.org/Swiper/9.0.2/swiper-bundle.min.css">
-<script src="https://cdn.staticfile.org/Swiper/9.0.2/swiper-bundle.min.js"></script>
+<script defer>
+document.addEventListener("DOMContentLoaded", function() {
+  if (!window.matchMedia("(max-width: 768px)").matches) {
+    // 如果不是移动设备，加载 CSS 文件
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "https://cdn.staticfile.org/Swiper/9.0.2/swiper-bundle.min.css";
+    document.head.appendChild(link);
+    // 如果不是移动设备，加载 Swiper 脚本并初始化
+    var script = document.createElement('script');
+    script.src = "https://cdn.staticfile.org/Swiper/9.0.2/swiper-bundle.min.js";
+    script.onload = function() {
+      var mySwiper = new Swiper('#slider', {
+        direction: 'horizontal',
+        loop: true,
+        autoplay: {
+          delay: 5000,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }
+      });
+    };
+    document.head.appendChild(script);
+  }
+});
+</script>
 
 <div class="swiper slideContent" id="slider">
   <div class="swiper-wrapper">
     {{ range .Site.Params.slideImages }}
     <div class="swiper-slide">
-      <a data-umami-event="{{ .linkEvent }}" href="{{ .linkAddress }}" target="_blank">
-        <img class="nozoom" id="support-img" src="{{ .imgAddress | relURL }}" style="border: none;width: 100%;max-width: 100%;display: inline-block;" />
+      <a data-umami-event="{{ .linkEvent }}" href="{{ .linkAddress }}" target="_blank" title="{{ .linkEvent }}">
+        <picture>
+          <source media="(min-width: 768px)" srcset="{{ .imgAddress | relURL }}">
+          <img class="nozoom" id="support-img" src="" style="border: none;width: 100%;max-width: 100%;height: auto;display: inline-block;" alt="{{ .linkEvent }}" />
+        </picture>
       </a>
     </div>
     {{ end }}
@@ -43,17 +75,3 @@
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
 </div>
-
-<script>
-  var mySwiper = new Swiper('#slider', {
-  direction: 'horizontal',
-  loop: true,
-  autoplay: {
-    delay: 5000,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  }
-})
-</script>
