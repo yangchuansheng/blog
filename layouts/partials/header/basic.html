@@ -22,13 +22,12 @@
                 <a href="{{ "" | relLangURL }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
                     <h6 style="font-size: 1.5rem"><span style="color:#23d18b;">>$</span>&nbsp;cd /home/<span class="logo_cursor"></span></h6>
                 </a>
-            {{ else }}
+            {{ else if not .Site.Params.disableTextInHeader | default true }}
                 <a href="{{ "" | relLangURL }}" class="text-base font-medium text-gray-500 hover:text-gray-900">
                     <img width="25px" style="display:inline-block;vertical-align:bottom;" src="{{ "/icons/kubernetes.svg" | relLangURL }}">
                     {{ .Site.Title | markdownify | emojify }}
                 </a>
             {{ end }}
-
 
         </nav>
         <nav class="hidden md:flex items-center space-x-5 md:ml-12 h-12">
@@ -96,6 +95,7 @@
 
         <label id="menu-button" for="menu-controller" class="block">
             <input type="checkbox" id="menu-controller" class="hidden" />
+            {{ if .Site.Menus.main }}
             <div class="cursor-pointer hover:text-primary-600 dark:hover:text-primary-400">
                 {{ partial "icon.html" "bars" }}
             </div>
@@ -112,12 +112,10 @@
                             "xmark" }}</span>
                     </li>
 
-                    {{ if .Site.Menus.main }}
                     {{ range .Site.Menus.main }}
 
                     {{ partial "header/header-mobile-option.html" . }}
 
-                    {{ end }}
                     {{ end }}
 
                 </ul>
@@ -144,6 +142,7 @@
                     {{ end }}
 
                 </ul>
+                {{ end }}
                 {{ end }}
 
             </div>
