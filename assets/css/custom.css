@@ -243,7 +243,7 @@ ul > li::marker {
   width: calc((100vw - 960px) / 2.5);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .wrapper__left {
     display: none;
   }
@@ -447,7 +447,7 @@ ul > li::marker {
   margin-right: 1%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .wrapper__right {
     display: none;
   }

@@ -1,6 +1,7 @@
 {{ $disableImageOptimization := .Page.Site.Params.disableImageOptimization | default false }}
 {{ $url := urls.Parse .Destination }}
-{{ $altText := .Text }}
+{{/* change */}}
+{{ $altText := .Text | default (printf "图片描述: %s" (path.Base $url)) }}
 {{ $caption := .Title }}
 {{ if findRE "^https?" $url.Scheme }}
   <figure>

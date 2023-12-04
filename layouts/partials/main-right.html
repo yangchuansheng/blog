@@ -36,9 +36,23 @@
       var script = document.createElement("script");
       script.src = "https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0";
       document.body.appendChild(script);
+
+      setInterval(function() {
+        // 自动为 image 添加 alt 信息
+        var images = document.querySelectorAll('#he-plugin-standard img:not([alt])');
+        images.forEach(function(img) {
+          img.alt = '天气图标';  // 这里可以根据实际情况调整 alt 文本
+        });
+        // 自动给链接添加可识别名称
+        var link = document.querySelector('a[href="https://www.qweather.com"]');
+        if (link) {
+          link.setAttribute('aria-label', '访问和风天气网站'); // 为链接添加描述性的 aria-label
+        }
+      }, 1000); // 每隔 1000 毫秒 (1 秒) 检查一次
     }
   });
   </script>
+
 
 
   <div id="tiangou" class="join-us dark:text-black" style="top: 36%;">
