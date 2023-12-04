@@ -21,12 +21,19 @@ jobs:
           hugo-version: "0.120.4"
           extended: true
 
+      - name: replace cdn
+        run: |
+          sed -i "s/jsdelivr.icloudnative.io/cdn.jsdelivr.net/g" $(grep -rl "jsdelivr.icloudnative.io" ./)
+          sed -i "s/jsd.onmicrosoft.cn/cdn.jsdelivr.net/g" $(grep -rl "jsd.onmicrosoft.cn" ./)
+          sed -i "s#cdn.staticfile.org/Swiper/#cdn.jsdelivr.net/npm/swiper@#g" $(grep -rl "cdn\.staticfile\.org" ./)
+          sed -i "s#cdn.staticfile.org/layer#cdnjs.cloudflare.com/ajax/libs/layer#g" $(grep -rl "cdn\.staticfile\.org" ./)
+
       - name: Build
         run: |
           hugo -v --gc --minify
           git clone https://github.com/yangchuansheng/envoy-handbook ../envoy-handbook
           cd ../envoy-handbook
-          hugo -v --gc --minify -d ../hugo-theme-zzo-magic/public/envoy-handbook
+          hugo -v --gc --minify -d ../blog/public/envoy-handbook
 
       - uses: actions/checkout@v4
         with:
