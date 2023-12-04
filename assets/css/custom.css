@@ -118,6 +118,12 @@ pre {
 }
 
 
+/* 正文图片添加阴影 */
+section img.medium-zoom-image,  
+section video {
+  box-shadow: 0px 0px 10px lightgrey;
+}
+
 
 /* 列表样式 */
 section div ol {
