@@ -1,3 +1,43 @@
+<!-- AdSense 广告容器 -->
+<!--
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3925981084585036"
+     data-ad-slot="4806125422"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+-->
+
+<!-- 使用 JavaScript 实现懒加载 -->
+<!--
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  var adsObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      // 动态加载 AdSense 脚本
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3925981084585036";
+      script.crossorigin = "anonymous";
+      script.onload = function() {
+        // 脚本加载完成后推送广告
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      };
+      document.body.appendChild(script);
+
+      // 断开观察，避免重复加载
+      adsObserver.disconnect();
+    }
+  }, { threshold: [0.1] });
+
+  // 开始观察广告容器
+  adsObserver.observe(document.querySelector('.adsbygoogle'));
+});
+</script>
+-->
+
+
+
 <img loading="lazy" src="/img/wechat-qr.webp" alt="公众号二维码">
 
 <!-- 引入 iDisqus 的样式表 -->
