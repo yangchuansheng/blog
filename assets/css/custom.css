@@ -199,6 +199,10 @@ ul > li::marker {
   color: rgba(var(--color-neutral-100), 1) !important;
 }
 
+section a {
+  word-break: break-all;
+}
+
 
 /* katex 样式 */
 .katex {
