@@ -32,7 +32,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/20
 meta_image: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-11-12-01-27-WFsnff.jpg
 ---
 
-### 译者序
+## 译者序
 
 原文链接：[The History of Red Hat](https://www.abortretry.fail/p/the-history-of-red-hat)
 
