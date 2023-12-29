@@ -9,7 +9,7 @@ keywords:
 - VPN
 title: "Tailscale 基础教程：Headscale 的部署方法和使用教程"
 date: 2022-03-21T09:06:37+08:00
-lastmod: 2022-11-22T19:06:37+08:00
+lastmod: 2023-12-29T18:01:37+08:00
 description: 本文介绍了如何使用 Tailscale 开源替代品 Headscale 来组建 VPN 网络。
 draft: false
 author: 米开朗基杨
@@ -81,6 +81,25 @@ Headscale 由欧洲航天局的 Juan Font 使用 Go 语言开发，在 BSD 许�
 目前 Headscale 还没有可视化界面，期待后续更新吧。
 
 ## Headscale 部署
+
+### 使用 Sealos 一键部署
+
+如果你嫌下面太长不看，可以选择直接使用 Sealos 应用模板一键部署，有手就行，啥都不需要设置。
+
+直接点击下面的按钮跳转到 Sealos 的应用模板部署界面：
+
+<figure><a href="https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Dheadscale" target="_blank">
+    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
+</a></figure>
+
+> 如果您是第一次打开 [Sealos](https://sealos.run)，需要先注册登录账号。
+
+然后点击「部署应用」按钮开始部署。部署完成后，点击「详情」进入应用的详情页面。内网端口 8080 对应的外网地址就是 Headscale 的公网域名。
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-15-59-sxGozu.png)
+
+### 在 Linux 上部署
+
 Headscale 部署很简单，推荐直接在 Linux 主机上安装。
 
 > 理论上来说只要你的 Headscale 服务可以暴露到公网出口就行，但最好不要有 NAT，所以推荐将 Headscale 部署在有公网 IP 的云主机上。
@@ -121,6 +140,7 @@ $ wget https://github.com/juanfont/headscale/raw/main/config-example.yaml -O /et
 + 修改配置文件，将 `server_url` 改为公网 IP 或域名。**如果是国内服务器，域名必须要备案**。我的域名无法备案，所以我就直接用公网 IP 了。
 + 如果暂时用不到 DNS 功能，可以先将 `magic_dns` 设为 false。
 + `server_url` 设置为 `http://<PUBLIC_IP>:8080`，将 `<PUBLIC_IP>` 替换为公网 IP 或者域名。
++ 建议打开随机端口，将 randomize_client_port 设为 true。
 + 可自定义私有网段，也可同时开启 IPv4 和 IPv6：
   ```yaml
   ip_prefixes:
@@ -212,21 +232,29 @@ tcp LISTEN 0 1024 [::]:8080 [::]:* users:(("headscale",pi
 d=10899,fd=12))
 ```
 
-Tailscale 中有一个概念叫 tailnet，你可以理解成租户，租户与租户之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。Headscale 也有类似的实现叫 namespace，即命名空间。我们需要先创建一个 namespace，以便后续客户端接入，例如：
+## 创建用户
+
+Tailscale 中有一个概念叫 tailnet，你可以理解成租户，租户与租户之间是相互隔离的，具体看参考 Tailscale 的官方文档：[What is a tailnet](https://tailscale.com/kb/1136/tailnet/)。Headscale 也有类似的实现叫 user，即用户。我们需要先创建一个 user，以便后续客户端接入，例如：
 
 ```bash
-$ headscale namespaces create default
+$ headscale user create default
 ```
 
 查看命名空间：
 
 ```bash
-$ headscale namespaces list
+$ headscale user list
 
 ID | Name | Created
 
 1 | default | 2022-03-09 06:12:06
 ```
+
+如果你是通过 Sealos 一键部署的 Headscale，可以在 Headscale 应用的详情页面点击右侧的「终端」按钮进入 Headscale 容器的终端：
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
+
+然后在终端中执行上述命令创建 user。
 
 ## Tailscale 客户端接入
 
@@ -239,8 +267,8 @@ ID | Name | Created
 | FreeBSD | Yes                                                          |
 | macOS   | Yes                                                          |
 | Windows | Yes 参考 [Windows 客户端文档](https://github.com/juanfont/headscale/blob/main/docs/windows-client.md) |
-| Android | 支持,参考[这个 PR](https://github.com/tailscale/tailscale-android/pull/55) |
-| iOS     | 暂不支持                                                     |
+| Android | Yes                                                     |
+| iOS     | Yes                                                     |
 
 我们先来看下 Linux 平台的接入。 
 
@@ -298,8 +326,11 @@ $ systemctl status tailscaled
 Tailscale 接入 Headscale：
 
 ```bash
-# 将 <HEADSCALE_PUB_IP> 换成你的 Headscale 公网 IP 或域名
+# 如果你是在自己的服务器上部署的，请将 <HEADSCALE_PUB_IP> 换成你的 Headscale 公网 IP 或域名
 $ tailscale up --login-server=http://<HEADSCALE_PUB_IP>:8080 --accept-routes=true --accept-dns=false
+
+# 如果你是使用 Sealos 一键部署的，请将 <HEADSCALE_PUB_IP> 换成上文提到的 Sealos 中的 Headscale 公网域名
+$ tailscale up --login-server=https://<HEADSCALE_PUB_IP> --accept-routes=true --accept-dns=false
 ```
 
 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。如果你对 DNS 有需求，可自己研究官方文档，这里不再赘述。
@@ -309,19 +340,17 @@ $ tailscale up --login-server=http://<HEADSCALE_PUB_IP>:8080 --accept-routes=tru
 ```bash
 To authenticate, visit:
 
-http://xxxxxx:8080/register?key=905cf165204800247fbd33989dbc22be95c987286c45aac303393704
-
-1150d846
+	https://qgemohpy.cloud.sealos.io/register/mkey:e13651ddbfc269513723f1afd6f42465e56922b67ecea8f37d61a35b1b357e0c
 ```
 
 在浏览器中打开该链接，就会出现如下的界面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-06-08qWbz.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-23-vrj10n.png)
 
-将其中的命令复制粘贴到 headscale 所在机器的终端中，并将 NAMESPACE 替换为前面所创建的 namespace。
+将其中的命令复制粘贴到 headscale 所在机器的终端中，并将 USERNAME 替换为前面所创建的 user。
 
 ```bash
-$ headscale -n default nodes register --key 905cf165204800247fbd33989dbc22be95c987286c45aac3033937041150d846
+$ headscale nodes register --user default --key 905cf165204800247fbd33989dbc22be95c987286c45aac3033937041150d846
 Machine register
 ```
 
@@ -407,27 +436,28 @@ macOS 有 3 种安装方法：
 | MagicDNS       | yes                                                         | yes                                                          | yes                                                          |
 | Taildrop       | yes                                                         | yes                                                          | 未实现                                                       |
 
-安装完 GUI 版应用后还需要做一些骚操作，才能让 Tailscale 使用 Headscale 作为控制服务器。当然，Headscale 已经给我们提供了详细的操作步骤，你只需要在浏览器中打开 URL：`http://<HEADSCALE_PUB_IP>:8080/apple`，便会出现如下的界面：
+安装完 GUI 版应用后还需要做一些骚操作，才能让 Tailscale 使用 Headscale 作为控制服务器。当然，Headscale 已经给我们提供了详细的操作步骤，你只需要在浏览器中打开 URL：`https://<HEADSCALE_PUB_IP>/apple`，便会出现如下的界面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-17-53-rjcTVg.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-50-lgDjCB.png)
 
-你只需要按照图中所述的步骤操作即可，本文就不再赘述了。
+对于 1.34.0 及以上的 Tailscale 版本，可以按照下面的方法来操作：
 
-{{< alert >}}
-非应用商店版本的 macOS 客户端需要将 `io.tailscale.ipn.macos` 替换为 `io.tailscale.ipn.macsys`。即：`defaults write io.tailscale.ipn.macsys ControlURL http://<HEADSCALE_PUB_IP>:8080`
-{{< /alert >}}
+1. 长按「ALT」键，然后点击顶部菜单栏的 Tailscale 图标，然后将鼠标指针悬停在「Debug」菜单上。
 
-修改完成后重启 Tailscale 客户端，在 macOS 顶部状态栏中找到 Tailscale 并点击，然后再点击  `Log in`。
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-04-fPLtsa.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-43-pTW3r7.png)
+2. 在「Custom Login Server」下方选择「Add Account...」。
+3. 在打开的弹窗中填入 Headscale 的公网域名，然后点击「Add Account」。
+   
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-13-0LVi0S.png)
 
-然后立马就会跳转到浏览器并打开一个页面。
+4. 然后立马就会跳转到浏览器并打开一个页面。
+   
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-14-3VPcX4.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-46-AbzngB.png)
-
-接下来与之前 Linux 客户端相同，回到 Headscale 所在的机器执行浏览器中的命令即可，注册成功：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
+5. 接下来与之前 Linux 客户端相同，回到 Headscale 所在的机器执行浏览器中的命令即可，注册成功：
+   
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
 
 回到 Headscale 所在主机，查看注册的节点：
 
@@ -464,6 +494,8 @@ $ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 10.1.0.1
 pong from coredns (10.1.0.1) via xxxx:41641 in 36ms
 ```
 
+对于版本号低于 1.32.0 的 Tailscale 客户端，你只需要按照图中所述的步骤操作即可，本文就不再赘述了。
+
 ### Android
 
 Android 客户端从 1.30.0 版本开始支持自定义控制服务器（即 coordination server），你可以通过 [Google Play](https://play.google.com/store/apps/details?id=com.tailscale.ipn) 或者 [F-Droid](https://f-droid.org/packages/com.tailscale.ipn/) 下载最新版本的客户端。
@@ -498,7 +530,7 @@ Android 客户端从 1.30.0 版本开始支持自定义控制服务器（即 coo
 
 Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 URL：`http://<HEADSCALE_PUB_IP>:8080/windows`，便会出现如下的界面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-23-30-zcQX3F.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-19-vSqFK9.png)
 
 按照其中的步骤操作即可。
 
@@ -511,7 +543,31 @@ Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需
 + 威联通：[https://github.com/ivokub/tailscale-qpkg](https://github.com/ivokub/tailscale-qpkg)
 
 ### iOS
-Tailscale iOS 客户端源代码没有开源，目前还无法破解使其使用第三方控制服务器，遗憾~~
+
+iOS 系统直接从应用商店安装即可，当然前提是你需要有一个美区 ID。
+
+1. 安装完成后打开 Tailscale 确认你没有登录任何账号。然后打开「设置」，向下滑动，在「Game Center」或者「电视提供商」下方找到「Tailscale」，然后点击进去。
+
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-41-byKA02.png)
+
+   如果你的设备之前登录过 Tailscale 服务端，需要将「Reset Keychain」选项打开。
+
+2. 在「Alternate Coordination Server URL」下方输入你的 Headscale 公网域名。
+3. 从 iOS 应用程序切换器中关闭 Tailscale 再重新打开，然后选择「Log in」，就会弹出一个 Headscale 身份认证页面。
+   
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-51-mErNCd.png)
+
+4. 将 Headscale 身份认证页面中的命令复制粘贴到 headscale 所在容器的终端中，并将 USERNAME 替换为前面所创建的 user。
+   
+   ```bash
+   $ headscale nodes register --user default --key mkey:1fbd9696ebb03b9394033949514345bc5dba0e570bc0d778f15f92a02d2dcb66
+   2023-12-29T09:55:38Z TRC DNS configuration loaded dns_config={"Nameservers":["1.1.1.1"],"Proxied":true,"Resolvers":[{"Addr":"1.1.1.1"}]}
+   Node localhost registered
+   ```
+
+5. 注册成功。
+
+   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-18-01-Z2XdzF.png)
 
 ### 通过 Pre-Authkeys 接入
 
@@ -520,13 +576,13 @@ Tailscale iOS 客户端源代码没有开源，目前还无法破解使其使用
 首先在服务端生成 pre-authkey 的 token，有效期可以设置为 24 小时：
 
 ```bash
-$ headscale preauthkeys create -e 24h -n default
+$ headscale preauthkeys create -e 24h --user default
 ```
 
 查看已经生成的 key：
 
 ```bash
-$ headscale -n default preauthkeys list
+$ headscale --user default preauthkeys list
 ID | Key                                              | Reusable | Ephemeral | Used  | Expiration          | Created            
 1  | 57e419c40e30b0dxxxxxxxf15562c18a8c6xxxx28ae76f57 | false    | false     | false | 2022-05-30 07:14:17 | 2022-05-29 07:14:17
 ```
