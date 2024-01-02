@@ -8,7 +8,7 @@ keywords:
 - anki-sync-server
 title: "Anki 自定义同步服务器部署与使用"
 date: 2022-04-10T09:06:37+08:00
-lastmod: 2023-06-26T13:06:37+08:00
+lastmod: 2024-01-02T18:06:37+08:00
 description: 本文介绍了如何使用 Docker 或 Kubernetes 部署 Anki 同步服务器并配置客户端正确使用。
 draft: false
 author: 米开朗基杨
@@ -29,17 +29,19 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/20
 
 ## Anki 介绍
 
-Anki 是一个辅助记忆软件，其本质是一个卡片排序工具--**即依据使用者对卡片上的自定义内容进行主动测试、自我评判后，其内部算法根据评判结果更改每张卡片下次测试时间的排序工具。**
+Anki是一款基于间隔重复（Spaced Repetition）原理的学习软件，想象一下，你的大脑就像是一个需要定期维护的精密仪器。间隔重复就好比是一种精准的维护计划，它通过在最佳时刻复习信息，来确保知识在你的脑海中牢固地扎根。
 
-所谓的卡片，专业说法叫 Flash Card（抽认卡或闪卡），是一小块纸片，分为正反两面，将问题和提示写在一面，将答案写在另一面。使用方法就是先看正面的问题与提示，在脑中回想答案，然后翻出反面进行对照验证。
+Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和记忆信息。所谓的卡片，专业说法叫 Flash Card（抽认卡或闪卡），是一小块纸片，分为正反两面，将问题和提示写在一面，将答案写在另一面。使用方法就是先看正面的问题与提示，在脑中回想答案，然后翻出反面进行对照验证。如果你很容易记住某张卡片的内容，Anki会增加下次复习这张卡片的时间间隔；反之，如果你觉得某张卡片比较难记，Anki会缩短这张卡片的复习间隔。
 
-闪卡的核心制作原则就是：**一个知识点一张卡**。因此非常适合用来学习英文，也可以用来记忆历史事件时间、公式等等。给大家看下我制作的闪卡：
+这种方法特别适用于需要记忆大量信息的领域，如语言学习、医学、法律等。
+
+给大家看下我制作的闪卡：
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-10-52-H2ZWUZ.png)
 
 每张卡片只有一个英文单词，与之配套的是该单词的音标、发音、图片、英文解释、例句。**所有的版块都是英文，绝对不要出现中文！** 卡片的核心是图片和例句，通过图片可以猜到这个单词大概是什么意思，通过例句可以验证自己对单词意思的猜测是否正确，如果还不放心，可以看下英文解释，这一套流程下来绝对可以正确理解单词的意思，**完全不需要中文的干涉，这才是学习英文单词最完美的方式**。
 
-即便如此，大家在熟悉单词的过程中可能还会有一个误区，比如上面这个单词，你在学习的过程中可能会忍不住去想这个单词在中文里究竟是什么意思，甚至可能会在心里默念它的中文意思，即使你看了图片和英文解释，你心里可能还会忍不住去想：哦，这是转瞬即逝的意思。建议大家最好不要这么做，要想做到这一点，记住一句名言：**只可意会，不可言传**。你去看这张图片，然后用心去体会：**哦，大概就是这么一种感觉，对对对**。你能 get 到这个单词所表达的那种感觉就行了，不要再去思考如何用中文来描述它，那样反而吃力不讨好。
+即便如此，大家在熟悉单词的过程中可能还会有一个误区，比如上面这个单词，你在学习的过程中可能会忍不住去想这个单词在中文里究竟是什么意思，甚至可能会在心里默念它的中文意思，即使你看了图片和英文解释，你心里可能还会忍不住去想：哦，这是转瞬即逝的意思。建议大家最好不要这么做，而是直接看这张图片，然后用心去体会：**哦，大概就是这么一种感觉，对对对**。你能 get 到这个单词所表达的那种感觉就行了，不要再去思考如何用中文来描述它，那样反而吃力不讨好。
 
 ----
 
@@ -51,76 +53,33 @@ Anki 是一个辅助记忆软件，其本质是一个卡片排序工具--**即�
 
 自从 2023 年 2 月份，Anki 发布了 PC 端 2.1.57 版本以后，Anki 的 PC 端，安卓端，iOS 端用户都可以自定义同步服务器了，并且不再需要安装插件。从此 Anki 小伙伴再也不用担心 Anki 同步的问题了，困扰 Anki 用户多年的同步问题终于得到彻底解决。
 
-自 PC 端 2.1.57 版本以后，Anki 官方退出了镶嵌在 Anki 客户端的同步服务端和通过 Python 安装的同步服务端。
+自 PC 端 2.1.57 版本以后，Anki 官方推出了镶嵌在 Anki 客户端的同步服务端和通过 Python 安装的同步服务端。
 
-但是我并不想用官方的这个破玩意，**人生苦短，我不用 Python**。
+我选择使用镶嵌在 Anki 客户端中的同步服务端，因为它是用 Rust 写的啊，**人生苦短，我不用 Python**。
 
-我选择用社区的高大上同步服务端，目前只有 [anki-sync-server-rs](https://github.com/ankicommunity/anki-sync-server-rs) 这个项目支持最新的 Anki 版本，其他的同步服务器项目基本上都失效了。这个项目是用 Rust 写的，追踪 [Anki 官方](https://github.com/ankitects/anki) 同步服务端的进度，它们都是基于sqlite c 作为数据存储后端。最重要的是：**它有 Docker 镜像！**
+但是官方并没有提供 Docker 镜像，于是我选择自己构建 Docker 镜像，项目地址：
 
-有了镜像，部署起来就简单了，不就是 Docker 一把梭嘛！
++ [https://github.com/yangchuansheng/anki-sync-server](https://github.com/yangchuansheng/anki-sync-server)
 
-不懂 Docker 也没关系，不就是 [Sealos](https://cloud.sealos.io/) 一把梭嘛！**楼下的老奶奶都会用 Sealos 一把梭**。
+部署方法就非常简单了，你可以选择使用 Docker 部署，也可以直接使用 Sealos 应用模板一键部署，**不用操心域名和证书等各种乱七八糟的事情，有手就行**。
 
-你把我下面的步骤教给你家楼下的老奶奶，如果她不会你来找我，我现场给你表演**大便活人**！
+直接点击下面的按钮跳转到 Sealos 的应用模板部署界面：
 
-首先在浏览器地址栏输入网址 [https://cloud.sealos.io/](https://cloud.sealos.io/) 进入 Sealos 桌面。然后打开「应用管理」：
+<figure><a href="https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Danki-sync-server" target="_blank">
+    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
+</a></figure>
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-54-EIVahX.jpg)
+> 如果您是第一次打开 [Sealos](https://sealos.run)，需要先注册登录账号。
 
-点击「新建应用」：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-55-NDkuEg.jpg)
-
-依次输入应用名和镜像名，容器暴露端口是 `27701`，并开启外网访问：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-11-59-FxJE12.png)
-
-继续向下，展开「高级配置」，点击「编辑环境变量」：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-01-DKect7.png)
-
-将以下内容粘贴到环境变量输入框中：
-
-```bash
-ANKISYNCD_USERNAME=<USERNAME>
-ANKISYNCD_PASSWORD=<PASSWD>
-```
-
-请将 `<USERNAME>` 替换为你自己的用户名，将 `<PASSWD>` 替换为你自己的密码。
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-05-CWczxm.png)
-
-点击「新增存储卷」：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-06-lvv6ms.png)
-
-挂载路径填入 `/app`，然后点击确认：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-07-s8W7iu.png)
-
-最后点击右上角的部署应用即可。
-
-部署完成后点击「详情」进入应用详情界面。
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-09-RslDGj.png)
+然后点击「部署应用」按钮开始部署。部署完成后，点击「详情」进入应用的详情页面。
 
 这里可以看到实例的运行状态，一定要等到状态是 running 才算是部署成功。如果一段时间以后状态还不是 running，可以点击「详情」查看故障原因：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-Vs9ccy.png)
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-02-20-43-L7tjlP.png)
 
-部署成功后，可以看到应用的运行情况，包括 CPU 占用、内存占用等。点击外网地址即可通过外网域名直接打开同步服务器的 Web 界面。
+部署成功后，可以看到应用的运行情况，包括 CPU 占用、内存占用等。外网地址就是同步服务器的公网域名。
 
 ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-YFHPYc.png)
-
-如果出现以下的界面，则表示部署成功：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-FwsbfW.png)
-
-查看日志的方法也很简单，直接点击实例右侧的「三个点」，然后点击「日志」即可查看日志：
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-hdHfxP.png)
-
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-nwrxrv.png)
 
 ## 客户端设置
 
