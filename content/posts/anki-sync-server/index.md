@@ -65,8 +65,8 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 
 直接点击下面的按钮跳转到 Sealos 的应用模板部署界面：
 
-<figure><a href="https://cloud.sealos.io/?openapp=system-template%3FtemplateName%3Danki-sync-server" target="_blank">
-    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://raw.githubusercontent.com/labring-actions/templates/main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
+<figure><a href="https://template.cloud.sealos.io/deploy?templateName=anki-sync-server" target="_blank">
+    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://jsdelivr.icloudnative.io/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
 </a></figure>
 
 > 如果您是第一次打开 [Sealos](https://sealos.run)，需要先注册登录账号。
