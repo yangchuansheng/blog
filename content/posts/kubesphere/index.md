@@ -21,11 +21,11 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 KubeSphere 目前最新的版本为高级版 `2.0.2`，并且所有版本 100% 开源。它的 Dashboard 是这个样子的：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-16-kaZw8G.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-16-kaZw8G.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-17-nOTXRc.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-17-nOTXRc.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-17-cnH0Nu.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-17-cnH0Nu.png)
 
 这个颜值，比 Kubernetes Dashboard 不知道高到哪里去了，感兴趣的小伙伴可以给一个 Github Star 鼓励一下开发小哥。访问官网请戳这里：[kubesphere.io](https://kubesphere.io/)
 
@@ -273,14 +273,14 @@ spec:
 
 将域名信息加入本地电脑的 hosts 中，就可以在浏览器中访问 KubeSphere 的 Dashboard 了。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-09-19-121541.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-09-19-121541.png)
 
 默认的集群管理员账号为：
 
 + 用户名：admin
 + 密码：P@88w0rd
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-09-19-139.198.0.142_30880_dashboard.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-09-19-139.198.0.142_30880_dashboard.png)
 
 详细的使用方式可以参考官方文档：[https://kubesphere.io/docs/zh-CN/](https://kubesphere.io/docs/zh-CN/)
 

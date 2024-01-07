@@ -262,7 +262,7 @@ admin:
 
 本文开头提到 podman 创建的容器是 podman 的子进程，这个表述可能比较模糊，实际上 podman 由两部分组成，一个是 podman CLI，还有一个是 container runtime，container runtime 由 `conmon` 来负责，主要包括监控、日志、TTY 分配以及类似 `out-of-memory` 情况的杂事。也就是说，conmon 是所有容器的父进程。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-064233.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-064233.png)
 
 conmon 需要去做所有 `systemd` 不做或者不想做的事情。即使 CRI-O 不直接使用 systemd 来管理容器，它也将容器分配到 sytemd 兼容的 `cgroup` 中，这样常规的 systemd 工具比如 `systemctl` 就可以看见容器资源使用情况了。
 
@@ -274,7 +274,7 @@ CONTAINER ID  IMAGE                                     COMMAND               CR
 f0204fdc9524  docker.io/library/nginx:alpine            nginx -g daemon o...  2 minutes ago       Up 2 minutes ago              hugo
 ```
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%882.18.30.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%882.18.30.png)
 
 对 cgroup 不熟的同学，可以参考下面这个系列：
 
@@ -403,11 +403,11 @@ admin:
 
 现在就可以通过公网域名访问博客网站了，如果后续还有其他应用，都可以参考第二节的步骤，然后重新创建前端代理，添加 `--add-host `参数。以我的网站 [https://icloudnative.io](https://icloudnative.io) 为例：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.07.30.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.07.30.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.19.21.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-%E6%88%AA%E5%B1%8F2019-10-17%E4%B8%8B%E5%8D%883.19.21.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-072659.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-17-072659.png)
 
 我好像透露了一些什么不得了的东西，就此打住，你也不要说，你也不要问。
 

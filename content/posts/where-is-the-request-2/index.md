@@ -372,11 +372,11 @@ $ istioctl proxy-config routes productpage-v1-76474f6fb7-pmglr --name 9080 -o js
 
 你可以尝试搜索一下有没有 `outbound|9080|v1|reviews.default.svc.cluster.local` 这个集群，如果不出意外，你将找不到 `SUBSET=v1` 的集群。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/IbLzV0.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/IbLzV0.jpg)
 
 由于找不到这个集群，所以该路由不可达，这就是为什么你打开 productpage 的页面会出现如下的报错：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/IifCY8.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/IifCY8.jpg)
 
 ### DestinationRule
 
@@ -465,7 +465,7 @@ $ curl http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|9080|v1|reviews.defau
 
 现在再次用浏览器访问 productpage，你会发现报错已经消失了。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/PahU33.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/PahU33.jpg)
 
 ## 参考
 
@@ -475,7 +475,7 @@ $ curl http://$PILOT_SVC_IP:8080/debug/edsz|grep "outbound|9080|v1|reviews.defau
 
 ----
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 
 

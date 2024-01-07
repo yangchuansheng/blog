@@ -40,7 +40,7 @@ $$\begin{bmatrix} 2 & 1 \\\ 4 & 3 \end{bmatrix} \cdot \begin{bmatrix} 1 & 2 \\\ 
 
 教科书告诉你，计算规则是，第一个矩阵第一行的每个数字（2和1），各自乘以第二个矩阵第一列对应位置的数字（1和1），然后将乘积相加（ 2 x 1 + 1 x 1），得到结果矩阵左上角的那个值3。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/PAwGG3.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/PAwGG3.jpg)
 
 也就是说，结果矩阵第 m 行与第 n 列交叉位置的那个值，等于第一个矩阵第 m 行与第二个矩阵第 n 列，对应位置的每个值的乘积之和。
 

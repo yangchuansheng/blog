@@ -149,7 +149,7 @@ $ grub2-mkconfig -o /boot/grub2/grub.cfg
 
 重启系统之后，系统将不再使用逻辑核心 2，3 和 4，只会使用核心 1。找个程序把 CPU 跑满（[上篇文章](/posts/understanding-cgroups-part-2-cpu/)用的程序），使用命令 top 查看 CPU 的使用状况：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163214.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163214.png)
 
 {{< alert >}}
 执行 `top` 命令后，在列表页按数字 1 键，就可以看到所有 CPU 了。
@@ -277,7 +277,7 @@ $ echo "3767" > /sys/fs/cgroup/cpuset/test/tasks
 
 查看 CPU 使用情况：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163215.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163215.png)
 
 可以看到绑核生效了，`PID` 为 3767 的进程被调度到了 `cpu3` 上。
 
@@ -305,7 +305,7 @@ WantedBy=multi-user.target
 
 启动该服务，然后查看 CPU 使用情况：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163216.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163216.png)
 
 该服务中的进程确实被调度到了 `cpu2` 上。
 
@@ -323,29 +323,29 @@ WantedBy=multi-user.target
 
 查看主机 CPU 的负载：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163217.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163217.png)
 
 只有 `Cpu1` 达到了 `100%`，其它的 CPU 并未被容器使用。
 
 如果你看过该系列的[第一篇文章](/posts/understanding-cgroups-part-1-basics/)，应该知道，在新的使用 `systemd` 实现 `init` 的系统中（比如 `ConetOS 7`），系统默认创建了 3 个顶级 `slice`：`System`, `User` 和 `Machine`，其中 `machine.slice` 是所有虚拟机和 Linux 容器的默认位置，而 Docker 其实是 `machine.slice` 的一个变种，你可以把它当成 `machine.slice` 。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163218.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163218.png)
 
 如果系统中运行的是 Kubernetes，`machine.slice` 就变成了 `kubepods`：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163219.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163219.png)
 
 为了便于管理 cgroup，`systemd` 会为每一个 `slice` 创建一个子系统，比如 docker 子系统：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163220.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163220.png)
 
 然后再根据容器的设置，将其放入相应的控制器下面，这里我们关心的是 `cpuset` 控制器，看看它的目录下有啥：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163221.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163221.png)
 
 查看 docker 目录：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163222.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163222.png)
 
 可以看到 Docker 为每个容器创建了一个子目录，`7766..` 对应的就是之前我们创建的容器：
 

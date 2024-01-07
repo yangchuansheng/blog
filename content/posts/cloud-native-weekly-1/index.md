@@ -28,15 +28,15 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [kubeasy](https://github.com/marcenacp/kubeasy) : 用来管理 Kubernetes 集群的 CLI 工具，提供了沉浸式的命令行界面
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/1_IXbGxeofG5r4FUOUE0k9_g.gif)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/1_IXbGxeofG5r4FUOUE0k9_g.gif)
 
 [kui](https://github.com/IBM/kui) : 也是一个 CLI 工具，与 kubeasy 目的相同，都是希望使用者能获取更多的集群信息，然后利用这些信息来做很多事。不同的是，kui 把网页内嵌到终端里了，你可以通过鼠标点击来操作。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/1_YyWzawiJBmvrxfXnegJTzA.gif)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/1_YyWzawiJBmvrxfXnegJTzA.gif)
 
 [Configurable HPA](https://github.com/postmates/configurable-hpa) : 通过 `CRD` 来扩展 Kubernetes 原生 HPA 的功能，提供了更多可选参数。例如，原生的 HPA 不支持自定义弹性伸缩的速度，通过 CHPA 即可自定义。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-060828.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-060828.jpg)
 
 [k8s-sidecar-injector](github.com/tumblr/k8s-sidecar-injector) : Tumblr（汤不热，你懂得）开源的一款自动注入 Sidecar 的工具。你只需要在 Pod 的 annotaion 中加上 `injector.tumblr.com/request=sidecar-prod-v1` 字段，就会自动在业务 Pod 中注入 `sidecar-prod-v1` 中定义的 Sidecar 容器、环境变量和存储卷。
 
@@ -44,7 +44,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 [k-vswitch](https://github.com/k-vswitch/k-vswitch) : 基于 Open vSwitch 的高性能 Kubernetes CNI 网络插件，网络协议支持 `GRE` 和 `VxLAN`，支持 Network Policy。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-064500.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-064500.jpg)
 
 [krontab](https://github.com/jacobtomlinson/krontab) : 如果你想在 Kubernetes 中创建一个 Cronjob，你得先编写一个 YAML 文件，然后再 apply 一下。krontab 可以让你免去这些繁琐的步骤，它类似于 Linux 系统中的 `crontab`，当你想创建一个 Cronjob 时，直接在终端输入命令 `krontab -e` 就会使用 vim 打开一个虚拟的文件，写好定时任务（语法和 crontab 一样）后输入 `:wq` 退出就会立即创建一个 Cronjob。是不是很爽？？
 
@@ -80,18 +80,18 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 获取方式：公众号后台回复：java
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-080754.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-080754.jpg)
 
 + [learning-k8s-source-code](https://github.com/Kevin-fqh/learning-k8s-source-code) : k8s、docker源码分析笔记，记录源码学习和一些原理译文，力从应用出发，再去深究某个概念的原理。以 apiserver、controller-manager、scheduler、kubelet、proxy 和 kubectl 6个命令为主线。
 
 + **Cloud Native DevOps with Kubernetes** : 本书向开发人员和运维人员展示了如何在云原生环境中将行业标准 DevOps 实践应用于 Kubernetes。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-103854.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-06-24-103854.jpg)
 
 获取方式：公众号后台回复：devops
 
 + **The Gorilla Guide to Kubernetes in the Enterprise** : Gorilla 出版的一本小册子，用来指导如何在生产环境中部署和维护 Kubernetes，包括如何部署高可用控制平面，如何集成监控工具以及如何对集群进行在线升级。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2019-06-27-2019-06-27-055136.2.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-06-27-2019-06-27-055136.2.jpg)
 
 获取方式：公众号后台回复：gorilla

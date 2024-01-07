@@ -88,7 +88,7 @@ etcd-raft 中的 snapshot 代表了应用的状态数据，而执行 snapshot �
 
 当集群加入新节点时，新加入的节点是没有任何数据的，因此新节点的 log entry sent 与 leader 的 log entry sent 相差很大，所以 leader 会向该节点发送 `snapshot` 数据。这时 leader 的网络有可能会过载、阻塞甚至丢弃 leader 发送给 follower 的 `heartbeat`，一段时间以后某个 follower 会因为选举超时将自己的状态切换为 candidate 并发起选举。所以新加入的节点很容易对集群造成影响，无论是 leader 选举还是将后续的更新传播给新成员，都很容易导致集群不可用。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/vQZsz6.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/vQZsz6.jpg)
 
 ### 网络隔离
 
@@ -98,11 +98,11 @@ etcd-raft 中的 snapshot 代表了应用的状态数据，而执行 snapshot �
 
 > Quorum 机制，是一种分布式系统中常用的，用来保证数据冗余和最终一致性的投票算法，具体参考 [分布式系统之 Quorum 机制](https://blog.csdn.net/tb3039450/article/details/80249664)。应用在 etcd 的场景中，quorum 表示能保证集群正常工作的最少节点数。而 `majority` 表示集群当前能参加投票的节点数量。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/nrjtxY.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/nrjtxY.jpg)
 
 如果 leader 被整个集群都隔离了，这时 leader 的 `majority` 为 1，无法发起选举，leader 就会将自己的状态切换为 follower，影响到了集群的可用性。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Q1Q85l.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Q1Q85l.jpg)
 
 拥有 3 个节点的集群加入 1 个新节点之后集群节点数量变为 `4`，quorum 大小变为 `3`。
 
@@ -112,11 +112,11 @@ etcd-raft 中的 snapshot 代表了应用的状态数据，而执行 snapshot �
 
 如果新加入的节点与 leader 被隔离在同一个区域内，leader 的 `majority` 数量仍然为 `3`，不会导致重新选举，也不会影响集群的可用性。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/wxLVur.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/wxLVur.jpg)
 
 如果新节点与 leader 不在同一区域内，并且集群被对半隔离，这时任何一侧的 majority 都不是 `3`，从而会发生重新选举，leader 将状态切换为 follower。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Ut8AMy.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Ut8AMy.jpg)
 
 ### 隔离网络后再加入新节点
 
@@ -124,7 +124,7 @@ etcd-raft 中的 snapshot 代表了应用的状态数据，而执行 snapshot �
 
 假设一个拥有 3 个节点的集群已经有一个 foloower 被隔离了，这时再加入新节点，quorum 就会从 2 变为 3。但此时新加入的节点还没有启动，集群的 `majority` 为 2，从而会发生重新选举。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Qdb3Tc.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Qdb3Tc.jpg)
 
 因为 `member add` 命令会改变集群的 quorum 大小，所以建议先通过 `member remove` 命令移除处于崩溃状态的 follower。
 
@@ -137,15 +137,15 @@ etcd-raft 中的 snapshot 代表了应用的状态数据，而执行 snapshot �
 
 当你执行完 `member add` 命令后，集群的 quorum 大小变为 2，但此时新节点还没有启动，从 leader 的视角来看，`majority` 仍然是 1，不满足 quorum，所以会重新选举。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/O14t4z.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/O14t4z.jpg)
 
 来看一种更糟糕的场景，如果新加入的节点配置错误（比如 `--peer-urls` 是非法的），当执行 `member add` 命令之后，单节点集群的 quorum 大小变为 2，发生重新选举，但此时新节点不会启动成功的，所以无法满足 quorum。一旦集群无法满足 quorum，就再也无法完成集群成员变更。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/PerGyj.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/PerGyj.jpg)
 
 多节点集群类似。例如一个拥有 3 个节点的集群，新加入一个配置错误的节点后，quorum 大小从 2 变为 `3`。此时只要有 1 个 follower 发生故障，整个集群就会变为不可用状态，因为集群的 majority 为 2，不满足 quorum（其中 1 个 follower 发生故障，另一个配置错误）。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/wujUeA.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/wujUeA.jpg)
 
 这就带来了一个很严峻的问题 :** 只要新加入的节点配置上出了点什么差错，整个集群的容错能力就会减 1。**这时你只能通过 `etcd --force-new-cluster` 命令来重新创建集群。
 
@@ -159,19 +159,19 @@ etcd-raft 中的 snapshot 代表了应用的状态数据，而执行 snapshot �
 
 集群管理员向集群中添加新节点时要尽可能减少不必要的操作项。通过 `member add --learner` 命令可以向 etcd 集群中添加 learner 节点，不参加投票，只接收 `replication message`。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Z8WfV9.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Z8WfV9.jpg)
 
 当 `Learner` 节点与 leader 保持同步之后，可以通过 `member promote` 来将该节点的状态提升为 follower，然后将其计入 quorum 的大小之中。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/YAYapJ.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/YAYapJ.jpg)
 
 leader 会验证 `promote` 请求来确保其操作的安全性。只有当 learner 的 log 数据与 leader 保持一致后，learner 才能被提升为 follower 节点。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/nm280k.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/nm280k.jpg)
 
 Learner 被提升为 follower 之前会一直被当成备用节点，且 leader 节点不能被转换为 learner 节点。learner 节点也不会接受客户端的读写操作，这就意味着 learner 不需要向 leader 发送 `Read Index` 请求。这种限制简化了 etcd v3.4 中 learner 的实现方式。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Qx4gns.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Qx4gns.jpg)
 
 除此之外，etcd 还限制了集群中 `Learner` 节点数量的上限，以避免大量的 `replication message` 使 leader 过载。Learner 节点自身不能改变自己的状态，etcd 提供了 learner 状态检测和安全性检测，集群管理员必须自己决定要不要改变 learner 的状态。
 

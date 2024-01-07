@@ -225,7 +225,7 @@ EOF
 
 完整的流量转发流程如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-27-11-20-i60za2.svg "网格内服务访问 http://edition.cnn.com")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-27-11-20-i60za2.svg "网格内服务访问 http://edition.cnn.com")
 
 重新发送 HTTP 请求到 [http://edition.cnn.com/politics](http://edition.cnn.com/politics)。
 

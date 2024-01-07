@@ -215,7 +215,7 @@ Linux `4.3` 内核新增了一个 capabilities 集合叫 `Ambient` ，用来弥�
 
 关于上述计算公式的逻辑流程图如下所示（不包括 `Ambient` 集合）：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163240.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163240.png)
 
 ## 简单示例
 

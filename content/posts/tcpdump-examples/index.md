@@ -475,7 +475,7 @@ $ ssh root@remotesystem 'tcpdump -s0 -c 1000 -nn -w - port 53' | /Applications/W
 
 抓取到的数据：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/20200210170101.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200210170101.png)
 
 `-c` 选项用来限制抓取数据的大小。如果不限制大小，就只能通过 `ctrl-c` 来停止抓取，这样一来不仅关闭了 tcpdump，也关闭了 wireshark。
 

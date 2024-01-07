@@ -20,7 +20,7 @@ tags:
 - Containerd
 categories: 
 - cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201217154848.jpg
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201217154848.jpg
 ---
 
 ## 1. Containerd 的前世今生
@@ -37,7 +37,7 @@ Docker 公司当然不甘示弱，搬出了 Swarm 和 Kubernetes 进行 PK，最
 
 很明显，这个小聪明又大大加速了自己的灭亡。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201215014746.jpeg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201215014746.jpeg)
 
 巨佬们心想，想当初想和你合作搞个中立的核心运行时，你死要面子活受罪，就是不同意，好家伙，现在自己搞了一个，还捐出来了，这是什么操作？也罢，这倒省事了，我就直接拿 `Containerd` 来做文章吧。
 
@@ -61,7 +61,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 先来看看 Containerd 的架构：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201214104531.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201214104531.png)
 
 可以看到 Containerd 仍然采用标准的 C/S 架构，服务端通过 `GRPC` 协议提供稳定的 API，客户端通过调用服务端的 API 进行高级的操作。
 
@@ -74,7 +74,7 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 其中，每一个子系统的行为都由一个或多个**模块**协作完成（架构图中的 `Core` 部分）。每一种类型的模块都以**插件**的形式集成到 Containerd 中，而且插件之间是相互依赖的。例如，上图中的每一个长虚线的方框都表示一种类型的插件，包括 `Service Plugin`、`Metadata Plugin`、`GC Plugin`、`Runtime Plugin` 等，其中 `Service Plugin` 又会依赖 Metadata Plugin、GC Plugin 和 Runtime Plugin。每一个小方框都表示一个细分的插件，例如 `Metadata Plugin` 依赖 Containers Plugin、Content Plugin 等。 总之，万物皆插件，插件就是模块，模块就是插件。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201214131532.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201214131532.png)
 
 这里介绍几个常用的插件：
 
@@ -84,11 +84,11 @@ Docker 这门技术成功了，Docker 这个公司却失败了。
 
 从总体来看，Containerd 被分为三个大块：`Storage`、`Metadata` 和 `Runtime`，可以将上面的架构图提炼一下：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201214121327.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201214121327.png)
 
 这是使用 [bucketbench](https://github.com/estesp/bucketbench) 对 `Docker`、`crio` 和 `Containerd` 的性能测试结果，包括启动、停止和删除容器，以比较它们所耗的时间：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201215120712.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201215120712.png)
 
 可以看到 Containerd 在各个方面都表现良好，总体性能还是优越于 `Docker` 和 `crio` 的。
 

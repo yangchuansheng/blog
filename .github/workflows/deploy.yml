@@ -23,7 +23,7 @@ jobs:
 
       - name: replace cdn
         run: |
-          sed -i "s/jsdelivr.icloudnative.io/cdn.jsdelivr.net/g" $(grep -rl "jsdelivr.icloudnative.io" ./)
+          sed -i "s/cdn.jsdelivr.us/cdn.jsdelivr.net/g" $(grep -rl "cdn.jsdelivr.us" ./)
           sed -i "s/jsd.onmicrosoft.cn/cdn.jsdelivr.net/g" $(grep -rl "jsd.onmicrosoft.cn" ./)
           sed -i "s#cdn.staticfile.org/Swiper/#cdn.jsdelivr.net/npm/swiper@#g" $(grep -rl "cdn\.staticfile\.org" ./)
           sed -i "s#cdn.staticfile.org/layer#cdnjs.cloudflare.com/ajax/libs/layer#g" $(grep -rl "cdn\.staticfile\.org" ./)

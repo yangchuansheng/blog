@@ -27,51 +27,51 @@ Grafana 自带两款主题 `Light` 和 `Dark`，都还不错，Light 有点刺�
 
 一开始我想到 Grafana 可以通过插件机制来扩展和自定义自身的功能，那就可以从这里入手，首先打开 `Google` 搜索，从 Grafana 官网搜索关于 `theme` 的插件：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165421.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165421.png)
 
 找了一圈发现只有 `Boom theme plugin` 符合要求，点进去发现这是一个 `Panel` 插件，这就意味着由于插件自身的局限性，不管你做了什么它只会对当前的仪表盘生效。如果你想改变当前仪表盘的样式，需要添加一个面板：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165422.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165422.png)
 
 点击 ”Choose Visualization“ 选择可视化类型，然后选择 `<Boom Theme>`，然后你就可以添加自定义主题了。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165423.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165423.png)
 
 但是现在问题又来了，我太懒了，不想自己写 CSS，怎么办？有没有别人写好的主题呢？`Github` 是一个宝库，可以去那里找找。通过关键词 `grafana theme` 搜索过去一年内活跃过的项目：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165424.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165424.png)
 
 最终选择了 [theme.pak](https://github.com/gilbN/theme.park)。找到自己心仪的主题添加到上面的面板中，就大功告成了：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165425.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165425.png)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165426.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165426.png)
 
 你可以将其中一个主题设为默认主题，这样每次打开当前仪表盘都会使用你设置的默认主题。自定义主题后的仪表盘是这个样子的：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165427.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165427.png)
 
 最上面的菜单是我们刚刚添加的主题，可以直接点击不同主题实时切换：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165428.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165428.png)
 
 如果想让所有的仪表盘都使用自定义主题，需要在所有的仪表盘上新增一个 `Boom Theme Panel`，为了避免重复的配置工作，可以直接复制 Panel，操作步骤如下：
 
 首先点击 Panel 上的到三角，鼠标悬停在选项 `More` 上：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165429.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165429.png)
 
 然后选择 `Copy`：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165430.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165430.png)
 
 到下一个仪表盘中新建一个面板，选择 `Paste copied panel`：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165431.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165431.png)
 
 搞定。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165432.png)
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723165433.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165432.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723165433.png)
 
 怎么样，没什么技术含量吧？

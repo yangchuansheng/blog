@@ -18,7 +18,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20201231104851.jpg
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201231104851.jpg
 ---
 
 前段时间 [ipfire](https://www.ipfire.org) 的 Michael Tremer 写过一篇文章叫[《Why not WireGuard》](/posts/why-not-wireguard/)，随后不久，[Tailscale](https://tailscale.com) 的大佬 [Avery Pennarun](https://twitter.com/apenwarr) 也写了一篇文章来和 Michael Tremer 叫板，文章的标题就很挑衅：[《Why not "Why not WireGuard?"》](https://tailscale.com/blog/why-not-why-not-wireguard/)，整篇文章的风格就是针对 Michael Tremer 的观点逐一反驳，老刺激了。咱也不知道谁对谁错，咱也不敢问，端个小板凳看戏就是了。
@@ -27,7 +27,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20
 
 作者开篇就提出 Michael Tremer 的那篇文章包含了一些错误的观念和一些过时的信息，然后就开门见山直接一一反驳。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/5db8bb9127604b2c30f4db71b729567b.gif)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/5db8bb9127604b2c30f4db71b729567b.gif)
 
 ## 1. WireGuard 能否取代 IPSec？
 
@@ -161,17 +161,17 @@ Tremer 又说了：
 
 另外一点需要注意的是[**点对多点架构**和**中心辐射型架构**的区别](https://tailscale.com/blog/how-tailscale-works/)。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/hub-and-spoke-single.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/hub-and-spoke-single.svg)
 
 一般来说，中心辐射型网络有一个 VPN 网关，这个网关通常都有一个静态 IP 地址，其他所有的客户端都需要连接这个 VPN 网关，再由网关将流量转发到其他的客户端。
 
 这种架构有很多问题。首先，用户可能离 VPN 网关很近，也可能很远，如果离得很远，延迟就会很高；其次，它想访问的另外一个客户端可能离 VPN 网关也会很远，这样又增加了一倍延迟。想象一下你的 VPN 网关在旧金山，你的家和公司都在纽约，你在纽约的家中通过旧金山的 VPN 网关来访问纽约的公司内网服务，岂不是很蛋疼。。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/hub-and-spoke-multiple.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/hub-and-spoke-multiple.svg)
 
 WireGuard 就比较先进了，它支持**点对多点**架构，同一个客户端可以同时连接多个 `peer`，而不是只连接一个 `peer`，再通过该 peer 将流量转发到其他客户端。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/hub-and-spoke-direct.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/hub-and-spoke-direct.svg)
 
 ## 8. 与 Linux 内核的集成问题
 

@@ -191,7 +191,7 @@ example.net:53 {
 
 从配置文件来看，我们定义了两个 server（尽管有 4 个区块），分别监听在 `5300` 和 `53` 端口。其逻辑图可如下所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/jYHoLN.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/jYHoLN.jpg)
 
 每个进入到某个 server 的请求将按照 `plugin.cfg` 定义顺序执行其已经加载的插件。
 
@@ -439,11 +439,11 @@ $ cat > /usr/local/bin/update_coredns.sh <<EOF
 #!/bin/bash
 
 rm accelerated-domains.china.conf
-wget https://jsdelivr.icloudnative.io/gh/felixonmars/dnsmasq-china-list/accelerated-domains.china.conf -O /usr/local/etc/accelerated-domains.china.conf
+wget https://cdn.jsdelivr.us/gh/felixonmars/dnsmasq-china-list/accelerated-domains.china.conf -O /usr/local/etc/accelerated-domains.china.conf
 rm apple.china.conf
-wget https://jsdelivr.icloudnative.io/gh/felixonmars/dnsmasq-china-list/apple.china.conf -O /usr/local/etc/apple.china.conf
+wget https://cdn.jsdelivr.us/gh/felixonmars/dnsmasq-china-list/apple.china.conf -O /usr/local/etc/apple.china.conf
 rm google.china.conf
-wget https://jsdelivr.icloudnative.io/gh/felixonmars/dnsmasq-china-list/google.china.conf -O /usr/local/etc/google.china.conf
+wget https://cdn.jsdelivr.us/gh/felixonmars/dnsmasq-china-list/google.china.conf -O /usr/local/etc/google.china.conf
 EOF
 $ sudo chmod +x /usr/local/bin/update_coredns.sh
 ```

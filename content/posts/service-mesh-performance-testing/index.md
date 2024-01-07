@@ -15,7 +15,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > 原文链接：[Understanding How the Service Mesh Fits with Performance Testing](https://blog.gurock.com/service-mesh-performance-testing/)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/e8h5lI.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/e8h5lI.jpg)
 
 现代 IT 企业的数字基础设施极其复杂，通过手动配置防火墙来保护一台连接到路由器的服务器的日子已经一去不复返了。
 
@@ -27,23 +27,23 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 ## 服务网格的用例
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Top3qX.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Top3qX.jpg)
 
 服务网格解决了现代分布式计算中的两个基本问题：如何在系统中查找服务的位置，以及定义了当服务出现故障时该如何应对。
 
 在服务网格出现之前，每个服务都需要知道它所依赖的服务的位置才能正常工作。例如，如下图所示，为了使服务 `A` 能够将请求任务传递给服务 `C`，它需要知道服务 `C` 的确切位置。服务 C 的位置可以定义为 IP 地址或 `DNS` 域名。一旦服务 C 的位置发生了变化，如果情况不是太糟，改一下服务 `A` 的配置就可以继续工作了，更糟糕的情况下整个服务 `A` 可能都需要重写。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fyhwmxk93lj30oo087gm0.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fyhwmxk93lj30oo087gm0.jpg)
 
 服务之间的紧耦合将会导致系统很脆弱，并且难以扩展，因此很多公司开始使用诸如 [ZooKeeper](https://zookeeper.apache.org/)，[Consul](https://www.consul.io/) 和 [Etcd](https://github.com/coreos/etcd) 等服务发现工具，这样服务就不再需要知道它所依赖的服务的位置也可以正常工作了。如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fyhwni6ri7j30oo087dgd.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fyhwni6ri7j30oo087dgd.jpg)
 
 然而还有一个问题需要解决：当服务 A 调用其中一个依赖服务失败时，服务 A 会执行什么操作，它应该报错还是重试？如果重试，那么应该重试多少次才算失败？这时候服务网格就派上用场了。
 
 服务网格聚合了服务发现和故障策略等其他功能，也就是说服务网格不仅允许各个服务之间相互交互，还会根据配置的策略执行重试、重定向或终止等操作。如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fyhwnzbhxej30oo087t9d.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fyhwnzbhxej30oo087t9d.jpg)
 
 服务网格是一个控制平面，可以在各个服务之间路由流量，并为每个服务提供故障安全机制。此外，服务网格还将网格内流量的所有活动都记录下来，从而提供对系统整体性能的可观察性。这种记录方式增加了分布式链路追踪的可能性，这样不需要关心每个服务的位置就可以对这些服务进行观测和故障排除。
 
@@ -53,7 +53,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 ## 在性能测试计划中使用服务网格
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/es7pWP.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/es7pWP.jpg)
 
 性能测试工程师该如何利用服务网络提供的这些功能？这取决于性能测试的范围和测试工程师对服务网格的兴趣。如果工程师只关心 Web 客户端和 Web 服务端之间的响应时间，那么只需要理解服务网格的原理和使用方式就够了。但如果测试过程中需要关注服务端任何一个应用程序的性能，那么事情就会变得有趣了。
 
@@ -69,7 +69,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 ## 总结
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Dzi6eS.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Dzi6eS.jpg)
 
 使用传统的方式进行性能测试的日子即将结束，现代化的应用程序过于复杂，中间有太多的依赖服务，不能仅依靠测试客户端和服务端之间的请求和响应时间来判断其性能。作为一个合格的企业架构师，无论基础设施的规模有多大，变化速度有多快，都不会为了实现动态配置和管理的需求而牺牲观察和管理系统的能力。
 

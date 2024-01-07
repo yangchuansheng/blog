@@ -35,7 +35,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 先来创建一个基本的配置，架构如下图所示，由一个用来实际处理流量的后端和一个前端代理组成：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/SePJFH.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/SePJFH.jpg)
 
 Nginx 配置文件如下：
 
@@ -111,7 +111,7 @@ Status code distribution:
 
 现在我们向后端添加一个测试服务，并将发往源后端的流量复制一份到测试后端。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/VqOLrh.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/VqOLrh.jpg)
 
 流量镜像的配置文件如下：
 

@@ -13,7 +13,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > 原文地址：[Kubernetes API Server, Part I](https://medium.com/@dominik.tornow/kubernetes-api-server-part-i-3fbaf2138a31)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/t4siPv.jpg "概念架构")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/t4siPv.jpg "概念架构")
 
 `Kubernetes` 是一个用于在一组节点（通常称之为集群）上托管容器化应用程序的容器编排引擎。本系列教程旨在通过系统建模的方法帮助大家更好地理解 `Kubernetes` 及其基本概念。
 
@@ -33,7 +33,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 “API Server” 这个术语很宽泛，涉及了太多的概念，本文将尝试使用 `API Server`，`Kubernetes API` 和 `Kubernetes 对象存储` 这三个不同的术语来明确表示各个概念。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxc8pwh73mj30tu0fr3zn.jpg "图 1：API Server，Kubernetes API 和 Kubernetes 对象存储")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxc8pwh73mj30tu0fr3zn.jpg "图 1：API Server，Kubernetes API 和 Kubernetes 对象存储")
 
 + <span id=inline-purple>Kubernetes API</span> 表示处理读取和写入请求以及相应地查询或修改 Kubernetes 对象存储的组件。
 + <span id=inline-purple>Kubernetes 对象存储</span> 表示持久化的 Kubernetes 对象集合。
@@ -43,7 +43,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 **Kubernetes API Server** 是 Kubernetes 的核心组件。从概念上来看，Kubernetes API Server 就是 Kubernetes 的数据库，它将集群的状态表示为一组 **Kubernetes 对象**，例如 `Pod`、`ReplicaSet` 和 `Deployment` 都属于 Kubernetes 对象。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxchxltk62j30hp03jaa8.jpg "图 2：Kubernetes API Server & Kubernetes 对象")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxchxltk62j30hp03jaa8.jpg "图 2：Kubernetes API Server & Kubernetes 对象")
 
 Kubernetes API Server 存在多个版本，每一个版本都是它在不同时间段的快照，类似于 git 仓库：
 
@@ -52,7 +52,7 @@ Kubernetes API Server 存在多个版本，每一个版本都是它在不同时�
 
 但实际上 Kubernetes API Server 在实现上会限制快照的时间长度，并且默认情况下会在 5 分钟后丢弃快照。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxciw5ywkkj30um044gm9.jpg "图 3：Kubernetes API Server & 版本")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxciw5ywkkj30um044gm9.jpg "图 3：Kubernetes API Server & 版本")
 
 Kubernetes API Server 暴露了一个不支持事务性语义的 CRUD （`Create/Read/Update/Delete`）接口：
 
@@ -66,19 +66,19 @@ Kubernetes API Server 暴露了一个不支持事务性语义的 CRUD （`Create
 + <span id=inline-purple>过期读取（Stale reads）</span> 指的是读取请求针对的不是最新版本的现象，因此会产生“过期”响应。
 + <span id=inline-purple>无序读取（Out-of-order reads）</span> 指的是在两个连续的读取请求中，第一个请求读取的是较高版本，而第二个请求读取的是较低版本，因此会产生无序响应。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcjti2wl0j31jk0aoac9.jpg "图 4：读取")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcjti2wl0j31jk0aoac9.jpg "图 4：读取")
 
 ### 防护 token 和新鲜度 token
 
 客户端可以使用属性 `rev` 作为用于写入操作的防护 token（`fencing tokens`），以此来抵消丢失的事务性语义。或者作为用于读取操作的新鲜度 token（`freshness tokens`），以此来抵消丢失的 `read-last-write` 语义。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxckathpzcj31f40azdhw.jpg "图 5：防护 token")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxckathpzcj31f40azdhw.jpg "图 5：防护 token")
 
 在执行写入操作时，客户端使用 `rev` 或 `mod` 作为防护 token。客户端指定期望的 `rev` 或 `mod` 值，但只有当前 `rev` 或 `mod` 值等于期望值时，API Server 才会处理该请求。这一过程被称为乐观锁定（optimistic locking）。
 
 > 图 5 中客户端期望的 `rev` 值为 n，而当前的 `rev` 值为 n+1，与期望不符，因此 API Server 不处理该请求，`rev` 值仍然保持为 n+1。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxckvkwm1ij31jk0ao40u.jpg "图 6：新鲜度 token")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxckvkwm1ij31jk0ao40u.jpg "图 6：新鲜度 token")
 
 在执行读取操作时，客户端使用 `rev` 或 `mod` 作为新鲜度 token，该 token 用来确保读取请求返回的结果不早于新鲜度 token 的值指定的结果。
 
@@ -112,7 +112,7 @@ fact {
 从概念上来看，Kubernetes API Server 提供了写入接口和读取接口。
 其中写入接口将所有更改状态的命令组合在一起，读取接口将所有查询状态的命令组合在一起。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcli4vrpsj31bc0dajsu.jpg "图 7：写入和读取接口")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcli4vrpsj31bc0dajsu.jpg "图 7：写入和读取接口")
 
 ### 写入接口
 
@@ -142,7 +142,7 @@ fact {
 
 此外，每个命令都会生成一个事件。**Event** 表示命令执行的持久化可查询记录。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcltkebzkj30yu0e4abl.jpg "图 8：API Server，命令和事件")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/006tNbRwgy1fxcltkebzkj30yu0e4abl.jpg "图 8：API Server，命令和事件")
 
 **图 8** 描述了 API Server 的一系列命令和结果状态转换。总共分为三层结构，从下往上依次表示为 API Server，命令和事件。
 

@@ -24,7 +24,7 @@ tags:
 - Grafana
 - Loki
 categories: GFW
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-15-11-10-nOYkzx.png
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-05-15-11-10-nOYkzx.png
 ---
 
 众所周知，科学上网，又称番茄 / 魔法 / 武当纵云梯，是当代青年的必备技能。而想要科学上网，需要两个必备条件：
@@ -40,7 +40,7 @@ Clash 核心也有很多变种，比如 Clash Premium，与 Clash 都是同一�
 
 Clash Premium 内核有一个比较新的、还在实验中的功能叫 Tracing，可以方便的采集经过 Clash 核心的流量数据。**本文将会介绍如何对 Clash Premium 的流量进行监控，并使用 Grafana 的可视化面板展示监控数据。** 先上图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-22-08VGjd.jpeg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-22-08VGjd.jpeg)
 
 为了方便监控，Clash 的开发者新建了个项目叫 [clash-tracing](https://github.com/Dreamacro/clash-tracing)，利用 Clash Premium 的 Websocket Tracing API 收集数据，然后使用 Vector 将其转为日志，并 Push 到 Loki 中，最终使用 Grafana 的可视化监控面板来展示数据，非常实用。在监控之前，首先需要修改 Clash Premium 的配置文件开启 Tracing 功能：
 
@@ -71,7 +71,7 @@ $ kubectl apply -f loki
 
 然后在你的 Grafana 可视化界面中添加 Loki 数据源，数据源的地址为 `http://loki.monitoring:3100`，名称为 `loki`。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-45-5sF7Mm.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-45-5sF7Mm.png)
 
 如果你的集群中没有 Grafana，自己部署一个就是了，本文就不赘述了。
 
@@ -85,6 +85,6 @@ $ bash hack.sh
 
 最终效果：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-52-PSUG7g.jpeg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-52-PSUG7g.jpeg)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-22-08VGjd.jpeg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-05-14-21-22-08VGjd.jpeg)

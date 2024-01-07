@@ -173,19 +173,19 @@ $Ingree_host tracing.istio.io
 
 通过 `http://grafana.istio.io` 访问 Grafana 服务：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/fqfx2B.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/fqfx2B.jpg)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/3eUieX.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/3eUieX.jpg)
 
 通过 `http://servicegraph.istio.io` 访问 ServiceGraph 服务，展示服务之间调用关系图。
 
 + `http://servicegraph.istio.io/force/forcegraph.html` : As explored above, this is an interactive [D3.js](https://d3js.org/) visualization.
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/LYeAvu.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/LYeAvu.jpg)
 
 + `http://servicegraph.istio.io/dotviz` : is a static [Graphviz](https://www.graphviz.org/) visualization.
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/aQFDCs.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/aQFDCs.jpg)
 
 + `http://servicegraph.istio.io/dotgraph` : provides a <a href="https://www.wikiwand.com/en/DOT_(graph_description_language)" target="_blank">DOT</a> serialization.
 + `http://servicegraph.istio.io/d3graph` : provides a JSON serialization for D3 visualization.
@@ -193,11 +193,11 @@ $Ingree_host tracing.istio.io
 
 通过 `http://tracing.istio.io/` 访问 Jaeger 跟踪页面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/bsfLDQ.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/bsfLDQ.jpg)
 
 通过 `http://prometheus.istio.io/` 访问 Prometheus 页面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/Uwa1Oh.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Uwa1Oh.jpg)
 
 {{< alert >}}
 如果你已经部署了 <code>Prometheus-operator</code>，可以不必部署 Grafana，直接将 <code>addons/grafana/dashboards</code> 目录下的 Dashboard 模板复制出来放到 Prometheus-operator 的 Grafana 上，然后添加 istio-system 命名空间中的 Prometheus 数据源就可以监控 Istio 了。

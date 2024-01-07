@@ -127,7 +127,7 @@ $ docker run -d --name envoyproxy --restart always --net host --cap-add NET_ADMI
 
 该 Envoy 容器还提供了一个 UI 来展示指标和路由，可以通过在浏览器中输入 url：`http://host_ip:8081` 来打开 UI 界面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/PTNe2v.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/PTNe2v.jpg)
 
 至此，Envoy Docker Shim 已经完美地完成了替代 docker-proxy 的工作，接下来就可以不通过 iptables 而使用 Envoy 来实现 Docker 容器的端口映射啦！
 
@@ -149,7 +149,7 @@ $ docker run -d -p 80:80 -p 443:443 -l EnvironmentName=proxy -l ServiceName=ngin
 
 打开 Envoy UI：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/T7W8BJ.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/T7W8BJ.jpg)
 
 可以看到 nginx 的服务名为 `nginx-proxy`。
 

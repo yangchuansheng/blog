@@ -256,7 +256,7 @@ $ istioctl pc route sleep-5bc866558c-5nl8k --name 80 -o json|grep "edition.cnn.c
 
 **该 VirtualService 的作用就是将目的地址是 `edition.cnn.com:80` 的流量重定向到 `Egress Gateway`。**
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/1543226447622-e17653c5-4dd3-4768-9b8f-cb1f3b0ef6a5.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/1543226447622-e17653c5-4dd3-4768-9b8f-cb1f3b0ef6a5.svg)
 
 这里我们将流量打向了 subset 为 `cnn` 的 Cluster，但现在不存在这个 Cluster，所以还需要通过 `DestinationRule` 定义一个 Cluster：
 
@@ -333,7 +333,7 @@ $ istioctl -n istio-system pc route istio-egressgateway-f8b6469db-fj6zr -o json
 
 **该 VirtualService 的作用是通过 Egress Gateway 访问目的地址 `edition.cnn.com:80`。**这里 Egress Gateway 将流量路由到 Cluster `outbound|80||edition.cnn.com`，最后将流量转发到服务 `edition.cnn.com:80`。完整的流量转发流程如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-11-27-11-19-GfJU4t.svg "通过 Egress Gateway 引导 Istio 的出口 HTTP 流量")
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-27-11-19-GfJU4t.svg "通过 Egress Gateway 引导 Istio 的出口 HTTP 流量")
 
 <span id=blue>5.</span> 重新发送 HTTP 请求到 [http://edition.cnn.com/politics](http://edition.cnn.com/politics)。
 

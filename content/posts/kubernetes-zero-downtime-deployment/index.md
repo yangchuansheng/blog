@@ -100,7 +100,7 @@ spec:
 
 上面的示例 yaml 表示更新过程中最多允许比期望的 Pod 数量多一个 Pod（`maxSurge` = 1），且最多允许比期望的 Pod 数量少 0 个 Pod（`maxUnavailable` = 0）。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/5cc4078e3a213b0417146775.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/5cc4078e3a213b0417146775.jpg)
 
 通过该配置，Kubernetes 会创建一个新 Pod，然后再删除一个旧 Pod，不断迭代下去。如果有其他计算节点可以运行新的 Pod，调度系统就会将新 Pod 调度到其他节点，否则就会调度到已有的计算节点，和节点上的其他 Pod 共同竞争计算资源。
 
@@ -108,7 +108,7 @@ spec:
 
 如果想在更新过程中最多允许比期望的 Pod 数量多 0 个 Pod，且最多允许比期望的 Pod 数量少 1 个 Pod，可以令 `maxSurge` = 0，`maxUnavailable` = 1。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/5cc407bd3a213b0417146d62.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/5cc407bd3a213b0417146d62.jpg)
 
 通过该配置，Kubernetes 会删除一个旧 Pod，然后再创建一个新 Pod，不断迭代下去。这种方式的好处是当集群的计算资源不足时，可以保持工作负载的数量不会大于现有的数量。
 
@@ -116,7 +116,7 @@ spec:
 
 如果想在更新过程中最多允许比期望的 Pod 数量多 1 个 Pod，且最多允许比期望的 Pod 数量少 1 个 Pod，可以令 `maxSurge` = 1，`maxUnavailable` = 1。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/5cc408253a213b041714778f.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/5cc408253a213b041714778f.jpg)
 
 这种配置会尽快更新所有 Pod，大大减少了在应用版本之间切换所需的时间，但包含了前两种方式的所有缺点。
 
@@ -163,11 +163,11 @@ spec:
 
 假设数据库的数据结构如下：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/5cc408453a213b0417147a70.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/5cc408453a213b0417147a70.jpg)
 
 使用这种数据结构，`PERSON` 和 `ADDRESS` 之间的界限比较模糊，为了划清界限，可以将数据结构改成如下的形式：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/5cc4085b3a213b0417147c91.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/5cc4085b3a213b0417147c91.jpg)
 
 假设原来数据结构界限比较模糊的应用已经在生产环境中开始使用，现在我们的目标是在零宕机的情况下将数据结构更换成上图的最终架构。
 

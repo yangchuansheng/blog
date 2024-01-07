@@ -32,7 +32,7 @@ K8s 的设计定位是单一集群在同一个地域内，因为同一个地区�
 
 **集群联邦**在架构上同 kubernetes 集群很相似。有一个**集群联邦**的 API server 提供一个标准的 Kubernetes API，并且通过 etcd 来存储状态。不同的是，一个通常的Kubernetes 只是管理节点计算，而**集群联邦**管理所有的 kubernetes 集群。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/PJSV9a.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/PJSV9a.jpg)
 
 Federation主要包括三个组件：
 
@@ -54,7 +54,7 @@ Kubernetes 服务是由一组 kubernetes POD 组成的，这些 POD 是一些已
 
 假如我们有一个 kubernetes 集群，这个集群里面有一个服务叫做 mysql，这个服务是由一组 mysql POD 组成的。在这个 kubernetes 集群中，其他应用可以通过 DNS 来访问这个 mysql 服务。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/aRaBGQ.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/aRaBGQ.jpg)
 
 ### 跨集群调度
 

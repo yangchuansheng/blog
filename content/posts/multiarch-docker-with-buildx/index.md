@@ -44,7 +44,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-2019-07-09-1_I
 
 还记得我们小时候在各种网吧台球室之类的场合玩的街机游戏吗？放张图给你们回忆一下：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163206.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163206.jpg)
 
 如果现在我们想重新体验以前玩过的街机游戏该怎么办？这时候就需要用到模拟器（Emulator）了。借助模拟器，我们可以让时光倒流，体验经典游戏的乐趣。
 

@@ -125,7 +125,7 @@ Deployment 控制器一惊，要把自己的秘密告诉别人？那别人把自
 
 这时候阿里和微软发力了，他们联合发布了一个开放应用模型，叫 [Open Application Model ](https://cloudblogs.microsoft.com/opensource/2019/10/16/announcing-open-application-model/)（OAM）。这个模型就是为了解决上面提到的问题，将开发和运维的职责解耦，不同的角色履行不同的职责，并形成一个统一的规范，如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/20200223122350.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200223122350.png)
 
 这个规范告诉我们：
 

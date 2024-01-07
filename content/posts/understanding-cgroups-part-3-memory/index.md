@@ -194,7 +194,7 @@ stress: FAIL: [30150] (451) failed run completed in 0s
 
 现在可以看到 stress 进程很快被 kill 掉了，回到第一个 shell 窗口，会输出以下信息：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200723163244.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163244.png)
 
 由此可见 cgroup 对内存的限制奏效了，stress 进程的内存使用量超出了限制，触发了 oom-killer，进而杀死进程。
 

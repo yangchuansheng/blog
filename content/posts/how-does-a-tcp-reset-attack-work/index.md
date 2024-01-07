@@ -19,7 +19,7 @@ tags:
 - TCP
 categories: 
 - network
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200615100722.png
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200615100722.png
 ---
 
 > 原文链接：[How does a TCP Reset Attack work?](https://robertheaton.com/2020/04/27/how-does-a-tcp-reset-attack-work/index.html)
@@ -52,11 +52,11 @@ TCP 重置攻击利用这一机制，通过向通信方发送伪造的重置报�
 
 TCP 协议的目标是向客户端发送一份完整的数据副本。例如，如果我的服务器通过 TCP 连接向你的计算机发送我的网站的 `HTML`，你的计算机的 TCP 协议栈应该能够以我发送的形式和顺序输出 `HTML`。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610170653.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610170653.png)
 
 然而现实生活中我的 HTML 内容并不是按顺序发送的，它被分解成许多小块(称为 TCP 分组)，每个小块在网络上被单独发送，并被重新组合成原来发送的顺序。这种重新组合后的输出被称为 **TCP 字节流**。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610171212.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610171212.png)
 
 将分组重建成字节流并不简单，因为网络是不可靠的。TCP分组可能会被丢弃，可能不按发送的顺序到达客户端，也可能会被重复发送、报文损坏等等。因此，TCP 协议的职责是在不可靠的网络上提供可靠的通信。TCP 通过要求连接双方保持密切联系，持续报告它们接收到了哪些数据来实现可靠通信，这样服务端就能够推断出客户端尚未接收到的数据，并重新发送丢失的数据。
 
@@ -66,7 +66,7 @@ TCP 协议的目标是向客户端发送一份完整的数据副本。例如，�
 
 TCP 协议的通信双方， 都必须维护一个序列号（sequence numbers），对于客户端来说，它会使用服务端的序列号来将接收到的数据按照发送的顺序排列。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610173226.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610173226.png)
 
 当通信双方建立 TCP 连接时，客户端与服务端都会向对方发送一个随机的初始序列号，这个序列号标识了其发送数据流的第一个字节。TCP 报文段包含了 TCP 头部，它是附加在报文段开头的元数据，序列号就包含在 TCP 头部中。由于 TCP 连接是双向的，双方都可以发送数据，所以 TCP 连接的双方既是发送方也是接收方，每一方都必须分配和管理自己的序列号。
 
@@ -76,7 +76,7 @@ TCP 协议的通信双方， 都必须维护一个序列号（sequence numbers�
 
 TCP 头部格式如下图所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610181826.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610181826.png)
 
 一个确认应答报文的 TCP 头部必须包含两个部分：
 
@@ -85,7 +85,7 @@ TCP 头部格式如下图所示：
 
 TCP 总共有 `6` 个标志位，下文就会讲到其中的 `RST` 标志位。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610182224.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610182224.png)
 
 {{< alert >}}
 TCP 头部包含了多个选项，其中有一个选择确认选项（`SACK`），如果使用该选项，那么当接收方收到了某个范围内的字节而不是连续的字节时，就会发送 `SACK` 告知对方。例如，只收到了字节 `1000~3000` 和 `4000~5000`，但没有收到 `3001~3999`。为了简单起见，下文讨论 TCP 重置攻击时将忽略选择确认选项。
@@ -98,7 +98,7 @@ TCP 头部包含了多个选项，其中有一个选择确认选项（`SACK`）�
 
 这两种情况对发送方来说其实是一样的，发送方并不能区分是哪种情况，所以只能重新发送数据包。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610195337.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610195337.png)
 
 只要不频繁重复发送数据，额外的开销基本可以忽略。
 
@@ -112,17 +112,17 @@ TCP 头部包含了多个选项，其中有一个选择确认选项（`SACK`）�
 
 想象一下，将一台上世纪 `90` 年代初的古老计算机，连接到现代千兆光纤网络。闪电般快速的网络可以以令人瞠目结舌的速度向这台古老的计算机传送数据，速度远远超过该计算机的处理能力。但并没有什么卵用，因为只有接收方接收并处理了报文，才能认为这个报文已经被收到了。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610201033.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610201033.png)
 
 TCP 协议栈有一个缓冲区，新到达的数据被放到缓冲区中等待处理。但缓冲区的大小是有限的，如果接收方的处理速度跟不上发送方的发送速度，缓冲区就会被填满。一旦缓冲区被填满，多余的数据就会被直接丢弃，也不会返回 ACK。因此一旦接收方的缓冲区有了空位，发送方必须重新发送数据。也就是说，如果接收方的处理速度跟不上，发送方的发送速度再快也没用。
 
 缓冲区到底有多大？发送方如何才能知道什么时候可以一次发送更多的数据，什么时候该一次发送很少的数据？这就要靠 TCP 滑动窗口了。**接收方的滑动窗口大小是指发送方无需等待确认应答，可以持续发送数据的最大值。** 假设接收方的通告窗口大小为 `100,000` 字节，那么发送方可以无需等待确认应答，持续发送 `100,000` 个字节。再假设当发送方发送第 `100,000` 个字节时，接收方已经发送了前 `10,000` 个字节的 ACK，这就意味着窗口中还有 `90,000` 个字节未被确认，发送方还可以再持续发送 `10,000` 个字节。如果发送了 `10,000` 个字节的过程中没有收到任何的 `ACK`，那么接收方的滑动窗口将被填满，发送方将停止发送新数据（可以继续发送之前丢失的数据），直到收到相关的 `ACK` 才可以继续发送。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610204546.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610204546.png)
 
 TCP 连接双方会在建立连接的初始握手阶段通告对方自己窗口的大小，后续还可以动态调整。TCP 缓冲区大的服务器可能会声明一个大窗口，以便最大限度提高吞吐量。TCP 缓冲区小的服务器可能会被迫声明一个小窗口，这样做会牺牲一定的吞吐量，但为了防止接收方的 TCP 缓冲区溢出，还是很有必要的。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610205636.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610205636.png)
 
 换个角度来看，TCP 滑动窗口大小是对网络中可能存在的未确认数据量的硬性限制。我们可以用它来计算发送方在某一特定时间内可能发送的最大序列号（`max_seq_no`）：
 
@@ -140,7 +140,7 @@ TCP 规范规定，接收方应该忽略任何序列号在接收窗口之外的�
 
 对于 TCP 重置报文段来说，接收方对序列号的要求更加严格，只有当其序列号正好等于下一个预期的序列号时才能接收。继续搬出上面的例子，接收方发送了一个确认应答，ACK 号为 `15,000`。如果接下来收到了一个重置报文，那么其序列号必须是 `15,000` 才能被接收。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200610212837.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200610212837.png)
 
 如果重置报文的序列号超出了接收窗口范围，接收方就会直接忽略该报文；如果其序列号在接收窗口范围内，那么接收方就会返回一个 `challenge ACK`，告诉发送方重置报文段的序列号是错误的，并告之正确的序列号，发送方可以利用 `challenge ACK` 中的信息来重新构建和发送重置报文。
 
@@ -189,7 +189,7 @@ $ nc 127.0.0.1 8000
 
 该命令会尝试与上面的服务建立连接，在其中一个窗口输入一些字符，就会通过 TCP 连接发送给另一个窗口并打印出来。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master@master/img/tcp-nc.1.gif)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master@master/img/tcp-nc.1.gif)
 
 ### 嗅探流量
 
@@ -223,7 +223,7 @@ t = sniff(
 
 对于我的程序而言，只需将[这一行](https://github.com/robert/how-does-a-tcp-reset-attack-work/blob/77d06123b24a0b69f5ed829bcaeb3db4aa7add8e/main.py#L116-L119)取消注释，并注释这一行的上面一行，就可以全面攻击了。按照步骤 1 的方法设置 TCP 连接，打开第三个窗口运行攻击程序，然后在 TCP 连接的其中一个终端输入一些字符串，你会发现 TCP 连接被中断了！
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master@master/img/tcp-reset-attack-demo.gif)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master@master/img/tcp-reset-attack-demo.gif)
 
 ### 进一步实验
 

@@ -17,7 +17,7 @@ tags:
 - Kubernetes
 categories: 
 - cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200521183444.png
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200521183444.png
 ---
 
 > 原文链接：[How It Works — kubectl exec](https://itnext.io/how-it-works-kubectl-exec-e31325daa910)
@@ -26,7 +26,7 @@ img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20
 
 kubectl exec 的工作原理用一张图就可以表示：
 
-![kubectl exec](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200521110255.png)
+![kubectl exec](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200521110255.png)
 
 先来看一个例子：
 
@@ -457,4 +457,4 @@ func ServeExec(w http.ResponseWriter, req *http.Request, executor Executor, podN
 
 虽然本文只关注了 kubectl exec 命令，但其他的子命令（例如 `attach`、`port-forward`、`log` 等等）也遵循了类似的实现模式：
 
-![kubectl](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200521180219.png)
+![kubectl](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200521180219.png)

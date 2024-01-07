@@ -22,14 +22,14 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210131173242.png
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210131173242.png
 ---
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210129082441.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210129082441.png)
 
 `WireGuard` 是由 Jason A. Donenfeld 等人创建的下一代开源 VPN 协议，旨在解决许多困扰 `IPSec/IKEv2`、`OpenVPN` 或 `L2TP` 等其他 VPN 协议的问题。2020 年 1 月 29 日，WireGuard 正式合并进入 `Linux 5.6` 内核主线。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210128165526.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210128165526.png)
 
 利用 WireGuard 我们可以实现很多非常奇妙的功能，比如跨公有云组建 Kubernetes 集群，本地直接访问公有云 `Kubernetes` 集群中的 Pod IP 和 Service IP，在家中没有公网 IP 的情况下直连家中的设备，等等。
 
@@ -58,7 +58,7 @@ WireGuard 的核心部分是[加密密钥路由（Cryptokey Routing）](https://
 
 你可能会问我为什么不使用[中心辐射型（hub-and-spoke）网络拓扑](https://en.wikipedia.org/wiki/Spoke–hub_distribution_paradigm)？中心辐射型网络有一个 VPN 网关，这个网关通常都有一个静态 IP 地址，其他所有的客户端都需要连接这个 VPN 网关，再由网关将流量转发到其他的客户端。假设 `Alice` 和 `Bob` 都位于 NAT 后面，那么 `Alice` 和 `Bob` 都要和网关建立隧道，然后 `Alice` 和 `Bob` 之间就可以通过 VPN 网关转发流量来实现相互通信。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210128211304.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210128211304.png)
 
 其实这个方法是如今大家都在用的方法，已经没什么可说的了，缺点相当明显：
 
@@ -76,7 +76,7 @@ UDP 打洞（UDP hole punching）利用了这样一个事实：大多数 NAT 在
 
 举个例子，假设 `Alice` 向新主机 `Carol` 发送一个 UDP 数据包，而 `Bob` 此时通过某种方法获取到了 `Alice` 的 NAT 在地址转换过程中使用的出站源 `IP:Port`，`Bob` 就可以向这个 `IP:Port`（2.2.2.2:7777） 发送 UDP 数据包来和 `Alice` 建立联系。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210128214804.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210128214804.png)
 
 其实上面讨论的就是**完全圆锥型 NAT**（Full cone NAT），即一对一（one-to-one）NAT。它具有以下特点：
 
@@ -101,7 +101,7 @@ UDP 打洞（UDP hole punching）利用了这样一个事实：大多数 NAT 在
 
 [**STUN**（**Session Traversal Utilities for NAT**，NAT会话穿越应用程序）](https://zh.wikipedia.org/wiki/STUN)是一种网络协议，它允许位于NAT（或多重NAT）后的客户端找出自己的公网地址，查出自己位于哪种类型的 NAT 之后以及 NAT 为某一个本地端口所绑定的公网端口。这些信息被用来在两个同时处于 NAT 路由器之后的主机之间建立 UDP 通信。该协议由 RFC 5389 定义。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210128230103.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210128230103.png)
 
 STUN 是一个客户端－服务端协议，在上图的例子中，`Alice` 是客户端，`Carol` 是服务端。`Alice` 向 `Carol` 发送一个 `STUN Binding` 请求，当 Binding 请求通过 `Alice` 的 NAT 时，源 `IP:Port` 会被重写。当 `Carol` 收到 Binding 请求后，会将三层和四层的源 `IP:Port` 复制到 Binding 响应的有效载荷中，并将其发送给 `Alice`。Binding 响应通过 Alice 的 NAT 转发到内网的 `Alice`，此时的目标 IP:Port 被重写成了内网地址，但有效载荷保持不变。`Alice` 收到 Binding 响应后，就会意识到这个 Socket 的公网 IP:Port 是 `2.2.2.2:7777`。
 
@@ -189,7 +189,7 @@ struct entry {
 
 其实完全没必要这么麻烦，我们可以直接利用 WireGuard 本身的特性来实现 UDP 打洞，直接看图：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210129061540.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210129061540.png)
 
 你可能会认为这是个中心辐射型（hub-and-spoke）网络拓扑，但实际上还是有些区别的，这里的 Registry Peer 不会充当网关的角色，因为它没有相应的路由，不会转发流量。Registry 的 WireGuard 接口地址为 `10.0.0.254/32`，Alice 和 Bob 的 `AllowedIPs` 中只包含了 `10.0.0.254/32`，表示只接收来自 `Registry` 的流量，所以 Alice 和 Bob 之间无法通过 Registry 来进行通信。
 
@@ -366,7 +366,7 @@ mvplwow3agnGM8G78+BiJ3tmlPf9gDtbJ2NdxqV44D8=
 
 最终实现的通信流程如下：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210129073327.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210129073327.png)
 
 一开始，Alice 和 Bob 分别与 Registry 建立了隧道；接下来，Alice 上的 `wgsd-client` 向 Registry 节点上运行的 CoreDNS插件（`wgsd`）发起查询请求，该插件从 WireGuard 信息中检索 `Bob` 的 endpoint 信息，并将其返回给 `wgsd-client`；然后 `wgsd-client` 开始设置 Bob 的 endpoint；最后 Alice 和 Bob 之间直接建立了一条隧道。
 
@@ -594,7 +594,7 @@ peer: JeZlz14G8tg1Bqh6apteFCwVhNhpexJ19FDPfuxQtUY=
 
 ## 总结
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@second/img/20210129082354.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210129082354.png)
 
 本文探讨了如何在受 NAT 限制的两个 Peer 之间直接建立一条 WireGuard 隧道。本文提供的解决方案都是使用现有的协议和服务发现技术，以及自己写了个可插拔的插件，你可以直接使用 `dig` 或 `nslookup` 来进行调试，不需要干扰或修改 WireGuard 本身。
 

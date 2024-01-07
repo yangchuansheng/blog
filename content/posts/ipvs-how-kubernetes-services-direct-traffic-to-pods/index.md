@@ -23,7 +23,7 @@ tags:
 - Kubernetes
 - LVS
 categories: cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210607013921.png
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting1@main/img/20210607013921.png
 ---
 
 > 原文链接：[IPVS: How Kubernetes Services Direct Traffic to Pods](https://dustinspecker.com/posts/ipvs-how-kubernetes-services-direct-traffic-to-pods/)
@@ -247,7 +247,7 @@ $ ip addr add 10.100.100.100/32 dev dustin-ipvs0
 
 Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux 网桥:
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210527163447.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting1@main/img/20210527163447.png)
 
 - 每个 Pod 的网卡都是 veth 设备，veth pair 的另一端连上宿主机上的网桥。
 - 由于网桥是虚拟的二层设备，同节点的 Pod 之间通信直接走二层转发，跨节点通信才会经过宿主机 eth0。
@@ -256,7 +256,7 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 
 不管是 iptables 还是 ipvs 转发模式，Kubernetes 中访问 Service 都会进行 DNAT，将原本访问  `ClusterIP:Port` 的数据包 DNAT 成 Service 的某个 `Endpoint (PodIP:Port)`，然后内核将连接信息插入 `conntrack` 表以记录连接，目的端回包的时候内核从 `conntrack` 表匹配连接并反向 NAT，这样原路返回形成一个完整的连接链路:
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210527163556.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting1@main/img/20210527163556.png)
 
 但是 Linux 网桥是一个虚拟的二层转发设备，而 iptables conntrack 是在三层上，所以如果直接访问同一网桥内的地址，就会直接走二层转发，不经过 conntrack:
 
@@ -264,7 +264,7 @@ Kubernetes 集群网络有很多种实现，有很大一部分都用到了 Linux
 
 2. 如果 DNAT 后是转发到了同节点上的 Pod，目的 Pod 回包时发现目的 IP 在同一网桥上，就直接走二层转发了，没有调用 conntrack，导致回包时没有原路返回 (见下图)。
 
-   ![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210527163627.png)
+   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting1@main/img/20210527163627.png)
 
    由于没有原路返回，客户端与服务端的通信就不在一个 “频道” 上，不认为处在同一个连接，也就无法正常通信。
 
@@ -456,7 +456,7 @@ $ curl 10.100.100.100:8080
 
 你会发现轮询算法起作用了：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting1@main/img/20210527211902.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting1@main/img/20210527211902.png)
 
 ## 总结
 

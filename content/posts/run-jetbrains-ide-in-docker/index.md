@@ -23,10 +23,10 @@ tags:
 categories: 
 - tech-social
 - cloud-native
-img: https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210326141559.png
+img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210326141559.png
 ---
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210326141546.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210326141546.png)
 
 云原生玩家往往都是左手 `MacBook`，右手 `Goland`，但由于大部分人的 MacBook 硬件资源有限，基本上无法丝滑地使用 Goland。即使你是 8C16G 的高富帅，多开几个 `PornHub` 标签页也会撑不住的，许多人不得不忍痛转向 `VSCode`。
 
@@ -130,17 +130,17 @@ projector-goland   ClusterIP   10.106.190.178   <none>        80/TCP    3m38s
 
 如果你能够[直接访问集群的 Service IP](/posts/use-wireguard-as-kubernetes-cni/)，就可以直接通过 Service IP 访问 Goland 网页版了：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323224346.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323224346.png)
 
 经过一番设置之后，最后激活进入主界面：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323224731.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323224731.png)
 
 激活方法我就不介绍了，大家自己想办法。
 
 接下来你可以从本地的 Goland IDE 导出插件和配置：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323233328.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323233328.png)
 
 将备份拷贝到容器中：
 
@@ -150,23 +150,23 @@ $ kubectl cp settings.zip projector-goland-7dcc58f964-9p7xw:/home/projector-user
 
 在网页版 Goland 中依次点击 `Configure` -> `Import Settings`：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323233601.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323233601.png)
 
 选择备份配置：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323234003.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323234003.png)
 
 点击 `OK` 开始导入：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323234113.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323234113.png)
 
 最后选择 `Shutdown` 关闭容器进程，稍后 Pod 中的进程会原地重启，Pod 不会被销毁重建：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323234201.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323234201.png)
 
 点击 `reconnect` 重新连接：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323234926.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323234926.png)
 
 下面还需要做一些额外的操作，因为官方的镜像默认没有安装 `golang` 的 SDK 环境，在线下载需要叉叉上网，所以最好还是先手动下载：
 
@@ -191,30 +191,30 @@ projector-user@projector-goland-7dcc58f964-9p7xw:/$ tar zxvf go1.16.2.linux-amd6
 
 访问 Goland 网页版，依次点击右下角的 `Configure` -> `Settings` -> Go -> `GOROOT`，点击 `Add SDK`，选择 `local`:
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323232150.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323232150.png)
 
 选择 `sdk` 路径，然后点击 OK：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323232309.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323232309.png)
 
 点击 `Apply`，然后再点击 OK：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323232451.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323232451.png)
 
 点击 `Go Modules`，勾上 `Enable Go modules integration`，`Vgo excutable` 选择 Project SDK，然后点击 OK：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323232817.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323232817.png)
 
 至此网页版 Goland 就配置完成了：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@three/img/20210323222856.png)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210323222856.png)
 
 从此以后躺在家里吃灰的 `iPad` 就可以拿来写代码了。。。
 
 如果你无法拉取官方的镜像，可以从我这边获取，关注公众号：
 
 <p>
-<img src="https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting@master/img/20200430221955.png" width="350">
+<img src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200430221955.png" width="350">
 </p>
 
 

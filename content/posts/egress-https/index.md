@@ -28,7 +28,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 以下是原始版本的 Bookinfo 示例应用程序中应用程序端到端架构的副本。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/withistio.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/withistio.svg)
 
 <center><p id=small>原 Bookinfo 应用程序</p></center>
 
@@ -44,7 +44,7 @@ $ kubectl apply -f samples/bookinfo/platform/kube/bookinfo-details-v2.yaml --dry
 
 更新后的架构如下所示：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/bookinfo-details-v2.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/bookinfo-details-v2.svg)
 
 <center><p id=small>details V2 版本的 Bookinfo 应用程序</p></center>
 
@@ -62,7 +62,7 @@ $ kubectl apply -f samples/bookinfo/networking/virtual-service-details-v2.yaml
 
 糟糕…页面显示的是 `Error fetching product details`，而不是书籍详细信息：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/zr3sFd.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/zr3sFd.jpg)
 
 <center><p id=small>获取产品详细信息的错误消息</p></center>
 
@@ -113,7 +113,7 @@ EOF
 
 现在再次访问应用程序的网页就会显示书籍的详细信息了：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/09YjRJ.jpg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/09YjRJ.jpg)
 
 <center><p id=small>正确显示书籍详细信息</p></center>
 
@@ -153,7 +153,7 @@ $ kubectl delete -f samples/bookinfo/platform/kube/bookinfo-details-v2.yaml
 
 下图显示了通过 HTTPS 协议将流量发送到外部服务的两种方式。上面这幅图中，微服务自己发送常规的端到端加密 HTTPS 请求。下图中微服务在同一个 Pod 内发送未加密的 HTTP 请求，这些请求被 sidecar Envoy 代理拦截，sidecar 代理执行 TLS 发起，因此 pod 和外部服务之间的流量被加密。
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/https_from_the_app.svg)
+![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/https_from_the_app.svg)
 
 <center><p id=small>对外发起 HTTPS 流量的两种方式：微服务自行发起，或由 Sidecar 代理发起</p></center>
 
