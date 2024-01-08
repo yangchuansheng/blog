@@ -1,6 +1,5 @@
 <style>
 .slideContent {
-  width: 80%;
   @media (max-width: 600px) {
     display: none !important;
   }
@@ -59,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
-<div class="swiper slideContent" id="slider">
+<div class="swiper slideContent max-w-prose" id="slider">
   <div class="swiper-wrapper">
     {{ range .Site.Params.slideImages }}
     <div class="swiper-slide">
