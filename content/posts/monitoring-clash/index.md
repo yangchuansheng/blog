@@ -32,7 +32,7 @@ img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-05-15-
 + 需要有一个服务商提供的服务器订阅地址
 + 需要安装对应的软件
 
-服务商（机场）有很多，价格、节点、带宽和稳定性都丰俭由人，我现在的主要机场是 [Bywave](https://console.bywa.art/aff.php?aff=9386)。Bywave 是一家走高端全内网中转线路的 v2ray 优质机场，不仅拥有阿里云 / WTT / HKT 等线路，还且还有全内网中转节点和 IPLC 专线（内网中转线路及 IPLC 专线成本极高，所以质量极佳，网络很流畅稳定，历次受到供给也无影响）ByWave 不像其他机场提供非常多的节点，需要频繁订阅更新和维护。没有注册的朋友可以点击[此链接](https://console.bywa.art/aff.php?aff=9386)注册体验。
+服务商（机场）有很多，价格、节点、带宽和稳定性都丰俭由人，我现在的主要机场是 [易帆云加速](https://yifancloud.online/auth/register?code=Lmsv)。Bywave 是一家走高端全内网中转线路的 v2ray 优质机场，不仅拥有阿里云 / WTT / HKT 等线路，还且还有全内网中转节点和 IPLC 专线（内网中转线路及 IPLC 专线成本极高，所以质量极佳，网络很流畅稳定，历次受到供给也无影响）ByWave 不像其他机场提供非常多的节点，需要频繁订阅更新和维护。没有注册的朋友可以点击[此链接](https://yifancloud.online/auth/register?code=Lmsv)注册体验。
 
 而代理软件也有多种选择，抛开收费产品不谈，免费代理软件目前最强大的是 Clash，Clash 是一个跨平台、支持 SS/V2ray/Trojan 协议、基于规则的网络代理软件，功能强大、界面美观、支持订阅，尤其适合机场和付费服务使用。基于 Clash 的图形界面客户端也非常多，比较流行的有 Clash for Windows、Clash X、Clash X Pro 以及 OpenWrt 使用的 OpenClash，区别都不大。
 
