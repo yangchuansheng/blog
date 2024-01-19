@@ -101,7 +101,7 @@ $ brew install sfm
 
 ### Windows
 
-Windows 没有图形界面客户端，不过可以直接使用包管理器 Sccop 或者 Chocolatey 安装命令行版本：
+Windows 没有图形界面客户端，官方还正在开发中，不过可以直接使用包管理器 Sccop 或者 Chocolatey 安装命令行版本：
 
 ```bash
 # Sccop
@@ -110,6 +110,12 @@ $ scoop install sing-box
 # Chocolatey
 $ choco install sing-box
 ```
+
+你也可以选择第三方开发者开发的图形界面客户端：[GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox)
+
+![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-19-17-28-IrwTam.png)
+
+还有一个更加成熟的第三方客户端：[Hiddify-Next](https://github.com/hiddify/hiddify-next)
 
 ### Linux
 
