@@ -25,7 +25,7 @@ author:
 
 code:
   copy: "复制"
-  copied: "Copied"
+  copied: "复制成功！"
 
 error:
   404_title: "找不到网页 :confused:"
