@@ -19,6 +19,11 @@ article:
   this_article: "本文"
   related_articles: "相关文章"
   like: "喜欢"
+  zen_mode_title:
+    enable: "启用极简模式"
+    disable: "关闭极简模式"
+  bye_1: "他日江湖相逢"
+  bye_2: "再当杯酒言欢"
 
 author:
   byline_title: "作者"
@@ -36,6 +41,18 @@ footer:
   dark_appearance: "切换为深色模式"
   light_appearance: "切换为浅色模式"
   powered_by: "由 {{ .Hugo }} &amp; {{ .Theme }} 强力驱动"
+  pv: "总浏览量"
+  uv: "总访客"
+  framework: "构建工具"
+  hosting: "托管于"
+  image: "图床"
+  theme: "主题"
+  uptime_1: "本站已经开心运行 "
+  uptime_2: " 天 "
+  uptime_3: " 小时 "
+  uptime_4: " 分 "
+  uptime_5: " 秒"
+  ai: "AI 客服"
 
 list:
   externalurl_title: "链接到外部网站"

@@ -1,6 +1,11 @@
 <section class="text-sm text-neutral-500 dark:text-neutral-400">
     <span id="span_dt_dt"> </span> 
     <script defer language="javascript">
+      var uptime_1 = {{ i18n "footer.uptime_1" }}
+      var uptime_2 = {{ i18n "footer.uptime_2" }}
+      var uptime_3 = {{ i18n "footer.uptime_3" }}
+      var uptime_4 = {{ i18n "footer.uptime_4" }}
+      var uptime_5 = {{ i18n "footer.uptime_5" }}
       function show_date_time(){
         window.setTimeout("show_date_time()", 1000);
         BirthDay=new Date("10/8/2019 10:56:12");//这个日期是可以修改的
@@ -16,7 +21,7 @@
         e_minsold=(e_hrsold-hrsold)*60;
         minsold=Math.floor((e_hrsold-hrsold)*60);
         seconds=Math.floor((e_minsold-minsold)*60);
-        span_dt_dt.innerHTML="本站已经开心运行 "+daysold+" 天 "+hrsold+" 小时 "+minsold+" 分 "+seconds+" 秒";
+        span_dt_dt.innerHTML=uptime_1+daysold+uptime_2+hrsold+uptime_3+minsold+uptime_4+seconds+uptime_5;
       }
       show_date_time();
     </script>

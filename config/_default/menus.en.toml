@@ -11,40 +11,16 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "Docs"
-  pageRef = "docs"
+  name = "Projects"
+  pre = "github"
+  pageRef = "examples"
   weight = 10
 
 [[main]]
-  name = "Shortcodes"
-  pageRef = "docs/shortcodes"
+  name = "Analytics"
+  pre = "eye"
+  url = "https://umami.icloudnative.io/share/UuDHNJJWIShegM2N/%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%9E%E9%AA%8C%E5%AE%A4?theme=dark"
   weight = 15
-
-[[main]]
-  name = "Samples"
-  pageRef = "samples"
-  weight = 16
-
-[[main]]
-  name = "Examples"
-  weight = 20
-
-[[main]]
-  name = "Showcase"
-  parent = "Examples"
-  pageRef = "examples"
-  weight = 30
-
-[[main]]
-  name = "Recipes"
-  parent = "Examples"
-  pageRef = "guides"
-  weight = 40
-
-[[main]]
-  name = "Users"
-  pageRef = "users"
-  weight = 90
 
 #[[main]]
 #  name = "Merch"
@@ -57,22 +33,25 @@
 #  weight = 1000
 
 [[main]]
-  identifier = "twitter"
-  pre = "x-twitter"
-  url = "https://twitter.com/burufugu"
+  identifier = "RSS"
+  title = "rss"
+  pre = "rss"
+  url = "/index.xml"
   weight = 200
 
 [[main]]
-  identifier = "mastodon"
-  pre = "mastodon"
-  url = "https://masto.ai/@blowfish"
-  weight = 300
+  identifier = "twitter"
+  title = "twitter"
+  pre = "x-twitter"
+  url = "https://twitter.com/CarsonYangk8s"
+  weight = 400
 
 [[main]]
   identifier = "github"
+  title = "github"
   pre = "github"
-  url = "https://github.com/nunocoracao/blowfish"
-  weight = 400
+  url = "https://github.com/yangchuansheng"
+  weight = 600
 
 
 # -- Footer Menu --
@@ -85,6 +64,6 @@
    weight = 10
 
  [[footer]]
-   name = "Authors"
-   pageRef = "authors"
+   name = "Categories"
+   pageRef = "categories"
    weight = 20

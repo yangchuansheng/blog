@@ -35,6 +35,7 @@ window.addEventListener("scroll", function() {
 
 
 
+{{ if eq .Site.Language.Lang "zh-cn" }}
 <img style="margin-top: 1.5em;" loading="lazy" src="/img/wechat-qr.webp" alt="公众号二维码">
 
 <!-- 引入 iDisqus 的样式表 -->
@@ -90,3 +91,69 @@ document.addEventListener("DOMContentLoaded", function() {
   commentObserver.observe(document.getElementById("comment"));
 });
 </script>
+{{ else }}
+<!-- 设置评论区的容器 -->
+<div id="comment"></div>
+
+<script defer>
+    const getStoredTheme = () => (localStorage.getItem("appearance") || "dark") === "dark" ? "https://cdn.jsdelivr.us/gh/yangchuansheng/comments@main/dark.css" : "light";
+    // const getStoredTheme1 = () => (localStorage.getItem("appearance") || "dark") === "dark" ? "light" : "https://cdn.jsdelivr.us/gh/yangchuansheng/comments@main/dark.css";
+
+    const setGiscusTheme = () => {
+        const sendMessage = (message) => {
+            const iframe = document.querySelector('iframe.giscus-frame');
+            if (iframe) {
+                iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+            }
+        }
+        sendMessage({ setConfig: { theme: getStoredTheme() } })
+    }
+
+    const loadGiscusWhenNearViewport = () => {
+        const commentContainer = document.getElementById("comment"); // 选择评论容器的选择器
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const giscusAttributes = {
+                        "src": "https://giscus.app/client.js",
+                        "data-repo": "yangchuansheng/blog",
+                        "data-repo-id": "R_kgDOKyphSA",
+                        "data-category": "Announcements",
+                        "data-category-id": "DIC_kwDOKyphSM4Ccj2n",
+                        "data-mapping": "pathname",
+                        "data-strict": "0",
+                        "data-reactions-enabled": "1",
+                        "data-emit-metadata": "0",
+                        "data-input-position": "bottom",
+                        "data-theme": getStoredTheme(),
+                        "data-lang": "en",
+                        "data-loading": "lazy",
+                        "crossorigin": "anonymous",
+                        "async": "",
+                    };
+
+                    // 动态创建 script 标签
+                    const giscusScript = document.createElement("script");
+                    Object.entries(giscusAttributes).forEach(
+                        ([key, value]) => giscusScript.setAttribute(key, value));
+                    commentContainer.appendChild(giscusScript);
+
+                    // 更新 giscus 主题
+                    const themeSwitcher = document.getElementById("appearance-switcher");
+                    if (themeSwitcher) {
+                        themeSwitcher.addEventListener("click", setGiscusTheme);
+                    }
+
+                    // 停止观察
+                    observer.unobserve(commentContainer);
+                }
+            });
+        }, { threshold: 0.1 }); // 可调整阈值以更早或更晚加载
+
+        observer.observe(commentContainer);
+    }
+
+    document.addEventListener("DOMContentLoaded", loadGiscusWhenNearViewport);
+</script>
+{{ end }}

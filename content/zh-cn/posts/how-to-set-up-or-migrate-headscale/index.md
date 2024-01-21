@@ -10,7 +10,7 @@ keywords:
 title: "Tailscale 基础教程：Headscale 的部署方法和使用教程"
 date: 2022-03-21T09:06:37+08:00
 lastmod: 2023-12-29T18:01:37+08:00
-description: 本文介绍了如何使用 Tailscale 开源替代品 Headscale 来组建 VPN 网络。
+description: 深入探索如何利用 Tailscale 的开源替代品 Headscale 搭建高效 VPN 网络。本指南详细介绍了 Headscale 的部署和配置步骤，助您轻松构建安全、可靠的虚拟私人网络。
 draft: false
 author: 米开朗基杨
 hideToc: false
