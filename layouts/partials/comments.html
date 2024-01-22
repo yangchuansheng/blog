@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
 </script>
 {{ else }}
 <!-- 设置评论区的容器 -->
-<div id="comment"></div>
+<div style="margin-top:1.5em" id="comment"></div>
 
 <script defer>
     const getStoredTheme = () => (localStorage.getItem("appearance") || "dark") === "dark" ? "https://cdn.jsdelivr.us/gh/yangchuansheng/comments@main/dark.css" : "light";

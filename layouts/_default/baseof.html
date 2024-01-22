@@ -38,6 +38,8 @@
     {{- partial "search.html" . -}}
     {{ end }}
   </div>
+  {{- /* change */ -}}
+  <div class="bg fixed top-0 left-0 h-screen w-screen"></div>
 </body>
 {{ if .Site.Params.buymeacoffee.globalWidget | default false }}
 <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"

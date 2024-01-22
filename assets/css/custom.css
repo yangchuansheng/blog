@@ -10,6 +10,15 @@ figcaption {
   text-align: center;
 }
 
+.bg {
+  background-image: url('/img/bg.svg');
+  z-index: -1;
+  content: "";
+  background-position: 50%;
+  background-size: cover;
+  opacity: .3;
+}
+
 
 
 

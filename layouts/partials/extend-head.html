@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <!-- end webpushr tracking code -->
 
+{{ if eq .Language.Lang "zh-cn" }}
 <!-- 百度收录自动推送 --> 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
   // 添加滚动事件监听器
   window.addEventListener('scroll', loadScriptOnScroll);
 </script>
+{{ end }}
 
 
 <!-- umami -->
