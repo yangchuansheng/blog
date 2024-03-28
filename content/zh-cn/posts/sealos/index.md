@@ -201,4 +201,4 @@ Sealos [云操作系统](https://sealos.run)中还会**内置一个 Copilot**，
 
 预祝每一位选择了我们的决策者，此刻你们的决策绝对是明智的。现在，Sealos 已经跨越了全新的起点，未来我们一定不负众望，向大家交付一款完美的[云操作系统](https://sealos.run)。
 
-欢迎大家来体验 Sealos [云操作系统](https://sealos.run)的魅力👉 [https://cloud.sealos.top/](https://cloud.sealos.top/)
+欢迎大家来体验 Sealos [云操作系统](https://sealos.run)的魅力👉 [https://cloud.sealos.run/](https://cloud.sealos.run/)

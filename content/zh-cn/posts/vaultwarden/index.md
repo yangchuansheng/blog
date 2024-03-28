@@ -81,9 +81,11 @@ Vaultwarden 使用 Rust 编写，默认使用 SQLite 数据库（同时还支持
 
 ## 一键部署 Vaultwarden
 
-首先通过以下链接打开 Vaultwarden 的应用模板：
+首先点击以下按钮打开 Vaultwarden 的应用模板：
 
-+ **https://cloud.sealos.top/?openapp=system-fastdeploy%3FtemplateName%3Dvaultwarden**
+<figure><a href="https://bja.sealos.run/?openapp=system-template%3FtemplateName%3Dvaultwarden" target="_blank">
+    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://cdn.jsdelivr.us/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
+</a></figure>
 
 啥都不用填，直接点击「部署应用」：
 
