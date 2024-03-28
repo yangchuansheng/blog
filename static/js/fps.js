@@ -67,11 +67,11 @@ $(function(){
 
 		var browserAndOS = getBrowserAndOS();
 
-        fetch("https://api.vvhan.com/api/getIpInfo")
+        fetch("https://api.vvhan.com/api/ipInfo")
             .then(response => response.json())
             .then(data => {
                 window.info = data;
-                layer.msg("Hi~ 来自"+ data.info.prov + "省" + data.info.city + '~<br/>通过 '+msgTitle+' 进来的朋友！<br/>使用 '+ browserAndOS.os + "<br/>"+ browserAndOS.browser + ' 访问本站！' + '<br/>' + msg);
+                layer.msg("Hi~ 来自"+ data.info.prov + data.info.city + '~<br/>通过 '+msgTitle+' 进来的朋友！<br/>使用 '+ browserAndOS.os + "<br/>"+ browserAndOS.browser + ' 访问本站！' + '<br/>' + msg);
 
                 var showFPS = (function(){ 
                     var requestAnimationFrame =  
