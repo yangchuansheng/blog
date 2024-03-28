@@ -5,7 +5,7 @@
     let isRunning;
     const DEST_LIST = [
       'cdn.jsdelivr.us',
-      'jsd.cdn.zzko.cn',
+      //'jsd.cdn.zzko.cn',
       'jsdelivr.icloudnative.io'
     ];
     const PREFIX = '//';
