@@ -4,6 +4,7 @@
     let failed;
     let isRunning;
     const DEST_LIST = [
+      'cdn.jsdelivr.net',
       'cdn.jsdelivr.us',
       //'jsd.cdn.zzko.cn',
       'jsdelivr.icloudnative.io'
