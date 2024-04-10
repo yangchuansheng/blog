@@ -40,15 +40,15 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-EFTIScWsAAqbvF
 
 为了让使用者能够在 Explore 和仪表盘之间来回快速切换，Grafana 6.4 新增了一个功能，当你从仪表盘的下拉菜单中跳转到 Explore 后，还可以回到先前的仪表盘。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-164638.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-164638.jpg)
 
 当你从仪表盘跳转到 Explore 之后，你会看到 Explore 工具栏中有一个“返回”箭头。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-164926.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-164926.jpg)
 
 直接点击这个箭头就会回到先前的仪表盘。如果你想在回到仪表盘的同时保存 Explore 中的变更，只需要单击箭头旁边的倒三角即可显示 “Return to panel with changes” 菜单项。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-165254.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-165254.jpg)
 
 ## 日志实时查看功能改进
 
@@ -58,7 +58,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-EFTIScWsAAqbvF
 
 此外，还引入了一些性能优化，以允许实时跟踪更高吞吐量的日志流。还有各种 UI 的修复和改进，例如更一致的样式和新日志的高亮显示。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/explore_live_tailing.gif)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/explore_live_tailing.gif)
 
 ## 新增日志面板
 
@@ -66,7 +66,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-EFTIScWsAAqbvF
 
 日志面板可以显示来自其他数据源的日志（例如 Elastic，Influx 和 Loki）。通常日志面板显示在监控面板旁边，以展示相关进程的日志输出。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-174102.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-04-174102.jpg)
 
 > 尽管日志面板也支持查看实时日志，但通常建议只在 Explore 中使用此功能。日志面板最好通过页面顶部的刷新按钮来同步日志数据。日志面板现在处于 Beta 阶段，慎用。
 
@@ -76,7 +76,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-EFTIScWsAAqbvF
 
 Grafana 6.3 引入了一种新的方式来更进一步研究监控数据，即 [Data Link](https://grafana.com/blog/2019/08/27/new-in-grafana-6.3-easy-to-use-data-links/)。Data link 会帮您创建一个到外部仪表盘或外部系统的动态链接，它主要由标题和 URL 两部分组成，其中 URL 可以引用模板变量和指标查询的结果，例如时间序列的名称和标签，字段的名称、值和时间等。关于 Data link 的更多信息请参考[官方文档](https://grafana.com/docs/features/panels/graph/#data-link)。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-155127.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-155127.jpg)
 
 在 Grafana 6.3 中，Data link 只支持 `Graph` 面板，Grafana 6.4 增强了该功能，使其支持 `Guage` 面板和 `Bar Guage` 面板。
 
@@ -86,9 +86,9 @@ Grafana 6.3 引入了一种新的方式来更进一步研究监控数据，即 [
 
 某些指标的查询结果比较特殊，每个时间序列仅由一个点组成，无法显示在 `Graph` 面板中。Grafana 6.4 可以借助 [series overrides](https://grafana.com/features/panels/graph/#series-overrides) 将点变成一条平行于 X 轴的线，只需要依次选择 `Transform > constant` 就可以了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-10-08%20%E4%B8%8A%E5%8D%8812.01.32.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-10-08%20%E4%B8%8A%E5%8D%8812.01.32.png)
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-160353.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-160353.jpg)
 
 ## 在不同面板间共享查询结果
 
@@ -96,7 +96,7 @@ Grafana 6.3 引入了一种新的方式来更进一步研究监控数据，即 [
 
 如果某些指标的查询很耗费资源，你可以在不同的面板之间共享同一个查询结果，以此来避免重复查询。具体的操作方法是在新面板的数据源中选择 `-- Dashboard --`，然后选择相应的面板。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-10-08%20%E4%B8%8A%E5%8D%8812.09.37.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-10-07-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-10-08%20%E4%B8%8A%E5%8D%8812.09.37.png)
 
 除了共享某个面板所有的查询结果之外，还可以选择共享面板的部分查询结果。该功能目前处于 `Alpha` 阶段，需要在配置文件中显式启用。
 

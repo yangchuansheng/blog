@@ -21,7 +21,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191215002051
 
 没错，Istio 架构又换了。。。北京时间 2020 年 3 月 6 日 凌晨发布了 1.5 版本，该版本最大的变化是将控制平面的所有组件组合成一个单体结构叫  `istiod`。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/istio-1.5-arch.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/istio-1.5-arch.svg)
 
 从架构图可以看出，在 Istio 1.5 中，饱受诟病的 `Mixer` 终于被废弃了，新版本的 HTTP 遥测默认基于 in-proxy Stats filter，同时可使用 [WebAssembly](https://webassembly.org/) 开发 `in-proxy` 扩展。更详细的说明请参考 [Istio 1.5 发布公告](https://istio.io/news/releases/1.5.x/announcing-1.5/)。
 
@@ -29,7 +29,7 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191215002051
 
 在部署 Istio 之前，首先需要确保 Kubernetes 集群（kubernetes 版本建议在 `1.14` 以上）已部署并配置好本地的 kubectl 客户端。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200306144254.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200306144254.png)
 
 ## Kubernetes 环境准备
 

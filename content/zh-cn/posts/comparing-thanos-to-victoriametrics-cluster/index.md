@@ -21,7 +21,7 @@ tags:
 - Prometheus
 categories: 
 - monitoring
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200826182758.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200826182758.png
 ---
 
 > 原文链接：[Comparing Thanos to VictoriaMetrics cluster](https://medium.com/faun/comparing-thanos-to-victoriametrics-cluster-b193bea1683)
@@ -64,7 +64,7 @@ img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200826182
 
 最后再来看一眼 Thanos 的整体架构图：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200825172044.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200825172044.jpg)
 
 ### VictoriaMetrics
 
@@ -78,7 +78,7 @@ VictoriaMetrics **集群版**包含以下几个核心组件：
 
 整体架构图如下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200825173015.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200825173015.png)
 
 图中的 **VictoriaMetrics 集群**和 **Load balancer** 都可以通过 [helm](https://github.com/VictoriaMetrics/VictoriaMetrics/blob/cluster/README.md#helm) 部署在 Kubernetes 中。对于大部分中小型集群来说，不需要水平扩展的功能，可以直接使用单机版的 `VictoriaMetrics`。更多信息请参考[垂直扩展基准](https://medium.com/@valyala/measuring-vertical-scalability-for-time-series-databases-in-google-cloud-92550d78d8ae)。
 

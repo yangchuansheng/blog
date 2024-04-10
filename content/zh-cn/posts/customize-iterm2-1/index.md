@@ -37,19 +37,19 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200310170530
 
 首先打开 `Preperence → Profiles`，新建一个 `Profiles`，取名 `HotKey Window`。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310133244.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310133244.png)
 
 ### 背景透明与模糊设置
 
 在 `Preperence → Profiles → Window → Window Appearance` 进行设置
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310133556.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310133556.png)
 
 ### 窗口风格配置
 
 在 `Preperence → Profiles → Window → Settings for New Windows` 进行设置
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310133836.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310133836.png)
 
 解释一下这几个参数：
 
@@ -63,21 +63,21 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200310170530
 
 选中 `A hotkey opens a dedicated window with this profile`，表示此 profile 可以通过快捷键快速打开快速关闭。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310134700.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310134700.png)
 
 然后点击 `Configure Hotkey Window`，设置快捷键。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310135133.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310135133.png)
 
 为了只使用一个键，可以使用功能键作为快捷键，我选择的是 `F12`。
 
 对于没有 `Touch Bar` 的 MacBook，我们可以这么设置，首先打开系统偏好设置，选择键盘设置。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310140808.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310140808.png)
 
 选中 **将 F1、F2 等键用作标准功能键**。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310141302.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310141302.png)
 
 这样你就可以通过 `F12` 来快速打开关闭终端了。
 
@@ -85,21 +85,21 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200310170530
 
 对于新款带 `Touch Bar` 的 MacBook，可以这么设置，首先打开系统偏好设置，选择键盘设置。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2020-03-10-%E6%88%AA%E5%B1%8F2020-03-10%E4%B8%8B%E5%8D%884.19.00.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2020-03-10-%E6%88%AA%E5%B1%8F2020-03-10%E4%B8%8B%E5%8D%884.19.00.png)
 
 "按下 Fn 键以" 选择 “显示F1、F2等键”：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2020-03-10-%E6%88%AA%E5%B1%8F2020-03-10%E4%B8%8B%E5%8D%884.20.28.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2020-03-10-%E6%88%AA%E5%B1%8F2020-03-10%E4%B8%8B%E5%8D%884.20.28.png)
 
 这样就可以使用 `Fn+F12` 来快速打开终端。
 
 同时在 `快捷键 → 功能键` 设置中添加 iTerm 应用，这样打开 iTerm2 窗口时就可以直接使用 `F12` 键来关闭窗口。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2020-03-10-%E6%88%AA%E5%B1%8F2020-03-10%E4%B8%8B%E5%8D%884.21.00.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2020-03-10-%E6%88%AA%E5%B1%8F2020-03-10%E4%B8%8B%E5%8D%884.21.00.png)
 
 到目前为止，悬浮终端的 `Profile` 就配置完成了，你可以按下你设置的 `HotKey` 来方便快速打开和隐藏命令行。如果你想新建标签页也用这个 Profile，可以将 `Hotkey Window` 设为默认的 Profile：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310151301.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310151301.png)
 
 下面我们来做一些优化工作。
 
@@ -107,21 +107,21 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200310170530
 
 在 `Preperence → Profiles → Text` 进行设置。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310142837.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310142837.png)
 
 默认光标形状是酱紫的：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310143504.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310143504.png)
 
 更改设置之后光标形状就顺眼多了：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310144308.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310144308.png)
 
 ## 3. 为自己代言
 
 如果你要为自己代言，新建任何一个终端窗口都想打上自己的 `Logo`，可以在 `Preperence → Profiles → General` 进行设置。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310164716.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310164716.png)
 
 这样不管我切换到哪个终端，都可以 fuck cloud native！
 
@@ -131,15 +131,15 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20200310170530
 
 取消勾选 `Applications in terminal may change the title`：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310151509.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310151509.png)
 
 Title 选择 `Profile Name`，取消勾选 `Job Name`：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310151810.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310151810.png)
 
 这样每个标签页的标题都会显示为对应的 `Profile Name`：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310152117.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310152117.png)
 
 ## 5. 自定义配色方案
 
@@ -147,7 +147,7 @@ Title 选择 `Profile Name`，取消勾选 `Job Name`：
 
 下载压缩包，解压后，打开 iTerm2 的设置：`Preperence → Profiles → Colors → Color Presets`。点击 `import` 选择解压好的主题目录下 `schemes` 目录下的你想要的主题导入。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310154213.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310154213.png)
 
 导入之后，再选择你想要的主题就好了，我当然选的是 Ubuntu 骚紫~~
 
@@ -155,21 +155,21 @@ Title 选择 `Profile Name`，取消勾选 `Job Name`：
 
 默认情况下标签的颜色是黑的，即使你改了配色也没用：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310162954.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310162954.png)
 
 如果想统一配色，需要稍微调整一下配置，打开 `Appearence → General`，将 Theme 改为 `Minimal`：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310163214.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310163214.png)
 
 ## 7. 关闭启动界面
 
 如果你不想每次打开 iTerm2 都打开默认的窗口，也就是静默打开程序，可以在 `Appearence → General` 设置：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310154902.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310154902.png)
 
 勾选 `Exclude from Dock and ...`，更改设置之后下次你再重新打开 iTerm2 就会变成这个样子：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310155115.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310155115.png)
 
 它再也不会出现在 Dock 中，也不会在启动时给你打开一个默认的窗口，你可以优雅地通过快捷键呼入呼出窗口，完美。
 
@@ -192,11 +192,11 @@ $ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_she
 
 在安装完 iTerm2 的 `shell integration` 后会在终端界面中最左侧多出一个**蓝色三角形**的标记。如图：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310155736.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310155736.png)
 
 有蓝色三角形的标记说明当前 shell 支持 shell integration。如需关闭标记，可以在 `iTerm2 > Preferences > Profiles > (your profile) > Terminal 最下面 > Shell Integration` 关闭 `Show mark indicators` 。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310155922.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310155922.png)
 
 所有工具：
 
@@ -227,7 +227,7 @@ it2universion
 
 例如，可以用 `imgcat` 直接在终端显示图片：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310160409.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310160409.png)
 
 ## 9. 奇技淫巧
 
@@ -237,7 +237,7 @@ it2universion
 
 iTerm2 允许我们快速查看剪贴板内容 只需使用 `Command + Shift + h` 可以呼出粘贴历史，支持模糊检索。还可以设置将粘贴历史保存在磁盘上（Preferences -> General）
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/20200310160910.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20200310160910.png)
 
 ### 智能选中
 

@@ -19,10 +19,10 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210301162243.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210301162243.png
 ---
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210301162029.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210301162029.png)
 
 写了这么多篇 `WireGuard` 相关的保姆教程，今天终于牵扯到 `Kubernetes` 了，不然怎么对得起“云原生”这三个字。如果看到这篇文章的你仍然是个 `WireGuard` 新手，请务必按照以下顺序阅读每一篇文章：
 
@@ -83,7 +83,7 @@ $ for node in $(kubectl get nodes | grep -i gcp | awk '{print $1}'); do kubectl 
 $ kgctl graph | circo -Tsvg > cluster.svg
 ```
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/location.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/location.svg)
 
 ### 全互联模式（Full Mesh）
 
@@ -95,7 +95,7 @@ $ kgctl graph | circo -Tsvg > cluster.svg
 $ kgctl graph | circo -Tsvg > cluster.svg
 ```
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/full-mesh.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/full-mesh.svg)
 
 ### 混合模式
 
@@ -112,7 +112,7 @@ $ for node in $(kubectl get nodes | tail -n +2 | grep -v gcp | awk '{print $1}')
 $ kgctl graph | circo -Tsvg > cluster.svg
 ```
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/mixed.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/mixed.svg)
 
 如果集群中还包含 `AWS` 节点，可以这么添加 annotation：
 
@@ -124,7 +124,7 @@ $ for node in $(kubectl get nodes | tail -n +2 | grep -v aws | grep -v gcp | awk
 
 网络拓扑架构图如下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/complex.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/complex.svg)
 
 ## 2. Kilo 部署
 
@@ -285,11 +285,11 @@ $ bridge link show kube-bridge
 
 **这里有一个地方需要注意，`kilo0` 已经打通了 k3s 各个节点的私有网段，所以 `wg0` 不再需要打通私有网段，将 `k3s` 各个节点的私有网段删除即可：**
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210303111859.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210303111859.png)
 
 先增加一个新配置给本地客户端使用，Allowed IPs 中新增 `10.42.0.0/24` 和 `10.43.0.0/16`，让本地客户端能访问 `AWS` 节点中的 Pod IP 和整个集群的 Service IP：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210303113317.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210303113317.png)
 
 这时你会发现 `AWS` 节点中的 `wg0.conf` 中已经包含了本地客户端的配置：
 
@@ -346,7 +346,7 @@ AllowedIPs = 10.0.0.5/32
 
 下载本地客户端的配置文件：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210301140145.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210301140145.png)
 
 将 `AWS` 节点的 `wg0.conf` 中的 Aliyun、GCP 和 Azure 的配置拷贝到本地客户端的配置中，并删除 PresharedKey 的配置，再添加 `Endpoint` 的配置和相应的 Pod IP 所在的网段：
 
@@ -384,7 +384,7 @@ Endpoint = azure.com:51820
 
 最后在本地把 WireGuard 跑起来，就可以畅游云主机的 Kubernetes 集群了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@three/img/20210301142745.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210301142745.png)
 
 如果你还想更进一步，在任何一个设备上都能通过 `Service` 的名称来访问 k3s 集群中的服务，就得在 `CoreDNS` 上做文章了，感兴趣的可以自己研究下。
 

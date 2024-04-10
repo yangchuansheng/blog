@@ -28,10 +28,10 @@ categories:
 - VPN
 series:
 - Tailscale 系列教程
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-52-bJRrjv.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-52-bJRrjv.jpg
 ---
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-54-F9DnXG.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-54-F9DnXG.png)
 
 [上篇文章](/posts/how-to-set-up-or-migrate-headscale/#%E6%80%BB%E7%BB%93)介绍了如何使用 `Headscale` 替代 Tailscale 官方的控制服务器，并接入各个平台的客户端。本文将会介绍如何让 Tailscale 使用自定义的 DERP Servers。可能很多人都不知道 `DERP` 是个啥玩意儿，没关系，我先从**中继服务器**开始讲起。
 
@@ -51,7 +51,7 @@ NAT 按照 **NAT 映射行为**和**有状态防火墙行为**可以分为多种
 + 笔记本向 STUN 服务器发送一个请求：“从你的角度看，我的地址什么？”
 + STUN 服务器返回一个响应：“我看到你的 UDP 包是从这个地址来的：`ip:port`”。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-26-17-27-yqHlMG.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-26-17-27-yqHlMG.jpg)
 
 ## 中继是什么
 
@@ -83,7 +83,7 @@ DERP 即 Detoured Encrypted Routing Protocol，这是 Tailscale 自研的一个�
 + 它是一个**通用目的包中继协议，运行在 HTTP 之上**，而大部分网络都是允许 HTTP 通信的。
 + 它根据目的公钥（destination’s public key）来中继加密的流量（encrypted payloads）。
 
-![Tailscale 会自动选择离目标节点最近的 DERP server 来中继流量](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-26-19-02-zLDv51.svg)
+![Tailscale 会自动选择离目标节点最近的 DERP server 来中继流量](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-26-19-02-zLDv51.svg)
 
 Tailscale 使用的算法很有趣，**所有客户端之间的连接都是先选择 DERP 模式（中继模式），这意味着连接立即就能建立（优先级最低但 100% 能成功的模式），用户不用任何等待**。然后开始并行地进行路径发现，通常几秒钟之后，我们就能发现一条更优路径，然后将现有连接透明升级（upgrade）过去，变成点对点连接（直连）。
 
@@ -262,7 +262,7 @@ Report:
 
 `tailscale netcheck` 实际上只检测 `3478/udp` 的端口， 就算 netcheck 显示能连，也不一定代表 12345 端口可以转发流量。最简单的办法是直接打开 DERP 服务器的 URL：https://xxxx:12345，如果看到如下页面，且地址栏的 SSL 证书标签显示正常可用，那才是真没问题了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-21-dZ5dtZ.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-27-11-21-dZ5dtZ.png)
 
 查看与通信对端的连接方式：
 

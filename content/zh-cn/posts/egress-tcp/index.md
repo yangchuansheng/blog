@@ -143,7 +143,7 @@ Enter password:
 
 以下是原始版本的 Bookinfo 示例应用程序中应用程序端到端架构的副本。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/withistio.svg "原 Bookinfo 应用程序")
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/withistio.svg "原 Bookinfo 应用程序")
 
 ### 使用外部数据库存储 Bookinfo 应用程序的评级数据
 
@@ -180,7 +180,7 @@ $ kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-mysql.yam
 
 更新后的架构如下所示。请注意，网格内的蓝色箭头表示创建 `VirtualService` 之后的流量转发路径。根据创建的 `VirtualService`，流量将被转发到 reviews `v3` 和 ratings `v2-mysql`。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/bookinfo-ratings-v2-mysql-external.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/bookinfo-ratings-v2-mysql-external.svg)
 
 <center><p id=small>使用外部 MySQL 数据库的 ratings v2-mysql 版本的 Bookinfo 应用程序</p></center>
 
@@ -193,7 +193,7 @@ $ kubectl apply -f samples/bookinfo/networking/virtual-service-ratings-mysql.yam
 
 哎呀糟糕，出现问题了 :disappointed_relieved: 无论你怎么刷新浏览器，每个 review 下方都不会显示评级星标，而是显示 `“Ratings service is currently unavailable”`。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/9FLVz8.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/9FLVz8.jpg)
 
 <center><p id=small>Ratings 服务的错误信息</p></center>
 
@@ -253,7 +253,7 @@ metadata:
 
 果然有效！现在 Web 页面的报错已经消失了，正确显示了评级：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/tL3SzD.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/tL3SzD.jpg)
 
 <center><p id=small>Book Ratings 显示正常</p></center>
 

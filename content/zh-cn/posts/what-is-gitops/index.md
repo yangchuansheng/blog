@@ -25,10 +25,10 @@ tags:
 - DevOps
 - Kubernetes
 categories: cloud-native
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-03-11-41-iuCXxS.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-03-11-41-iuCXxS.jpg
 ---
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-03-11-42-6gG3Kf.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-03-11-42-6gG3Kf.png)
 
 GitOps 这个概念最早是由 Kubernetes 管理公司 Weaveworks 公司在 2017 年提出的，如今已经过去了 5 个年头，想必大家对这个概念早有耳闻，但你可能并不知道它到底是什么，它和 DevOps 到底是啥关系，本文就来帮大家一一解惑。
 
@@ -45,7 +45,7 @@ GitOps 这个概念最早是由 Kubernetes 管理公司 Weaveworks 公司在 201
 
 当然，广义上的 IaC 不仅仅只关于基础设施，还包含了**网络**、**安全**、**配置**等等，所以广义上的 IaC 又叫 **X as Code**。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-16-10-zwMOq2.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-16-10-zwMOq2.jpg)
 
 比如你想在 AWS 中创建服务器，配置网络，部署 Kubernetes 集群以及各种工作负载，你只需要定义好 Terraform 或 Ansible 的声明式配置，以及 Kubernetes 的配置清单即可，免去一切繁杂的手动操作。
 
@@ -53,7 +53,7 @@ GitOps 这个概念最早是由 Kubernetes 管理公司 Weaveworks 公司在 201
 
 GitOps = IaC + Git + CI/CD，即基于 IaC 的版本化 CI/CD。它的核心是使用 Git 仓库来管理基础设施和应用的配置，并且**以 Git 仓库作为基础设施和应用的单一事实来源**，你从其他地方修改配置（比如手动改线上配置）一概不予通过。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-16-34-pRb1Jc.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-16-34-pRb1Jc.jpg)
 
 Git 仓库中的声明式配置描述了目标环境当前所需基础设施的期望状态，借助于 GitOps，如果集群的实际状态与 Git 仓库中定义的期望状态不匹配，Kubernetes reconcilers 会根据期望状态来调整当前的状态，最终使实际状态符合期望状态。
 
@@ -93,7 +93,7 @@ Reconciliation 其实最早是 Kubernetes 里的一个概念，表示的是**确
 
 鉴于以上这些设计哲学，我们来看一下 GitOps 的工作流：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-22-01-V2RPEM.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-22-01-V2RPEM.jpg)
 
 + 首先，团队中的任何一个成员都可以 Fork 仓库对配置进行更改，然后提交 Pull Request。
 + 接下来会运行 CI 流水线，一般会做这么几件事情：验证配置文件、执行自动化测试、检测代码的复杂性、构建 OCI 镜像、将镜像推送到镜像仓库等等。
@@ -110,7 +110,7 @@ CD 流水线有两种模式：Push 和 Pull。
 
 目前大多数 CI/CD 工具都使用基于 Push 的部署模式，例如 Jenkins、CircleCI 等。这种模式一般都会在 CI 流水线运行完成后执行一个命令（比如 kubectl）将应用部署到目标环境中。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-12-coPxwT.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-12-coPxwT.jpg)
 
 这种 CD 模式的缺陷很明显：
 
@@ -125,7 +125,7 @@ Kubernetes 集群或者云平台对 CI 系统的授权凭证在集群或云平�
 
 Pull 模式会在目标环境中安装一个 Agent，例如在 Kubernetes 集群中就靠 Operator 来充当这个 Agent。Operator 会周期性地监控目标环境的实际状态，并与 Git 仓库中的期望状态进行比较，如果实际状态不符合期望状态，Operator 就会更新基础设施的实际状态以匹配期望状态。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-38-YrEEzt.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-38-YrEEzt.jpg)
 
 只有 Git 的变更可以作为期望状态的唯一来源，除此之外，任何人都不可以对集群进行任何更改，即使你修改了，也会被 Operator 还原为期望状态，这也就是传说中的**不可变基础设施**。
 

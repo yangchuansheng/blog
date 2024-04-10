@@ -62,7 +62,7 @@ categories:
 
 没有那么多花里胡哨的理论和步骤，不需要每天强制给自己定什么狗屁计划，没有任何心智负担，就是特么打开 TikTok 开始刷短视频。唯一的计划就是：**只要你想娱乐，只要你想刷手机，就给我打开 TikTok 刷短视频，把烈性海洛因当成药来用，给我以毒攻毒！**
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-35-uR6kNO.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-35-uR6kNO.png)
 
 TikTok 里的语音非常口语化，也有不少是专门教英语的，口音也更丰富一些，老人的含混，小孩的快速，中东印度的口音也很常见。
 
@@ -99,11 +99,11 @@ TikTok 里的语音非常口语化，也有不少是专门教英语的，口音�
 + [ROCKMODS](https://www.rockmods.net/2019/02/tiktok.html)
 + [破解软件中文频道](https://t.me/Pjapk)
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-16-23-50-COAYY3.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-16-23-50-COAYY3.jpg)
 
 这个破解版可以配合 **TikTok 插件 (TikTokPlugin)** 使用，该插件**可以自定义设置，用于配合此破解版选择全球区域！**
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-00-00-X5WbOP.webp)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-00-00-X5WbOP.webp)
 
 {{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
 友情提醒：破解软件可能含有恶意软件，如病毒、木马、间谍软件等，如果执意要使用破解版，请自行承担一切可能的后果！
@@ -142,15 +142,15 @@ Zygisk，顾名思义，就是**注入 Zygote 后的 Magisk**。它能为 Magisk
 
 KernelSU 用户直接在 [Zygisk Next 的 Release 页面](https://github.com/Dr-TSNG/ZygiskNext/releases)下载 zip 模块包：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-08-Dr9HXW.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-08-Dr9HXW.jpg)
 
 然后打开 KernelSU 的管理 App，点击右下角的 “安装” 刷入 KernelSU 即可。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-13-9Z3FBi.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-13-9Z3FBi.jpg)
 
 Magisk 用户就更简单了，直接在 Magisk 的设置里打开 Zygisk 即可。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-16-lDe9hn.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-16-lDe9hn.png)
 
 #### 刷入 LSposed
 
@@ -166,13 +166,13 @@ LSposed 是一个基于 Xposed Framework 的开源项目，用于在 Android 设
 
 LSposed 的刷入非常简单，直接下载对应 Zygisk 的 [LSPosed](https://github.com/LSPosed/LSPosed/releases/latest) 版本并在 KernelSU 或者 Magisk 中刷入，然后重启手机。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-32-BiKekC.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-32-BiKekC.jpg)
 
 #### 安装 TikTok
 
 直接从 Google Play 应用商店安装官方版本的 TikTok。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-37-VbMqAf.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-37-VbMqAf.jpg)
 
 如果你的手机没有 Google Play，可以到一些第三方镜像站去下载安装，比如：[apkpure](https://apkpure.com/cn/)
 
@@ -184,21 +184,21 @@ LSposed 的刷入非常简单，直接下载对应 Zygisk 的 [LSPosed](https://
 
 接下来安装可以修改 SIM 卡信息的相关模块 Guise。直接在 [Guise 的 Release 页面](https://github.com/Houvven/Guise/releases)下载最新的 apk：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-45-oMEa9p.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-45-oMEa9p.jpg)
 
 然后在手机中安装即可。安装完成后打开 LSposed，点击 Guise 模块，然后指定模块作用域为 TikTok，并 “启用模块”。**最好再重启一下手机。**
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-49-b8oS9s.webp)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-12-49-b8oS9s.webp)
 
 然后打开 Guise 应用，将 SIM 卡运营商伪装成美国的运营商，同时将系统语言伪装成英文。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-05-2INZUI.webp)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-05-2INZUI.webp)
 
 #### 打开 TikTok
 
 最终我们就可以打开 TikTok 开始愉快地看视频了，账号登录、点赞、收藏、关注、评论都可正常使用。
 
-| ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-24-GvHDL8.webp) | ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-26-oQ1l3c.webp) | ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-27-w6wXYX.webp) |
+| ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-24-GvHDL8.webp) | ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-26-oQ1l3c.webp) | ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-17-14-27-w6wXYX.webp) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 
 ## iOS 免拔卡使用 TikTok

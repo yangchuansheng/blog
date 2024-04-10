@@ -22,10 +22,10 @@ tags:
 - kubernetes
 - Sealos
 categories: tech-social
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-21-uFy94B.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-21-uFy94B.jpg
 ---
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-07-WURNlT.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-07-WURNlT.png)
 
 ## Anki 介绍
 
@@ -37,7 +37,7 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 
 给大家看下我制作的闪卡：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-10-52-H2ZWUZ.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-10-52-H2ZWUZ.png)
 
 每张卡片只有一个英文单词，与之配套的是该单词的音标、发音、图片、英文解释、例句。**所有的版块都是英文，绝对不要出现中文！** 卡片的核心是图片和例句，通过图片可以猜到这个单词大概是什么意思，通过例句可以验证自己对单词意思的猜测是否正确，如果还不放心，可以看下英文解释，这一套流程下来绝对可以正确理解单词的意思，**完全不需要中文的干涉，这才是学习英文单词最完美的方式**。
 
@@ -66,7 +66,7 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 直接点击下面的按钮跳转到 Sealos 的应用模板部署界面：
 
 <figure><a href="https://bja.sealos.run/?openapp=system-template%3FtemplateName%3Danki-sync-server" target="_blank">
-    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://cdn.jsdelivr.us/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
+    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://cdn.jsdelivr.net/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
 </a></figure>
 
 > 如果您是第一次打开 [Sealos](https://sealos.run)，需要先注册登录账号。
@@ -75,11 +75,11 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 
 这里可以看到实例的运行状态，一定要等到状态是 running 才算是部署成功。如果一段时间以后状态还不是 running，可以点击「详情」查看故障原因：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-02-20-43-L7tjlP.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-02-20-43-L7tjlP.png)
 
 部署成功后，可以看到应用的运行情况，包括 CPU 占用、内存占用等。外网地址就是同步服务器的公网域名。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-YFHPYc.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-13-09-YFHPYc.png)
 
 ## 客户端设置
 
@@ -89,19 +89,19 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 
 1. 先打开「首选项」
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-24-QHYKZt.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-24-QHYKZt.png)
 
 2. 点击「**网络**」，往下看，可以看到标有 `self-hosted sync server(自定义同步服务器)` 的方框，在里面填写您的服务端的地址：
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-26-HYOaBJ.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-26-HYOaBJ.png)
 
 3. 重启 Anki，然后点击「**同步**」：
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-28-ccnUOj.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-28-ccnUOj.png)
 
 4. 这时候会弹出一个输入框让你输入用户名和密码，你需要将你之前设置的用户名和密码输入进去：
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-29-z5E9gi.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-29-z5E9gi.png)
 
 5. 点击确认后，就会开始同步了。
 
@@ -110,7 +110,7 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 
 安卓端也是直接配置即可，我的 AnkiDroid 版本是 `2.15.6`。你可以通过「设置 -> 高级设置 -> 自定义同步服务器」找到配置页面。
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-31-vrNHJU.png">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-31-vrNHJU.png">
 
 再填写用户名和密码：
 
@@ -119,8 +119,8 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 这样就算配置完成了，所有的牌组都同步过来了。
 
 <table><tr>
-<td><img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-ADfk8T.png"></td>
-<td><img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-1iudM0.png"></td>
+<td><img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-ADfk8T.png"></td>
+<td><img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-10-14-32-1iudM0.png"></td>
 </tr></table>
 官方的版本实在是太老了，如果你想使用更激进的社区版本，可以到这个页面下载最新的 Beta 版：
 
@@ -130,7 +130,7 @@ Anki 软件使用这个原理，帮助用户通过创建“卡片”来学习和
 
 安装完成后，可以通过「设置 -> 同步 -> 自定义同步服务器」找到配置页面：
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-39-1jsF0t.jpeg">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-26-12-39-1jsF0t.jpeg">
 
 再填写用户名和密码：
 
@@ -150,6 +150,6 @@ AnkiMobile 也已经支持和自建的同步服务器同步了。至少对于版
 
 大家如果对我的卡片模板比较感兴趣，可以扫码关注公众号：
 
-<img style="width: 200px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/00022-1916295141.jpg">
+<img style="width: 200px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/00022-1916295141.jpg">
 
 后台聊天框发送暗号 **anki**，即可获取我的卡片+模板。

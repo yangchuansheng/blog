@@ -190,7 +190,7 @@ sing-box 的核心就是它的配置，所有的配置都在一个 JSON 文件�
           "icloudnative.io",
           "fuckcloudnative.io",
           "sealos.io",
-          "cdn.jsdelivr.us"
+          "cdn.jsdelivr.net"
         ],
         "server": "dns_direct"
       },
@@ -395,7 +395,7 @@ sing-box 的核心就是它的配置，所有的配置都在一个 JSON 文件�
           "icloudnative.io",
           "fuckcloudnative.io",
           "sealos.io",
-          "cdn.jsdelivr.us"
+          "cdn.jsdelivr.net"
         ],
         "outbound": "direct"
       },
@@ -748,7 +748,7 @@ sing-box 对 DNS 的处理比 Clash 强太多了，支持各种分流规则，�
       },
       {
         "domain_suffix": [
-          "icloudnative.io", "fuckcloudnative.io", "sealos.io", "cdn.jsdelivr.us"
+          "icloudnative.io", "fuckcloudnative.io", "sealos.io", "cdn.jsdelivr.net"
         ],
         "server": "dns_direct"
         // 注释：对于特定后缀的域名（如 icloudnative.io 等），使用 "dns_direct" 服务器进行直连 DNS 解析。
@@ -1012,7 +1012,7 @@ sing-box 对 DNS 的处理比 Clash 强太多了，支持各种分流规则，�
           "icloudnative.io",
           "fuckcloudnative.io",
           "sealos.io",
-          "cdn.jsdelivr.us"
+          "cdn.jsdelivr.net"
         ],
         "outbound": "direct"      // 将通过'direct'出口直接连接
       },

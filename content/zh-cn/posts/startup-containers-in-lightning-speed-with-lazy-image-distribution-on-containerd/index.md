@@ -20,7 +20,7 @@ tags:
 - Containerd
 categories: 
 - cloud-native
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145127.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145127.png
 ---
 
 在容器的整个生命周期中，拉取镜像是最耗时的步骤之一。[Harter 等人的研究](https://www.usenix.org/node/194431)表明：
@@ -38,11 +38,11 @@ img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145
 
 `Containerd` 为了解决这个问题启动了一个非核心子项目 [**Stargz Snapshotter**](https://github.com/containerd/stargz-snapshotter)，旨在提高镜像拉取的性能。该项目作为 Containerd 的一个插件，利用 [Google 的 stargz 镜像格式](https://github.com/google/crfs)来延迟拉取镜像。这里的**延迟拉取**指的是 Containerd 在拉取时不会拉取整个镜像文件，而是按需获取必要的文件。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145800.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145800.png)
 
 下图是基于 [HelloBench](https://github.com/Tintri/hello-bench) 的容器启动过程基准测试结果，[跑在 Github Actions 提供的机器上，镜像仓库直接使用 Docker Hub](https://github.com/containerd/stargz-snapshotter/actions?query=workflow:Benchmark+branch:master)：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145843.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145843.png)
 
 + `legacy` 表示使用 Containerd 默认的 snapshotter（`overlayfs`）来拉取镜像且不进行优化时的启动性能，这种情况下 Containerd 会拉取整个镜像内容，所以拉取时间会很长。
 + 而对于 `stargz` 格式的镜像，Containerd 可以在镜像还没有完全拉取到本地之前就启动容器，然后按需获取需要的文件，所以拉取的时间更短。但读取文件时需要从远程仓库下载文件内容，所以 `run` 的性能要低于传统的拉取方式。
@@ -113,7 +113,7 @@ Stargz snapshotter 是由多种技术组合而成的，本节只介绍其中三�
 
 ### stargz 压缩格式
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145449.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145449.png)
 
 延迟拉取的目的是让容器运行时有选择地从 `blob` 中的镜像层（layer）下载和提取文件，但 [OCI](https://github.com/opencontainers/image-spec/)/[Docker](https://github.com/moby/moby/blob/master/image/spec/v1.2.md) **镜像规范**将所有的镜像层打包成一个 `tar` 或 `tar.gz` 存档，这样即使你要提取单个文件也要扫描整个 `blob`。如果镜像使用 gzip 进行压缩，就更没有办法提取特定文件了。
 
@@ -123,11 +123,11 @@ Stargz snapshotter 是由多种技术组合而成的，本节只介绍其中三�
 
 在 gzip 之后还包含一个名为 TOC 的索引文件条目，这是一个 JSON 文件（`stargz.index.json`），记录了 stargz 存档中每个文件内容对应的块的大小和偏移量，以及每个文件的元数据（名称、文件类型、所有者等）。有了 TOC 之后，就可以在不扫描整个存档文件的情况下提取需要的文件。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145544.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145544.png)
 
 ### stargz 优化版
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145630.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145630.png)
 
 `Stargz` 虽然提高了拉取性能，但在运行阶段按需读取文件时仍然存在性能缺陷。为了解决这个问题，stargz snapshotter 做了进一步的优化。
 
@@ -137,7 +137,7 @@ stargz snapshotter 项目中的 `ctr-remote images optimize` 命令提供了对�
 
 ### 远程 snapshotter 插件
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200820145709.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200820145709.png)
 
 Containerd 的架构是可插拔的，所有的功能是按照定义的 API 以插件的形式实现的。用户可以将其与自定义插件集成来扩展 Containerd 的功能。例如，[AWS Firecracker](https://github.com/firecracker-microvm/firecracker-containerd) 就扩展了 Containerd 来支持 `microVMs`。
 

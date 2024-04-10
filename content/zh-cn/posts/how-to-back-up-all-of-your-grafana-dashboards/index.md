@@ -18,7 +18,7 @@ tags:
 - Grafana
 categories: 
 - monitoring
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201215135816.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201215135816.jpg
 ---
 
 目前我们 k8s 集群的 `Grafana` 使用 ceph 作为持久化存储，一但我将 Grafana 的 Deployment 删除重建之后，之前的所有数据都会丢失，重建的 PV 会映射到后端存储的新位置。万幸的是，我真的手欠重建了，还没有提前备份。。。万幸个鬼啊我。
@@ -206,11 +206,11 @@ log_title "------------------------------ FINISHED -----------------------------
 
 导入脚本需要目标机器上的 Grafana 已经启动，而且需要提供管理员 API Key。登录 Grafana Web 界面，打开 API Keys：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201211171659.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201211171659.jpg)
 
 新建一个 API Key，角色选择 `Admin`，过期时间自己调整：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201211171842.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201211171842.jpg)
 
 导入方式：
 
@@ -341,7 +341,7 @@ jobs:
 
 就问爽不爽？
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201211175039.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201211175039.png)
 
 你可以直接关注我的仓库：
 

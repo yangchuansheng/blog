@@ -130,7 +130,7 @@ $ systemctl restart sshd
 
 这时再重新运行 systemd-cgtop 命令，就能看到 sshd 的资源使用统计了：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163252.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163252.png)
 
 {{< alert >}} 
 开启资源使用量统计功能可能会增加系统的负载，因为资源统计也要消耗 CPU 和内存，大多数情况下使用 `top` 命令来查看就足够了。当然了，这是 Linux 系统嘛，一切的控制权都在你自己手里，你想怎么做就怎么做。
@@ -183,7 +183,7 @@ EOF
 
 现在通过 `systemctl start foo.service` 启动 foo 服务，并使用 `top` 命令查看 CPU 使用情况：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163253.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163253.png)
 
 目前没有其他进程在消耗 CPU，所以 foo.service 可以使用几乎 100% 的 CPU。
 
@@ -195,13 +195,13 @@ $ systemctl set-property user-1000.slice CPUShares=256
 
 使用用户 `tom` 登录该系统，然后执行命令 `sha1sum /dev/zero`，再次查看 CPU 使用情况：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163254.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163254.png)
 
 现在是不是感到有点迷惑了？foo.service 的 CPU shares 是 `2048`，而用户 tom 的 CPU shares 只有 `256`，难道用户 `tom` 不是应该只能使用 10% 的 CPU 吗？回忆一下我在上一节提到的，当 CPU 繁忙时，`user.slice` 和 `system.slice` 会各获得 `50%` 的 CPU 使用时间。而这里恰好就是这种场景，同时 `user.slice` 下面只有 sha1sum 进程比较繁忙，所以会获得 50% 的 CPU 使用时间。
 
 最后让用户 `jack` 也参与进来，他的 CPU shares 是默认值 1024。使用用户 `jack` 登录该系统，然后执行命令 `sha1sum /dev/zero`，再次查看 CPU 使用情况：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163255.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163255.png)
 
 上面我们已经提到，这种场景下 `user.slice` 和 `system.slice` 会各获得 `50%` 的 CPU 使用时间。用户 tom 的 CPU shares 是 `256`，而用户 jack 的 CPU shares 是 `1024`，因此用户 jack 获得的 CPU 使用时间是用户 tom 的 `4` 倍。
 
@@ -217,11 +217,11 @@ $ systemctl set-property user-1000.slice CPUQuota=5%
 
 这时你会看到用户 tom 的 sha1sum 进程只能获得 5% 左右的 CPU 使用时间。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163256.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163256.png)
 
 如果此时停止 `foo.service`，关闭用户 jack 的 sha1sum 进程，你会看到用户 tom 的 sha1sum 进程仍然只能获得 `5%` 左右的 CPU 使用时间。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163257.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163257.png)
 
 如果某个非核心服务很消耗 CPU 资源，你可以通过这种方法来严格限制它对 CPU 资源的使用，防止对系统中其他重要的服务产生影响。
 
@@ -274,11 +274,11 @@ $ cat foo.service/cpu.shares
 
 首先来说一下 CPU shares，shares 只能针对单核 CPU 进行设置，也就是说，无论你的 shares 值有多大，该 cgroup 最多只能获得 100% 的 CPU 使用时间（即 1 核 CPU）。还是用本文第 2 节的例子，将 foo.service 的 CPU shares 设置为 2048，启动 foo.service，这时你会看到 foo.service 仅仅获得了 100% 的 CPU 使用时间，并没有完全使用两个 CPU 核：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163258.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163258.png)
 
 再使用用户 `tom` 登录系统，执行命令 `sha1sum /dev/zero`，你会发现用户 tom 的 sha1sum 进程和 foo.service 各使用 1 个 CPU 核：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723163259.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723163259.png)
 
 再来说说 CPUQuota，这个上篇文章结尾已经提过了，如要让一个 cgroup 完全使用两个 CPU 核，可以通过 CPUQuota 参数来设置。例如：
 

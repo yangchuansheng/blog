@@ -21,8 +21,8 @@ categories:
 tags:
 - Kubernetes
 - Sealos
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-14-23-26-Tseg6K.jpg
-meta_image: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-06-12-00-33-Ua8sIL.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-14-23-26-Tseg6K.jpg
+meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-12-00-33-Ua8sIL.jpg
 ---
 
 ## 这是个宏伟的计划 
@@ -31,13 +31,13 @@ meta_image: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023
 
 2018 年的某个夜晚，夜深人静，我挥舞键盘，敲下了 Sealos 的第一行代码。当时仓库命名为 “kubeinit”，后来觉得格局太小，我不可能只做一个安装  Kubernetes 的工具。安装只是更大计划的一部分，于是更名为 [Sealos](https://github.com/labring/sealos/ "Sealos")，一个宏大的[云操作系统](https://sealos.run)计划就此诞生！
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-rddvA2.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-rddvA2.jpg)
 
 Sealos 的第一个版本写完后，我就把它发布到了阿里云市场出售，**每份售价 15 元**。我没想到真的会有人买，当第一笔 15 元进账时，我异常兴奋，仿佛一个商业帝国就在眼前。但是，结果是我花了一整天时间为这位客户提供售后服务。。。**电影院里还在帮用户解决问题**。
 
 先来一波回忆杀：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-E0rhYq.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-E0rhYq.jpg)
 
 随后销量暴增，很快我就换了新手机 iPhone 8，但是问题也同时增加，以至于我根本无法及时提供所有的售后服务。于是我决定重写 Sealos，发布了基于 Ansible 的 v2  版本。最终还是觉得没有做到极致，因为用户还是遇到太多依赖问题无法解决。直到读完 kube-proxy 的源码，我发现有一种方案可以把负载均衡变得更简单，**干掉所有依赖**。于是我编写了 Sealos 的 v3 版本，在安装方面做到了极致。 
 
@@ -63,7 +63,7 @@ CMD helm install mysql .
 
 理解这一点其实很简单，只需要把单机操作系统上安装的单机应用替换成各种分布式应用即可。整个数据中心，**你看到的不再是一台台孤立的服务器，而是一个整体，变成了一台虚拟的超级计算机。** 
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-WpTGqe.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-WpTGqe.jpg)
 
 这样简洁、清爽且臻至完美的[云操作系统](https://sealos.run)，相信你在第一眼见到它的时候，便会喜欢上它！
 
@@ -75,7 +75,7 @@ Sealos 保持了极简的设计，没有任何多余的按钮。实现简洁与�
 
 在 B 端软件的世界里，付款者与使用者往往并非同一人，导致产品体验时常被忽略，最关键的还是要说服决策者。而 Sealos 不一样，我们坚信产品体验高于一切，如果我们在产品上花费大量精力最终导致失败，那也死而无憾。 
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-33-CNmnH5.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-33-CNmnH5.png)
 
 这种黑白灰的设计风格会让你使用产品时**感觉像在喝白开水，而不是在喝饮料，更不是在喝洗脚水** （某些产品使用起来想死的心都有）。开发者已经够痛苦了，我希望你们在使用 Sealos 时心情美好。 
 
@@ -85,7 +85,7 @@ Sealos 能一针见血地戳中应用的痛点，比如这个应用管理器 App
 
 我在 Sealos 上运行了 10 多个应用，包括三个数据库，还有博客，低代码平台，测试平台等，每天只花 4 块钱 : 
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-5MR5Qc.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-5MR5Qc.png)
 
 为什么能这么便宜？
 
@@ -103,7 +103,7 @@ Sealos 可以帮助 80% 的企业降低 80% 的资源使用成本。
 
 与其他管理平台或 PaaS 平台不同，Sealos 的核心设计理念是“一切皆应用”。不同的开发者，不同的角色使用不同的应用，这让每个用户在使用时都没有心智负担。就像安卓生态中有几十上百万个应用，你只关心自己使用的那几款应用，不用关心其他应用在做什么。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-1n7uL8.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-31-1n7uL8.png)
 
 这样的设计有两个主要优势：
 
@@ -121,11 +121,11 @@ Sealos 采取了不同的做法。在这个平台上，不同的人可以使用�
 
 Sealos 非常关注应用间的相互配合。例如，你在 Sealos 上使用函数计算，默认数据库可能是 MongoDB，但如果你想用 PostgreSQL 怎么办？这时就可以在 Sealos 上安装一个 PostgreSQL 应用，然后通过服务发现直接在函数计算里面访问。因为在同一个集群内，可以直接通过内网 DNS 相互配合。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-TAPtXt.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-TAPtXt.jpg)
 
 如果你还想管控 PostgreSQL 数据库，就可以直接装个 Bytebase 应用来管理数据库表结构和数据等。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-WJ9q62.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-WJ9q62.jpg)
 
 Sealos 精简而不简单，所有组件都可以卸载，这让云恰好满足你的需求——多一分则嫌多，少一分则嫌少。这也意味着无论是一台服务器还是上百台数据中心，都可以通过一条命令构建成一朵云。
 
@@ -143,7 +143,7 @@ Sealos 精简而不简单，所有组件都可以卸载，这让云恰好满足�
 
 更进一步发现：原来**有个 AI 在帮你自动做故障诊断，自动上线业务，甚至帮你写代码并自动测试上线**。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-POcM65.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-POcM65.png)
 
 然后你会发现普通人也能用 Sealos：
 
@@ -157,7 +157,7 @@ Sealos 精简而不简单，所有组件都可以卸载，这让云恰好满足�
 
 当然有，Sealos 社区用户 10 万+，不乏各种大企业。  
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-wNtxo2.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-32-wNtxo2.jpg)
 
 上线两个月时间注册用户已经破万，云服务共计运行 **7000+ 应用**。
 

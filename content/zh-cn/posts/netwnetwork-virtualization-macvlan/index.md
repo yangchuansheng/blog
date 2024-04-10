@@ -29,7 +29,7 @@ Macvlan 允许你在主机的一个网络接口上配置多个虚拟的网络接
 
 我们先来看一下 Macvlan 技术的流程示意图：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-13-0aXNFF.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-13-0aXNFF.jpg)
 
 简单来说，Macvlan 虚拟网卡设备是寄生在物理网卡设备上的。发包时调用自己的发包函数，查找到寄生的物理设备，然后通过物理设备发包。收包时，通过注册寄生的物理设备的 `rx_handler` 回调函数，处理数据包。
 
@@ -41,7 +41,7 @@ Macvlan 允许你在主机的一个网络接口上配置多个虚拟的网络接
 
 Bridge 实际上就是一种旧式交换机，他们之间并没有很大的差别。Bridge 与交换机的区别在与市场，而不在与技术。交换机对网络进行分段的方式与 Bridge 相同，交换机就是一个多端口的网桥。确切地说，高端口密度的 Bridge 就称为局域网交换机。 
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-uzg6Tm.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-uzg6Tm.jpg)
 
 Bridge 有以下特点：
 
@@ -52,7 +52,7 @@ Bridge 有以下特点：
 
 以下是一个在 Linux 主机上，多个 VM 使用 bridge 相互通讯的状况：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-mZpEUH.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-mZpEUH.jpg)
 
 Linux 主机中可以通过命令行工具 `brctl` 来查看 Bridge 的配置，该工具可以通过安装软件包 `bridge-utils` 来获得。
 
@@ -84,7 +84,7 @@ Macvlan 有以下特点：
 
 用张图来解释一下设定 Macvlan 后的样子：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-cmnaFw.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-cmnaFw.jpg)
 
 ## Macvlan 的工作模式
 
@@ -92,7 +92,7 @@ Macvlan 共支持四种模式，分别是：
 
 ### VEPA（Virtual Ethernet Port Aggregator）
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-FNNoJq.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-FNNoJq.jpg)
 
 在 `VEPA` 模式下，所有从 Macvlan 接口发出的流量，不管目的地全部都发送给父接口，即使流量的目的地是共享同一个父接口的其它 Macvlan 接口。在二层网络场景下，由于生成树协议的原因，两个 Macvlan 接口之间的通讯会被阻塞，这时需要上层路由器上为其添加路由（需要外部交换机配置 `Hairpin` 支持，即需要兼容 802.1Qbg 的交换机支持，其可以把源和目的地址都是本地 Macvlan 接口地址的流量发回给相应的接口）。此模式下从父接口收到的广播包，会泛洪给 VEPA 模式的所有子接口。
 
@@ -116,7 +116,7 @@ $ echo 1 >/sys/class/net/br0/brif/eth1/hairpin_mode
 
 在 Linux 主机上配置了 `Harpin` 模式之后，源和目的地址都是本地 Macvlan 接口地址的流量，都会被 `br0`（假设你创建的 Bridge 是 br0）发回给相应的接口。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-2dXOlQ.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-2dXOlQ.jpg)
 
 如果想在物理交换机层面对虚拟机或容器之间的访问流量进行优化设定，VEPA 模式将是一种比较好的选择。
 
@@ -126,7 +126,7 @@ $ echo 1 >/sys/class/net/br0/brif/eth1/hairpin_mode
 
 ### Bridge
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-DgMUzi.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-DgMUzi.jpg)
 
 此种模式类似 Linux 的 Bridge，拥有相同父接口的两块 Macvlan 虚拟网卡是可以直接通讯的，不需要把流量通过父网卡发送到外部网络，广播帧将会被泛洪到连接在"网桥"上的所有其他子接口和物理接口。这比较适用于让共享同一个父接口的 Macvlan 网卡进行直接通讯的场景。
 
@@ -138,13 +138,13 @@ Bridge 模式有个缺点：如果父接口 down 掉，所有的 Macvlan 子接�
 
 ### Private
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-OIReFA.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-OIReFA.jpg)
 
 此种模式相当于 `VEPA` 模式的增强模式，其完全阻止共享同一父接口的 Macvlan 虚拟网卡之间的通讯，即使配置了 `Hairpin` 让从父接口发出的流量返回到宿主机，相应的通讯流量依然被丢弃。具体实现方式是丢弃广播/多播数据，这就意味着以太网地址解析 `arp` 将不可运行，除非手工探测 MAC 地址，否则通信将无法在同一宿主机下的多个 Macvlan 网卡间展开。之所以隔离广播流量，是因为以太网是基于广播的，隔离了广播，以太网将失去了依托。 
 
 ### Passthru
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-uuJuoP.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-21-uuJuoP.jpg)
 
 此种模式会直接把父接口和相应的MacVLAN接口捆绑在一起，这种模式每个父接口只能和一个 Macvlan 虚拟网卡接口进行捆绑，并且 Macvlan 虚拟网卡接口继承父接口的 MAC 地址。
 

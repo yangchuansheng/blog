@@ -17,7 +17,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201231104851.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201231104851.jpg
 ---
 
 > 原文链接：[Why not WireGuard](https://blog.ipfire.org/post/why-not-wireguard)
@@ -40,7 +40,7 @@ img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201231104
 
 最有趣的部分是 **“在大多数场景下”** 这几个字，媒体报道时直接将其删除了，混淆大众的视听。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201224153100.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201224153100.jpg)
 
 ## WireGuard 能否取代 IPSec？
 

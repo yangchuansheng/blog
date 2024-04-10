@@ -18,7 +18,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - vftool
 categories: macOS
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210118140825.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210118140825.png
 ---
 
 之前我给大家介绍过如何[在 macOS 上使用 multipass 创建轻量级虚拟机来使用 Podman](/posts/use-podman-in-macos/)，众小伙伴纷纷齐说真香。今天我要给大家介绍一个全新的黑科技，利用 `macOS Big Sur` 引入的全新虚拟化框架 [Virtualization Kit](https://developer.apple.com/documentation/virtualization) 来创建更加轻量级的虚拟机。准确地说，这个最新的虚拟化框架并不能直接使用，它只是提供了 API，为许多设备类型定义了标准接口，包括网络、存储等设备，且支持 Virtio 标准。要想使用该框架来创建管理虚拟机，需要对其进行封装，构建出一个易于使用的工具，目前最优秀的就是 [vftool](https://github.com/evansm7/vftool)。
@@ -35,7 +35,7 @@ $ xcode-select --install
 
 或者到官方网站下载安装：[https://developer.apple.com/download/more/](https://developer.apple.com/download/more/)
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210114125724.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210114125724.png)
 
 或者你也可以直接安装 `Xcode`。
 
@@ -54,11 +54,11 @@ Configuration vaildation failure! Error Domain=VZErrorDomain Code=2 “Virtualiz
 
 这是因为编译完成后需要对二进制文件进行签名，而签名是需要授权的，所以需要创建一个自签名证书。打开**钥匙串访问**，依次选择 **证书助理** --> **创建证书**：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210114130700.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210114130700.png)
 
 选择证书类型为 **代码签名**，名字随便写，然后点击创建：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210114130823.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210114130823.png)
 
 然后利用新建的自签名证书对二进制文件进行签名：
 
@@ -202,7 +202,7 @@ root@podman:~# apt remove -y cloud-init cloud-initramfs-copymods cloud-initramfs
 
 看看它的内存占用：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210114215113.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210114215113.png)
 
 果然很香！
 
@@ -317,7 +317,7 @@ $ ssh root@192.168.64.2
 
 首先进入系统偏好设置中的共享选项。勾中文件共享（如下图），之后右边的文件共享的绿灯会点亮，并显示“文件共享：打开”。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210118133400.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210118133400.png)
 
 点击在文件共享界面中右边的共享文件夹下的＋号，在出现的窗口中找到你要共享的目录，点击增加。之后在右边的用户里，进行对该目录的访问权限设置。
 

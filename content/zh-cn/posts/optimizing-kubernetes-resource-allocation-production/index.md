@@ -41,25 +41,25 @@ Kubernetes 允许在 `CPU`，内存和本地存储（v1.12 中的 beta 特性）
 
 在 Kubernetes 中通过资源和限制可以实现三种基本的 `QoS`，QoS 的最佳配置主要还是取决于工作负载的需求。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/FA2OvD.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/FA2OvD.jpg)
 
 #### Guaranteed QoS
 
 通过只设置 limits 而不设置 requests 就可以实现 `Guaranteed QoS`，这意味着容器可以使用调度器为其分配的所有资源。对于绑定 CPU 和具有相对可预测性的工作负载（例如，用来处理请求的 Web 服务）来说，这是一个很好的 QoS 等级。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/QiSkg9.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/QiSkg9.jpg)
 
 #### Burstable QoS
 
 通过配置 CPU 或内存的 limits 和 requests，并且 `requests < limits`，就可以实现 `Burstable QoS`。这意味着容器的资源使用量可以达到 requests 阈值，同时如果该容器运行的节点上资源充足，那么容器可以继续使用资源，只要不超过 limits 阈值就行。这对短时间内需要消耗大量资源或者初始化过程很密集的工作负载非常有用，例如：用来构建 Docker 容器的 Worker 和运行未优化的 `JVM` 进程的容器都可以使用该 QoS 等级。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/Ehqu7H.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/Ehqu7H.jpg)
 
 #### Best effort QoS
 
 通过既不设置 limits 也不设置 requests，可以实现 `Best effort QoS`。这意味着容器可以使用宿主机上任何可用的资源。从调度器的角度来看，这是最低优先级的任务，并且会在 `Burstable QoS Pod` 和 ` Guaranteed QoS Pod` 之前被先杀掉。这对于可中断和低优先级的工作负载非常有用，例如：迭代运行的幂等优化过程。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/giHf6B.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/giHf6B.jpg)
 
 ## 设置 requests 和 limits
 
@@ -83,15 +83,15 @@ memory: 50Mi # 50 Mebibytes
 
 负载增加测试会随着时间的推移增加负载，直到负载下的服务突然失败或测试完成。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/C15Zav.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/C15Zav.jpg)
 
 如果负载增加测试突然失败，则表明资源限制过于严格，这是一个很好的迹象。当观察到图像有明显抖动时，将资源限制增加一倍并重复，直到测试成功完成。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/WK63wU.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/WK63wU.jpg)
 
 当资源限制接近最优时，性能应该随着时间的推移而可预测地降低（至少对于 Web 服务而言应该是这样）。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/sD1mX7.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/sD1mX7.jpg)
 
 如果在增加负载的过程中性能并没有太大的变化，则说明为工作负载分配了太多的资源。
 
@@ -99,11 +99,11 @@ memory: 50Mi # 50 Mebibytes
 
 在运行负载增加测试并调整资源限制之后，下一步就开始进行负载不变测试。负载不变测试会在一段很长的时间内（至少 10 分钟，时间再长一点更好）对应用施加相同的负载，至于加多少负载，最好选择在图像出现断点之前的压力值（例如：客户端数量）。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/VfGHxx.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/VfGHxx.jpg)
 
 此测试的目的是识别内存泄漏和隐藏的排队机制，因为这些机制在负载增加测试中很难被捕获到。到了这个阶段，即使还要对资源限制进行调整，调整的幅度也应该很小。理想情况下，该阶段测试期间性能应该会保持稳定。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/QCbDup.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/QCbDup.jpg)
 
 ### 记录失败日志
 
@@ -127,7 +127,7 @@ memory: 50Mi # 50 Mebibytes
 
 [Loader.io](http://loader.io/) 是一个在线负载测试工具，它允许你配置负载增加测试和负载不变测试，在测试过程中可视化应用程序的性能和负载，并能快速启动和停止测试。它也会保存测试结果的历史记录，因此在资源限制发生变化时很容易对结果进行比较。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/QCbDup.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/QCbDup.jpg)
 
 ### Kubescope cli
 

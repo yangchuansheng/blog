@@ -62,7 +62,7 @@ $ cd envoy/examples/front-proxy
 
 整体架构如下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-40-0tx7WG.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-40-0tx7WG.png)
 
 使用 docker-compose 启动容器：
 
@@ -277,6 +277,6 @@ Envoy 的一大特色是内置的 Admin 服务，如果你在浏览器中访问 
 
 ----
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

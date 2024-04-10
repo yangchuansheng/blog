@@ -25,8 +25,8 @@ tags:
 - Argo CD
 - Kubernetes
 categories: cloud-native
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-46-tnIQ1t.png
-meta_image: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-18-VYVeCS.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-46-tnIQ1t.png
+meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-18-VYVeCS.png
 ---
 
 在上一篇『[GitOps 介绍](/posts/what-is-gitops/)』中，我介绍了什么是 GitOps，包括 GitOps 的原则和优势，以及 GitOps 与 DevOps 的区别。本文将介绍用于实施 GitOps 的工具 Argo CD。
@@ -41,7 +41,7 @@ Argo CD 是以 Kubernetes 作为基础设施，遵循声明式 GitOps 理念的�
 
 从上篇文章『[GitOps 介绍](/posts/what-is-gitops/)』可以知道，目前大多数 CI/CD 工具都使用基于 Push 的部署模式，例如 Jenkins、CircleCI 等。这种模式一般都会在 CI 流水线运行完成后执行一个命令（比如 kubectl）将应用部署到目标环境中。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-12-coPxwT.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-07-02-23-12-coPxwT.jpg)
 
 这种 CD 模式的缺陷很明显：
 
@@ -58,13 +58,13 @@ Argo CD 是以 Kubernetes 作为基础设施，遵循声明式 GitOps 理念的�
 
 Argo CD 会被部署在 Kubernetes 集群中，使用的是基于 Pull 的部署模式，它会周期性地监控应用的实际状态，也会周期性地拉取 Git 仓库中的配置清单，并将实际状态与期望状态进行比较，如果实际状态不符合期望状态，就会更新应用的实际状态以匹配期望状态。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-10-21-hJuaPd.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-10-21-hJuaPd.png)
 
 无论是通过 CI 流水线触发更新 K8s 编排文件，还是 DevOps 工程师直接修改 K8s 编排文件，Argo CD 都会自动拉取最新的配置并应用到 K8s 集群中。
 
 最终会得到一个相互隔离的 CI 与 CD 流水线，CI 流水线通常由研发人员（或者 DevOps 团队）控制，CD 流水线通常由集群管理员（或者 DevOps 团队）控制。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-10-22-OKAG7J.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-10-22-OKAG7J.png)
 
 ## Argo CD 的优势
 
@@ -88,7 +88,7 @@ Argo CD 会定期拉取最新配置并应用到集群中，一旦最新的配置
 
 如果你在[青云](https://www.qingcloud.com/)北京3区中的 [KubeSphere](https://kubesphere.com.cn) 集群出现故障，且短期内不可恢复，可以直接创建一个新集群，然后将 Argo CD 连接到 Git 仓库，这个仓库包含了整个集群的所有配置声明。最终新集群的状态会与之前旧集群的状态一致，完全不需要人工干预。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-10-23-GWyFEx.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-10-23-GWyFEx.png)
 
 ### 使用 Git 实现访问控制
 
@@ -96,7 +96,7 @@ Argo CD 会定期拉取最新配置并应用到集群中，一旦最新的配置
 
 这样做的好处是，除了集群管理员和少数人员之外，其他人不再需要直接访问 Kubernetes 集群，只需访问 Git 仓库即可。对于程序而言也是如此，类似于 Jenkins 这样的 CI 工具也不再需要访问 Kubernetes 的权限，因为只有 Argo CD 才可以 apply 配置清单，而且 Argo CD 已经部署在 Kubernetes 集群中，必要的访问权限已经配置妥当，这样就不需要给集群外的任意人或工具提供访问的证书，可以提供更强大的安全保障。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-11-42-VzgIQt.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-11-42-VzgIQt.png)
 
 ### 扩展 Kubernetes
 
@@ -108,7 +108,7 @@ Argo CD 会定期拉取最新配置并应用到集群中，一旦最新的配置
 
 ## Argo CD 架构
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-22-15-B8di8D.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-01-22-15-B8di8D.png)
 
 从功能架构来看，Argo CD 主要有三个组件：API Server、Repository Server 和 Application Controller。从 GitOps 工作流的角度来看，总共分为 3 个阶段：检索、调谐和呈现。
 
@@ -212,11 +212,11 @@ Argo CD 的 Helm Chart 目前由社区维护，地址：[https://github.com/argo
 
 创建 Kubernetes 集群的过程很简单，首先注册登录 [https://kubesphere.cloud](https://kubesphere.cloud/) 控制台，然后点击 **托管集群服务** 打开 **新建 Kubernetes 集群** 页面，填写集群名称，选择运行环境，点击 **新建** 菜单即可创建集群。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-13-26-7ghhIX.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-13-26-7ghhIX.png)
 
 几秒钟之后便会创建完毕，并显示集群基本信息。下载 kubeconfig，便可使用 kubectl 来访问集群。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-13-28-DwSbLu.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-13-28-DwSbLu.png)
 
 接下来开始部署 Argo CD：
 
@@ -277,7 +277,7 @@ $ argocd account update-password --account admin --current-password xxxx --new-p
 
 登录后的界面：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-13-36-ktWDCz.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-13-36-ktWDCz.png)
 
 ## Argo CD 核心概念
 
@@ -285,7 +285,7 @@ $ argocd account update-password --account admin --current-password xxxx --new-p
 
 ### Argo CD Application
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-14-44-c193WA.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-14-44-c193WA.png)
 
 Argo CD 中的 Application 定义了 Kubernetes 资源的**来源**（Source）和**目标**（Destination）。来源指的是 Git 仓库中 Kubernetes 资源配置清单所在的位置，而目标是指资源在 Kubernetes 集群中的部署位置。
 
@@ -297,7 +297,7 @@ Argo CD 中的 Application 定义了 Kubernetes 资源的**来源**（Source）�
 
 Application 的配置清单示例：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-15-44-JOttfb.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-02-15-44-JOttfb.jpg)
 
 如果有多个团队，每个团队都要维护大量的应用，就需要用到 Argo CD 的另一个概念：**项目**（Project）。
 
@@ -318,7 +318,7 @@ Argo CD 中的项目（Project）可以用来对 Application 进行分组，不�
 
 在 GitHub 上创建一个项目，取名为 [argocd-lab](https://github.com/yangchuansheng/argocd-lab)，为了方便实验将仓库设置为公共仓库。在仓库中新建 dev 目录，在目录中创建两个 YAML 配置清单，分别是 `deployment.yaml` 和 `service.yaml`。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-16-13-T0okpv.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-16-13-T0okpv.png)
 
 配置清单内容如下：
 
@@ -412,11 +412,11 @@ application.argoproj.io/myapp-argo-application created
 
 在 Argo CD 可视化界面中可以看到应用已经创建成功了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-03-Gsuupw.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-03-Gsuupw.png)
 
 点进去可以看到应用的同步详情和各个资源的健康状况。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-04-2IALoW.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-04-2IALoW.png)
 
 **如果你更新了 deployment.yaml 中的镜像，Argo CD 会自动检测到 Git 仓库中的更新，并且将集群中 Deployment 的镜像更新为 Git 仓库中最新设置的镜像版本。**
 
@@ -424,9 +424,9 @@ application.argoproj.io/myapp-argo-application created
 
 [KubeSphere 从 3.3.0 开始](https://kubesphere.com.cn/news/kubesphere-3.3.0-ga-announcement/)也提供了**基于 GitOps** 的 CD方案，**引入 Argo CD** 作为 CD 的后端，而且可视化界面更加炫酷，感兴趣的小伙伴可以试试使用 KubeSphere 来创建管理 Application。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-32-Udt6mK.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-32-Udt6mK.jpg)
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-33-augrcO.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-03-17-33-augrcO.jpg)
 
 ## 总结
 

@@ -18,12 +18,12 @@ tags:
 - Kubernetes
 categories: 
 - cloud-native
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201126104701.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201126104701.png
 ---
 
 最近我发现我的 `Kubernetes` 集群资源实在是太多了，有点浪费，不信你看：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20201113174212.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20201113174212.jpg)
 
 既然闲置资源那么多，那我何不想办法利用一下。怎么用，用来干什么又是一个问题，想到我手中只有 MacBook，缺少 Windows 操作系统，那就先想办法用 Kubernetes 创建个 Windows 虚拟机用用吧，毕竟很多场景只能用 Windows（比如突破某盘的限速、Xshell 一把梭连接所有服务器）。于是我将目光转向了 Kubevirt。
 
@@ -39,7 +39,7 @@ Kubevirt 主要实现了下面几种资源，以实现对虚拟机的管理：
 
 Kubevirt 的整体架构如图：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20201113233921.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20201113233921.png)
 
 + **virt-api** : 负责提供一些 KubeVirt 特有的 api，像是 `console, vnc, startvm, stopvm` 等。
 + **virt-controller** : 管理和监控 VMI 对象及其关联的 Pod，对其状态进行更新。
@@ -48,7 +48,7 @@ Kubevirt 的整体架构如图：
 
 如果你嫌上面的架构图太繁琐，这里还有一个简化版：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20201113234247.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20201113234247.png)
 
 这个图里的 Agent 其实就是 virt-handler。
 
@@ -167,11 +167,11 @@ $ kubectl krew install virt
 
 ① [MSDN I Tell You](https://msdn.itellyou.cn/)。该网站提供的链接是 `ed2k` 格式，需要通过特殊下载工具进行下载，比如百度网盘离线下载、迅雷、eMule 等，其中百度网盘离线下载最好使，但下载限速又是个大问题，开了超级会员的当我没说。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122173815.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122173815.png)
 
 ② [TechBench by WZT](https://tb.rg-adguard.net/public.php)。该网站提供的是直链下载方式，可以用任意下载工具进行下载，比上面的网站方便多了，不过资源没有上面的网站丰富。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122174051.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122174051.jpg)
 
 我推荐通过第二个网站来下载 Windows 镜像。
 
@@ -350,47 +350,47 @@ $ kubectl virt vnc win10
 
 执行完上面的命令后，就会打开本地的 VNC 客户端连接到虚拟机：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122185926.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122185926.png)
 
 下面就是安装正常的安装步骤往下进行，到选择硬盘那一步的时候，你会发现没有一个硬盘可供使用，这时就需要安装 virtio 驱动了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122190331.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122190331.png)
 
 不过不用担心，virtio 驱动已经被挂载进来了，直接点击**加载驱动程序**就可以安装驱动了：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122190505.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122190505.png)
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122190628.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122190628.png)
 
 安装好驱动后，硬盘就能正确显示了：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122194231.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122194231.png)
 
 下面就可以继续安装了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122194711.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122194711.png)
 
 安装成功后会自动重启进行初始化设置，那个熟悉的“海内存知己，天涯若比邻”又回来了：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122195000.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122195000.png)
 
 设置完成后，进入系统，打开设备管理器，可以看到有几个未配置的设备。选择其中一个右键单击，然后选择“更新驱动程序”。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122202548.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122202548.png)
 
 选择“浏览我的电脑以查找驱动程序”。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122202658.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122202658.png)
 
 选择“CD 驱动器（E:）virtio-win-0.1.1”，然后点击确定。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122202755.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122202755.png)
 
 设备管理器将自动找到正确的驱动程序，不需要指定驱动程序的路径。
 
 在提示符下，单击“安装”。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122203249.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122203249.png)
 
 其他的设备驱动可以复制上面的步骤一一安装。
 
@@ -495,23 +495,23 @@ win10-rdp                NodePort    10.98.20.203    <none>        3389:31192/TC
 
 如果你的本地操作系统是 `macOS`，需要在 App Store 中安装 `Microsoft Remote Desktop`。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122211440.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122211440.png)
 
 安装完之后打开应用，选择 **Add PC**：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122211718.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122211718.png)
 
 在 **PC name** 一栏中输入 `NodeIP+NodePort`，然后点击 **Add**。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122212017.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122212017.png)
 
 然后右击创建好的配置，选择 **Connect**：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122212258.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122212258.png)
 
 输入账号密码后就可以连接到 Windows 了。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20201122212610.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201122212610.jpg)
 
 全屏之后就可以获得完美的远程桌面体验了，尽情玩耍吧！
 

@@ -30,7 +30,7 @@ VXLAN（`Virtual eXtensible Local Area Network`，虚拟可扩展局域网），
 
 一个典型的数据中心 VXLAN 网络拓扑图如图所示：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723162742.webp)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162742.webp)
 
 其中 VM 指的是虚拟机，`Hypervisor` 指的是虚拟化管理器。
 
@@ -88,7 +88,7 @@ VXLAN 有几个常见的术语：
 
   隧道是一个逻辑上的概念，在 VXLAN 模型中并没有具体的物理实体向对应。隧道可以看做是一种虚拟通道，VXLAN 通信双方认为自己是在直接通信，并不知道底层网络的存在。从整体来说，每个 VXLAN 网络像是为通信的虚拟机搭建了一个单独的通信通道，也就是隧道。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723162743.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162743.png)
 
 上图所示为 `VXLAN` 的工作模型，它创建在原来的 IP 网络（三层）上，只要是三层可达（能够通过 IP 相互通信）的网络就能部署 `VXLAN`。在 VXLAN 网络的每个端点都有一个 `VTEP` 设备，负责 VXLAN 协议报文的解包和封包，也就是在虚拟报文上封装 `VTEP` 通信的报文头部。
 
@@ -96,7 +96,7 @@ VXLAN 有几个常见的术语：
 
 VXLAN 的报文结构如下图所示：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723162744.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162744.png)
 
 + **VXLAN Header** : 在原始二层帧的前面增加 `8` 字节的 VXLAN 的头部，其中最主要的是 `VNID`，占用 `3` 个字节（即 24 bit），类似 VLAN ID，可以具有 $2^{24}$ 个网段。
 + **UDP Header** : 在 VXLAN 和原始二层帧的前面使用 `8` 字节 `UDP` 头部进行封装（MAC IN UDP），目的端口号缺省使用 4789，源端口按流随机分配（通过 MAC，IP，四层端口号进行 hash 操作）， 这样可以更好的做 `ECMP`。
@@ -185,7 +185,7 @@ VXLAN 的报文结构如下图所示：
 
   实际上，`VTEP` 也会有自己的转发表，转发表通过泛洪和学习机制来维护，对于目标 MAC 地址在转发表中不存在的未知单播，广播流量，都会被泛洪给除源 VTEP 外所有的 VTEP，目标 VTEP 响应数据包后，源 VTEP 会从数据包中学习到 `MAC`，`VNI` 和 `VTEP` 的映射关系，并添加到转发表中，后续当再有数据包转发到这个 MAC 地址时，VTEP 会从转发表中直接获取到目标 VTEP 地址，从而发送单播数据到目标 VTEP。
 
-  ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723162745.png)
+  ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162745.png)
   
   VTEP 转发表的学习可以通过以下两种方式：
   
@@ -208,7 +208,7 @@ $ man ip-link
 
 搜索 VXLAN，可以看到如下描述：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200723162746.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162746.png)
 
 ### 管理 VXLAN 接口
 

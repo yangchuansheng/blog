@@ -36,7 +36,7 @@ Kube-router 是围绕 <span id="inline-blue">观察者</span> 和 <span id="inli
 
 `Kube-router` 由3个核心控制器和多个观察者组成，如下图所示。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/sMs3sm.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/sMs3sm.jpg)
 
 ### 流程分析
 
@@ -120,7 +120,7 @@ Kube-router 的负载均衡器功能，会在物理机上创建一个虚拟的 `
 
 基于 Kubernetes 网络服务代理的 Kube-router IPVS 演示
 
-[![asciicast](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-48-94sE6Q.png)](https://asciinema.org/a/120312)
+[![asciicast](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-48-94sE6Q.png)](https://asciinema.org/a/120312)
 
 特征：
 

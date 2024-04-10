@@ -221,7 +221,7 @@ PING 192.168.179.9 (192.168.179.9) 56(84) bytes of data.
 
 这里就遇到了我在[上一篇文章](/posts/netwnetwork-virtualization-macvlan/#span-id-inline-toc-1-span-macvlan-简介)开头提到的问题。到目前为止，整个实验的拓扑结构如下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-12-pBrsLq.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-26-23-12-pBrsLq.jpg)
 
 其实也很好解决，额外创建一个 Macvlan 子接口，并把 ens160 的 IP 分给这个子接口，最后还要修改默认路由。
 

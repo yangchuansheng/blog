@@ -27,11 +27,11 @@ categories:
 - VPN
 series:
 - Tailscale 系列教程
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-11-15-sM5HES.png
-meta_image: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-01-WKkKHb.jpg
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-11-15-sM5HES.png
+meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-01-WKkKHb.jpg
 ---
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting5@main/uPic/2022-11-29-10-20-bADiKL.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2022-11-29-10-20-bADiKL.png)
 
 目前国家工信部在大力推动三大运营商发展 IPv6，对家用宽带而言，可以使用的 IPv4 公网 IP 会越来越少。有部分地区即使拿到了公网 IPv4 地址，也是个大内网地址，根本不是真正的公网 IP，访问家庭内网的资源将会变得越来越困难。
 
@@ -62,7 +62,7 @@ Tailscale 是一种基于 WireGuard 的虚拟组网工具，和 Netmaker 类似�
 
 简而言之，我们可以将 Tailscale 看成是更为易用、功能更完善的 WireGuard。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-14-50-Q4bWmK.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-14-50-Q4bWmK.png)
 
 光有这些还不够，作为一个白嫖党，咱更关心的是**免费**与**开源**。
 
@@ -87,22 +87,22 @@ Headscale 由欧洲航天局的 Juan Font 使用 Go 语言开发，在 BSD 许�
 直接点击下面的按钮跳转到 Sealos 的应用模板部署界面：
 
 <figure><a href="https://bja.sealos.run/?openapp=system-template%3FtemplateName%3Dheadscale" target="_blank">
-    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://cdn.jsdelivr.us/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
+    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://cdn.jsdelivr.net/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="图片描述: Deploy-on-Sealos.svg">
 </a></figure>
 
 > 如果您是第一次打开 [Sealos](https://sealos.run)，需要先注册登录账号。
 
 然后点击「部署应用」按钮开始部署。部署完成后，你会看到两个应用，一个是 Headscale，另一个则是 [Headscale 可视化界面](https://github.com/GoodiesHQ/headscale-admin)。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-35-ceoOvP.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-35-ceoOvP.png)
 
 点击 Headscale 应用的「详情」进入详情页面。内网端口 8080 对应的外网地址就是 Headscale 的公网域名。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-38-HL3z2X.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-38-HL3z2X.png)
 
 Headscale 公网域名后面跟上路径 `/admin/` 即可打开可视化界面。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-39-42E6NM.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-39-42E6NM.jpg)
 
 ### 在 Linux 上部署
 
@@ -260,7 +260,7 @@ ID | Name | Created
 
 如果你是通过 Sealos 一键部署的 Headscale，可以在 Headscale 应用的详情页面点击右侧的「终端」按钮进入 Headscale 容器的终端：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
 
 然后在终端中执行上述命令创建 user。
 
@@ -268,7 +268,7 @@ ID | Name | Created
 
 [Headscale-Admin](https://github.com/GoodiesHQ/headscale-admin) 需要通过 API Key 来接入 Headscale，所以在使用之前我们需要先创建一个 API key。在 Headscale 应用的详情页面点击右侧的「终端」按钮进入 Headscale 容器的终端：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
 
 然后执行以下命令创建 API Key：
 
@@ -278,11 +278,11 @@ $ headscale apikey create
 
 将 Headscale 公网域名和 API Key 填入 Headscale-Admin 的设置页面，同时取消勾选 Legacy API，然后点击「Save」：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-05-bF4O80.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-05-bF4O80.jpg)
 
 接入成功后，点击左边侧栏的「Users」，然后点击「Create」开始创建用户：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-24-M1KVMw.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-24-M1KVMw.jpg)
 
 ## Tailscale 客户端接入
 
@@ -363,7 +363,7 @@ $ tailscale up --login-server=https://<HEADSCALE_PUB_ENDPOINT> --accept-routes=t
 
 你也可以在 Headsca-Admin 的 Deploy 界面获取接入命令：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-28-7nsZjl.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-28-7nsZjl.jpg)
 
 这里推荐将 DNS 功能关闭，因为它会覆盖系统的默认 DNS。如果你对 DNS 有需求，可自己研究官方文档，这里不再赘述。
 
@@ -377,7 +377,7 @@ To authenticate, visit:
 
 在浏览器中打开该链接，就会出现如下的界面：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-23-vrj10n.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-23-vrj10n.png)
 
 将其中的命令复制粘贴到 headscale 所在机器的终端中，并将 USERNAME 替换为前面所创建的 user。
 
@@ -470,26 +470,26 @@ macOS 有 3 种安装方法：
 
 安装完 GUI 版应用后还需要做一些骚操作，才能让 Tailscale 使用 Headscale 作为控制服务器。当然，Headscale 已经给我们提供了详细的操作步骤，你只需要在浏览器中打开 URL：`https://<HEADSCALE_PUB_ENDPOINT>/apple`，便会出现如下的界面：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-50-lgDjCB.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-50-lgDjCB.png)
 
 对于 1.34.0 及以上的 Tailscale 版本，可以按照下面的方法来操作：
 
 1. 长按「ALT」键，然后点击顶部菜单栏的 Tailscale 图标，然后将鼠标指针悬停在「Debug」菜单上。
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-04-fPLtsa.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-04-fPLtsa.png)
 
 2. 在「Custom Login Server」下方选择「Add Account...」。
 3. 在打开的弹窗中填入 Headscale 的公网域名，然后点击「Add Account」。
    
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-13-0LVi0S.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-13-0LVi0S.png)
 
 4. 然后立马就会跳转到浏览器并打开一个页面。
    
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-14-3VPcX4.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-14-3VPcX4.png)
 
 5. 接下来与之前 Linux 客户端相同，回到 Headscale 所在的机器执行浏览器中的命令即可，注册成功：
    
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
 
 回到 Headscale 所在主机，查看注册的节点：
 
@@ -534,35 +534,35 @@ Android 客户端从 1.30.0 版本开始支持自定义控制服务器（即 coo
 
 安装完成后打开 Tailscale App，会出现如下的界面：
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-12-m2IYpv.jpeg">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-12-m2IYpv.jpeg">
 
 
 
 点开右上角的“三个点”，你会看到只有一个 `About` 选项：
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-14-ghdl4A.jpeg">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-14-ghdl4A.jpeg">
 
 接下来就需要一些骚操作了，你需要反复不停地**点开再关闭**右上角的“三个点”，重复三四次之后，便会出现一个 `Change server` 选项：
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-23-mcAexh.jpeg">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-23-mcAexh.jpeg">
 
 点击 `Change server`，将 headscale 控制服务器的地址填进去：
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-37-fkRIxW.jpeg">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-37-fkRIxW.jpeg">
 
 然后点击 `Save and restart` 重启，点击 `Sign in with other`，就会跳出这个页面：
 
-<img src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-39-fKOCTT.jpg" style="width: 400px;">
+<img src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-39-fKOCTT.jpg" style="width: 400px;">
 
 将其中的命令粘贴到 Headscale 所在主机的终端，将 **USER** 替换为之前创建的 user，然后执行命令即可。注册成功后可将该页面关闭，回到 App 主页，效果如图：
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-20-21-2e8CKX.jpg">
+<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-20-21-2e8CKX.jpg">
 
 ### Windows
 
 Windows Tailscale 客户端想要使用 Headscale 作为控制服务器，只需在浏览器中打开 URL：`https://<HEADSCALE_PUB_ENDPOINT>/windows`，便会出现如下的界面：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-19-vSqFK9.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-19-vSqFK9.png)
 
 按照其中的步骤操作即可。
 
@@ -580,14 +580,14 @@ iOS 系统直接从应用商店安装即可，当然前提是你需要有一个�
 
 1. 安装完成后打开 Tailscale 确认你没有登录任何账号。然后打开「设置」，向下滑动，在「Game Center」或者「电视提供商」下方找到「Tailscale」，然后点击进去。
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-41-byKA02.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-41-byKA02.png)
 
    如果你的设备之前登录过 Tailscale 服务端，需要将「Reset Keychain」选项打开。
 
 2. 在「Alternate Coordination Server URL」下方输入你的 Headscale 公网域名。
 3. 从 iOS 应用程序切换器中关闭 Tailscale 再重新打开，然后选择「Log in」，就会弹出一个 Headscale 身份认证页面。
    
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-51-mErNCd.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-51-mErNCd.png)
 
 4. 将 Headscale 身份认证页面中的命令复制粘贴到 headscale 所在容器的终端中，并将 USERNAME 替换为前面所创建的 user。
    
@@ -599,7 +599,7 @@ iOS 系统直接从应用商店安装即可，当然前提是你需要有一个�
 
 5. 注册成功。
 
-   ![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-18-01-Z2XdzF.png)
+   ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-18-01-Z2XdzF.png)
 
 ### 通过 Pre-Authkeys 接入
 
@@ -621,15 +621,15 @@ ID | Key                                              | Reusable | Ephemeral | U
 
 当然你也可以在 Headscale-Admin 中生成。点击客户端想加入的 User：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-21-52-baNzjl.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-21-52-baNzjl.jpg)
 
 在弹出的界面中点击「PreAuth Keys」右侧的 `Create`，设置一个过期时间（比如 100 年~），如果想重复利用这个 Key，可以勾选 `Reusable`，最后点击 ✅：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-21-57-nSM3jC.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-21-57-nSM3jC.png)
 
 创建成功后，点击红框区域便可复制该 PreAuth Key：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-22-00-ZOw8lm.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-22-00-ZOw8lm.png)
 
 现在新节点就可以无需服务端同意直接接入了：
 
@@ -709,6 +709,6 @@ $ ip route show table 52|grep "192.168.100.0/24"
 ## 总结
 目前从稳定性来看，Tailscale 比 Netmaker 略胜一筹，基本上不会像 Netmaker 一样时不时出现 ping 不通的情况，这取决于 Tailscale 在用户态对 NAT 穿透所做的种种优化，他们还专门写了一篇文章介绍 [NAT 穿透的原理](https://tailscale.com/blog/how-nat-traversal-works/)，[中文版](https://arthurchiao.art/blog/how-nat-traversal-works-zh/)翻译自国内的 eBPF 大佬赵亚楠，墙裂推荐大家阅读。放一张图给大家感受一下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-10-52-TzXGEZ.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-10-52-TzXGEZ.png)
 
 本文给大家介绍了 Tailscale 和 Headscale，包括 Headscale 的安装部署和各个平台客户端的接入，以及如何打通各个节点所在的局域网。下篇文章将会给大家介绍[如何让 Tailscale 使用自定义的 DERP Servers](/posts/custom-derp-servers/)（也就是中继服务器），See you~~

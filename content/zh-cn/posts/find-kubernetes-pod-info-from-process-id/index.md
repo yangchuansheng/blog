@@ -17,14 +17,14 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - kubernetes
 categories: cloud-native
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200714184130.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200714184130.png
 ---
 
 在管理 `Kubernetes` 集群的过程中，我们经常会遇到这样一种情况：在某台节点上发现某个进程资源占用量很高，却又不知道是哪个容器里的进程。有没有办法可以根据 `PID` 快速找到 `Pod` 名称呢？
 
 假设现在有一个 prometheus 进程的 PID 是 `14338`：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@master/img/20200714165733.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200714165733.png)
 
 为了进一步挖掘信息，有两种思路，一种是挖掘 `PID` 对应的容器的信息，另一种是挖掘 PID 对应的 `Pod` 的信息。
 

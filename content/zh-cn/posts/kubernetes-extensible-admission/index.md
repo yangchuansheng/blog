@@ -25,7 +25,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 准入阶段由不同的插件组成，每个插件都能 “各司其职”，并明确知道自己要检查的对象结构。例如：`PodNodeSelector`（影响调度决策），`PodSecurityPolicy`（防止升级的容器）和 `ResourceQuota`（为每个 Namespace 限制资源配额）。 
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/5VRe5t.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/5VRe5t.jpg)
 
 准入分为两个阶段：
 
@@ -49,7 +49,7 @@ Admission 的 Mutation 阶段允许在资源内容生成前进行修改。因为
 
 下面将对准入控制工作流做一番详解。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/E2ykx1.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/E2ykx1.jpg)
 
 API Server 接收到客户端请求后首先进行认证鉴权，认证鉴权通过后才会进行后续的 `endpoint handler` 处理。
 
@@ -174,7 +174,7 @@ webhooks:
 
 + 	因为中间会经过 kube-apiserver 这个安全的前端代理，所以 extension API servers 不会将其 `service account token` 泄漏给 Webhook。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/dte9NC.jpg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/dte9NC.jpg)
 
 **简而言之：一个安全的拓扑结构可以使用 API server 聚合 (API server aggregation) 的所有安全机制，不需要额外的配置。**其他的拓扑结构也是可行的，但是需要额外的手动配置以及创建安全设置工作。尤其是像 `service catalog` 这种 extension API servers，上面的拓扑结构就是零配置，并且可移植到任何 Kubernetes 集群中。
 
@@ -458,6 +458,6 @@ Istio 就是使用 `ValidatingAdmissionWebhooks` 验证 Istio 配置，使用 `M
 
 ----
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

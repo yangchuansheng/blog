@@ -32,17 +32,17 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 当前系统中有 A、B、C 三个服务，服务 A 是上游，服务 B 是中游，服务 C 是下游。它们的调用链如下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/circuit-breaking.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/circuit-breaking.svg)
 
 一旦下游服务 C 因某些原因变得不可用，积压了大量请求，服务 B 的请求线程也随之阻塞。线程资源逐渐耗尽，使得服务 B 也变得不可用。紧接着，服务 A 也变为不可用，整个调用链路被拖垮。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/circuit-breaking1.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/circuit-breaking1.svg)
 
 像这种调用链路的连锁故障，就是上文所说的服务雪崩效应。
 
 正所谓刮骨疗毒，壮士断腕。在这种时候，就需要我们的熔断机制来挽救整个系统。熔断机制的大体流程如下：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/circuit-breaking3.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/circuit-breaking3.svg)
 
 这里需要解释两点：
 
@@ -57,7 +57,7 @@ Istio 是通过 Envoy Proxy 来实现熔断机制的，Envoy 强制在网络层�
 
 该示例的架构如图所示：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/istio-circuit-break2.svg)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/istio-circuit-break2.svg)
 
 该示例由客户端和服务端组成，其中客户端是一个 Java HTTP 应用程序，被打包在镜像 `docker.io/ceposta/http-envoy-client-standalone:latest` 中，它用来模拟对后端服务 `httpbin` 发起 http 调用，所有的调用首先都会被 Envoy Proxy 拦截。
 

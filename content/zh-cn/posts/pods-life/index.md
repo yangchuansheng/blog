@@ -41,7 +41,7 @@ Pod 相位的数量和含义是严格指定的。除了本文档中列举的状�
 
 下图是 Pod 的生命周期示意图，从图中可以看到 Pod 状态的变化。
 
-![Pod的生命周期示意图](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/fcachl.jpg "Pod的生命周期示意图")
+![Pod的生命周期示意图](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/fcachl.jpg "Pod的生命周期示意图")
 
 ### Pod 状态
 
@@ -125,7 +125,7 @@ $ cat /tmp/loap/timing
 
 `/tmp/loap/timing` 文件的内容很好地体现了 Pod 的启动和关闭流程，具体过程如下：
 
-![Pod 的启动和关闭流程](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/AOQgQj.jpg "Pod 的启动和关闭流程")
+![Pod 的启动和关闭流程](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/AOQgQj.jpg "Pod 的启动和关闭流程")
 
 1. 首先启动一个 Infra 容器（又叫 Pause 容器），用来和 Pod 中的其他容器共享 linux 命名空间，并开启 init 进程。（上图中忽略了这一步）
 2. 然后启动 Init 容器，它是一种专用的容器，在应用程序容器启动之前运行，用来对 Pod 进行一些初始化操作，并包括一些应用镜像中不存在的实用工具和安装脚本。

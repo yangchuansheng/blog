@@ -17,7 +17,7 @@ tocLevels: ["h2", "h3", "h4"]
 tags:
 - WireGuard
 categories: Network
-img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210121152522.png
+img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210121152522.png
 ---
 
 之前花了很大的篇幅介绍了 WireGuard 的[工作原理](/posts/wireguard-docs-theory/)和[配置详解](/posts/wireguard-docs-practice/)，可这里面的内容实在太多了，大部分人根本没兴趣深究，只是将其当成参考书来看。WireGuard 虽然组网逻辑很简洁明了，但秘钥和配置文件的管理是个麻烦事，需要手工配置。为了让大部分读者能够快速上手 WireGuard，体验 WireGuard 的优雅和强大，我决定新开一个 WireGuard 快速上手系列，第一篇之前已经发出来了：
@@ -40,7 +40,7 @@ img: https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210121152
 + 支持使用 GitHub 和 Oauth2 OIDC 来进行用户认证；
 + 颜值还比较高。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120100538.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120100538.png)
 
 wg-gen-web 支持直接通过容器来运行，如果你是在本地运行，可以准备一份 docker-compose 文件：
 
@@ -85,7 +85,7 @@ services:
 
 在浏览器中输入 URL `<hostIP>` 打开图形管理界面，点击 “SERVER” 开始填写服务端和客户端的配置信息：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120115544.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120115544.png)
 
 各项配置的含义我就不解释了，都很好理解，实在不理解的请查看 [WireGuard 配置详解](/posts/wireguard-docs-practice/)。
 
@@ -107,11 +107,11 @@ PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j A
 
 接下来点击 `CLIENTS`，然后点击 `ADD NEW CLIENT` 开始新增客户端配置：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120120513.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120120513.png)
 
 填写客户端配置信息：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120130016.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120130016.png)
 
 点击 SUBMIT，就会在 `/etc/wireguard` 目录下生成客户端的 json 配置文件：
 
@@ -271,7 +271,7 @@ peer: k2Ut15aQn7+mNHqEd4bwdNx3WcvA4F7SPmETYuWdSjM=
 
 macOS 目前只有两种客户端软件，一个是图形界面，一个是命令行工具。图形界面只上架了 App Store，而且需要美区 Apple ID，比较麻烦。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120135143.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120135143.png)
 
 我推荐直接安装命令行工具：
 
@@ -287,7 +287,7 @@ macOS 中的 `wg-quick` 默认也是读取的 `/etc/wireguard` 目录，所以�
 
 然后直接下载配置文件：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120135905.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120135905.png)
 
 将其移动到 /etc/wireguard 目录，并重命名为 `wg0.conf`：
 
@@ -366,7 +366,7 @@ peer: k2Ut15aQn7+mNHqEd4bwdNx3WcvA4F7SPmETYuWdSjM=
 
 Web 页面也能看到连接信息：
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting@second/img/20210120141437.png)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20210120141437.png)
 
 如果想增加更多的客户端，直接在 Web 页面新增客户端配置就行了，不需要做任何额外的操作，解放了双手。手机客户端直接扫描二维码就能连接，还是挺爽的。
 

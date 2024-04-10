@@ -71,6 +71,6 @@ circuit_breakers:
 
 ----
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 
