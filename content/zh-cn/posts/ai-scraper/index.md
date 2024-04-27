@@ -72,7 +72,7 @@ GPT-4-32K 是 GPT-4 的改良变体，上下文窗口为 32k，远远超过 4k�
 
 HTML 数据通常都很复杂和冗长。大部分内容用于定义样式、布局和交互逻辑，而非文本内容本身。我担心文本模型处理这种情况效果欠佳，所以我的想法是**使用 GPT-4-Turbo-Vision 模型直接 “查看” 渲染后的页面**，抄录出最相关的文本，然后在源 HTML 中搜索包含该文本的元素。
 
-![使用方法 1 获取元素](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-45-vu1jZs.png)
+![使用方法 1 获取元素](https://images.icloudnative.io/uPic/2023-12-20-22-45-vu1jZs.png)
 
 但这个方法很快就失败了：
 
@@ -88,7 +88,7 @@ GPT-4-Turbo-Vision 有时会拒绝我的抄录文本请求，说 “对不起，
 
 纯文本的 GPT-4-Turbo 速率限制较宽松，上下文窗口有 128k，所以我试着直接输入整个页面 HTML，要它识别相关元素。
 
-![使用方法 2 获取元素](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-45-GwyLWC.png)
+![使用方法 2 获取元素](https://images.icloudnative.io/uPic/2023-12-20-22-45-GwyLWC.png)
 
 尽管 HTML 数据基本符合 (大多数情况下)，但我发现 GPT-4-Turbo 模型的智能程度仍不足以正确无误地完成这项工作。它们经常识别错误的元素，或者给出范围过广的选择器。
 
@@ -104,23 +104,23 @@ GPT-4-Turbo-Vision 有时会拒绝我的抄录文本请求，说 “对不起，
 
 虽然生成搜索词的速度可能比搜索本身稍慢，但我会让文本模型一次性生成多个关键词，并同时对它们进行搜索。包含搜索词的任何 HTML 元素都收集起来，下一步送给 GPT-4-32K 选出最相关的一个元素。
 
-![使用方法 3 获取元素](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-45-7jYa9Z.png)
+![使用方法 3 获取元素](https://images.icloudnative.io/uPic/2023-12-20-22-45-7jYa9Z.png)
 
 当然，如果使用足够多的搜索词，可能会获取很多 HTML 数据，这可能会触发 API 限制或者影响后续步骤的性能。所以我设计了一种方案，它可以智能地填充相关元素列表，直到达到一个预设长度。
 
 我要求 Turbo 模型挑选出 15-20 个词条，并按预估相关性从高到低排序。然后我用简单的正则表达式在 HTML 中搜索包含每个词条的所有元素。到这步结束时，我会得到一个由多个子列表组成的列表，其中每个子列表包含匹配某词条的所有元素。
 
-![由多个子列表组成的列表](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-45-ZwPFRC.png)
+![由多个子列表组成的列表](https://images.icloudnative.io/uPic/2023-12-20-22-45-ZwPFRC.png)
 
 接下来，我会用这些列表中的元素填充一个最终列表，并优先考虑那些出现在较早列表中的元素。例如，假设排名搜索词为：'pricing'、'fee'、'cost' 和 'prices'。在填充最终列表时，我会首选 'pricing' 列表中的元素，然后是 'fee' 列表，再到 'cost' 列表，依此类推。
 
 一旦最终列表达到预定义的令牌长度，我就会停止填充。这样做可以确保我在进行下一步时，不会超过令牌的最大限制。
 
-![最终列表](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-46-nAf9Kp.png)
+![最终列表](https://images.icloudnative.io/uPic/2023-12-20-22-46-nAf9Kp.png)
 
 如果您对该算法代码感兴趣，这里有一个简化版本：
 
-![获取元素的算法](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-46-FTZHDW.png)
+![获取元素的算法](https://images.icloudnative.io/uPic/2023-12-20-22-46-FTZHDW.png)
 
 这种方法使我能够最终获得一个长度合适、内容丰富的列表，它包含了来自各种搜索词的匹配元素，同时也优先考虑了排名更高相关词。
 
@@ -128,13 +128,13 @@ GPT-4-Turbo-Vision 有时会拒绝我的抄录文本请求，说 “对不起，
 
 例如 AI 试图找出古巴的首都。它搜索 “capital” 一词并匹配到橙框中的元素。但我们需要的信息实际上在绿色元素中——一个同级元素。我们已经非常接近答案了，但如果不同时考虑这两个元素，就无法解决问题。
 
-![同级元素问题](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-46-89bEL4.png)
+![同级元素问题](https://images.icloudnative.io/uPic/2023-12-20-22-46-89bEL4.png)
 
 为解决此问题，我在元素搜索函数中添加了 “父元素” 作为可选参数。将父元素设置为 0 时意味着搜索函数只会返回直接包含文本的那个元素 (当然也包括该元素的子元素)。
 
 将父元素设置为 1 意味着返回直接包含文本元素的父元素。设置为 2 则返回祖父元素，以此类推。在这个古巴的例子中，设置父元素为 2 会返回整个红色区域的 HTML 代码。
 
-![父元素和祖父元素](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-46-PrC6nh.png)
+![父元素和祖父元素](https://images.icloudnative.io/uPic/2023-12-20-22-46-PrC6nh.png)
 
 我决定将默认的父元素设置为 1，更高的值可能会捕获过多的 HTML。
 
@@ -142,7 +142,7 @@ GPT-4-Turbo-Vision 有时会拒绝我的抄录文本请求，说 “对不起，
 
 这一步非常简单，但要找到合适的提示词还需要一些试错：
 
-![用来选择元素的提示词](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-22-46-44U2qB.png)
+![用来选择元素的提示词](https://images.icloudnative.io/uPic/2023-12-20-22-46-44U2qB.png)
 
 这个步骤完成后，我就会得到页面上最相关的一个元素。然后将其传入下一流程，在那里 AI 模型将决定完成目标需要什么样的交互。
 
@@ -158,7 +158,7 @@ GPT-4-Turbo-Vision 有时会拒绝我的抄录文本请求，说 “对不起，
 
 这是我为 GET_ELEMENT 工具提供的描述：
 
-![获取元素的工具](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting-test@main/uPic/2023-12-20-15-37-JFuOqi.png)
+![获取元素的工具](https://images.icloudnative.io/uPic/2023-12-20-15-37-JFuOqi.png)
 
 您会注意到，这个工具不仅能够提供与搜索词最相关的元素，还能返回每个搜索词匹配的元素数量。这一信息对于助手来说非常重要，可以帮助它判断是否需要用不同的搜索词进行重试。
 
@@ -174,21 +174,21 @@ GPT-4-Turbo-Vision 有时会拒绝我的抄录文本请求，说 “对不起，
 
 > 助理会提供它想要执行的交互描述，我用 GPT-4-32K 来编写实现这些交互的代码，然后在我的 Playwright 爬虫中执行这些代码。
 
-![与元素交互的工具](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-15-53-uVNGIY.png)
+![与元素交互的工具](https://images.icloudnative.io/uPic/2023-12-20-15-53-uVNGIY.png)
 
 这是我为 `INTERACT_WITH_ELEMENT` 工具提供的描述：
 
-![与元素交互的工具的描述](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-15-53-qD6NIg.png)
+![与元素交互的工具的描述](https://images.icloudnative.io/uPic/2023-12-20-15-53-qD6NIg.png)
 
 你会注意到，助理在操作时并没有写出完整的元素，而是只提供了一个简短的标识符，这样做更为快捷和高效。
 
 下面是我给 GPT-4-32K 的提示词，以帮助它编写代码。我考虑到在与网页交互之前，可能存在我们需要提取的相关信息，所以我告诉它在函数中将提取的信息赋值给函数内名为 `actionOutput` 的变量。
 
-![编写 action 1](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-16-08-3RtD7K.png)
+![编写 action 1](https://images.icloudnative.io/uPic/2023-12-20-16-08-3RtD7K.png)
 
 我将这一步的字符串输出 (我称之为 “action”) 作为参数传递给我的 Playwright 爬虫，并使用 “eval” 函数将其作为代码执行 (我知道这可能会有危险)：
 
-![爬虫 action](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-16-10-SRPLL5.png)
+![爬虫 action](https://images.icloudnative.io/uPic/2023-12-20-16-10-SRPLL5.png)
 
 如果你想知道为什么我不直接让助理提供它的交互代码，那是因为我所使用的 Turbo 模型太笨了，无法可靠地编写命令。所以我助理描述它想要的交互方式 (比如“点击此元素”)，然后我使用更强大的 GPT-4-32K 模型来编写代码。
 
@@ -350,7 +350,7 @@ Running one function...
 
 这个元素对应页面渲染的这一部分：
 
-![莫哈韦沙漠页面](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-20-18-21-LPiE5w.png)
+![莫哈韦沙漠页面](https://images.icloudnative.io/uPic/2023-12-20-18-21-LPiE5w.png)
 
 这种情况下，如果我没有把 “parents” 设为 1，是无法找到所需答案的，因为我们要找的答案实际上位于与匹配元素相邻的元素中，就像之前与古巴相关的例子一样。
 

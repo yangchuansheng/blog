@@ -22,7 +22,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 最近，我看到某些公司在讨论将由 `Haproxy` 驱动的数据平面替换为 Envoy。如果你以前使用过 Haproxy，应该熟悉 Haproxy 的管理界面 UI（稍微有点过时了），它会暴露出后端服务列表、健康状态、活动状态和每个服务的统计信息。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/haproxy-admin.png)
+![](https://images.icloudnative.io/uPic/haproxy-admin.png)
 
 每当添加新的后端服务或修改 [ACL](https://www.haproxy.com/documentation/aloha/10-0/traffic-management/lb-layer7/acls/) 时，如果出现了故障，我就会用此管理界面 UI 来调试网络。例如，在任何给定时间，很容易确定集群中的单个故障后端，以及哪些后端服务运行状况不佳。
 
@@ -49,7 +49,7 @@ admin:
 
 启动 Envoy 进程后，你就可以在浏览器中通过 URL `<public_ip>:5000` 访问 Envoy 的管理界面了。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/envoy-admin.png)
+![](https://images.icloudnative.io/uPic/envoy-admin.png)
 
 现在有一个小问题——你会注意到，如果你尝试构建一个从远程 Envoy 实例（`<public_ip>:5000`）中提取数据的网站，你将看到浏览器（不禁用任何安全设置）不会允许我们获取数据，因为远程 Envoy 实例的端点不包含正确的 `CORS`（跨域资源共享） 响应头（如文档中所述，以防止 `CSRF` 攻击）。
 
@@ -117,6 +117,6 @@ static_resources:
 
 ----
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://images.icloudnative.io/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

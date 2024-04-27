@@ -23,8 +23,8 @@ tags:
 - Google
 categories: 
 - tech-social
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-23-20-01-4LEXD5.jpeg
-meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-23-20-01-4LEXD5.jpeg
+img: https://images.icloudnative.io/uPic/2023-11-23-20-01-4LEXD5.jpeg
+meta_image: https://images.icloudnative.io/uPic/2023-11-23-20-01-4LEXD5.jpeg
 ---
 
 > 这又是一个“屠龙少年 终成恶龙” 的故事，令人唏嘘，这篇文章详细描述了一位谷歌前员工从 2005 年加入公司到 2023 年离职的经历。文章以第一人称视角，从最早的 Google 黄金时代讲起，早期的 Google 将 “不作恶” 一直贯穿到底，是工程师的天堂。随着时间的推移，Google 的文化开始逐渐蒸发。决策考量从用户利益变成了公司利益，后来只考量决策者的个人利益。最后为了确保股价的增长开始裁员。
@@ -43,7 +43,7 @@ meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/202
 
 ## 谷歌的黄金时代
 
-![2011 年，谷歌的查理天井。图片经过处理，删除了里面的人物](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-23-20-01-4LEXD5.jpeg "2011 年，谷歌的查理天井。图片经过处理，删除了里面的人物")
+![2011 年，谷歌的查理天井。图片经过处理，删除了里面的人物](https://images.icloudnative.io/uPic/2023-11-23-20-01-4LEXD5.jpeg "2011 年，谷歌的查理天井。图片经过处理，删除了里面的人物")
 
 早期的谷歌也是一个非常优秀的工作场所。高管每周都会坦诚回答问题，如果无法回答也会清楚说明原因 (例如出于法律原因或者某些话题过于敏感)。埃里克·施密特经常带领全公司聆听董事会的讨论。公司内部各种产品的成功和失败都会比较客观地陈述和检讨。成功会受到表扬，失败会遭到严格的批判性审视，目的是汲取教训而不是互相指责。公司有自己的愿景目标，任何偏差都会解释清楚。5年前我在网景公司的实习中见识了类似 [Dilbert 漫画中那种管理方式](https://en.wikipedia.org/wiki/List_of_Dilbert_characters#Pointy-haired_Boss)，谷歌员工的一致高素质让我耳目一新。
 
@@ -55,7 +55,7 @@ meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/202
 
 我在谷歌的最后9年时间都花在 Flutter 上。这期间最美好的一些回忆来自 Flutter 这个项目的早期。Flutter 是谷歌旧时代的最后几个项目之一，它是拉里·佩奇在 Alphabet 成立之前发起的几个雄心勃勃的试验性项目中的最后一个。我们像创业公司一样运营，更多地是在探索我们所创造的东西，而不仅仅是设计它。Flutter 团队深受年轻的谷歌文化熏陶，比如优先考虑内部透明度、工作生活平衡以及基于数据的决策 (这在很大程度上要感谢 Tao Dong 和他的用户体验研究团队)。从一开始我们就是极其开放的，这让我们顺利地在工作中建立了健康的开源社区。多年来，Flutter 也非常幸运地拥有优秀的领导，如创始技术总监 Adam Barth、项目经理 Tim Sneath 以及工程经理 Todd Volkert。
 
-![最初几年我们也没有遵循工程最佳实践。比如没有编写测试代码，文档寥寥无几。这张白板就是我们为核心的 Widget、RenderObject 和 dart:ui 层所作的全部 “设计文档”。这让我们起初能够快速推进，但后来为此付出了代价。](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-23-20-31-NByIcn.jpeg "最初几年我们也没有遵循工程最佳实践。比如没有编写测试代码，文档寥寥无几。这张白板就是我们为核心的 Widget、RenderObject 和 dart:ui 层所作的全部 “设计文档”。这让我们起初能够快速推进，但后来为此付出了代价。")
+![最初几年我们也没有遵循工程最佳实践。比如没有编写测试代码，文档寥寥无几。这张白板就是我们为核心的 Widget、RenderObject 和 dart:ui 层所作的全部 “设计文档”。这让我们起初能够快速推进，但后来为此付出了代价。](https://images.icloudnative.io/uPic/2023-11-23-20-31-NByIcn.jpeg "最初几年我们也没有遵循工程最佳实践。比如没有编写测试代码，文档寥寥无几。这张白板就是我们为核心的 Widget、RenderObject 和 dart:ui 层所作的全部 “设计文档”。这让我们起初能够快速推进，但后来为此付出了代价。")
 
 Flutter 在一个相对隔绝的环境中成长，在很大程度上与谷歌同期发生的变革相隔离。随着时间的推移，Google 的文化开始逐渐蒸发。决策考量从用户利益变成了公司利益，后来只考量决策者的个人利益。信息透明度消失殆尽。过去我热衷参加公司各种会议来了解情况，但现在我甚至能提前预测高管的回答。如今，我不知道谷歌内部是否还有人能清楚解释谷歌的愿景，公司士气跌至历史最低点。**如果你询问湾区的心理治疗师，他们会告诉你他们所有的谷歌客户都对公司不满**。
 

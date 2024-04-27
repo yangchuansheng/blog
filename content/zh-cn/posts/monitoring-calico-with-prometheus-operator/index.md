@@ -21,7 +21,7 @@ tags:
 categories: 
 - monitoring
 - cloud-native
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200626235211.png
+img: https://images.icloudnative.io/uPic/20200626235211.png
 ---
 
 `Calico` 中最核心的组件就是 `Felix`，它负责设置路由表和 ACL 规则等，以便为该主机上的 endpoints 资源正常运行提供所需的网络连接。同时它还负责提供有关网络健康状况的数据（例如，报告配置其主机时发生的错误和问题），这些数据会被写入 etcd，以使其对网络中的其他组件和操作人员可见。
@@ -173,7 +173,7 @@ $ kubectl apply -f prometheus-podMonitorCalico.yaml
 
 最终 Prometheus-Operator 会根据 `PodMonitor` 来修改 Prometheus 的配置文件，以实现对相关的 Pod 进行监控。可以打开 Prometheus 的 UI 查看监控目标：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200626191407.png)
+![](https://images.icloudnative.io/uPic/20200626191407.png)
 
 注意 Labels 中有 `pod="calico-node-xxx"`，表明监控的是 Pod。
 
@@ -217,11 +217,11 @@ $ echo -n "MnpoV3VaMGd1b3R3TDY5d3JwOXlIak4yZ3B2cTU1RFNKcVY0RWZsUw=="|base64 -d
 
 解密出来的信息就是访问密码。用户名是 `admin`。通过用户名和密码登录 Grafana 的 UI：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200626193539.png)
+![](https://images.icloudnative.io/uPic/20200626193539.png)
 
 添加 Prometheus-Operator 的数据源：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200626211142.png)
+![](https://images.icloudnative.io/uPic/20200626211142.png)
 
 Calico 官方没有单独 dashboard json，而是将其放到了 [ConfigMap](https://raw.githubusercontent.com/projectcalico/calico/master/manifests/grafana-dashboards.yaml) 中，我们需要从中提取需要的 json，提取出 `felix-dashboard.json` 的内容，然后将其中的 `datasource` 值替换为 `prometheus`。你可以用 `sed` 替换，也可以用编辑器，大多数编辑器都有全局替换的功能。如果你实在不知道如何提取，可以使用我提取好的 json：
 
@@ -1721,10 +1721,10 @@ Calico 官方没有单独 dashboard json，而是将其放到了 [ConfigMap](htt
 
 修改完了之后，将 json 内容导入到 Grafana：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200626211522.png)
+![](https://images.icloudnative.io/uPic/20200626211522.png)
 
 最后得到的 `Felix` 仪表盘如下图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/felix-dashboard.webp)
+![](https://images.icloudnative.io/uPic/felix-dashboard.webp)
 
 如果你对我截图中 Grafana 的主题配色很感兴趣，可以参考这篇文章：[Grafana 自定义主题](/posts/customize-grafana-theme/)。

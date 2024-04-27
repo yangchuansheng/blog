@@ -167,7 +167,7 @@ spec:
 
 后来，开发了新版本，要用新版本替换线上的旧版本，在线上的系统之外，搭建了一个使用新版本代码的全新系统。 这时候，一共有两套系统在运行，正在对外提供服务的老系统是绿色系统，新部署的系统是蓝色系统。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-05-134200.jpg)
+![](https://images.icloudnative.io/uPic/2019-09-05-134200.jpg)
 
 蓝色系统不对外提供服务，用来做啥？
 
@@ -175,7 +175,7 @@ spec:
 
 蓝色系统经过反复的测试、修改、验证，确定达到上线标准之后，直接将用户切换到蓝色系统：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-05-134255.jpg)
+![](https://images.icloudnative.io/uPic/2019-09-05-134255.jpg)
 
 切换后的一段时间内，依旧是蓝绿两套系统并存，但是用户访问的已经是蓝色系统。这段时间内观察蓝色系统（新系统）工作状态，如果出现问题，直接切换回绿色系统。
 
@@ -257,11 +257,11 @@ spec:
 
 如果没有错误发生，把剩余的 V1 版本全部升级为 V2 版本。如果有错误发生，则直接回退到老版本，发布失败。下图示范了金丝雀部署：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-05-142053.jpg)
+![](https://images.icloudnative.io/uPic/2019-09-05-142053.jpg)
 
 其实金丝雀发布的名称来源于一个典故。在 17 世纪，英国矿井工人发现，金丝雀对瓦斯这种气体特别敏感，空气中哪怕有极其微量的瓦斯，金丝雀也会停止唱歌。当瓦斯含量超过一定限度时，人类毫无察觉，但金丝雀却会毒发身亡。当时在采矿设备相对简陋的条件下，工人们每次下井都会带上一只金丝雀作为”瓦斯检测指标“，以便在危险情况下紧急撤离。映射到这里就是先发布一小部分来试探整体是否能够正常运行，如果能正常运行则进行完全部署的发布方式，目前仍然是不少成长型技术组织的主流发布方式。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-05-164538.jpg)
+![](https://images.icloudnative.io/uPic/2019-09-05-164538.jpg)
 
 IngressRoute 可以通过分配权重来实现金丝雀发布，和蓝绿部署一样，首先创建一个上层的 root IngressRoute（名为 `root-blog`），然后将域名 `yangcs.net/blogs` 的路由策略级联到下层的 IngressRoute（名为 `blog`）。在下层的 IngressRoute 中将流量按不同权重转发到不同的后端服务。
 
@@ -297,4 +297,4 @@ spec:
 
 扫一扫下面的二维码关注微信公众号，在公众号中回复◉加群◉即可加入我们的云原生交流群，和孙宏亮、张馆长、阳明等大佬一起探讨云原生技术
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://images.icloudnative.io/uPic/wechat.gif)

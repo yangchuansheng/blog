@@ -31,7 +31,7 @@ img: https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-vxlan-bridge-mi
 
 先来看看最简单的点对点 `VXLAN` 网络，点对点 `VXLAN` 即两台主机构建的 `VXLAN` 网络，每台主机上有一个 `VTEP`，`VTEP` 之间通过它们的 IP 地址进行通信。点对点 VXLAN 网络拓扑图如图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162239.png)
+![](https://images.icloudnative.io/uPic/20200723162239.png)
 
 为了不影响主机的网络环境，我们可以使用 Linux `VRF` 来隔离 root network namespace 的路由。VRF（Virtual Routing and Forwarding）是由路由表和一组网络设备组成的路由实例，你可以理解为轻量级的 `network namespace`，只虚拟了三层的网络协议栈，而 `network namespace` 虚拟了整个网络协议栈。详情参看 [Linux VRF(Virtual Routing Forwarding)的原理和实现](https://blog.csdn.net/dog250/article/details/78069964)。
 
@@ -143,7 +143,7 @@ $ ssh root@192.168.57.54 'tcpdump -i any -s0 -c 10 -nn -w - port 4789' | /Applic
 
 具体含义我就不解释了，参考 [Tcpdump 示例教程](/posts/tcpdump-examples/#%E5%B0%86%E8%BE%93%E5%87%BA%E5%86%85%E5%AE%B9%E9%87%8D%E5%AE%9A%E5%90%91%E5%88%B0-wireshark)。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162240.jpg)
+![](https://images.icloudnative.io/uPic/20200723162240.jpg)
 
 可以看到 `VXLAN` 报文可以分为三块：
 
@@ -203,7 +203,7 @@ $ ssh root@192.168.57.54 'tcpdump -i any -s0 -c 10 -nn -w - port 4789' | /Applic
 
 方案其实也很常见，Linux Bridge 就可以将多块虚拟网卡连接起来，因此可以选择使用 `Bridge` 将多个虚拟机或容器放到同一个 VXLAN 网络中，网络拓扑图如图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200723162241.png)
+![](https://images.icloudnative.io/uPic/20200723162241.png)
 
 和上面的模式相比，这里只是多了一个 `Bridge`，用来连接不同 network namespace 中的 `veth pair`，同时 `VXLAN` 网卡也需要连接到该 `Bridge`。
 

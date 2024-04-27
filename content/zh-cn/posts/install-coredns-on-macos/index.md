@@ -191,7 +191,7 @@ example.net:53 {
 
 从配置文件来看，我们定义了两个 server（尽管有 4 个区块），分别监听在 `5300` 和 `53` 端口。其逻辑图可如下所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/jYHoLN.jpg)
+![](https://images.icloudnative.io/uPic/jYHoLN.jpg)
 
 每个进入到某个 server 的请求将按照 `plugin.cfg` 定义顺序执行其已经加载的插件。
 

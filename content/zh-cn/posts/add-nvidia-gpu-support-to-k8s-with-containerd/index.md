@@ -19,7 +19,7 @@ tags:
 - Containerd
 categories: 
 - cloud-native
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201207155224.jpg
+img: https://images.icloudnative.io/uPic/20201207155224.jpg
 ---
 
 Kubernetes 具有对机器的资源进行分配和使用的能力，比如可以指定容器最多使用多少内存以及使用多少 CPU 计算资源。那么问题来了，一般来说容器就是使用 CPU 和内存资源，那么对于需要使用显卡的 Pod，Kubernetes 也能够支持吗？答案当然是可以啦！目前 Kubernetes 不仅支持容器请求 `GPU` 资源，还支持请求几块显卡的 GPU 资源，这使得 Kubernetes 在深度学习和区块链等场景下也有了用武之地。
@@ -38,7 +38,7 @@ Kubernetes 具有对机器的资源进行分配和使用的能力，比如可以
 
 - 选择操作系统和安装包，并单击【SEARCH】搜寻驱动，选择要下载的驱动版本
 
-  ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201204003108.png)
+  ![](https://images.icloudnative.io/uPic/20201204003108.png)
 
 - 下载对应版本安装脚本 在宿主机上执行：
 
@@ -54,7 +54,7 @@ Kubernetes 具有对机器的资源进行分配和使用的能力，比如可以
 
 - 验证 使用如下命令验证是否安装成功 `nvidia-smi` 如果输出类似下图则驱动安装成功。
 
-  ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201204003306.png)
+  ![](https://images.icloudnative.io/uPic/20201204003306.png)
 
 ## 2. CUDA 驱动
 
@@ -64,7 +64,7 @@ Kubernetes 具有对机器的资源进行分配和使用的能力，比如可以
 
 + 下载对应版本如下图
 
-  ![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@second/img/20201204003439.png)
+  ![](https://images.icloudnative.io/uPic/20201204003439.png)
 
 + 配置环境变量
 

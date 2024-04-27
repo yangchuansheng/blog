@@ -4,7 +4,7 @@ description: "云原生实验室是一个关注容器、Kubernetes、Istio、Dev
 showLikes: false
 ---
 
-我是一名在杭州工作的 Cloud Native 工程师，目前就职于 [Sealos 团队](https://sealos.run)，是一名云原生技术爱好者，专注于云原生技术研究、开源思想传播。你可以通过[微信](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-11-34-a1abrm.jpg)与我联系，或者加入 TG 群一起探讨云原生和不可描述的事情：<a title="telegram" href="https://t.me/cloudnativer" target="_blank">{{< icon "telegram" >}}</a>
+我是一名在杭州工作的 Cloud Native 工程师，目前就职于 [Sealos 团队](https://sealos.run)，是一名云原生技术爱好者，专注于云原生技术研究、开源思想传播。你可以通过[微信](https://images.icloudnative.io/uPic/2023-12-29-11-34-a1abrm.jpg)与我联系，或者加入 TG 群一起探讨云原生和不可描述的事情：<a title="telegram" href="https://t.me/cloudnativer" target="_blank">{{< icon "telegram" >}}</a>
 
 作为 Microsoft、Google、Intel、NVIDIA、Qualcomm、中国电信、阿里巴巴集团、百度、腾讯、京东、哔哩哔哩、招商银行、台湾华硕股份、深圳万普拉斯科技、中国证监局、国家电网、中国铁路局等数十家国内外企业的投资人之一，并且保持着长期稳定的贸易与投资关系，每年助力企业产生数百亿的交易额的同时，为人低调。
 

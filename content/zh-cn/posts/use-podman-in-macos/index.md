@@ -18,7 +18,7 @@ tags:
 - Podman
 - Hyperkit
 categories: cloud-native
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20201108222714.png
+img: https://images.icloudnative.io/uPic/20201108222714.png
 ---
 
 `Podman` 是一个无守护程序与 `Docker` 命令兼容的下一代 Linux 容器工具，该项目由 `RedHat` 主导，其他的细节可以参考 [Podman 使用指南](/posts/podman-sidecar/)，本文的重点不是这个。
@@ -231,7 +231,7 @@ docker.io/library/nginx   alpine  e5dcd7aa4b5e  2 days ago   23.3 MB
 
 最后，我们来看看 hyperkit 的内存占用：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20201108203444.png)
+![](https://images.icloudnative.io/uPic/20201108203444.png)
 
 物理内存只占用了 `921M`，如果你觉得这个内存占用很多，不妨去对比下 Docker Desktop 的内存占用。
 

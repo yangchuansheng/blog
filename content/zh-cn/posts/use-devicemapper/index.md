@@ -221,7 +221,7 @@ xvdf               202:80   0   10G  0 disk
 
 下图显示由 `lsblk` 命令输出的之前镜像的详细信息。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic4.jpg)
+![](https://images.icloudnative.io/uPic/devicemapper-in-practice-pic4.jpg)
 
 可以看出，名为 `Docker-202:1-1032-pool` 的 pool 横跨在 `data` 和 `metadata` 设备之上。pool 的命名规则为：
 
@@ -497,13 +497,13 @@ $ mount |grep devicemapper
 
 下图显示一个具有一个base设备和两个镜像的精简池。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic1.jpg)
+![](https://images.icloudnative.io/uPic/devicemapper-in-practice-pic1.jpg)
 
 如果你仔细查看图表你会发现快照一个连着一个。每一个镜像数据层是它下面数据层的一个快照。每个镜像的最底端数据层是存储池中 `base` 设备的快照。此 `base` 设备是 `Device Mapper` 的工件，而不是 Docker 镜像数据层。
 
 一个容器是从其创建的镜像的一个快照。下图显示两个容器： 一个基于 `Ubuntu` 镜像和另一个基于 `Busybox` 镜像。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic2.jpg)
+![](https://images.icloudnative.io/uPic/devicemapper-in-practice-pic2.jpg)
 
 ## devicemapper 读写数据的过程
 ------
@@ -512,7 +512,7 @@ $ mount |grep devicemapper
 
 我们来看下使用 `devicemapper` 存储驱动如何进行读文件。下图显示在示例容器中读取一个单独的块 [0x44f] 的过程。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/devicemapper-in-practice-pic3.jpg)
+![](https://images.icloudnative.io/uPic/devicemapper-in-practice-pic3.jpg)
 
   1. 一个应用程序请求读取容器中 `0x44f` 数据块。由于容器是一个镜像的一个精简快照，它没有那个数据，只有一个指向镜像存储的地方的指针。
 

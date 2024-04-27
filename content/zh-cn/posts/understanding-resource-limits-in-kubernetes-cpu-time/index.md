@@ -21,7 +21,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 
 > 原文链接：[Understanding resource limits in kubernetes: cpu time](https://medium.com/@betz.mark/understanding-resource-limits-in-kubernetes-cpu-time-9eff74d3161b)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/VAOaON.jpg)
+![](https://images.icloudnative.io/uPic/VAOaON.jpg)
 
 建议先阅读下面的系列文章：
 

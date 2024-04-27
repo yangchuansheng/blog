@@ -423,7 +423,7 @@ For example, the topology outlined in the diagram below is based on the Top of R
 - Each node (server in the rack) peers with a redundant set of route reflectors specific to that rack.
 - All of the ToR route reflectors form a full mesh with each other.
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/mesh-topology.png)
+![](https://images.icloudnative.io/uPic/mesh-topology.png)
 
 For example, to set up the topology described above, you would:
 

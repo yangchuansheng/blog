@@ -24,13 +24,13 @@ img: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/2020-04-24-20191204132153
 
 经过一番对比，最后决定在某宝上入手了一款低功耗的 `J3160`，4 核 4 G，700 大洋左右，刷了个 `LEDE` 系统，这下绝对够用了。跑了几个魔法软件和一堆容器也没耗多少资源，还是 x86 香啊！
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223003341.png)
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223132402.png)
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223235257.png)
+![](https://images.icloudnative.io/uPic/20191223003341.png)
+![](https://images.icloudnative.io/uPic/20191223132402.png)
+![](https://images.icloudnative.io/uPic/20191223235257.png)
 
 `R7000` 就老老实实通过 `Access Point` 模式作为二级路由提供 WiFi 吧。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223131810.png)
+![](https://images.icloudnative.io/uPic/20191223131810.png)
 
 到这里有人可能要问了，说了这么多跟这篇文章的主题有什么关系呢？别急，下面进入主题。
 
@@ -73,7 +73,7 @@ DDNS 和申请 https 证书什么的我就不说了，不是本文的重点。
 
 `80` 和 `443` 端口被腾出来之后，就可以愉快地使用反代了。可是安装 Envoy 是个头疼的问题啊，编译太复杂，[GetEnvoy](https://www.getenvoy.io/) 项目又不支持 `busybox`，只能通过容器跑了。配置如图：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223154116.png)    
+![](https://images.icloudnative.io/uPic/20191223154116.png)    
 
  下面就是老老实实写配置文件，没什么可说的，但问题就出在这里，Upstream 服务不多倒好办，一旦变多，`Envoy` 配置文件会过于冗长，很容易看花眼。虽想到了用控制平面来动态更新配置，但我没必要单独起个控制平面服务，还有没有别的办法呢？有的，其实 `Envoy` 是可以将文件作为配置的订阅来源的。方法很简单，首先需要参加一个 `Bootstrap` 引导程序配置文件，里面定义了 node 信息和动态资源：
 
@@ -359,7 +359,7 @@ $ docker logs -f envoy
 
 `Grafana`  的安装我就不多说了，直接容器跑，配置如下：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223174930.png)
+![](https://images.icloudnative.io/uPic/20191223174930.png)
 
  为了能够通过反向代理正确访问 `Grafana`，需要对 `Grafana` 的配置做一些调整，修改 `grafana.ini` 中的以下几个字段：
 
@@ -439,7 +439,7 @@ $ ./apply.sh
 
 然后就可以通过 `subpath` 访问 Grafana 了。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223180534.png)
+![](https://images.icloudnative.io/uPic/20191223180534.png)
 
 ### TCP
 
@@ -529,7 +529,7 @@ Envoy 通过 TCP 代理即可实现端口映射功能，比如我想将 `samba` 
 
 配置生效后，就可以通过外网连接你的 samba 服务了。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223181539.png)
+![](https://images.icloudnative.io/uPic/20191223181539.png)
 
 当然了，我自己的 Upstream 服务远远不止这些，我只是针对每一种类型举一个示例，大家可以举一反三。看看我的：
 
@@ -562,6 +562,6 @@ $ docker logs -f envoy
 
 监控截图：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223223654.png)
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223223839.png)
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191223235932.png)
+![](https://images.icloudnative.io/uPic/20191223223654.png)
+![](https://images.icloudnative.io/uPic/20191223223839.png)
+![](https://images.icloudnative.io/uPic/20191223235932.png)

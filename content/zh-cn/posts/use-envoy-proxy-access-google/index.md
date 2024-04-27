@@ -112,10 +112,10 @@ $ bash apply.sh
 
 现在就可以愉快地访问 Google 了：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191228175224.png)
+![](https://images.icloudnative.io/uPic/20191228175224.png)
 
 已添加到我的博客首页，快快收藏起来：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/20191228180052.png)
+![](https://images.icloudnative.io/uPic/20191228180052.png)
 
 以后请叫我云原生奇技淫巧之神。

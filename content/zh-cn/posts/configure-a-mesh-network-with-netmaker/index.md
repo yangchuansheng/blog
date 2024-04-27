@@ -24,7 +24,7 @@ tags:
 categories: 
 - Network
 - VPN
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110191613650.png
+img: https://images.icloudnative.io/uPic/202110191613650.png
 ---
 
 大家好，我是米开朗基杨。
@@ -43,7 +43,7 @@ Netmaker 是一个用来配置 WireGuard 全互联模式的可视化工具，它
 
 ## Netmaker 架构
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110161812481.png)
+![](https://images.icloudnative.io/uPic/202110161812481.png)
 
 Netmaker 使用的是 C/S 架构，即客户端/服务器架构。Netmaker Server 包含两个核心组件：用来管理网络的可视化界面，以及与客户端通信的 gRPC Server。你也可以可以选择部署DNS服务器（CoreDNS）来管理私有DNS。
 
@@ -156,11 +156,11 @@ bd39ee52013e    docker.io/gravitl/netmaker:v0.8.2     "./netmaker"              
 
 ### 网络（Networks）
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110170013427.png)
+![](https://images.icloudnative.io/uPic/202110170013427.png)
 
 Netmaker 允许创建任意数量的私有网络，可以设置任意地址范围。你只需要给这个网络起个名字，设置一个地址范围，并选择想要启用的选项。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110170017203.png)
+![](https://images.icloudnative.io/uPic/202110170017203.png)
 
 目前总共包含三个可选项：
 
@@ -170,15 +170,15 @@ Netmaker 允许创建任意数量的私有网络，可以设置任意地址范�
 
 管理员拥有对网络的最高控制器，例如，更改私有网络的网段，Peer 便会自动更新自身的 IP。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110170049574.png)
+![](https://images.icloudnative.io/uPic/202110170049574.png)
 
 如果发现网络被入侵，也可以让网络中的所有节点刷新公钥。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110170055621.png)
+![](https://images.icloudnative.io/uPic/202110170055621.png)
 
 ### 节点（Nodes）
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110170100394.png)
+![](https://images.icloudnative.io/uPic/202110170100394.png)
 
 Node 表示节点，通常是运行 Linux 的服务器，安装了 netclient 和 WireGuard。这个节点会通过 WireGuard 私有网络和其他所有节点相连。一但节点被添加到私有网络中，Netmaker 管理员就可以操控该节点的配置，例如：
 
@@ -186,13 +186,13 @@ Node 表示节点，通常是运行 Linux 的服务器，安装了 netclient 和
 + 过期时间
 + WireGuard 相关设置
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110170110095.png)
+![](https://images.icloudnative.io/uPic/202110170110095.png)
 
 管理员也可以将该节点从私有网络中完全删除，让其无法连接其他所有 Peer 节点。
 
 Node 还有两个比较重要的功能，就是将自身设置为 Ingress Gateway（入口网关）或者 Egress Gateway（出口网关）。Ingress Gateway 允许外部客户端的流量进入内部网络，Egress Gateway 允许将内部网络的流量转发到外部指定的 IP 范围。这两项功能对全互联模式进行了扩展，比如手机客户端就可以通过 Ingress Gateway 接入进来。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110171046251.png)
+![](https://images.icloudnative.io/uPic/202110171046251.png)
 
 ### 访问秘钥（Access Keys）
 
@@ -200,7 +200,7 @@ Node 还有两个比较重要的功能，就是将自身设置为 Ingress Gatewa
 
 一个访问秘钥可以被多个节点重复使用，你只需修改 Number 数量就可以实现这个目的。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110171052169.png)
+![](https://images.icloudnative.io/uPic/202110171052169.png)
 
 访问秘钥创建后只会显示一次，展示了三个选项：
 
@@ -208,19 +208,19 @@ Node 还有两个比较重要的功能，就是将自身设置为 Ingress Gatewa
 2. 访问令牌（access token），它将访问密钥与用于加入网络的参数（例如地址、端口和网络名称）包装在一起。当你运行 `netclient join -t <token>` 时，netclient 会对该令牌进行解码，并解析参数。
 3. 安装脚本，用于在标准 Linux 服务器上首次安装 netclient。它只是简单地下载 netclient 并为你运行 "join" 命令。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110171059647.png)
+![](https://images.icloudnative.io/uPic/202110171059647.png)
 
 ### DNS
 
 如果启用了 DNS 组件，Netmaker 就会通过 CoreDNS 来维护私有 DNS，它会为私有网络中的每个节点创建一个默认的 DNS 条目。你也可以创建自定义的 DNS 条目。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110171531860.png)
+![](https://images.icloudnative.io/uPic/202110171531860.png)
 
 ### 外部客户端（External Clients）
 
 Netclient 目前只支持 Linux、macOS 和 Windows，如果 Android 和 iOS 端想要加入 VPN 私有网络，只能通过 WireGuard 原生客户端来进行连接。要想做到这一点，需要管理员事先创建一个 External Client，它会生成一个 WireGuard 配置文件，WireGuard 客户端可以下载该配置文件或者扫描二维码进行连接。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202110171043677.png)
+![](https://images.icloudnative.io/uPic/202110171043677.png)
 
 当然，在创建 External Client 之前，需要先设置其中一个节点为 Ingress Gateway。
 

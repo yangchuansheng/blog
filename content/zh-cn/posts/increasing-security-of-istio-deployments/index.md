@@ -43,7 +43,7 @@ $ oc adm policy add-scc-to-user privileged -z default -n <target-namespace>
 
 解决这个问题的一种方法是将配置 Pod 的 iptables 规则的逻辑移出 Pod 本身。该方案通过一个名叫 `istio-pod-network-controller` 的 DaemonSet 控制器，来监视新 Pod 的创建，并在创建后立即在这些新 Pod 中配置相应的 iptables 规则。下图描绘了该解决方案的整体架构：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/vMXgIX.jpg)
+![](https://images.icloudnative.io/uPic/vMXgIX.jpg)
 
 流程如下：
 
@@ -89,6 +89,6 @@ $ kubectl apply -f examples/bookinfo.yaml -n bookinfo
 
 ----
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://images.icloudnative.io/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

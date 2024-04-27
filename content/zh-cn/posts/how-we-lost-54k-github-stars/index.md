@@ -21,7 +21,7 @@ tags:
 - HTTPie
 - GitHub
 categories: tech-social
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-17-13-12-8VgFHO.png
+img: https://images.icloudnative.io/uPic/2022-04-17-13-12-8VgFHO.png
 ---
 
 > 原文链接：[How we lost 54k GitHub stars](https://httpie.io/blog/stardust)
@@ -48,7 +48,7 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 当 HTTPie 第一次成为 Hacker News 热门链接时，我的心情无比激动，那一天至今还历历在目。后来我又见证了 GitHub 社区的成立。随着我们不断对项目进行优化，吸引到的用户越来越多，以至于 HTTPie 变成了 GitHub 上最受欢迎的 API 工具，鼎盛时收获了 **54k** 的 Star 和 **1000+** 的 Watcher。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-21-12-f8Nw3R.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-21-12-f8Nw3R.png)
 
 你想想，**GitHub 上总共有 [2.89 亿个公共仓库](https://github.com/search)，要想在其中闯出一片天地是多么地艰难**。可 HTTPie 还是凭借自身的实力变成了 GitHub 上最受欢迎的**前 80** 个公共仓库之一，处于 99.99997203 百分位。简而言之，看到这个不起眼的命令行工具吸引了如此庞大的用户群体，真是难以置信，而 GitHub 肯定在这个过程中发挥了举足轻重的作用。
 
@@ -62,7 +62,7 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 **由于一连串不幸的操作，我一不小心就把项目的仓库设为私有仓库，这个骚操作让 GitHub 连带删除了我们花 10 年时间建立起来的社区！心碎至极 💔**
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-21-36-8FESWs.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-21-36-8FESWs.png)
 
 ### 什么后果？
 
@@ -72,7 +72,7 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 说句不好听的，GitHub 有一个让人无法理解的特性，你只要将公共仓库设为私有，该仓库的 Watcher 和 Star 就会被永久删除。当然重点不在这里，我肯定是知道 GitHub 的这个特性的，我也并没有打算把该仓库设为私有，但是悲剧还是发生了，为啥呢？
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-21-51-ZCfZsc.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-21-51-ZCfZsc.png)
 
 事情的经过是这样的，前段时间 GitHub 不是推出了“**个人主页**”功能嘛，要想激活此功能，只需要新建一个与自己 ID 同名的仓库，这个新仓库的 `README.md` 的内容便会显示在你的个人首页。我也创建了一个这样的仓库 `jakubroztocil/jakubroztocil`，然后我做了一个骚操作：**把这个仓库从公共仓库设为私有仓库**。
 
@@ -96,7 +96,7 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 下面的两个提示中，你能看出哪一个是提示你即将删除一个活跃了 10 年的社区吗？
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-22-26-wWLsir.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-22-26-wWLsir.png)
 
 完全看不出来呀。我觉得 GitHub 的这个提示框应该设计地更人性化一点，如果你警告我说：**你即将干掉 55000 个人**，那我肯定会被吓到，并停止我的愚蠢操作。
 
@@ -104,7 +104,7 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 我做完这个骚操作后回到组织的首页仍然能看到一个空的 README（因为没有将 `httpie/.github` 这个仓库设为私有，且该仓库是空的），而且 HTTPie 仓库也不见了，你可以想象到我当时有多懵逼。过了好半天我才真正意识到发生了什么，于是重新回到 HTTPie 仓库将其设置为公共仓库，但 GitHub 在接下来的半个小时内都不允许我这样做。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-22-35-wcN0QV.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-22-35-wcN0QV.png)
 
 **原因是 GitHub 正在“帮助”我级联删除该仓库的 Star 和 Watcher，在 Star 和 Watcher 归零之前，我都无法停止这个操作。**
 
@@ -114,13 +114,13 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 **我敢肯定，GitHub 肯定是有备份的**。这个备份可以挽回因为不小心将仓库设为私有的损失。GitHub 团队曾经就不小心把 [GitHub 桌面应用的仓库](https://github.com/desktop/desktop)设为私有仓库，然后在短短几个小时内便恢复如初。以下是 [GitHub 的 CEO 对此次乌龙事件的解释](https://twitter.com/natfriedman/status/1328410589291446274)。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-22-45-LJ8jVW.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-22-45-LJ8jVW.png)
 
 然而对于我的项目他们却拒绝了这么做，理由是会有一定的副作用和资源成本。我们甚至向 GitHub 提出对任何所需资源提供经济补偿，但他们还是拒绝了。
 
 所以，很遗憾，GitHub 明确表示：**虽然他们可以将误设为私有仓库的项目恢复如初，但仅限于 GitHub 自己的项目**。其他的项目最多会发个[这样的推文](https://twitter.com/github/status/1493329046708670475)来号召大家重新关注该项目。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-22-52-9WneCI.jpg)
+![](https://images.icloudnative.io/uPic/2022-04-16-22-52-9WneCI.jpg)
 
 ## 吸取到的教训
 
@@ -130,17 +130,17 @@ HTTPie 是一款开源的命令行 HTTP 客户端，没有借助第三方库，�
 
 **要把用户看成“白痴”，以一种不需要让用户思考的方式来设计确认提示框**。也就是说，当用户要毁掉某样东西时，不要用抽象的词语来描述这种潜在的情况，这会让用户自然而然地翻译成自己的理解。特别是当删除操作会产生很多“级联删除”的副作用时。例如，在 [HTTPie for Desktop](https://httpie.io/product) 中，我们是这样处理的。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-23-01-DyWkkn.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-23-01-DyWkkn.png)
 
 当然，提示框要能清晰地表达出该操作产生的副作用的严重程度。如果完全没有副作用，就不要写一大堆有的没的，提示保持简洁就好。否则就会浪费用户有限的注意力，从而降低用户的敏感程度。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-23-07-95XHGi.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-23-07-95XHGi.png)
 
 ### 教训二：数据库设计
 
 数据库尽量使用软删除（soft delete），也就是使用标记将数据标为不可用，而不从数据库删除数据本身。只要是人都会犯错误，如果实在要硬删除，那就想办法延迟删除操作的时间，给用户一点后悔的时间。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-04-16-23-12-d3s5J3.png)
+![](https://images.icloudnative.io/uPic/2022-04-16-23-12-d3s5J3.png)
 
 ### 教训三：不要过度信任 GitHub
 

@@ -41,8 +41,8 @@ tags:
 - Microsoft
 - System
 categories: tech-social
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-16-05-GfVWZK.jpg
-meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-16-04-yYXPtm.jpg
+img: https://images.icloudnative.io/uPic/2023-10-14-16-05-GfVWZK.jpg
+meta_image: https://images.icloudnative.io/uPic/2023-10-14-16-04-yYXPtm.jpg
 ---
 
 原文链接：[The History of Windows 95](https://www.abortretry.fail/p/the-history-of-windows-95)
@@ -55,7 +55,7 @@ meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/202
 
 1992 年 2 月，Windows  3.1 的研发即将结束，而 Windows 团队正忙得不亦乐乎地计划他们的下一盘大棋。到了 3 月 5 日，他们终于悠哉悠哉地敲定了战略大计：横扫桌面、笔记本、移动设备以及时髦的触控笔设备。至于那些高大上的服务器和工作站？呵呵，那自然是留给了 NT 团队。此外，他们必须还要重点解决三个“小”问题：用户界面、硬件支持，以及网络功能。
 
-![由 DALL·E 3 配图](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-14-38-JspAuQ.jpg)
+![由 DALL·E 3 配图](https://images.icloudnative.io/uPic/2023-10-14-14-38-JspAuQ.jpg)
 
 <center><small>由 DALL·E 3 配图</small></center>
 
@@ -81,7 +81,7 @@ meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/202
 
 我这么说是想呈现出那时的微软和整个计算机行业的情境。那时，IBM 兼容的计算机数量几乎是其他所有计算机数量的 80 倍，达到了近 8000 万台。上面几乎都运行着 MS-DOS 或与之相似的 DOS 系统，而 OS/2 和 Linux 这样的系统都是稀有物种。大多数软件都在 16 位的实模式下运行。大部分的硬件配置都靠一些小开关，设置得非常精确。而要加载驱动，你得懂得 autoexec 和 load-high 这些技术工具。Windows 3 取得了很大的成功，Windows 3.1 更是如日中天。尽管取得了这样的成功，而且由于这些成功导致了微软未来计划的变动，MS-DOS 仍然在 PC 操作系统市场上有着巨大的领先优势。虽然 Windows 3x 解决了一些问题，但旧系统仍然是主流。因此，尽管 Microsoft 已经有了更先进的 NT 系统，但他们绝对不能忽视 MS-DOS 的重要性。再加上大部分家用计算机其实并不适合运行 NT。因此，Chicago 必须在中端硬件上为 win16、win32 和 MS-DOS  应用提供最佳体验，并且其改进必须明显超过 Windows 3。如果微软做不到，他们可能会输给 Digital Research 或 IBM。
 
-![由 DALL·E 3 配图](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-14-48-Eegxvu.jpg)
+![由 DALL·E 3 配图](https://images.icloudnative.io/uPic/2023-10-14-14-48-Eegxvu.jpg)
 
 <center><small>由 DALL·E 3 配图</small></center>
 
@@ -103,15 +103,15 @@ Chicago 的架构与 Windows for Workgroups 3.1（增强的 386 版本）相似�
 
 装了 Chicago 系统的 PC 是怎样打败 Macintosh 的？
 
-![Microsoft Chicago 开机动画](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-13-20-emJZBT.jpg)
+![Microsoft Chicago 开机动画](https://images.icloudnative.io/uPic/2023-10-14-13-20-emJZBT.jpg)
 
 <center><small>Microsoft Chicago 开机动画</small></center>
 
-![1993 年的 Chicago 系统桌面](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-13-22-ZmfKpj.jpg)
+![1993 年的 Chicago 系统桌面](https://images.icloudnative.io/uPic/2023-10-14-13-22-ZmfKpj.jpg)
 
 <center><small>1993 年的 Chicago 系统桌面</small></center>
 
-![1993 年 Chicago 系统桌面上展示的文件管理器](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-13-30-mOpsSR.jpg)
+![1993 年 Chicago 系统桌面上展示的文件管理器](https://images.icloudnative.io/uPic/2023-10-14-13-30-mOpsSR.jpg)
 
 <center><small>1993 年 Chicago 系统桌面上展示的文件管理器</small></center>
 
@@ -119,21 +119,21 @@ Chicago 的架构与 Windows for Workgroups 3.1（增强的 386 版本）相似�
 
 1994 年底，微软终于给 Chicago 版本确定了发布名称：**Windows 95**。当这个版本趋于完善时，它的整体设计和用户体验也已基本确立。
 
-![Windows 95 开机动画](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-13-50-1o6srG.jpg)
+![Windows 95 开机动画](https://images.icloudnative.io/uPic/2023-10-14-13-50-1o6srG.jpg)
 
 <center><small>Windows 95 开机动画</small></center>
 
-![Windows 95 开始菜单](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-13-51-LE4et7.jpg)
+![Windows 95 开始菜单](https://images.icloudnative.io/uPic/2023-10-14-13-51-LE4et7.jpg)
 
 <center><small>Windows 95 开始菜单</small></center>
 
-![Windows 95 文件管理器](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-13-51-0pbFjj.jpg)
+![Windows 95 文件管理器](https://images.icloudnative.io/uPic/2023-10-14-13-51-0pbFjj.jpg)
 
 <center><small>Windows 95 文件管理器</small></center>
 
 微软为了推广这个系统，展开了其有史以来最大规模的宣传活动。他们花了 3 百万美元（相当于 2023 年的 620 万美元）来购买 Rolling Stones 的歌曲“Start Me Up”的版权，用这首歌为背景音乐做了一个与开始菜单相关的广告。而且，他们还邀请了 Jennifer Aniston 和 Mathew Perry 来主演 [一个网络喜剧](https://www.youtube.com/watch?v=vLlWrt-zmTo)，并用 Windows 的标志色彩照亮了整个纽约帝国大厦，更是在加拿大国家电视塔（CN Tower）上挂起了长达 330 英尺的巨大横幅。此外，在各大杂志和电视节目中，他们的广告也是铺天盖地。
 
-![帝国大厦闪耀着 Windows 95 的主题灯光](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-14-06-CjKyZL.jpg)
+![帝国大厦闪耀着 Windows 95 的主题灯光](https://images.icloudnative.io/uPic/2023-10-14-14-06-CjKyZL.jpg)
 
 <center><small>帝国大厦闪耀着 Windows 95 的主题灯光</small></center>
 
@@ -143,11 +143,11 @@ Chicago 的架构与 Windows for Workgroups 3.1（增强的 386 版本）相似�
 
 全球各地，人们争相排队，等待零点 Windows 95 的发布。仅仅四天，Windows 95 就卖出了 100 万份。令人震惊的是，第一年的 Windows 95 销量就达到了 4,000 万份。
 
-![发布当天，有张照片捕捉到一名男士手持两份 Windows 95 软件，照片出自 Torsten Blackwood](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-14-15-lyrnKN.jpg)
+![发布当天，有张照片捕捉到一名男士手持两份 Windows 95 软件，照片出自 Torsten Blackwood](https://images.icloudnative.io/uPic/2023-10-14-14-15-lyrnKN.jpg)
 
 <center><small>发布当天，有张照片捕捉到一名男士手持两份 Windows 95 软件，照片出自 Torsten Blackwood</small></center>
 
-![新加坡的 Windows 95 零点发布现场，图片来源：Reuters](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-10-14-14-15-Djs5yD.jpg)
+![新加坡的 Windows 95 零点发布现场，图片来源：Reuters](https://images.icloudnative.io/uPic/2023-10-14-14-15-Djs5yD.jpg)
 
 <center><small>新加坡的 Windows 95 零点发布现场，图片来源：Reuters</small></center>
 

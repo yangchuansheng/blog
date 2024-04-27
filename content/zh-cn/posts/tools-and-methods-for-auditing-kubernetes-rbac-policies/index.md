@@ -244,7 +244,7 @@ cluster-admin          system:masters      Group
 
 使用方法也很简单，如果想查看当前用户对所有资源的访问权限，可使用如下命令：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-08-19-062815.png)
+![](https://images.icloudnative.io/uPic/2019-08-19-062815.png)
 
 如果想查看某个特定的 Service Account 对所有资源的访问权限，可以使用如下命令：
 
@@ -275,7 +275,7 @@ $ kubectl get sa,roles,rolebindings \
   | rback | dot -Tpng > rback.png
 ```
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-08-19-rback.png)
+![](https://images.icloudnative.io/uPic/2019-08-19-rback.png)
 
 ## RBAC-View
 
@@ -292,7 +292,7 @@ serving RBAC View and http://localhost:8800
 
 在浏览器中打开链接 `http://localhost:8800`。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-08-19-090524.png)
+![](https://images.icloudnative.io/uPic/2019-08-19-090524.png)
 
 ## 终极测试
 

@@ -24,11 +24,11 @@ tags:
 - Sealos
 - gpt4free
 categories: AI
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-00-45-IMHpwX.jpg
-meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-00-43-7RAoGE.jpg
+img: https://images.icloudnative.io/uPic/2023-06-07-00-45-IMHpwX.jpg
+meta_image: https://images.icloudnative.io/uPic/2023-06-07-00-43-7RAoGE.jpg
 ---
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-00-43-7RAoGE.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-07-00-43-7RAoGE.jpg)
 
 {{< alert >}}
 该方案目前已失效！请直接使用👉 [gptgod](https://gptgod.online/#/register?invite_code=46rrqz6qzscsey1jci7sdjw95)
@@ -46,11 +46,11 @@ GPT-4 目前是世界上最强的多模态大模型，能力甩 GPT-3.5 好几�
 
 不仅能够作为 API 调用，我还接入了公众号给大家白嫖，你说气人不气人？
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-28-IZ0DLp.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-28-IZ0DLp.jpg)
 
 如果你嫌下面太长不看，可以直接到公众号里去白嫖 GPT-4 👇
 
-<image width="300px" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-29-imCWj4.jpg">
+<image width="300px" src="https://images.icloudnative.io/uPic/2023-06-07-12-29-imCWj4.jpg">
 
 下面言归正传，开始**手把手教大家如何免费白嫖 GPT-4**。
 
@@ -72,7 +72,7 @@ GPT-4 目前是世界上最强的多模态大模型，能力甩 GPT-3.5 好几�
 
 除了 forefront 之外，它接的粮仓还挺多的。。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-11-64GVTy.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-11-64GVTy.png)
 
 ## 大批量注册临时邮箱
 
@@ -86,7 +86,7 @@ forefront 的 GPT-4 模型是有限制的，**每个账号每 3 小时内只能�
 
 然后需要在 Pricing 页面开启订阅：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-CYBlHv.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-CYBlHv.png)
 
 一般情况下订阅免费套餐即可，一天可以调用 100 次。
 
@@ -94,7 +94,7 @@ forefront 的 GPT-4 模型是有限制的，**每个账号每 3 小时内只能�
 
 订阅完了之后，你就能看到 API Key 了。这个 Key 我们后面会用到。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-w7Y94V.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-w7Y94V.png)
 
 ## Sealos 云操作系统介绍
 
@@ -110,7 +110,7 @@ forefront 的 GPT-4 模型是有限制的，**每个账号每 3 小时内只能�
 
 > 链接：**https://cloud.sealos.io**
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-RxSEYh.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-RxSEYh.jpg)
 
 有人可能会把云操作系统理解成“**Web 界面**”，但其实不是，Sealos 云操作系统完全是类似于 Windows 和 macOS 桌面的那种逻辑，并不是 Web 界面。我只需要点几下鼠标，一个应用就装好了，老夫并不知道什么容器什么 K8s。
 
@@ -118,7 +118,7 @@ forefront 的 GPT-4 模型是有限制的，**每个账号每 3 小时内只能�
 
 我知道，这时候云原生玩家要坐不住了，您别着急，看到桌面上的终端了没？
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-SI9WmQ.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-SI9WmQ.jpg)
 
 终端只是这个云操作系统中的一个 App 而已。同理，**容器管理界面仍然可以作为云操作系统的 App，我管你是 Kubernetes Dashboard、Rancher、KubeSphere 还是 Kuboard，都可以作为 App 装在这个云操作系统中**。这时候对于云原生专家而言，仍然可以命令行咔咔秀操作，也可以通过各种管理界面来管理容器。
 
@@ -140,11 +140,11 @@ forefront 的 GPT-4 模型是有限制的，**每个账号每 3 小时内只能�
 
 然后打开桌面上的应用管理 App：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-lrX8qC.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-lrX8qC.jpg)
 
 点击「新建应用」：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-aovyMy.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-aovyMy.jpg)
 
 在启动参数中，按照以下方式进行设置：
 
@@ -155,11 +155,11 @@ forefront 的 GPT-4 模型是有限制的，**每个账号每 3 小时内只能�
 + 容器暴露端口指定为 3000。
 + 打开外网访问。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-14-UykhCA.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-14-UykhCA.png)
 
 继续往下，展开高级设置，点击「编辑环境变量」：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-15-Uti7G5.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-15-Uti7G5.png)
 
 填入以下环境变量：
 
@@ -173,33 +173,33 @@ POOL_SIZE=3
 
 其中 POOL_SIZE 就是浏览器数量，每个浏览器会登录一个 forefront 账号。你可以根据自己的需要调整浏览器数量，并根据浏览器数量调整 CPU 和内存。**如果你不知道怎么调整合适，建议无脑跟着本文操作。**
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-09-efWkQF.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-09-efWkQF.png)
 
 继续，点击「新增存储卷」：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-15-ecn1g5.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-15-ecn1g5.png)
 
 容量只需 1G，挂载路径设置为 `/usr/src/app/run`：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-15-IAg1bN.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-15-IAg1bN.png)
 
 > 这个存储的作用是为了保存已登录的账号。已经注册的账号 3 个小时以后还可以重新使用，不用再浪费邮箱去注册新账号。
 
 最终点击右上角的「部署应用」，即可完成部署：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-15-Sc2WpV.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-15-Sc2WpV.png)
 
 最终要等待所有的实例都处于 Running 状态，才算是启动成功了。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-15-2MaeDA.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-15-2MaeDA.png)
 
 点击右边的复制按钮，便可复制 API 的外网地址：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-07-12-17-xuKZje.png)
+![](https://images.icloudnative.io/uPic/2023-06-07-12-17-xuKZje.png)
 
 我们来测一下这个 API：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-15-14-49-9EEtRo.png)
+![](https://images.icloudnative.io/uPic/2023-06-15-14-49-9EEtRo.png)
 
 完美！打完收工！
 
@@ -209,7 +209,7 @@ Sealos 默认会给新注册的用户赠送 5 个大洋，如果你想白嫖更�
 
 活动规则很简单，直接看图👇
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-06-08-12-11-fW6ZYE.jpg)
+![](https://images.icloudnative.io/uPic/2023-06-08-12-11-fW6ZYE.jpg)
 
 ## Sealos 贵宾交流群
 

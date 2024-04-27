@@ -6,7 +6,7 @@ draft: false
 author: 米开朗基杨
 categories: "math"
 tags: ["vector", "matrix"]
-img: "https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-11-21-13-34-15XA2O.jpg"
+img: "https://images.icloudnative.io/uPic/2023-11-21-13-34-15XA2O.jpg"
 bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27-080627.jpg"}]
 libraries:
 - katex

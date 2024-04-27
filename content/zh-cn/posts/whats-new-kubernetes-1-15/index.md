@@ -81,7 +81,7 @@ Mutating 和 Validating Admission Webhook 已经成为扩展 API 的主流选择
 
 下图显示了 Pod 在新的 Scheduling framework 中的调度过程：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-07-17-055446.jpg)
+![](https://images.icloudnative.io/uPic/2019-07-17-055446.jpg)
 
 关于该特性的更多信息请查阅[官方设计文档](https://github.com/kubernetes/enhancements/blob/master/keps/sig-scheduling/20180409-scheduling-framework.md)。
 

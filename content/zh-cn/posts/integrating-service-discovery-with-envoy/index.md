@@ -116,6 +116,6 @@ Envoy 将 CDS 和 EDS 视为一份份的报告并保持服务发现的最终一�
 
 ----
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://images.icloudnative.io/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

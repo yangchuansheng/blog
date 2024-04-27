@@ -200,7 +200,7 @@ workqueue.NewRateLimitingQueue(workqueue.DefaultControllerRateLimiter())
 
 `Workqueue` 提供了很多函数来处理 key，每个 key 在 `Workqueue` 中的生命周期如下图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/eENdLY.jpg)
+![](https://images.icloudnative.io/uPic/eENdLY.jpg)
 
 如果处理事件失败，控制器就会调用 `AddRateLimited()` 函数将事件的 key 放回 `Workqueue` 以供后续重试（如果重试次数没有达到上限）。如果处理成功，控制器就会调用 `Forget()` 函数将事件的 key 从 `Workqueue` 中移除。**注意：该函数仅仅只是让 `Workqueue` 停止跟踪事件历史，如果想从 `Workqueue` 中完全移除事件，需要调用 `Done()` 函数。**
 
@@ -230,7 +230,7 @@ controller.runWorker()
 
 所有处理流程如下所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-06-29-033816.jpg)
+![](https://images.icloudnative.io/uPic/2019-06-29-033816.jpg)
 
 <center><p id=small>控制器处理事件的流程</p></center>
 

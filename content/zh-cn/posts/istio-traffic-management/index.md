@@ -47,7 +47,7 @@ Bookinfo 应用分为四个单独的微服务：
 
 下图展示了这个应用的端到端架构。
 
-![Istio 注入之前的 Bookinfo 应用](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/noistio.svg "Istio 注入之前的 Bookinfo 应用")
+![Istio 注入之前的 Bookinfo 应用](https://images.icloudnative.io/uPic/noistio.svg "Istio 注入之前的 Bookinfo 应用")
 
 Bookinfo 是一个异构应用，几个微服务是由不同的语言编写的。这些服务对 Istio 并无依赖，但是构成了一个有代表性的服务网格的例子：它由多个服务、多个语言构成，并且 `reviews` 服务具有多个版本。
 
@@ -57,7 +57,7 @@ Bookinfo 是一个异构应用，几个微服务是由不同的语言编写的�
 
 要在 Istio 中运行这一应用，无需对应用自身做出任何改变。我们只要简单的在 Istio 环境中对服务进行配置和运行，具体一点说就是把 Envoy sidecar 注入到每个服务之中。这个过程所需的具体命令和配置方法由运行时环境决定，而部署结果较为一致，如下图所示：
 
-![Bookinfo 应用](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/withistio.svg "Bookinfo 应用")
+![Bookinfo 应用](https://images.icloudnative.io/uPic/withistio.svg "Bookinfo 应用")
 
 所有的微服务都和 Envoy sidecar 集成在一起，被集成服务所有的出入流量都被 sidecar 所劫持，这样就为外部控制准备了所需的 Hook，然后就可以利用 Istio 控制平面为应用提供服务路由、遥测数据收集以及策略实施等功能。
 
@@ -156,7 +156,7 @@ $ curl -o /dev/null -s -w "%{http_code}\n" http://${GATEWAY_URL}/productpage
 
 由于 Bookinfo 示例部署了三个版本的 reviews 微服务，因此我们需要设置默认路由。 否则，如果您当多次访问应用程序，您会注意到有时输出包含星级评分，有时又没有。 这是因为没有为应用明确指定缺省路由时，Istio 会将请求随机路由到该服务的所有可用版本上。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/ServiceModel_Versions.svg)
+![](https://images.icloudnative.io/uPic/ServiceModel_Versions.svg)
 
 {{< alert >}}
 此任务假定您尚未设置任何路由。 如果您已经为示例应用程序创建了存在冲突的路由规则，则需要在下面的命令中使用 <code>replace</code> 代替 <code>create</code>。 请注意：本文档假设还没有设置任何路由规则。

@@ -20,10 +20,10 @@ tags:
 - WireGuard
 - Prometheus
 categories: Network
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210313011349.png
+img: https://images.icloudnative.io/uPic/20210313011349.png
 ---
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210313181706.png)
+![](https://images.icloudnative.io/uPic/20210313181706.png)
 
 云原生是一种信仰，是一种全新的技术模式，它不局限于你脑海中固有的那一亩三分地。人有多大胆，地有多大产，只要你敢想，万物皆可云原生。作为一个云原生狂热信徒，给大家看看我的狂热程度：
 
@@ -31,21 +31,21 @@ img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210313011
 
 家中的所有设备和服务，包括云上的服务，全部使用 `kube-prometheus` 进行监控，具体我就不细说了，截几张图给大家看看：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312141836.webp)
+![](https://images.icloudnative.io/uPic/20210312141836.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312141957.jpg)
+![](https://images.icloudnative.io/uPic/20210312141957.jpg)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312142104.webp)
+![](https://images.icloudnative.io/uPic/20210312142104.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312142209.webp)
+![](https://images.icloudnative.io/uPic/20210312142209.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312142221.webp)
+![](https://images.icloudnative.io/uPic/20210312142221.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312143503.webp)
+![](https://images.icloudnative.io/uPic/20210312143503.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312143649.webp)
+![](https://images.icloudnative.io/uPic/20210312143649.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312143710.webp)
+![](https://images.icloudnative.io/uPic/20210312143710.webp)
 
 现在还剩下个 `WireGuard` 没有监控，下面就来看看如何使用 `Prometheus` 来监控 `WireGuard`。
 
@@ -375,15 +375,15 @@ $ kubectl apply -f prometheus-serviceMonitorWireguard.yaml
 
 查看 Prometheus 中对应的 `Target` 是否已经获取成功：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312172948.png)
+![](https://images.icloudnative.io/uPic/20210312172948.png)
 
 最后在 `Grafana` 中添加仪表盘，通过环境变量来切换不同 wg 接口的监控仪表盘。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312183540.webp)
+![](https://images.icloudnative.io/uPic/20210312183540.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312183554.webp)
+![](https://images.icloudnative.io/uPic/20210312183554.webp)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@three/img/20210312183609.webp)
+![](https://images.icloudnative.io/uPic/20210312183609.webp)
 
 至于仪表盘的语法细节，我就不展开讲了，感兴趣的可以先导入我的仪表盘，后面遇到不懂的再来问我。仪表盘 json 文件链接：
 

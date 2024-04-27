@@ -73,5 +73,5 @@ resources:
 
 为了更好地管理路由，团队内部必须要知道如何在两个时间点之间更改路由以及如何在必要时将其回滚，同时最好将这些操作收集到监控系统中。当你需要进一步优化时，这些操作记录是很有价值的（例如 git 历史记录在编写新代码时很有帮助）。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://images.icloudnative.io/uPic/wechat.gif)
 

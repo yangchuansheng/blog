@@ -29,7 +29,7 @@ Istio 体系中流量管理配置下发以及流量规则如何在数据平面�
 
 Istio 控制平面中负责流量管理的组件为 `Pilot`，Pilot 的高层架构如下图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/5Zywav.jpg "Pilot Architecture（来自 [Isio官网文档](https://istio.io/docs/concepts/traffic-management/))")
+![](https://images.icloudnative.io/uPic/5Zywav.jpg "Pilot Architecture（来自 [Isio官网文档](https://istio.io/docs/concepts/traffic-management/))")
 
 根据上图,Pilot 主要实现了下述功能：
 
@@ -65,7 +65,7 @@ Pilot 的规则 DSL 是采用 K8S API Server 中的 [Custom Resource (CRD)](http
 
 我们可以通过下图了解 Istio 流量管理涉及到的相关组件。虽然该图来自 `Istio Github old pilot repo`, 但图中描述的组件及流程和目前 Pilot 的最新代码的架构基本是一致的。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/dCSUXw.jpg "Pilot Design Overview (来自 [Istio old_pilot_repo](https://github.com/istio/old_pilot_repo/blob/master/doc/design.md))")
+![](https://images.icloudnative.io/uPic/dCSUXw.jpg "Pilot Design Overview (来自 [Istio old_pilot_repo](https://github.com/istio/old_pilot_repo/blob/master/doc/design.md))")
 
 图例说明：图中<font color=red>红色</font>的线表示控制流，**黑色**的线表示数据流。**蓝色**部分为和Pilot相关的组件。
 
@@ -166,7 +166,7 @@ xDS 的几个接口是相互独立的，接口下发的配置数据是最终一�
 
 下图显示了 Bookinfo 示例程序中各个组件的 IP 地址，端口和调用关系，以用于后续的分析。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/fONobF.jpg)
+![](https://images.icloudnative.io/uPic/fONobF.jpg)
 
 ### xDS 接口调试方法
 
@@ -406,7 +406,7 @@ $ kubectl exec productpage-v1-54b8b9f55-bx2dq -c istio-proxy -- cat /etc/istio/p
 
 配置文件的结构如图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/Rwq4zh.jpg)
+![](https://images.icloudnative.io/uPic/Rwq4zh.jpg)
 
 其中各个配置节点的内容如下：
 
@@ -583,7 +583,7 @@ $ kubectl exec productpage-v1-54b8b9f55-bx2dq -c istio-proxy -- cat /etc/istio/p
 
 Envoy 配置初始化流程：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/NQTN5a.jpg)
+![](https://images.icloudnative.io/uPic/NQTN5a.jpg)
 
 1. Pilot-agent 根据启动参数和 K8S API Server 中的配置信息生成 Envoy 的初始配置文件 `envoy-rev0.json`，该文件告诉 Envoy 从 `xDS server` 中获取动态配置信息，并配置了 xDS server 的地址信息，即控制平面的 `Pilot`。
 2. Pilot-agent 使用 envoy-rev0.json 启动 Envoy 进程。
@@ -600,7 +600,7 @@ $ kubectl exec -it productpage-v1-54b8b9f55-bx2dq -c istio-proxy curl http://127
 
 #### Envoy 配置文件结构
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/3DyRUz.jpg)
+![](https://images.icloudnative.io/uPic/3DyRUz.jpg)
 
 文件中的配置节点包括：
 
@@ -608,7 +608,7 @@ $ kubectl exec -it productpage-v1-54b8b9f55-bx2dq -c istio-proxy curl http://127
 
 从名字可以大致猜出这是 Envoy 的初始化配置，打开该节点，可以看到文件中的内容和前一章节中介绍的 envoy-rev0.json 是一致的，这里不再赘述。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/CBAqAH.jpg)
+![](https://images.icloudnative.io/uPic/CBAqAH.jpg)
 
 ##### Clusters
 
@@ -616,7 +616,7 @@ $ kubectl exec -it productpage-v1-54b8b9f55-bx2dq -c istio-proxy curl http://127
 
 在 Productpage 的 clusters 配置中包含 `static_clusters` 和 `dynamic_active_clusters` 两部分，其中 static_clusters 是来自于 envoy-rev0.json 的 xDS server 和 zipkin server 信息。dynamic_active_clusters 是通过 xDS 接口从 Istio 控制平面获取的动态服务信息。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/pXRSn3.jpg)
+![](https://images.icloudnative.io/uPic/pXRSn3.jpg)
 
 Dynamic Cluster 中有以下几类 Cluster：
 
@@ -1124,7 +1124,7 @@ Productpage Pod 中的 Envoy 创建了多个 Outbound Listener：
 
 下图描述了一个 `Productpage` 服务调用 `Details` 服务的请求流程：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/yD84dx.jpg)
+![](https://images.icloudnative.io/uPic/yD84dx.jpg)
 
 1、Productpage 发起对 Details 的调用：`http://details:9080/details/0`。
 

@@ -21,17 +21,17 @@ tags:
 - WireGuard
 - Linux
 categories: ["Network", "VPN"]
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-12-24-nStmY2.jpg
-meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-12-25-UbKSO1.jpg
+img: https://images.icloudnative.io/uPic/2022-08-31-12-24-nStmY2.jpg
+meta_image: https://images.icloudnative.io/uPic/2022-08-31-12-25-UbKSO1.jpg
 libraries:
 - katex
 ---
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-12-25-UbKSO1.jpg)
+![](https://images.icloudnative.io/uPic/2022-08-31-12-25-UbKSO1.jpg)
 
 很久以前，我们只需要在 Linux 终端中输入 `route -n`（后来演变出了 `ip route`，也就是 iproute2 提供的命令），就可以知晓系统中所有数据包的走向，但是，**大人，时代变了！**
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-09-00-G2VPAG.jpg)
+![](https://images.icloudnative.io/uPic/2022-08-31-09-00-G2VPAG.jpg)
 
 如果你是 WireGuard 玩家，并且所有的流量都通过 WireGuard 路由出去，但你却无法通过 `ip route` 命令的输出中看出任何的蛛丝马迹：
 
@@ -111,7 +111,7 @@ $ ip route show table table_name
 
 现在回到 WireGuard，很多 WireGuard 用户会选择将本机的所有流量通过 WireGuard 对端路由，原因嘛大家都懂得😁。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-10-34-RsLQ0f.jpg)
+![](https://images.icloudnative.io/uPic/2022-08-31-10-34-RsLQ0f.jpg)
 
 配置嘛也很简单，只需将 `0.0.0.0/0` 添加到 `AllowedIPs` 里即可：
 
@@ -135,7 +135,7 @@ AllowedIPs = 0.0.0.0/0
 
 新版本的 `wg-quick` 通过路由策略巧妙地解决了这个问题，我们来看看它妙在何处！
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-08-31-10-50-rBaNRx.jpg)
+![](https://images.icloudnative.io/uPic/2022-08-31-10-50-rBaNRx.jpg)
 
 首先，使用 wg-quick 启动 `wg0` 网卡：
 

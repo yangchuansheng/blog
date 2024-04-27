@@ -222,7 +222,7 @@ stress: FAIL: [271] (451) failed run completed in 7s
 
 从宿主机的视角来看，PID 为 `32308` 的进程被 oom-killed 了，我们需要重点关注最后一段日志输出：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-04-28-144115.jpg)
+![](https://images.icloudnative.io/uPic/2019-04-28-144115.jpg)
 
 对于刚刚创建的 Pod 而言，有好几个进程作为 OOM killer 的候选人，其中最重要的进程是 `pause`，用来为业务容器创建共享的 network namespace，其 `oom_score_adj` 值为 `-998`，可以确保不被杀死。`oom_score_adj` 值越低就越不容易被杀死。关于 Pod 的 QoS 与 OOM 值的对应关系，可以参考：[Kubernetes 资源管理概述](/posts/kubernetes-resource-management/#qos-%E6%9C%8D%E5%8A%A1%E8%B4%A8%E9%87%8F)。
 

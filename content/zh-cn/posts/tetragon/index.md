@@ -24,12 +24,12 @@ tags:
 - Tetragon
 - Kubernetes
 categories: ["cloud-native", "network"]
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-20-09-oHCpKx.png
+img: https://images.icloudnative.io/uPic/2022-05-17-20-09-oHCpKx.png
 ---
 
 > 原文链接：[https://isovalent.com/blog/post/2022-05-16-tetragon](https://isovalent.com/blog/post/2022-05-16-tetragon)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-19-28-TTjvaO.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-19-28-TTjvaO.jpg)
 
 [Isovalent Cilium 企业版](https://isovalent.com/product) 包含一个基于 eBPF 的实时安全可观测性和运行时增强（runtime enforcement）平台，2022 年 5 月 16 日，Isovalent 终于决定将该平台的主要功能开源，并将其命名为 [Tetragon](https://github.com/cilium/tetragon)。
 
@@ -37,13 +37,13 @@ img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17
 
 Tetragon 提供了基于 eBPF 的完全透明的安全可观测性能力以及实时的运行时增强（runtime enforcement）能力。由于基于 eBPF 的内核级收集器中直接内置了智能内核过滤能力和聚合逻辑，因此 Tetragon 无需更改应用程序即可以非常低的开销实现深度的可观测性。内嵌的运行时执行层不仅能够在系统调用层面进行访问控制，而且能够检测到特权、Capabilities 和命名空间的提权逃逸，并实时自动阻止受影响进程的进一步执行。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-10-04-AJ1icC.webp)
+![](https://images.icloudnative.io/uPic/2022-05-17-10-04-AJ1icC.webp)
 
 ### 智能可观测性
 
 Tetragon 的基石是一个强大的可观测层，它可以观测整个系统，从低级别的内核可见性到跟踪文件访问、网络活动或能力（capability）变化，一直到应用层，涵盖了诸如对易受攻击的共享库的函数调用、跟踪进程执行或解析发出的 HTTP 请求。总的来说，**Tetragon 可以提供对各种内核子系统的可观测性，涵盖了命名空间逃逸、Capabilities 和特权升级、文件系统和数据访问、HTTP、DNS、TLS 和 TCP 等协议的网络活动，以及系统调用层的事件，以审计系统调用和跟踪进程执行。**
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-10-12-dokMTn.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-10-12-dokMTn.jpg)
 
 + **深度可观测性**：可以观测整个系统和应用程序的几乎所有调用环节。比如检测 TCP 连接中的低级微突发（microbursts），为黄金信号监控面板提供 HTTP 可见性，或者检测特定易受攻击的共享库的使用的能力。Tetragon 提供了一个易于使用的框架，以涵盖更多的可观测性用例，因此可以探索更多的可能性。
 + **完全透明**：Tetragon 所有的可观察性数据都是从内核中透明地收集的，无需更改应用程序代码，应用也无法检测到自己何时被监控，这是安全用例的理想选择。
@@ -55,7 +55,7 @@ Tetragon 的基石是一个强大的可观测层，它可以观测整个系统�
 
 基于丰富的可观测性，Tetragon 还提供了实时的运行时增强（runtime enforcement）能力。大部份运行时增强（runtime enforcement）系统都只有有限的一组强制执行点（例如仅在系统调用级别），而 Tetragon 能够以预防的方式在整个操作系统中执行安全策略，而不是对事件异步地做出反应。除了能够为多个层级的访问控制指定允许列表外，Tetragon 还能够自动检测特权和 Capabilities 升级或命名空间提权（容器逃逸），并自动终止受影响的进程。安全策略可以通过 Kubernetes（CRD）、JSON API 或 Open Policy Agent（OPA）等系统注入。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-10-44-WTRpiA.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-10-44-WTRpiA.jpg)
 
 + **预防式安全**：Tetragon 的运行时策略直接在内核中执行，并且是同步的（实时的），这样可以真正防止攻击，而不仅仅是对攻击做出异步的反应。
 + **无需了解所有攻击载体**：Tetragon 无需了解单个攻击载体并对其进行阻断，它的做法是允许你定义一系列难以被攻破的隔离和特权限制保证措施，并自动执行这些保证措施。
@@ -65,7 +65,7 @@ Tetragon 的基石是一个强大的可观测层，它可以观测整个系统�
 
 除了有更多的位置（enforcement points）可以执行策略，eBPF 还使得我们在遭受漏洞攻击时马上作出反应，实时、同步地执行策略。当然，Tetragon 也能够像其他运行时增强（runtime enforcement）系统一样允许或拒绝与特定参数相匹配的特定系统调用，但它的杀手锏是一旦观察到特权/功能升级或命名空间提权，便立即阻止进程继续运行，从而将运行时增强（runtime enforcement）功能提升到一个新的台阶。更厉害的是，Tetragon 甚至不需要了解这个攻击载体是什么。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-11-24-aEiR3Q.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-11-24-aEiR3Q.jpg)
 
 Tetragon 另辟蹊径，它不需要了解特定的漏洞或攻击载体，而是直接定义执行策略，指定哪些应用程序应在运行时可以提升特权、附加额外的 Capabilities、跨越内核命名空间的边界，而后便监视内核的提权和逃逸，并自动终止违反定义策略的进程。而且杀死进程是在内核中同步执行的，这意味着如果一个进程使用 `write(2)` 或 `sendmsg(2)` 来利用内核漏洞获得权限，那么这些系统调用将永远不会返回，该进程及其所有线程都将被终止，不会再继续执行。
 
@@ -73,7 +73,7 @@ Tetragon 另辟蹊径，它不需要了解特定的漏洞或攻击载体，而�
 
 传统的可观测性和运行时增强（runtime enforcement）解决方案无外乎都是基于以下几个方面来实现，它们都有各自的优势和缺陷。而 Tetragon 利用 eBPF 将更多的优势进行结合，并消除了绝大多数的缺陷。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-11-43-mnFp3l.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-11-43-mnFp3l.jpg)
 
 <table>
  <thead>
@@ -132,7 +132,7 @@ Tetragon 另辟蹊径，它不需要了解特定的漏洞或攻击载体，而�
 
 上述解决方案都是在应用程序和系统调用层面上执行，并且可观测性方案也各不相同。它们都有一个用户空间代理，这个代理依赖于按定义收集的可观测性数据，然后对其作出反应，且无法对内核级别的事件进行观测。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-12-53-jzewy0.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-12-53-jzewy0.jpg)
 
 <table>
  <thead>
@@ -196,7 +196,7 @@ Tetragon 另辟蹊径，它不需要了解特定的漏洞或攻击载体，而�
 
 由此可见，在 eBPF 的加持下，Tetragon 结合了现有解决方案的绝大多数优势。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-13-41-3o46Rb.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-13-41-3o46Rb.jpg)
 
 + **高效 & 透明**：Tetragon 提供了对应用的可观测性和高效的应用运行时检测，并且完全透明，对应用无侵入性，无需更改应用代码。
 + **实时增强**：Tetragon 提供了像 seccomp、SELinux 和 LSM 一样的内核级别同步执行策略的能力，但它将策略执行从纯粹的访问控制提升到了防止对系统和组件造成伤害的级别，而不是仅仅限制对资源和数据的访问。
@@ -253,7 +253,7 @@ Killed
 
 在以下示例中，我们将展示如何使用 Tetragon 来观测 Kubernetes Pod 的行为，该 Pod 运行命令 `curl -L github.com`：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-11-28-22-42-Ice7qX.png)
+![](https://images.icloudnative.io/uPic/2023-11-28-22-42-Ice7qX.png)
 
 1. 开始执行 `curl -L github.com`
 2. 进行 github.com 的 DNS 解析，及端口 80 的 TCP 连接打开。
@@ -266,7 +266,7 @@ Killed
 
 Tetragon 使用 eBPF 的其中一个令人兴奋的优势是它可以结合多个方面的可观测性，目前为止，这些可观测性通常都是单独处理的。下面是一个结合网络和运行时可观测性的示例，以演示识别哪些进程涉及哪种类型的网络通信的能力。以下示例显示了使用 Tetragon 来观测一个 Kubernetes Pod，该 Pod 被入侵并受到横向移动攻击：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-19-52-Jj1a5I.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-19-52-Jj1a5I.jpg)
 
 在上图中，我们看到了通过反向 Shell 进行的经典横向移动攻击：
 
@@ -279,7 +279,7 @@ Tetragon 使用 eBPF 的其中一个令人兴奋的优势是它可以结合多�
 
 Tetragon 具有监控文件和数据访问的能力。 以下示例说明了 Tetragon 与 Splunk 集成，以跟踪对敏感文件的访问，同时提供访问的上下文（例如： Kubernetes 元数据、容器镜像、二进制文件和用户信息）。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-19-53-hr7hmF.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-19-53-hr7hmF.jpg)
 
 上面的示例列出了对 /etcd/passwd 的访问，包括进程、及容器镜像和 Kubernetes 命名空间。除了监视 /etc/passwd 或 /etc/shadow 之外，还可以监控系统上其他的明显文件，包括：容器运行时的 UNIX 套接字，及可能改变系统引导的 Systemd 单元或 Init 文件。
 
@@ -289,7 +289,7 @@ Tetragon 不仅提供了对此类敏感文件访问的监控能力，而且可�
 
 TLS 是当今世界安全的基石，但使用较旧的 TLS 版本或不安全的 TLS 密钥可能会构成严重的安全威胁。 无意识的错误使用 TLS 密钥和版本会导致故意的 TLS 降级攻击。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-05-17-19-53-Yv46aO.jpg)
+![](https://images.icloudnative.io/uPic/2022-05-17-19-53-Yv46aO.jpg)
 
 上面的仪表板显示了 TLS 协议版本信息，并将其与 Kubernetes Pod 和命名空间上下文相关联。 它还可以显示密钥信息，及更重要的是密钥长度信息。
 

@@ -65,11 +65,11 @@ categories:
 
 除了命令行客户端以外，还提供了图形界面客户端，图形界面支持 Android、iOS、macOS 以及 Apple tvOS，Windows 暂时不支持，还在施工中 🚧
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-30-17-31-gSoqhd.jpg)
+![](https://images.icloudnative.io/uPic/2023-12-30-17-31-gSoqhd.jpg)
 
 这简直就是魔法上网界的瑞士军刀啊！而且**所有的客户端都是免费的**，iOS 端也不用再买 Shadowrocket 小火箭等付费 App 了。再看看隔壁 Surge 的价格：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-30-17-37-yTvKLW.jpg)
+![](https://images.icloudnative.io/uPic/2023-12-30-17-37-yTvKLW.jpg)
 
 你玩我呢？？
 
@@ -83,7 +83,7 @@ categories:
 
 Android 客户端可以到 [Play Store](https://play.google.com/store/apps/details?id=io.nekohasekai.sfa) 中去下载：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2023-12-30-17-54-a8vZ24.webp)
+![](https://images.icloudnative.io/uPic/2023-12-30-17-54-a8vZ24.webp)
 
 也可以直接到 [GitHub Releases](https://github.com/SagerNet/sing-box/releases) 页面下载。
 
@@ -113,7 +113,7 @@ $ choco install sing-box
 
 你也可以选择第三方开发者开发的图形界面客户端：[GUI.for.SingBox](https://github.com/GUI-for-Cores/GUI.for.SingBox)
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-19-17-28-IrwTam.png)
+![](https://images.icloudnative.io/uPic/2024-01-19-17-28-IrwTam.png)
 
 还有一个更加成熟的第三方客户端：[Hiddify-Next](https://github.com/hiddify/hiddify-next)
 
@@ -1281,7 +1281,7 @@ sing-box 对 DNS 的处理比 Clash 强太多了，支持各种分流规则，�
 
 最终启动 sing-box 之后就可以通过 Clash dashboard 来查看和管理流量啦：
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-14-17-16-2yLPXT.webp)
+![](https://images.icloudnative.io/uPic/2024-01-14-17-16-2yLPXT.webp)
 
 {{< alert >}}
 **注意：** 图形界面客户端会自动把外部控制器相关的配置给屏蔽掉，如果你想使用 Dashboard，只能使用命令行来启动 sing-box。
@@ -1336,8 +1336,7 @@ https://sing-box-subscribe.vercel.app/config/url=https://xxxxxx?clash=1/&file=ht
       "type": "direct",
       "tag": "dns-in",
       "listen": "0.0.0.0",
-      "listen_port": 53,
-      "network": "udp"
+      "listen_port": 53
     }
   ]
 }

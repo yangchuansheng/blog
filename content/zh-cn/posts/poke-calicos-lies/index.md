@@ -64,7 +64,7 @@ $ ip neigh
 
 这里我就不绕弯子了，实际上 Calico 利用了网卡的代理 ARP 功能。代理 ARP 是 ARP 协议的一个变种，当 ARP 请求目标跨网段时，网关设备收到此 ARP 请求，会用自己的 MAC 地址返回给请求者，这便是代理 ARP（Proxy ARP）。举个例子：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-07-30-061928.jpg)
+![](https://images.icloudnative.io/uPic/2019-07-30-061928.jpg)
 
 上面这张图中，电脑发送 ARP 请求服务器 8.8.8.8 的 MAC 地址，路由器（网关）收到这个请求时会进行判断，由于目标 8.8.8.8 不属于本网段（即跨网段），此时便返回自己的接口 MAC 地址给 PC，后续电脑访问服务器时，目标 MAC 直接封装为 MAC254。
 
@@ -117,7 +117,7 @@ listening on calicba2f87f6bb, link-type EN10MB (Ethernet), capture size 262144 b
 
 既然我们已经掌握了 Calico 的组网原理，接下来就可以手动模拟验证了。架构如图所示：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-07-30-calico-test.jpg)
+![](https://images.icloudnative.io/uPic/2019-07-30-calico-test.jpg)
 
 先在 Host0 上执行以下命令：
 

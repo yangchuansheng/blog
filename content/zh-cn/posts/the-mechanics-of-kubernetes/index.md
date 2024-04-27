@@ -20,7 +20,7 @@ bigimg: [{src: "https://hugo-picture.oss-cn-beijing.aliyuncs.com/blog/2019-04-27
 <strong>原文地址：</strong><a href="https://medium.com/@dominik.tornow/the-mechanics-of-kubernetes-ac8112eaa302" target="_blank">The Mechanics of Kubernetes</a>
 </p>
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/3a3GzB.jpg)
+![](https://images.icloudnative.io/uPic/3a3GzB.jpg)
 
 `Kubernetes` 是一个用于在一组节点（通常称之为集群）上托管容器化应用程序的容器编排引擎。本系列教程旨在通过系统建模的方法帮助大家更好地理解 `Kubernetes` 及其基本概念。
 
@@ -39,7 +39,7 @@ Kubernetes 不会基于系统当前状态和期望状态来来确定接下来要
 
 下面我将用一个抽象模型来表示 Kubernetes 的状态转换机制。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/mkYnsM.jpg)
+![](https://images.icloudnative.io/uPic/mkYnsM.jpg)
 
 ```als
 fact {
@@ -147,7 +147,7 @@ Kubernetes 的控制器可以相互级联启用，他们是层层控制的关系
 + 给定一个当前状态 `k8s`，如果启用了控制器 `C`，`C` 会执行命令将状态转换为 `k8s'`。
 + 给定一个当前状态 `k8s'`，如果启用了控制器 `C'`，`C'` 会执行命令将状态转换为 `k8s''`。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/lgPiYz.jpg)
+![](https://images.icloudnative.io/uPic/lgPiYz.jpg)
 
 上图展示了用户将 Deployment 对象提交给 API Server 之后生成的级联命令。
 
@@ -155,7 +155,7 @@ Kubernetes 的控制器可以相互级联启用，他们是层层控制的关系
 
 ----
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/uuoKDr.jpg)
+![](https://images.icloudnative.io/uPic/uuoKDr.jpg)
 
 ```als
 fact {
@@ -170,7 +170,7 @@ fact {
 
 上述规范语言描述了严格意义上的声明式系统的状态转换机制：给定一个期望状态，系统将找到一系列命令让自己从当前状态 `sys.first` 转换为期望状态 `sys.last`。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/IsG3gM.jpg)
+![](https://images.icloudnative.io/uPic/IsG3gM.jpg)
 
 如果我们不把 Kubernetes 的资源对象看成对实际描述的数据的记录，而是看成对最终期望的结果的记录，就可以认为 Kubernetes 是一个声明式系统。例如，我们可以将前文提到的 Deployment 对象解释为 :** 最终期望的结果是存在 `3` 个 Pod 对象。**
 

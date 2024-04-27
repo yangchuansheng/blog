@@ -298,6 +298,6 @@ admin:
 
 ----
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/wechat.gif)
+![](https://images.icloudnative.io/uPic/wechat.gif)
 <center>扫一扫关注微信公众号</center>
 

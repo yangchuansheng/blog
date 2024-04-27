@@ -120,23 +120,23 @@ AdGuardHo 9990  root    3u  IPv6 0xb76d091ec878f951      0t0  TCP *:3000 (LISTEN
 
 打开浏览器，输入网址 `http://127.0.0.1:3000/` 即可访问 AdGuard Home 的管理界面。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-114450.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-114450.png)
 
 点击“开始配置”，然后设定网页管理界面和 DNS 服务的端口。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-114514.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-114514.png)
 
 点击“下一步”设置用户名和密码。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-114541.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-114541.png)
 
 最后点击“下一步”就大功告成了。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-114614.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-114614.png)
 
 在仪表盘上，我们可以看到 DNS 查询次数、被过滤器拦截的网站、查询 DNS 请求的客户端地址等等信息。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-adguard_home-1.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-adguard_home-1.png)
 
 现在再查看端口号，管理界面会变成你刚刚设定的端口，另外还会多出一个 DNS 服务的端口：
 
@@ -159,13 +159,13 @@ AdGuardHo 10619           root   10u  IPv6 0xb76d091eb89601c1      0t0  UDP *:53
 
 勾选【使用过滤器和 Hosts 文件以拦截指定域名】、【使用 AdGuard 浏览安全网页服务】、【强制安全搜索】。如果你想拦截成人网站，也可以勾选【使用 AdGuard 家长控制服务】。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-135135.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-135135.png)
 
 ### 过滤器
 
 虽然 AdGuard 本身提供了 `AdGuard`、`AdAway` 的广告过滤规则，但在中国有点水土不服，如果要想更完美的实现广告屏蔽还需要自己添加规则，AdGuard 可以兼容 `Adblock` 的语法。最知名的过滤规则 **EasyList** 就是由 Adblock Plus 团队维护，过滤规则往往是一个 `txt` 文件，在文件的开头部分会显示规则的最后更新日期。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-133041.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-133041.png)
 
 推荐广告过滤规则：
 
@@ -177,19 +177,19 @@ AdGuardHo 10619           root   10u  IPv6 0xb76d091eb89601c1      0t0  UDP *:53
 
 优酷网如果播放无限加载，那在自定义静态规则里加入一条规则 `@@mp4.ts` （参考下图）。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-adguard_filter.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-adguard_filter.png)
 
 ### 上游 DNS 设置
 
 官方默认使用 `Cloudflare` 的 DNS over HTTPS 作为上游服务器，在国内可能请求上游 DNS 延迟比较高，可以加上或替换国内的 DNS。我自己另外加了中科大的两组无污染 DNS，每次查询的时候会对所有的上游 DNS 同时查询，加速解析。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-135051.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-135051.png)
 
 ### 查询日志
 
 在这个界面里可以看见所有设备的 DNS 查询日志，可以下载整个日志文件，也可以针对某个域名进行快速拦截和放行。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-135204.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-135204.png)
 
 ### 提升 QPS
 
@@ -200,7 +200,7 @@ AdGuardHo 10619           root   10u  IPv6 0xb76d091eb89601c1      0t0  UDP *:53
 
 配置文件默认路径是 `/usr/local/bin/AdGuardHome.yaml`
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-09-21%20%E4%B8%8B%E5%8D%8810.04.05.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202019-09-21%20%E4%B8%8B%E5%8D%8810.04.05.png)
 
 ## 使用 Envoy 作为前端代理
 
@@ -326,11 +326,11 @@ $ sudo launchctl load /Library/LaunchAgents/envoy.plist
 
 现在就可以在浏览器中通过 url `http://127.0.0.1/` 来访问 AdGuard Home 的管理界面啦~
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-21-235711.png)
+![](https://images.icloudnative.io/uPic/2019-09-21-235711.png)
 
 后续如果还有其他不可描述的应用，它们的管理界面都可以根据不同的 url 路径加到 envoy 的后端中。更高级的玩法还可以接入 `Prometheus` 监控，envoy 的 metrics 路径是 `/stats/prometheus`。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2019-09-22-000220.png)
+![](https://images.icloudnative.io/uPic/2019-09-22-000220.png)
 
 如果你很好奇为什么我的浏览器能够输出彩色的 metrics，请在公众号后台回复◉prometheus◉
 

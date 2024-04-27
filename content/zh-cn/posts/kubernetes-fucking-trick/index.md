@@ -168,7 +168,7 @@ coredns-64b597b598-7547d   192.168.123.250
 
 如果你需要频繁地使用 kubectl 和 kubernetes api 进行交互，使用别名将会为你节省大量的时间，开源项目 [kubectl-aliases](https://github.com/ahmetb/kubectl-aliases) 可以通过编程的方式生成 kubectl 别名，别名生成规则如下：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/4snccn.jpg)
+![](https://images.icloudnative.io/uPic/4snccn.jpg)
 
 + 简单别名示例
 

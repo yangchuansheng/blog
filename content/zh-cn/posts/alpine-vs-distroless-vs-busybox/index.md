@@ -24,10 +24,10 @@ tags:
 - Docker
 - Containers
 categories: cloud-native
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202109061101268.png
+img: https://images.icloudnative.io/uPic/202109061101268.png
 ---
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202109061100474.jpg)
+![](https://images.icloudnative.io/uPic/202109061100474.jpg)
 
 大多数情况下，我们构建容器镜像时选择的基础镜像无外乎是 `busybox`、`alpine` 和 `google/distroless` 这几种，这几个基础镜像在云原生的世界很吃香，被广泛应用于各个应用的容器化。
 
@@ -49,7 +49,7 @@ gcr.io/distroless/static   latest      e0851a4aa136  51 years ago  3.06 MB
 
 先启动一个 Busybox 容器进去一探究竟：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202109041230369.png)
+![](https://images.icloudnative.io/uPic/202109041230369.png)
 
 这个镜像的大小只有 `1.24MB`，缺容纳了这么多 GNU 命令，麻雀虽小五脏俱全啊，这到底是怎么做到的？
 
@@ -64,7 +64,7 @@ Busybox 里面的函数可以通过两种方式来调用：
 
 例如：
 
-![Busybox 容器](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202109041231190.png)
+![Busybox 容器](https://images.icloudnative.io/uPic/202109041231190.png)
 
 很明显，这些不是我们所熟知的 GNU 二进制文件，因为所有的二进制文件都具有相同的属性，比如大小、日期等。这些都不是独立的二进制文件，而是 Multi-Call binary 每个调用函数的别名。这个 Multi-Call binary 就叫 `Busybox`。
 
@@ -74,7 +74,7 @@ Busybox 里面的函数可以通过两种方式来调用：
 
 看完了 Busybox，我们再来看看 Docker Alpine 是怎么做的。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202109041238238.png)
+![](https://images.icloudnative.io/uPic/202109041238238.png)
 
 巧了，Docker Alpine 的二进制文件竟然是指向 busybox 二进制文件的，这就很明显了，Alpine 镜像的底层使用了 busybox 二进制文件。除此之外，Alpine 还包含了 `apk` 包管理器和一些额外的可执行文件，所以 Alpine 镜像的体积才会比 Busybox 大。
 
@@ -82,7 +82,7 @@ Busybox 里面的函数可以通过两种方式来调用：
 
 `Distroless` 就不用说了，它来自 [Google](https://github.com/GoogleContainerTools/distroless)。该镜像几乎就是空的，只包含应用程序及其运行时所需的依赖，不包含软件包管理器、shell 和其他 GNU 二进制文件，当然还包含一些时区配置和部分 ca-certificates。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting1@main/img/202109041251164.png)
+![](https://images.icloudnative.io/uPic/202109041251164.png)
 
 可以看到这个镜像中既没有 `shell` 也没有 `bash`，为了一探究竟，可以先把镜像保存为 tar 包，然后把 `rootfs` 解压出来：
 

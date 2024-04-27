@@ -23,14 +23,14 @@ tags:
 - Minecraft
 - macOS
 categories: tech
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-22-13-41-fSSeXu.png
+img: https://images.icloudnative.io/uPic/2022-02-22-13-41-fSSeXu.png
 ---
 
 Apple 在去年年底发布了 M1 Max 芯片，这款芯片的性能在 M1 的基础上又上升了一个等级，作为一名伪果粉，我果断在第一时间入手了一台 32G 的 M1 Max。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-18-22-40-5jngPI.png)
+![](https://images.icloudnative.io/uPic/2022-02-18-22-40-5jngPI.png)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-18-22-41-zwaTz3.png)
+![](https://images.icloudnative.io/uPic/2022-02-18-22-41-zwaTz3.png)
 
 收到电脑之后，我当然是装上了世界上最屌炸天的游戏 Minecraft。但 Minecraft 目前只支持 `x86_64` 架构，不支持 ARM，准确地说是只支持 `x86_64` 架构的 Java，因为 macOS 的 Minecraft 是通过 Java 来运行的。
 
@@ -42,7 +42,7 @@ Apple 在去年年底发布了 M1 Max 芯片，这款芯片的性能在 M1 的�
 
 要想运行 Minecraft 时无需经过 Rosetta 转译，当然是要使用 ARM64 版本的 Java 了。好在 Zulu 提供了 ARM64 版本的 Java，只需要进入其[下载页面](https://www.azul.com/downloads/zulu-community/?version=java-11-lts&os=macos&architecture=arm-64-bit&package=jdk-fx)，依次选择 「Java 17」-「macOS」-「ARM 64-bit」-「JDK FX」，在右侧选择 `.dmg` 文件下载并安装。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-11-40-rkuzV0.png)
+![](https://images.icloudnative.io/uPic/2022-02-19-11-40-rkuzV0.png)
 
 安装完成后，可以通过运行命令 `/usr/libexec/java_home -V` 来查看系统中安装的所有 Java 的版本。
 
@@ -87,7 +87,7 @@ $ java -jar HMCL-3.5.2.218.jar # 打开HMCL
 
 打开 HMCL Launcher，进 **版本列表** -> **安装新游戏版本**，安装 1.17.1 版本 Minecraft，并同时安装 `Fabric`。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-12-41-LfYYRd.png)
+![](https://images.icloudnative.io/uPic/2022-02-19-12-41-LfYYRd.png)
 
 ## 获取 LWJGL 库文件
 
@@ -114,27 +114,27 @@ $ mv m1_lwjgl_330_nightly ~/Games/Minecraft
 
 打开『游戏全局设置』，检查 Java 路径是否正确，滑动至页面底部，在「调试选项」-「本地库路径」中，选择自定义库路径为 `m1_lwjgl_330_nightly` 目录内的 `lwjglnatives` 目录（例如，本文的路径是 `~/Games/Minecraft/m1_lwjgl_330_nightly/lwjglnatives`），**开启「不检查游戏完整性」**，同时也需要**开启「不检查 JVM 与游戏的兼容性」**。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-16-04-NlQikz.png)
+![](https://images.icloudnative.io/uPic/2022-02-19-16-04-NlQikz.png)
 
 ## 运行游戏
 
 回到启动器首页，点击右下角的『启动游戏』。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-16-05-X0Xil1.jpg)
+![](https://images.icloudnative.io/uPic/2022-02-19-16-05-X0Xil1.jpg)
 
 可以看到 Minecraft 已经可以正常运行了，也能正常加载 Fabric API 和第三方 Mod。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-16-12-zZi3GM.webp)
+![](https://images.icloudnative.io/uPic/2022-02-19-16-12-zZi3GM.webp)
 
 我总共开了 40 个模组。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-16-21-GMRH4I.png)
+![](https://images.icloudnative.io/uPic/2022-02-19-16-21-GMRH4I.png)
 
 经过测试，启动时间在 20s 之内，游戏内也很顺畅，我用到至今还没有出现过崩溃现象。CPU 占用 50%，内存设置为自动分配，实际占用 5.48G。
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-16-25-Lr3z2d.png)
+![](https://images.icloudnative.io/uPic/2022-02-19-16-25-Lr3z2d.png)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting2@main/uPic/2022-02-19-16-26-byDrxK.png)
+![](https://images.icloudnative.io/uPic/2022-02-19-16-26-byDrxK.png)
 
 ## 结语
 

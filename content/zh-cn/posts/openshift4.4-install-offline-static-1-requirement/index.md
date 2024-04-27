@@ -20,7 +20,7 @@ tags:
 - Quay
 categories:
 - cloud-native
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200601144925.png
+img: https://images.icloudnative.io/uPic/20200601144925.png
 ---
 
 本系列文章描述了离线环境下以 `UPI` (User Provisioned Infrastructure) 模式安装 `Openshift Container Platform` (OCP) 4.4.5 的步骤，我的环境是 `VMware ESXI` 虚拟化，也适用于其他方式提供的虚拟机或物理主机。离线资源包括安装镜像、所有样例 `Image Stream` 和 `OperatorHub` 中的所有 RedHat Operators。
@@ -274,27 +274,27 @@ $ podman run --privileged=true \
 
 这一步会启动一个配置 Quay 的进程，打开浏览器访问：https://registry.openshift4.example.com，用户名/密码为：`quayconfig/icloudnative.io`：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531150958.png)
+![](https://images.icloudnative.io/uPic/20200531150958.png)
 
 选择新建配置，然后设置数据库：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531151305.png)
+![](https://images.icloudnative.io/uPic/20200531151305.png)
 
 设置超级管理员：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531152429.png)
+![](https://images.icloudnative.io/uPic/20200531152429.png)
 
 下一个界面要设置两个地方，一个是 Server configuration 的 `Server Hostname`，另一个是 `Redis Hostname`，SSL 不用设置，后面直接通过命令行配置：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531152811.png)
+![](https://images.icloudnative.io/uPic/20200531152811.png)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531152931.png)
+![](https://images.icloudnative.io/uPic/20200531152931.png)
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531153820.png)
+![](https://images.icloudnative.io/uPic/20200531153820.png)
 
 配置检查通过后，就可以保存下载下来：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531154244.png)
+![](https://images.icloudnative.io/uPic/20200531154244.png)
 
 最后会导出一个 `quay-config.tar.gz`，将其上传到 Quay 所在的服务器，解压到配置文件目录：
 
@@ -321,7 +321,7 @@ $ openssl req -new -key ssl.key -out ssl.csr
 
 这里根据命令行向导来进行信息输入：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200529105713.png)
+![](https://images.icloudnative.io/uPic/20200529105713.png)
 
 **Common Name 可以输入：`*.yourdomain.com`，这种方式可以生成通配符域名证书。**
 
@@ -608,7 +608,7 @@ Quay 的 API 文档可以参考这里：[Appendix A: Red Hat Quay Application Pr
 
 Quay 中也能看到所有的镜像：
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200531121844.png)
+![](https://images.icloudnative.io/uPic/20200531121844.png)
 
 ### 提取 openshift-install 命令
 

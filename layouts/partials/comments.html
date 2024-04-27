@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function() {
           forum: 'fuckcloudnative',
           api: 'https://disqus.icloudnative.io',
           site: 'https://icloudnative.io',
-          emojiPath: 'https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/emoji/',
+          emojiPath: 'https://images.icloudnative.io/emoji/',
           mode: 2,
           timeout: 15,
           init: true
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 <div style="margin-top:1.5em" id="comment"></div>
 
 <script defer>
-    const getStoredTheme = () => (localStorage.getItem("appearance") || "dark") === "dark" ? "https://cdn.jsdelivr.net/gh/yangchuansheng/comments@main/dark.css" : "light";
+    const getStoredTheme = () => (localStorage.getItem("appearance") || "dark") === "dark" ? "https://images.icloudnative.io/dark.css" : "light";
     // const getStoredTheme1 = () => (localStorage.getItem("appearance") || "dark") === "dark" ? "light" : "https://cdn.jsdelivr.net/gh/yangchuansheng/comments@main/dark.css";
 
     const setGiscusTheme = () => {

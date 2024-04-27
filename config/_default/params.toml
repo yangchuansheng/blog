@@ -134,7 +134,7 @@ smartTOCHideUnfocusedChildren = false
 
 
 [[slideImages]]
-  imgAddress = "https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-09-15-12-36-W4I1A8.png"
+  imgAddress = "https://images.icloudnative.io/uPic/2023-09-15-12-36-W4I1A8.png"
   linkAddress = "https://gptgod.online/#/register?invite_code=46rrqz6qzscsey1jci7sdjw95"
   linkEvent = "gptgod"
 
@@ -149,6 +149,6 @@ smartTOCHideUnfocusedChildren = false
   linkEvent = "Laf"
 
 [[slideImages]]
-  imgAddress = "https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting5@main/uPic/2023-02-05-16-18-ofcgZS.png"
-  linkAddress = "https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20200430221955.png"
+  imgAddress = "https://images.icloudnative.io/uPic/2023-02-05-16-18-ofcgZS.png"
+  linkAddress = "https://images.icloudnative.io/uPic/20200430221955.png"
   linkEvent = "Contact me"

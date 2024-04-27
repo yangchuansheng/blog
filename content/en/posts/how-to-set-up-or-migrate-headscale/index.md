@@ -27,8 +27,8 @@ categories:
 - VPN
 series:
 - Tailscale Series
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-11-15-sM5HES.png
-meta_image: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-09-02-22-01-WKkKHb.jpg
+img: https://images.icloudnative.io/uPic/2022-03-21-11-15-sM5HES.png
+meta_image: https://images.icloudnative.io/uPic/2022-09-02-22-01-WKkKHb.jpg
 ---
 
 Welcome to the ultimate Headscale tutorial: your comprehensive guide to mastering the innovative Headscale platform. In today's digital networking landscape, the emergence of open-source projects like Headscale has marked a new era in remote connectivity and network security. This guide simplifies remote access and enhances security, without the complexity of exposing ports to the internet. Dive into the steps of setting up Headscale and unlock the potential of a more private, decentralized network.
@@ -50,7 +50,7 @@ Tailscale is a virtual networking tool based on WireGuard, similar in nature to 
 
 To put it simply, Tailscale can be regarded as an easier to use, feature-enriched alternative to WireGuard.
 
-![Tailscale remote network VPN solution](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-14-50-Q4bWmK.png "Tailscale remote network VPN solution")
+![Tailscale remote network VPN solution](https://images.icloudnative.io/uPic/2022-03-20-14-50-Q4bWmK.png "Tailscale remote network VPN solution")
 
 Moreover, for those who prioritize free and open-source solutions, Tailscale stands out. While it is a commercial product, it offers a free tier for individual users. This allows personal users to use the service without cost for up to 20 devices, albeit with some limitations like non-customizable subnet segments and a single subnet restriction. Apart from the graphical clients for Windows and macOS, the rest of Tailscale's client components, including the Android client, are developed as open-source projects under the BSD license, as seen in their [GitHub repository](https://github.com/tailscale/).
 
@@ -62,7 +62,7 @@ For most individuals, Tailscale's free version will suffice. Those with more adv
 
 [Headscale](https://github.com/juanfont/headscale) is a unique open-source alternative to Tailscale's control server, which, being proprietary, places several restrictions on free users as a part of its revenue model. Created by Juan Font from the European Space Agency and programmed in Go, Headscale is available under the BSD license. It effectively mirrors the main features of Tailscale's control server, allowing organizations to deploy it internally without restrictions on the number of devices, thus ensuring complete control over their network traffic.
 
-![Headscale open source control server for Tailscale](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-20-16-33-E6qmul.png "Headscale open source control server for Tailscale")
+![Headscale open source control server for Tailscale](https://images.icloudnative.io/uPic/2024-01-20-16-33-E6qmul.png "Headscale open source control server for Tailscale")
 
 ## Setting Up Headscale
 
@@ -80,15 +80,15 @@ Just click on the button below to be redirected to the Sealos prebuilt template 
 
 After clicking the 'Deploy Application' button, the deployment starts. Upon completion, two applications appear: Headscale, and its [visual interface](https://github.com/GoodiesHQ/headscale-admin).
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-20-16-48-zb4mOk.png)
+![](https://images.icloudnative.io/uPic/2024-01-20-16-48-zb4mOk.png)
 
 For details, click 'Details' on the Headscale application page. The Public Address associated with the internal port 8080 is the public URL for Headscale.
 
-![](https://jsdelivr.icloudnative.io/gh/yangchuansheng/imghosting6@main/uPic/2024-01-20-16-49-RRCQHe.png)
+![](https://images.icloudnative.io/uPic/2024-01-20-16-49-RRCQHe.png)
 
 To access the Headscale visual interface, simply append `/admin/` to the Headscale public URL.
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-17-39-42E6NM.jpg)
+![](https://images.icloudnative.io/uPic/2024-01-07-17-39-42E6NM.jpg)
 
 ### Deploying on Linux
 
@@ -247,7 +247,7 @@ ID | Name | Created
 
 For those who have deployed Headscale using Sealos's streamlined one-click method, you can navigate to the Headscale application's detail page and click on the "Terminal" button on the right. This action will take you to the Headscale container's terminal:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
+![](https://images.icloudnative.io/uPic/2023-12-29-16-03-EKHluF.png)
 
 Once in the terminal, you can carry out the above-mentioned steps to set up a user.
 
@@ -255,7 +255,7 @@ Once in the terminal, you can carry out the above-mentioned steps to set up a us
 
 To link [Headscale-Admin](https://github.com/GoodiesHQ/headscale-admin) with Headscale, an API Key is essential. Initially, you must create an API key. Go to the Headscale application's detail page and click the "Terminal" button on the right to enter the Headscale container's terminal interface:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-03-EKHluF.png)
+![](https://images.icloudnative.io/uPic/2023-12-29-16-03-EKHluF.png)
 
 To create an API Key, execute the following command:
 
@@ -265,11 +265,11 @@ $ headscale apikey create
 
 Input the Headscale public domain and API Key into the Headscale-Admin settings. Make sure to uncheck the Legacy API option, then click "Save":
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-05-bF4O80.jpg)
+![](https://images.icloudnative.io/uPic/2024-01-07-19-05-bF4O80.jpg)
 
 After establishing the connection, navigate to "Users" in the left sidebar, and proceed with "Create" to initiate the user creation process:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-24-M1KVMw.jpg)
+![](https://images.icloudnative.io/uPic/2024-01-07-19-24-M1KVMw.jpg)
 
 ## Tailscale Client Integration
 
@@ -350,7 +350,7 @@ $ tailscale up --login-server=https://<HEADSCALE_PUB_ENDPOINT> --accept-routes=t
 
 Access commands can also be sourced from the Headsca-Admin Deploy interface:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-28-7nsZjl.jpg)
+![](https://images.icloudnative.io/uPic/2024-01-07-19-28-7nsZjl.jpg)
 
 It is recommended to disable the DNS feature to avoid overriding the default system DNS. For more information on DNS settings, refer to the official Tailscale documentation.
 
@@ -364,7 +364,7 @@ To authenticate, visit:
 
 To complete the setup, open the provided link in a browser, and you'll see this interface:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-23-vrj10n.png)
+![](https://images.icloudnative.io/uPic/2023-12-29-16-23-vrj10n.png)
 
 Copy the command from this interface to the terminal of your headscale server, replacing USERNAME with the user you previously created.
 
@@ -457,26 +457,26 @@ Overview:
 
 When you've installed the GUI version of an application, additional steps are required to use Headscale as the control server for Tailscale. Headscale conveniently provides detailed instructions for this. First, access the URL `https://<HEADSCALE_PUB_ENDPOINT>/apple` in a web browser, where you will be greeted with the interface shown below:
 
-![Headscale Apple](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-16-50-lgDjCB.png)
+![Headscale Apple](https://images.icloudnative.io/uPic/2023-12-29-16-50-lgDjCB.png)
 
 For those using Tailscale version 1.34.0 or newer, the following method applies:
 
 1. Hold down the 'ALT' key and click the Tailscale icon on the top menu bar, then hover the cursor over the 'Debug' menu.
 
-   ![Accessing Tailscale Debug Options](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-04-fPLtsa.png)
+   ![Accessing Tailscale Debug Options](https://images.icloudnative.io/uPic/2023-12-29-17-04-fPLtsa.png)
 
 2. Select 'Add Account...' under 'Custom Login Server'.
 3. In the subsequent window, input the public domain of Headscale and click 'Add Account'.
    
-   ![Headscale Account Addition](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-13-0LVi0S.png)
+   ![Headscale Account Addition](https://images.icloudnative.io/uPic/2023-12-29-17-13-0LVi0S.png)
 
 4. This will redirect you to a webpage in the browser.
    
-   ![Browser Page Redirection](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-14-3VPcX4.png)
+   ![Browser Page Redirection](https://images.icloudnative.io/uPic/2023-12-29-17-14-3VPcX4.png)
 
 5. As with the Linux client, return to the machine where Headscale is installed and run the command displayed on the browser. Registration is then successful:
    
-   ![Successful Registration on Headscale](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-20-17-51-Gcjcmy.png)
+   ![Successful Registration on Headscale](https://images.icloudnative.io/uPic/2022-03-20-17-51-Gcjcmy.png)
 
 On the Headscale host machine, verify the registered nodes:
 
@@ -521,33 +521,33 @@ As of version 1.30.0, Android users have the ability to personalize their contro
 
 Upon completing the installation, opening the Tailscale App reveals this interface:
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-12-m2IYpv.jpeg">
+<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-12-m2IYpv.jpeg">
 
 By tapping the "three dots" in the top right corner, initially, you'll see only an `About` option:
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-14-ghdl4A.jpeg">
+<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-14-ghdl4A.jpeg">
 
 The next step involves a clever maneuver: continuously open and close the "three dots" menu in the top right. After repeating this several times, a new `Change server` option becomes available:
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-23-mcAexh.jpeg">
+<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-23-mcAexh.jpeg">
 
 Click `Change server` and input the headscale control server's address:
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting4@main/uPic/2022-11-22-18-37-fkRIxW.jpeg">
+<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-37-fkRIxW.jpeg">
 
 Then, select `Save and restart`. When you press `Sign in with other`, the following page will appear:
 
-<img src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-19-39-fKOCTT.jpg" style="width: 400px;">
+<img src="https://images.icloudnative.io/uPic/2024-01-07-19-39-fKOCTT.jpg" style="width: 400px;">
 
 Transfer the command shown onto the terminal of your Headscale host, substituting **USER** with the user you had previously set up, then run the command. After a successful registration, close this page to return to the App's main interface, as depicted in the image:
 
-<img style="width: 400px;" src="https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-20-21-2e8CKX.jpg">
+<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2024-01-07-20-21-2e8CKX.jpg">
 
 ### Windows
 
 To integrate Headscale as the control server with the Windows Tailscale client, simply open `https://<HEADSCALE_PUB_ENDPOINT>/windows` in your browser. This will lead you to an interface as shown below:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-19-vSqFK9.png)
+![](https://images.icloudnative.io/uPic/2023-12-29-17-19-vSqFK9.png)
 
 Follow the instructions outlined there to complete the setup.
 
@@ -565,14 +565,14 @@ To install on iOS, simply download from the App Store, ensuring you have a U.S. 
 
 1. After installing, open Tailscale to verify no accounts are currently logged in. Then head to "Settings", scroll down to locate "Tailscale" below either "Game Center" or "TV Provider", and click to access it.
 
-   ![Navigating to Tailscale in iOS Settings](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-41-byKA02.png)
+   ![Navigating to Tailscale in iOS Settings](https://images.icloudnative.io/uPic/2023-12-29-17-41-byKA02.png)
 
    If your device has been connected to Tailscale server before, activate the "Reset Keychain" feature.
 
 2. In the "Alternate Coordination Server URL" field, input your Headscale public domain name.
 3. Close and reopen Tailscale via the iOS app switcher. Next, select "Log in" to trigger a Headscale authentication pop-up.
    
-   ![Headscale Authentication Interface](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-17-51-mErNCd.png)
+   ![Headscale Authentication Interface](https://images.icloudnative.io/uPic/2023-12-29-17-51-mErNCd.png)
 
 4. Copy the command from the Headscale authentication page and paste it into the terminal of your headscale container, replacing USERNAME with the user you previously created.
    
@@ -584,7 +584,7 @@ To install on iOS, simply download from the App Store, ensuring you have a U.S. 
 
 5. Successful registration is confirmed with a notification.
 
-   ![Registration Completion Notification](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2023-12-29-18-01-Z2XdzF.png)
+   ![Registration Completion Notification](https://images.icloudnative.io/uPic/2023-12-29-18-01-Z2XdzF.png)
 
 ### Effortless Access via Pre-Authkeys
 
@@ -606,15 +606,15 @@ ID | Key                                              | Reusable | Ephemeral | U
 
 You can also generate this key using Headscale-Admin. Simply click on the desired User:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-21-52-baNzjl.jpg)
+![](https://images.icloudnative.io/uPic/2024-01-07-21-52-baNzjl.jpg)
 
 In the interface that appears, hit `Create` next to "PreAuth Keys," set an expiration time (such as 100 years), tick `Reusable` if you plan to reuse this Key, and then click ✅:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-21-57-nSM3jC.png)
+![](https://images.icloudnative.io/uPic/2024-01-07-21-57-nSM3jC.png)
 
 After creation, copy the PreAuth Key by clicking the highlighted area in red:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting6@main/uPic/2024-01-07-22-00-ZOw8lm.png)
+![](https://images.icloudnative.io/uPic/2024-01-07-22-00-ZOw8lm.png)
 
 With this, new nodes can effortlessly connect directly, bypassing the need for server approval:
 
@@ -693,6 +693,6 @@ Now, from any Tailscale client node, you can ping any device within your home ne
 
 As for stability, Tailscale currently holds a slight advantage over Netmaker. It typically avoids the intermittent connectivity issues that Netmaker encounters. This reliability is largely due to Tailscale's sophisticated optimizations for NAT traversal in user-space. They've also authored an insightful article on the mechanics of [NAT traversal](https://tailscale.com/blog/how-nat-traversal-works/), which comes highly recommended. Here's an illustrative image for better understanding:
 
-![](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting3@main/uPic/2022-03-21-10-52-TzXGEZ.png)
+![](https://images.icloudnative.io/uPic/2022-03-21-10-52-TzXGEZ.png)
 
 This piece introduces both Tailscale and Headscale, focusing on the installation and setup of Headscale, the integration with clients across various platforms, and the method to link local networks of different nodes. The subsequent article will delve into how to configure Tailscale to use custom DERP Servers (that is, relay servers). See you in the next one!

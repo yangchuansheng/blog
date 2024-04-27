@@ -22,7 +22,7 @@ categories:
 - Linux
 series:
 - Linux Capabilities 入门系列
-img: https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting@master/img/20201019215252.png
+img: https://images.icloudnative.io/uPic/20201019215252.png
 ---
 
 > 原文链接：[Linux Capabilities In Practice](https://blog.container-solutions.com/linux-capabilities-in-practice)
