@@ -155,6 +155,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
   window.addEventListener('scroll', onScrollLoadAnalytics);
 </script>
 
+<!-- Microsoft Clarity -->
+<script defer>
+  function loadClarityScript() {
+    // 创建并插入 Clarity 跟踪脚本
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "m535olg9md");
+
+    // 移除滚动事件监听器，确保脚本只加载一次
+    window.removeEventListener('scroll', onScrollLoadClarity);
+  }
+
+  function onScrollLoadClarity() {
+    // 检查用户是否已向下滚动页面
+    if (window.scrollY > 100) { // 例如，用户向下滚动超过100px
+      loadClarityScript();
+    }
+  }
+
+  // 添加滚动事件监听器
+  window.addEventListener('scroll', onScrollLoadClarity);
+</script>
 
 
 
