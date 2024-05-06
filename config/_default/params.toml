@@ -53,6 +53,7 @@ smartTOCHideUnfocusedChildren = false
   showLikes = false
   showDateUpdated = true
   showAuthor = true
+  showAuthorBottom = false
   showHero = true
   heroStyle = "big" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background
@@ -118,6 +119,11 @@ smartTOCHideUnfocusedChildren = false
 [fathomAnalytics]
   # site = "ABC12345"
   # domain = "llama.yoursite.com"
+
+[umamiAnalytics]
+  websiteid = "f415abb1-1cb9-402e-a1c4-225ca9d792b0"
+  domain = "umami.icloudnative.io"
+  scriptName = "oishii"
 
 [buymeacoffee]
   identifier = "nunocoracao"

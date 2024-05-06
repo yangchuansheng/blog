@@ -1,5 +1,5 @@
 global:
-  language: "🇨🇳"
+  language: "简体中文"
 
 article:
   anchor_label: "锚点"
@@ -58,14 +58,14 @@ list:
   externalurl_title: "链接到外部网站"
   no_articles: "这里还没有任何文章可以列出。"
 
-# nav:
-#   scroll_to_top_title: "Scroll to top"
-#   skip_to_main: "Skip to main content"
+nav:
+  scroll_to_top_title: "返回顶部"
+  skip_to_main: "跳过正文"
 
-# search:
-#   open_button_title: "Search (/)"
-#   close_button_title: "Close (Esc)"
-#   input_placeholder: "Search"
+search:
+  open_button_title: "搜索 (/)"
+  close_button_title: "关闭 (Esc)"
+  input_placeholder: "搜索"
 
 sharing:
   email: "通过电子邮件发送"
