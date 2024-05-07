@@ -24,6 +24,10 @@ article:
     disable: "关闭极简模式"
   bye_1: "他日江湖相逢"
   bye_2: "再当杯酒言欢"
+  redirect_pre: "即将离开 "
+  redirect_post: "，跳转到以下外部链接"
+  redirect_info: "请自行识别该链接是否安全，请注意您的帐号和财产安全。"
+  direct_link: "立即前往"
 
 author:
   byline_title: "作者"

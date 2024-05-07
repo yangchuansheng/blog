@@ -30,6 +30,10 @@ article:
     disable: "Disable zen mode"
   bye_1: "When Fate Brings Us Together Again"
   bye_2: "We Shall Celebrate with a Toast"
+  redirect_pre: "About to leave "
+  redirect_post: ", jump to the following external link"
+  redirect_info: "Please assess the safety of the link independently and exercise caution to safeguard your account and property."
+  direct_link: "Proceed"
 
 author:
   byline_title: "Author"
