@@ -79,4 +79,4 @@ RAG 虽然潜力巨大，但也不是尚方宝剑，仍存在一些局限性：
 
 FastGPT 采用直观的可视化界面设计，为各种应用场景提供了丰富实用的功能。通过简洁易懂的操作步骤，可以轻松完成 AI 客服的创建和训练流程。
 
-![](https://cdn.jsdelivr.us/gh/yangchuansheng/imghosting6@main/uPic/2024-04-10-21-11-1ukMCr.png)
+![](https://images.icloudnative.io/uPic/2024-05-07-10-08-yZ47EC.png)
