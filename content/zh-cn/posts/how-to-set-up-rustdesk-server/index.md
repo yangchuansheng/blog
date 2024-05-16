@@ -5,7 +5,7 @@ keywords:
     - teamviewer
     - 远程桌面
     - ToDesk
-pinned: true
+pinned: false
 title: "RustDesk 自建服务器部署和使用教程"
 date: 2024-05-11T05:04:19.191Z
 lastmod: 2024-05-11T05:04:19.191Z

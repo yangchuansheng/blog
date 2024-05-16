@@ -4,7 +4,7 @@ keywords:
 - ai
 - ShadowsocksRetrieval-Augmented Generation
 - FastGPT
-pinned: true
+pinned: false
 title: "RAG 技术是什么？"
 date: 2024-04-9T14:06:37+08:00
 lastmod: 2024-04-09T14:06:37+08:00
