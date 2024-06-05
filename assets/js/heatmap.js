@@ -1,47 +1,3 @@
-{{ if eq .Language.Lang "zh-cn" }}
-<article class="{{ if not .Site.Params.homepage.showRecent }}
-    h-full
-  {{ end }} flex flex-col items-center justify-center text-center">
-    <div class="heatmap_container"> <!-- 全部用 Flex 排版 -->
-        <div class="heatmap_content">
-            <div class="heatmap_week">
-                <span>Mon</span>
-                <span>&nbsp;</span> <!-- 不需要显示的星期用空格表示 -->
-                <span>Wed</span>
-                <span>&nbsp;</span>
-                <span>Fri</span>
-                <span>&nbsp;</span>
-                <span>Sun</span>
-            </div>
-            <div class="heatmap_main">
-                <div class="month heatmap_month">
-                    <!-- js 检测屏幕宽度动态生成月份 -->
-                </div>
-                <div id="heatmap" class="heatmap">
-                    <!-- js 检测屏幕宽度动态生成年度日历小方块 -->
-                </div>
-            </div>
-        </div>
-        <div class="heatmap_footer">
-            <div class="heatmap_less">沉默是金</div>
-            <div class="heatmap_level">
-                <span class="heatmap_level_item heatmap_level_0"></span>
-                <span class="heatmap_level_item heatmap_level_1"></span>
-                <span class="heatmap_level_item heatmap_level_2"></span>
-                <span class="heatmap_level_item heatmap_level_3"></span>
-                <span class="heatmap_level_item heatmap_level_4"></span>
-            </div>
-            <div class="heatmap_more">废话连篇</div>
-        </div>
-    </div>
-</article>
-{{ end }}
-
-<div id="profile">
-  {{ partial "partials/home/profile.html" . }}
-</div>
-
-<script>
 // 获取最近一年的文章数据
 {{ $pages := where .Site.RegularPages "Date" ">" (now.AddDate -1 0 0) }}
 {{ $pages := $pages.Reverse }}
@@ -59,7 +15,7 @@ var blogInfo = {
             {{ end }}
     ]
 };
-console.log(blogInfo)
+// console.log(blogInfo)
 
 let currentDate = new Date();
 currentDate.setFullYear(currentDate.getFullYear() - 1);
@@ -223,4 +179,3 @@ function formatDate(date) {
 }
 
 createHeatmap();
-</script>
