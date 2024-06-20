@@ -347,7 +347,7 @@ sing-box 的核心就是它的配置，所有的配置都在一个 JSON 文件�
       "password": "5iFHKMrn9Ez//VKh6zChTA==",
       "tls": {
         "enabled": true,
-        "server_name": "ss.icloudnative.io",
+        "server_name": "www.example.com",
         "insecure": true,
         "utls": {
           "fingerprint": "chrome"
