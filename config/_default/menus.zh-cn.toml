@@ -17,6 +17,12 @@
   weight = 10
 
 [[main]]
+  name = "网盘"
+  pre = "googledrive"
+  url = "https://pansou.icloudnative.io"
+  weight = 12
+
+[[main]]
   name = "实时访客"
   pre = "eye"
   url = "https://umami.icloudnative.io/share/UuDHNJJWIShegM2N/%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%9E%E9%AA%8C%E5%AE%A4?theme=dark"
