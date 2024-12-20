@@ -16,7 +16,7 @@ showLikes: false
 >}}
 Long Live Sealos!
 Long Live FastGPT!
-Long Live Laf!
+Long Live Devbox!
 Long Live Cloud Native!
 Long Live Kubernetes!
 {{< /typeit >}}
@@ -37,9 +37,9 @@ Long Live Kubernetes!
 </a>
 {{< /timelineItem >}}
 
-{{< timelineItem icon="github" header="Laf 云开发" badge="Serverless" >}}
-<a href="https://github.com/labring/laf" target="_blank">
-  <img loading="lazy" class="nozoom" width="100%" height="100%" alt="Laf" src="https://socialify.git.ci/labring/laf/image?description=1&descriptionEditable=Laf%20%E6%98%AF%E4%B8%80%E4%B8%AA%20Serverless%20%E6%A1%86%E6%9E%B6%EF%BC%8C%E6%8F%90%E4%BE%9B%E5%BC%80%E7%AE%B1%E5%8D%B3%E7%94%A8%E7%9A%84%E4%BA%91%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BA%91%E6%95%B0%E6%8D%AE%E5%BA%93%EF%BC%8C%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E7%AD%89%E8%83%BD%E5%8A%9B%E3%80%82%E8%AE%A9%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%93%E6%B3%A8%E4%BA%8E%E4%B8%9A%E5%8A%A1%E5%BC%80%E5%8F%91%EF%BC%8C%E6%97%A0%E9%9C%80%E6%8A%98%E8%85%BE%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E5%BF%AB%E9%80%9F%E9%87%8A%E6%94%BE%E5%88%9B%E6%84%8F%E3%80%82&font=Raleway&forks=1&logo=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fyangchuansheng%2Fimghosting-test%40main%2FuPic%2F2023-11-13-11-33-rI41Bu.svg&name=1&pattern=Brick%20Wall&stargazers=1&theme=Light">
+{{< timelineItem icon="github" header="导航站模板" badge="directory" >}}
+<a href="https://mkdirs.com?via=carsonyang" target="_blank">
+  <img loading="lazy" class="nozoom" width="100%" height="100%" alt="Laf" src="https://images.icloudnative.io/uPic/2024-12-20-19-28-hYX7Cd.png">
 </a>
 {{< /timelineItem >}}
 

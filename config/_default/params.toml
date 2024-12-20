@@ -139,9 +139,9 @@ smartTOCHideUnfocusedChildren = false
   # yandex = ""
 
 [[slideImages]]
-  imgAddress = "https://images.icloudnative.io/uPic/2024-06-27-17-41-yCQzAm.jpg"
-  linkAddress = "https://pan.quark.cn/s/1e46850d3f3d"
-  linkEvent = "The Magic School Bus"
+  imgAddress = "https://images.icloudnative.io/uPic/2024-12-20-19-35-mMvvtA.jpeg"
+  linkAddress = "https://mkdirs.com?via=carsonyang"
+  linkEvent = "mkdirs"
 
 [[slideImages]]
   imgAddress = "https://images.icloudnative.io/uPic/2023-09-15-12-36-W4I1A8.png"
