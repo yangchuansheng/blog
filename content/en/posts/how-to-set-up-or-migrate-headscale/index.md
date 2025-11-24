@@ -2,15 +2,24 @@
 keywords:
 - Headscale
 - Tailscale
-- WireGuard
-- DERP
+- Self-hosted Tailscale
+- Headscale deployment
+- Headscale guide
+- WireGuard VPN
+- Open-source VPN
+- Secure virtual private network
+- NAT traversal
+- DERP server
+- Subnet routing Tailscale
+- Headscale vs Tailscale
+- Install Headscale
+- Configure Headscale
 - Netmaker
-- Full Mesh
-- VPN
-title: "Headscale Deployment and Usage Guide: Mastering Tailscale's Self-Hosting Basics"
+- Full Mesh VPN
+title: "Headscale Deployment and Usage Guide: Mastering Tailscale's Self-Hosting Basics for Ultimate Control"
 date: 2022-03-21T09:06:37+08:00
 lastmod: 2023-12-29T18:01:37+08:00
-description: Dive into how to establish an efficient VPN network using Headscale, the open-source alternative to Tailscale. This guide offers detailed steps for deploying and configuring Headscale, enabling you to easily build a secure and reliable virtual private network.
+description: Build your own secure, private VPN with Headscale, the open-source Tailscale alternative. This comprehensive guide provides step-by-step instructions for Headscale deployment and configuration, empowering you to create a reliable virtual private network with ease.
 draft: false
 author: 米开朗基杨
 hideToc: false
@@ -22,7 +31,7 @@ tags:
 - WireGuard
 - Tailscale
 - Headscale
-categories: 
+categories:
 - Network
 - VPN
 series:
@@ -31,87 +40,95 @@ img: https://images.icloudnative.io/uPic/2022-03-21-11-15-sM5HES.png
 meta_image: https://images.icloudnative.io/uPic/2022-09-02-22-01-WKkKHb.jpg
 ---
 
-Welcome to the ultimate Headscale tutorial: your comprehensive guide to mastering the innovative Headscale platform. In today's digital networking landscape, the emergence of open-source projects like Headscale has marked a new era in remote connectivity and network security. This guide simplifies remote access and enhances security, without the complexity of exposing ports to the internet. Dive into the steps of setting up Headscale and unlock the potential of a more private, decentralized network.
+Headscale is an open-source server that works like Tailscale's control server. You can run it yourself instead of using Tailscale's hosted service. This gives you full control over your VPN network without device limits or subscription fees. Here's how to set it up and connect your devices.
 
 ## What is Tailscale?
 
-Tailscale is a virtual networking tool based on WireGuard, similar in nature to Netmaker. **Its unique feature is that Tailscale operates WireGuard protocol in user mode, unlike Netmaker's kernel mode implementation.** This results in a slight performance decrease for Tailscale compared to kernel mode WireGuard, but it still significantly outperforms alternatives like OpenVPN. Tailscale has made some trade-offs in performance, but it shines in terms of features and ease of use:
+Tailscale is a VPN built on **WireGuard**. It works like other mesh VPN tools such as Netmaker. **Tailscale runs WireGuard in user space, while Netmaker uses kernel-space WireGuard**. This means Tailscale has slightly lower performance than kernel-space solutions. But it's still much faster than OpenVPN and easier to use.
 
-+ Ready to go right out of the box
-   + No firewall setup required
-   + Zero additional configurations
-+ Emphasizes high security and privacy 
-   + Features automatic key rotation
-   + Facilitates peer-to-peer connections
-   + Enables user audits of comprehensive access logs
-+ Expands beyond ICE, STUN, and other UDP protocols by adding DERP TCP protocol for efficient NAT traversal
-+ Utilizes a public network control server for disseminating ACLs and configurations, allowing for dynamic updates of nodes
-+ Leverages third-party SSO services like Google for generating users and private keys, ensuring robust identity authentication
+Here's what makes Tailscale useful:
 
-To put it simply, Tailscale can be regarded as an easier to use, feature-enriched alternative to WireGuard.
++   **Simple setup:**
+    +   No firewall configuration needed.
+    +   Easy network setup.
++   **Security:**
+    +   Automatic key rotation.
+    +   End-to-end encryption by default.
+    +   Access logs you can review.
++   **NAT traversal:** Uses **DERP (Detoured Encrypted Routing Protocol)** over TCP when UDP doesn't work. This helps connections work even behind difficult firewalls.
++   **Central control:** Push access rules and settings to all devices from one place.
++   **Easy authentication:** Works with Google, Microsoft, GitHub, and other login providers.
 
-![Tailscale remote network VPN solution](https://images.icloudnative.io/uPic/2022-03-20-14-50-Q4bWmK.png "Tailscale remote network VPN solution")
+Tailscale is basically WireGuard made easier to use.
 
-Moreover, for those who prioritize free and open-source solutions, Tailscale stands out. While it is a commercial product, it offers a free tier for individual users. This allows personal users to use the service without cost for up to 20 devices, albeit with some limitations like non-customizable subnet segments and a single subnet restriction. Apart from the graphical clients for Windows and macOS, the rest of Tailscale's client components, including the Android client, are developed as open-source projects under the BSD license, as seen in their [GitHub repository](https://github.com/tailscale/).
+![Tailscale Admin Console](https://images.icloudnative.io/uPic/2022-03-20-14-50-Q4bWmK.png "Tailscale Admin Console")
 
-For most individuals, Tailscale's free version will suffice. Those with more advanced needs, such as the desire to customize network segments, have the option of a paid subscription.
+Tailscale has a free tier that works well for personal use or small teams. You can use it free as long as you stay under the device limit (around 20 devices per account - check their website for current limits). The free tier has some limits on advanced features like subnet routing, but it covers most basic needs. Most Tailscale client code is open source under the BSD license (except Windows and macOS GUI apps). You can find the source code in their [GitHub repository](https://github.com/tailscale/).
 
-**Is it necessary to pay? No, but the details are worth noting.**
+The free tier works for most people. If you need more features, they have paid plans.
+
+**But what if you want full control, unlimited devices, and no subscription fees? That's where Headscale comes in.**
 
 ## What is Headscale?
 
-[Headscale](https://github.com/juanfont/headscale) is a unique open-source alternative to Tailscale's control server, which, being proprietary, places several restrictions on free users as a part of its revenue model. Created by Juan Font from the European Space Agency and programmed in Go, Headscale is available under the BSD license. It effectively mirrors the main features of Tailscale's control server, allowing organizations to deploy it internally without restrictions on the number of devices, thus ensuring complete control over their network traffic.
+Tailscale's control server is proprietary and has limits for free users. That's fair since it's how they make money. But the open-source community built an alternative: [Headscale](https://github.com/juanfont/headscale). It's become the main open-source option for self-hosted Tailscale setups.
 
-![Headscale open source control server for Tailscale](https://images.icloudnative.io/uPic/2024-01-20-16-33-E6qmul.png "Headscale open source control server for Tailscale")
+Juan Font at the European Space Agency created Headscale. It's written in Go and released under the BSD license. Headscale copies most of Tailscale's control server features. You can run the whole coordination server yourself. This gives you full control over your network traffic and removes device limits. If you want to run your own secure VPN without restrictions, Headscale is a good choice.
 
-## Setting Up Headscale
+## How to Deploy Headscale
 
-### Simplified Deployment via Sealos
+Here are different ways to set up Headscale.
 
-For those seeking a quick and efficient setup, you can use the Sealos application template for a one-click deployment. This method is user-friendly and doesn't require complex configurations.
+### Quick Deploy with Sealos
 
-Just click on the button below to be redirected to the Sealos prebuilt template deployment page:
+If you want to get started fast, the [Sealos App Store](https://sealos.io/products/app-store) has one-click Headscale deployment. This is simple and needs almost no setup.
 
-<figure><a href="https://template.cloud.sealos.io/deploy?templateName=headscale" target="_blank">
-    <img loading="lazy" class="my-0 rounded-md nozoom" src="https://cdn.jsdelivr.net/gh/labring-actions/templates@main/Deploy-on-Sealos.svg" alt="Image illustration: Deploy-on-Sealos.svg">
-</a></figure>
+Click one of these to deploy Headscale:
 
-> Note: New users to [Sealos](https://sealos.io) must register and log in to proceed.
+-   **SQLite version:**
+    <figure><a href="https://sealos.io/products/app-store/headscale" target="_blank" rel="noopener noreferrer">
+        <img loading="lazy" class="my-0 rounded-md nozoom" src="https://sealos.io/Deploy-on-Sealos.svg" alt="Deploy Headscale SQLite version on Sealos">
+      </a></figure>
+-   **PostgreSQL version:**
+    <figure><a href="https://sealos.io/products/app-store/headscale-pg" target="_blank" rel="noopener noreferrer">
+        <img loading="lazy" class="my-0 rounded-md nozoom" src="https://sealos.io/Deploy-on-Sealos.svg" alt="Deploy Headscale PostgreSQL version on Sealos">
+      </a></figure>
 
-After clicking the 'Deploy Application' button, the deployment starts. Upon completion, two applications appear: Headscale, and its [visual interface](https://github.com/GoodiesHQ/headscale-admin).
+Click "Deploy on Sealos" to start. Sign in to your Sealos account, then click "Deploy Application." When it's done, click on the Headscale app's "Details" to see how to access it.
 
-![](https://images.icloudnative.io/uPic/2024-01-20-16-48-zb4mOk.png)
+![Headscale application listed in Sealos App Store](https://images.icloudnative.io/uPic/2025-11-24-12-02-AfqK0C.png "Headscale application in Sealos App Store")
 
-For details, click 'Details' on the Headscale application page. The Public Address associated with the internal port 8080 is the public URL for Headscale.
+Your Headscale service will have a public domain that maps to internal port 8080.
 
-![](https://images.icloudnative.io/uPic/2024-01-20-16-49-RRCQHe.png)
+![Headscale application details in Sealos](https://images.icloudnative.io/uPic/2025-11-24-12-04-AN9dcH.png "Headscale app details in Sealos")
 
-To access the Headscale visual interface, simply append `/admin/` to the Headscale public URL.
+Click on the public address to access your Headscale dashboard. This usually opens Headplane, a web interface for managing Headscale.
 
-![](https://images.icloudnative.io/uPic/2024-01-07-17-39-42E6NM.jpg)
+![Headplane login page](https://images.icloudnative.io/uPic/2025-05-26-13-00-DTBvOB.png "Headplane login page")
 
-### Deploying on Linux
+### Deploy on a Linux Server
 
-Deploying Headscale on Linux is straightforward.
+Setting up Headscale manually on Linux is pretty simple.
 
-> Theoretically, as long as your Headscale service can be exposed to the public network, it should work. However, it's best to avoid NAT, so deploying Headscale on a cloud host with a public IP is recommended.
+> **Tip:** Headscale only needs internet access to work. But for best NAT traversal performance, use a cloud server with a public IP address. This avoids extra NAT layers and gives your Tailscale clients better connectivity.
 
-First, you need to download the latest binary file from the Release page of its GitHub repository.
+First, download the latest Headscale binary from the [GitHub releases page](https://github.com/juanfont/headscale/releases).
 
 ```bash
+# Replace <HEADSCALE_VERSION> and <ARCH> with your version and architecture (e.g., v0.22.3, amd64)
 $ wget --output-document=/usr/local/bin/headscale \
-   https://github.com/juanfont/headscale/releases/download/v<HEADSCALE VERSION>/headscale_<HEADSCALE VERSION>_linux_<ARCH>
+   https://github.com/juanfont/headscale/releases/download/v<HEADSCALE_VERSION>/headscale_<HEADSCALE_VERSION>_linux_<ARCH>
 
 $ chmod +x /usr/local/bin/headscale
 ```
 
-Create a configuration directory:
+Create the config directory:
 
 ```bash
 $ mkdir -p /etc/headscale
 ```
 
-Create directories for storing data and certificates:
+Create a directory for data storage (SQLite DB and SSL certificates):
 
 ```bash
 $ mkdir -p /var/lib/headscale
@@ -123,30 +140,32 @@ Create an empty SQLite database file:
 $ touch /var/lib/headscale/db.sqlite
 ```
 
-Create the Headscale configuration file:
+Download the example config file:
 
 ```bash
 $ wget https://github.com/juanfont/headscale/raw/main/config-example.yaml -O /etc/headscale/config.yaml
 ```
 
-+ Modify the configuration file, changing `server_url` to your public IP or domain. 
-+ If you don't need the DNS function for the time being, you can set `magic_dns` to false.
-+ Set `server_url` as `http://<PUBLIC_ENDPOINT>:8080`, replacing `<PUBLIC_ENDPOINT>` with your public IP or domain.
-+ It's advisable to open a random port, set `randomize_client_port` to true.
-+ You can customize private network segments and enable both IPv4 and IPv6:
-  
-  ```yaml
-  ip_prefixes:
-    # - fd7a:115c:a1e0::/48
-    - 100.64.0.0/16
-  ```
+Now edit `/etc/headscale/config.yaml`:
 
-Create a SystemD service configuration file:
+*   Set `server_url` to your public IP or domain (e.g., `http://<YOUR_PUBLIC_IP_OR_DOMAIN>:8080` or `https://<YOUR_PUBLIC_IP_OR_DOMAIN>`).
+    *   **Note:** If using a domain in mainland China, make sure it has ICP filing. If not, just use your public IP address.
+    *   For HTTPS, make sure your TLS certificates are set up correctly.
+*   If you don't want MagicDNS initially, set `dns_config.magic_dns` to `false`.
+*   Enable randomized client ports for better NAT traversal by setting `randomize_client_port` to `true`.
+*   You can customize your private network IP ranges:
+    ```yaml
+    ip_prefixes:
+      # - fd7a:115c:a1e0::/48  # IPv6 prefix for your network
+      - 100.64.0.0/10        # Default address space used by Tailscale/Headscale
+    ```
+
+Create a SystemD service file so Headscale runs automatically:
 
 ```bash
 # /etc/systemd/system/headscale.service
 [Unit]
-Description=headscale controller
+Description=Headscale Controller - Self-hosted Tailscale coordination server
 After=syslog.target
 After=network.target
 
@@ -158,541 +177,473 @@ ExecStart=/usr/local/bin/headscale serve
 Restart=always
 RestartSec=5
 
-# Optional security enhancements
+# Security settings
 NoNewPrivileges=yes
 PrivateTmp=yes
 ProtectSystem=strict
 ProtectHome=yes
 ReadWritePaths=/var/lib/headscale /var/run/headscale
 AmbientCapabilities=CAP_NET_BIND_SERVICE
+
 RuntimeDirectory=headscale
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Create a headscale user:
+Create the `headscale` user:
 
 ```bash
-$ useradd headscale -d /home/headscale -m
+$ useradd headscale -d /home/headscale -m -s /bin/false
 ```
 
-Change the owner of the /var/lib/headscale directory:
+Change ownership of the data directory:
 
 ```bash
 $ chown -R headscale:headscale /var/lib/headscale
 ```
 
-Modify the `unix_socket` in the configuration file:
+Update the `unix_socket` path in `/etc/headscale/config.yaml`:
 
 ```yaml
 unix_socket: /var/run/headscale/headscale.sock
 ```
 
-Reload SystemD to load the new configuration files:
+Reload SystemD:
 
 ```bash
 $ systemctl daemon-reload
 ```
 
-Start the Headscale service and set it to start on boot:
+Start Headscale and enable it to start at boot:
 
 ```bash
 $ systemctl enable --now headscale
 ```
 
-Check the running status:
+Check the service status:
 
 ```bash
 $ systemctl status headscale
+# Look for "active (running)"
 ```
 
-Check the occupied ports:
+Check what ports Headscale is listening on (usually 8080 for HTTP, 9090 for gRPC):
 
 ```bash
-$ ss -tulnp|grep headscale
-
-tcp LISTEN 0 1024 [::]:9090 [::]:* users:(("headscale",pi
-
-d=10899,fd=13))
-
-tcp LISTEN 0 1024 [::]:50443 [::]:* users:(("headscale",pi
-
-d=10899,fd=10))
-
-tcp LISTEN 0 1024 [::]:8080 [::]:* users:(("headscale",pi
-
-d=10899,fd=12))
+$ ss -tulnp | grep headscale
+# Example output:
+# tcp LISTEN 0 1024 *:8080 *:* users:(("headscale",pid=...,fd=...))
+# tcp LISTEN 0 1024 *:9090 *:* users:(("headscale",pid=...,fd=...))
 ```
 
-## Creating a User Account
+## Managing Users in Headscale
 
-### Using the Command Line
+Tailscale uses "tailnets" - separate network groups that don't talk to each other. You can read more about this in Tailscale's docs: [What is a tailnet?](https://tailscale.com/kb/1136/tailnet/). In Headscale, these are called "users." You need to create at least one user before connecting devices to your network.
 
-In Tailscale, there's a feature known as "tailnet," which essentially functions like a separate tenant, ensuring isolation between different tenants. For a comprehensive understanding, you can refer to Tailscale's official guide: [What is a tailnet](https://tailscale.com/kb/1136/tailnet/). Headscale follows a similar approach with its 'user' feature. The first step involves creating a user, which is crucial for enabling client connections. Here’s how:
+### Create Users via Command Line
+
+To create a user named `default`:
 
 ```bash
-$ headscale user create default
+$ headscale users create default
+# Expected output: "User created"
 ```
 
-To view existing users:
+To see your users:
 
 ```bash
-$ headscale user list
-
-ID | Name | Created
-
-1 | default | 2022-03-09 06:12:06
+$ headscale users list
+# Example output:
+# ID | Name | Username | Email | Created
+# 1  |      | default  |       | 2025-05-26 05:03:48
 ```
 
-For those who have deployed Headscale using Sealos's streamlined one-click method, you can navigate to the Headscale application's detail page and click on the "Terminal" button on the right. This action will take you to the Headscale container's terminal:
+If you used [Sealos](https://sealos.run) to deploy Headscale, click the "Terminal" button on the Headscale app details page to open a terminal:
 
-![](https://images.icloudnative.io/uPic/2023-12-29-16-03-EKHluF.png)
+![Sealos container terminal](https://images.icloudnative.io/uPic/2025-11-24-12-08-9yyeII.png "Sealos container terminal")
 
-Once in the terminal, you can carry out the above-mentioned steps to set up a user.
+Then run the commands above to create your user.
 
-### Using Dashboard
+### Create Users with Headplane
 
-To link [Headscale-Admin](https://github.com/GoodiesHQ/headscale-admin) with Headscale, an API Key is essential. Initially, you must create an API key. Go to the Headscale application's detail page and click the "Terminal" button on the right to enter the Headscale container's terminal interface:
+[Headplane](https://github.com/tale/headplane) is a web interface for managing Headscale. It needs an API key to connect to your Headscale server. First, generate an API key.
 
-![](https://images.icloudnative.io/uPic/2023-12-29-16-03-EKHluF.png)
-
-To create an API Key, execute the following command:
+Run this command on your Headscale server (or in the Sealos terminal):
 
 ```bash
-$ headscale apikey create
+$ headscale apikeys create
+# Copy the generated API key. Keep it safe like a password.
 ```
 
-Input the Headscale public domain and API Key into the Headscale-Admin settings. Make sure to uncheck the Legacy API option, then click "Save":
+Enter the API key in Headplane's settings page. After connecting, go to "Users" at the top, then click "Add a new user":
 
-![](https://images.icloudnative.io/uPic/2024-01-07-19-05-bF4O80.jpg)
+![Headplane user creation interface](https://images.icloudnative.io/uPic/2025-05-26-13-10-NXTTgh.png "Headplane user creation interface")
 
-After establishing the connection, navigate to "Users" in the left sidebar, and proceed with "Create" to initiate the user creation process:
+## Connect Tailscale Clients to Headscale
 
-![](https://images.icloudnative.io/uPic/2024-01-07-19-24-M1KVMw.jpg)
+Tailscale clients on all major platforms can connect to custom control servers like Headscale. Older iOS clients worked a bit differently, but modern versions are simpler.
 
-## Tailscale Client Integration
+| OS      | Works with Headscale | Notes                                                                                                |
+| :------ | :------------------- | :--------------------------------------------------------------------------------------------------- |
+| Linux   | Yes                  | CLI and GUI clients. Good for relay nodes.                                                          |
+| OpenBSD | Yes                  | CLI client.                                                                                          |
+| FreeBSD | Yes                  | CLI client.                                                                                          |
+| macOS   | Yes                  | GUI and CLI. See [macOS docs](https://github.com/juanfont/headscale/blob/main/docs/usage/connect/apple.md#macos). |
+| Windows | Yes                  | GUI interface. See [Windows docs](https://github.com/juanfont/headscale/blob/main/docs/usage/connect/windows.md). |
+| Android | Yes                  | GUI interface. Server can be changed.                                                               |
+| iOS     | Yes                  | GUI interface. See [iOS docs](https://github.com/juanfont/headscale/blob/main/docs/usage/connect/apple.md#ios). |
 
-For all platforms, it's possible to customize the control server for Tailscale clients.
+Here's how to set up Tailscale clients on different platforms.
 
-| OS      | Headscale Support                                            |
-| ------- | ------------------------------------------------------------ |
-| Linux   | Yes                                                          |
-| OpenBSD | Yes                                                          |
-| FreeBSD | Yes                                                          |
-| macOS   | Yes                                                          |
-| Windows | Yes, see [Windows Client Documentation](https://github.com/juanfont/headscale/blob/main/docs/windows-client.md) |
-| Android | Yes                                                      |
-| iOS     | Yes                                                      |
+### Connect Linux Clients
 
-Let's delve into the Linux platform integration process.
+Tailscale has official packages for Linux distributions. But users in some regions (like China) might get slow downloads from official repos. Tailscale also offers [static binaries](https://tailscale.com/download/linux/static) you can download directly.
 
-### Linux
-
-Tailscale offers software packages for various Linux distributions. Due to network limitations in China, these repositories may not be accessible. A workaround is using [statically compiled binary files](https://tailscale.com/download/linux/static) provided by the official site. For example, you can download them as follows:
+Download the static version:
 
 ```bash
-$ wget https://pkgs.tailscale.com/stable/tailscale_1.22.2_amd64.tgz
+# Replace 1.XX.Y with the latest version and amd64 with your architecture
+$ wget https://pkgs.tailscale.com/stable/tailscale_1.XX.Y_amd64.tgz
 ```
 
-Next, proceed to unpack the downloaded file:
+Extract it:
 
 ```bash
-$ tar zxvf tailscale_1.22.2_amd64.tgz
-x tailscale_1.22.2_amd64/
-x tailscale_1.22.2_amd64/tailscale
-x tailscale_1.22.2_amd64/tailscaled
-x tailscale_1.22.2_amd64/systemd/
-x tailscale_1.22.2_amd64/systemd/tailscaled.defaults
-x tailscale_1.22.2_amd64/systemd/tailscaled.service
+$ tar zxvf tailscale_1.XX.Y_amd64.tgz
+# Creates a directory like tailscale_1.XX.Y_amd64/ with the binaries
 ```
 
-Transfer the binary to the standard location for official packages:
+Install the binaries:
 
 ```bash
-$ cp tailscale_1.22.2_amd64/tailscaled /usr/sbin/tailscaled
-$ cp tailscale_1.22.2_amd64/tailscale /usr/bin/tailscale
+$ sudo cp tailscale_1.XX.Y_amd64/tailscaled /usr/sbin/tailscaled
+$ sudo cp tailscale_1.XX.Y_amd64/tailscale /usr/bin/tailscale
 ```
 
-Move the systemD service configuration file to the appropriate system directory:
+Copy the systemd service files:
 
 ```bash
-$ cp tailscale_1.22.2_amd64/systemd/tailscaled.service /lib/systemd/system/tailscaled.service
+$ sudo cp tailscale_1.XX.Y_amd64/systemd/tailscaled.service /lib/systemd/system/tailscaled.service
+$ sudo cp tailscale_1.XX.Y_amd64/systemd/tailscaled.defaults /etc/default/tailscaled
 ```
 
-Place the environment variable configuration file in the system directory:
+Start the service:
 
 ```bash
-$ cp tailscale_1.22.2_amd64/systemd/tailscaled.defaults /etc/default/tailscaled
+$ sudo systemctl enable --now tailscaled
 ```
 
-Activate tailscaled.service and enable it to start on boot:
+Check that it's running:
 
 ```bash
-$ systemctl enable --now tailscaled
+$ sudo systemctl status tailscaled
+# Look for "active (running)"
 ```
 
-To check the status of the service:
+Now connect your Linux client to Headscale:
 
 ```bash
-$ systemctl status tailscaled
+# Replace <HEADSCALE_PUB_ENDPOINT> with your server's public IP or domain.
+# Use the right protocol (http/https) and port from your config.yaml.
+$ sudo tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false
+
+# If you used Sealos deployment, HTTPS is usually set up already.
+# Replace <SEALOS_HEADSCALE_DOMAIN> with your Sealos domain.
+$ sudo tailscale up --login-server=https://<SEALOS_HEADSCALE_DOMAIN> --accept-routes=true --accept-dns=false
 ```
 
-Setting up Tailscale with Headscale:
+You can also get connection commands from Headplane's "Machines" page, which fills in the server URL for you.
 
-```bash
-# If hosting on your own server, replace <HEADSCALE_PUB_ENDPOINT> with your Headscale public IP or domain
-$ tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false
+![Tailscale connection commands from Headplane](https://images.icloudnative.io/uPic/2025-05-26-18-27-CcSwYj.png "Connection commands from Headplane")
 
-# For Sealos one-click setup, replace <HEADSCALE_PUB_ENDPOINT> with the public domain provided by Sealos
-$ tailscale up --login-server=https://<HEADSCALE_PUB_ENDPOINT> --accept-routes=true --accept-dns=false
+Use `--accept-dns=false` at first to stop Headscale's MagicDNS from changing your system DNS settings. Only enable it if you need it and have set it up properly.
+
+After running `tailscale up`, you'll see a registration link:
+
 ```
-
-Access commands can also be sourced from the Headsca-Admin Deploy interface:
-
-![](https://images.icloudnative.io/uPic/2024-01-07-19-28-7nsZjl.jpg)
-
-It is recommended to disable the DNS feature to avoid overriding the default system DNS. For more information on DNS settings, refer to the official Tailscale documentation.
-
-After following these instructions, you will see:
-
-```bash
 To authenticate, visit:
 
-	https://qgemohpy.cloud.sealos.io/register/mkey:e13651ddbfc269513723f1afd6f42465e56922b67ecea8f37d61a35b1b357e0c
+	https://headscale-your-instance.example.com/register/nodekey_xxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-To complete the setup, open the provided link in a browser, and you'll see this interface:
+![Headscale registration page](https://images.icloudnative.io/uPic/2025-05-26-13-31-83GSjk.png "Headscale registration page")
 
-![](https://images.icloudnative.io/uPic/2023-12-29-16-23-vrj10n.png)
+Open this link in your browser. The page will show you a command to run on your Headscale server to register the device. Or you can use Headplane: copy the node key (the long string after `/register/`), go to "Machines" in Headplane, click "Add Device," paste the key in the `Machine Key` field, pick an Owner (the Headscale user), and click "Confirm."
 
-Copy the command from this interface to the terminal of your headscale server, replacing USERNAME with the user you previously created.
+![Adding a device in Headplane](https://images.icloudnative.io/uPic/2025-05-26-13-30-NdgUF8.png "Adding a device in Headplane")
 
-```bash
-$ headscale nodes register --user default --key 905cf165204800247fbd33989dbc22be95c987286c45aac3033937041150d846
-Machine register
-```
+After registration, you'll see the device info in Headplane:
 
-Once registered successfully, to view the registered nodes:
+![Registered device in Headplane](https://images.icloudnative.io/uPic/2025-05-26-13-33-WFP5Zh.png "Registered device in Headplane")
 
-```bash
-$ headscale nodes list
-
-ID | Name | NodeKey | Namespace | IP addresses | Ephemeral | Last seen | Onlin
-
-e | Expired
-
-1 | coredns | [Ew3RB] | default | 100.64.0.1 | false | 2022-03-20 09:08:58 | onlin
-
-e | no
-```
-
-Returning to the Linux machine with the Tailscale client, observe that Tailscale automatically sets up the necessary route tables and iptables rules. To view the route table:
+Back on your Linux machine, Tailscale sets up the network automatically. This includes a network interface (like `tailscale0`), routing tables, and iptables rules. To check the Tailscale routing table:
 
 ```bash
 $ ip route show table 52
 ```
 
-To examine the iptables rules:
+To check iptables rules for Tailscale (if you use iptables):
 
 ```bash
-$ iptables -S
--P INPUT DROP
--P FORWARD ACCEPT
--P OUTPUT ACCEPT
--N ts-forward
--N ts-input
--A INPUT -j ts-input
--A FORWARD -j ts-forward
--A ts-forward -i tailscale0 -j MARK --set-xmark 0x40000/0xffffffff
--A ts-forward -m mark --mark 0x40000 -j ACCEPT
--A ts-forward -s 100.64.0.0/10 -o tailscale0 -j DROP
--A ts-forward -o tailscale0 -j ACCEPT
--A ts-input -s 100.64.0.5/32 -i lo -j ACCEPT
--A ts-input -s 100.115.92.0/23 ! -i tailscale0 -j RETURN
--A ts-input -s 100.64.0.0/10 ! -i tailscale0 -j DROP
-
-$ iptables -S -t nat
--P PREROUTING ACCEPT
--P INPUT ACCEPT
--P OUTPUT ACCEPT
--P POSTROUTING ACCEPT
--A ts-postrouting -m mark --mark 0x40000 -j MASQUERADE
+$ sudo iptables -S | grep tailscale
+$ sudo iptables -S -t nat | grep tailscale
 ```
 
-### macOS
+### Set Up macOS Clients
 
-There are three primary methods to install tailscale on macOS:
+There are three ways to install Tailscale on macOS:
 
-1. Through the App Store, available at [https://apps.apple.com/ca/app/tailscale/id1475387142](https://apps.apple.com/ca/app/tailscale/id1475387142), requiring **a U.S. region ID**.
-2. By downloading and installing the [package](https://pkgs.tailscale.com/stable/#macos) directly, bypassing the App Store.
-3. By installing the open-source command-line tools `tailscale` and `tailscaled`, detailed at [https://github.com/tailscale/tailscale/wiki/Tailscaled-on-macOS](https://github.com/tailscale/tailscale/wiki/Tailscaled-on-macOS).
+1.  **App Store:** Get the app from the [Mac App Store](https://apps.apple.com/app/tailscale/id1475387142).
+2.  **Direct download:** Download the `.pkg` installer or `.zip` file from Tailscale's website.
+3.  **Command line:** Install the CLI tools. See the [macOS documentation](https://github.com/tailscale/tailscale/wiki/Tailscaled-on-macOS) for details.
 
-The core data processing in all three methods is identical, with differences only in packaging and system interaction.
+All three use the same networking code. They just differ in packaging and whether they have a GUI.
 
-Apps from the App Store are run in an [application sandbox](https://developer.apple.com/library/archive/documentation/Security/Conceptual/AppSandboxDesignGuide/AboutAppSandbox/AboutAppSandbox.html), isolating them from the rest of the system. These sandboxed apps can act as a [network extension](https://developer.apple.com/documentation/networkextension), enabling VPN or similar functions, which are not possible for non-App Store apps.
-
-Starting with macOS 10.15, [system extensions](https://developer.apple.com/system-extensions/), which are user-space kernel extensions offering enhanced features like content filtering, were introduced. The Tailscale package not affiliated with the App Store uses these **system extensions**, distributed via DMG or zip files.
+| Feature                 | App Store | Standalone App | Command Line |
+| :---------------------- | :-------- | :------------- | :----------- |
+| **GUI**                 | Yes       | Yes            | No           |
+| **Background Running**  | No        | Yes            | Yes          |
+| **Automatic Updates**   | Yes       | Yes            | Manual       |
+| **Open Source**         | No        | No             | Yes          |
+| **File Transfer**       | Yes       | Yes            | No           |
 
 {{< alert >}}
-Avoid installing both the App Store and the independent versions at the same time. Only one should be installed.
+**Important:** Pick either the App Store version or the standalone version. Don't install both.
 {{< /alert >}}
 
-The command-line tools use the [utun interface](https://en.wikipedia.org/wiki/TUN/TAP) instead of network or system extensions. They lack some functionalities of the GUI version, such as MagicDNS and Taildrop.
+After installing the Tailscale app, you need to configure it to use your Headscale server. Your Headscale server has setup instructions at `https://<YOUR_HEADSCALE_PUBLIC_ENDPOINT>/apple`.
 
-Overview:
+For Tailscale versions 1.34.0 and later:
 
-|                    | App Store (Network Extension)                              | Independent Application (System Extension)                   | Command Line Version                                         |
-| ------------------ | ---------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Available          | [yes](https://apps.apple.com/ca/app/tailscale/id1475387142) | yes, [beta](https://tailscale.com/kb/1167/release-stages/#beta) | [yes](https://github.com/tailscale/tailscale/wiki/Tailscaled-on-macOS) |
-| Graphical Interface| yes                                                        | yes                                                          | no; CLI only                                                 |
-| Minimum macOS Version | macOS 10.13                                               | macOS 10.15                                                  | macOS 10.13                                                  |
-| Background Operation | no; sandboxed                                              | Supported in theory; not yet functional                      | yes                                                          |
-| Keychain Access 🔑  | User level                                                 | System level                                                 | Stored in files                                              |
-| Sandbox Isolation  | yes                                                        | no                                                           | no                                                           |
-| Auto Updates       | yes; through the App Store                                 | yes; via [Sparkle](https://sparkle-project.org/)            | no                                                           |
-| Open Source        | no                                                         | no                                                           | yes                                                          |
-| MagicDNS           | yes                                                        | yes                                                          | yes                                                          |
-| Taildrop           | yes                                                        | yes                                                          | Not implemented                                              |
+1.  Hold **Option (⌥)** and click the Tailscale icon in your menu bar.
+2.  Hover over the **Debug** menu.
+    ![macOS Tailscale Debug menu](https://images.icloudnative.io/uPic/2023-12-29-17-04-fPLtsa.png "macOS Tailscale Debug menu")
+3.  Select "Custom Login Server..." then "Add Account..." or "Change server...".
+4.  Enter your Headscale URL (e.g., `https://<YOUR_HEADSCALE_DOMAIN>`). **Make sure to include `http://` or `https://`.** Click "Add Account" or "Save."
+    ![macOS Tailscale server configuration](https://images.icloudnative.io/uPic/2023-12-29-17-13-0LVi0S.png "macOS Tailscale server configuration")
+5.  Tailscale will connect to your Headscale server and open a registration page in your browser.
+6.  Register the device the same way as Linux: copy the node key, go to "Machines" in Headplane, click "Add Device," paste the key, pick an Owner, and click "Confirm."
+    ![Headscale macOS registration success](https://images.icloudnative.io/uPic/2025-05-26-14-15-RlBbWM.png "macOS registration success")
 
-When you've installed the GUI version of an application, additional steps are required to use Headscale as the control server for Tailscale. Headscale conveniently provides detailed instructions for this. First, access the URL `https://<HEADSCALE_PUB_ENDPOINT>/apple` in a web browser, where you will be greeted with the interface shown below:
-
-![Headscale Apple](https://images.icloudnative.io/uPic/2023-12-29-16-50-lgDjCB.png)
-
-For those using Tailscale version 1.34.0 or newer, the following method applies:
-
-1. Hold down the 'ALT' key and click the Tailscale icon on the top menu bar, then hover the cursor over the 'Debug' menu.
-
-   ![Accessing Tailscale Debug Options](https://images.icloudnative.io/uPic/2023-12-29-17-04-fPLtsa.png)
-
-2. Select 'Add Account...' under 'Custom Login Server'.
-3. In the subsequent window, input the public domain of Headscale and click 'Add Account'.
-   
-   ![Headscale Account Addition](https://images.icloudnative.io/uPic/2023-12-29-17-13-0LVi0S.png)
-
-4. This will redirect you to a webpage in the browser.
-   
-   ![Browser Page Redirection](https://images.icloudnative.io/uPic/2023-12-29-17-14-3VPcX4.png)
-
-5. As with the Linux client, return to the machine where Headscale is installed and run the command displayed on the browser. Registration is then successful:
-   
-   ![Successful Registration on Headscale](https://images.icloudnative.io/uPic/2022-03-20-17-51-Gcjcmy.png)
-
-On the Headscale host machine, verify the registered nodes:
+Test connectivity by pinging another device in your network:
 
 ```bash
-$ headscale nodes list
-
-ID | Name | NodeKey | Namespace | IP addresses | Ephemeral | Last seen | Onlin
-
-e | Expired
-
-1 | coredns | [Ew3RB] | default | 100.64.0.1 | false | 2022-03-20 09:08:58 | onlin
-
-e | no
-2 | carsondemacbook-pro | [k7bzX] | default   | 100.64.0.2     | false     | 2022-03-20 09:48:30 | online  | no
+$ ping -c 2 100.64.0.1 # Ping another device's Tailscale IP
+# Expected output:
+# PING 100.64.0.1 (100.64.0.1): 56 data bytes
+# 64 bytes from 100.64.0.1: icmp_seq=0 ttl=64 time=37.025 ms
 ```
 
-On macOS, test connectivity with peer nodes:
-
-```bash
-$ ping -c 2 100.64.0.1
-PING 100.64.0.1 (100.64.0.1): 56 data bytes
-64 bytes from 100.64.0.1: icmp_seq=0 ttl=64 time=37.025 ms
-64 bytes from 100.64.0.1: icmp_seq=1 ttl=64 time=38.181 ms
-
---- 100.64.0.1 ping statistics ---
-2 packets transmitted, 2 packets received, 0.0% packet loss
-round-trip min/avg/max/stddev = 37.025/37.603/38.181/0.578 ms
-```
-
-You can also employ the Tailscale CLI for this purpose:
+You can also use the Tailscale CLI if available:
 
 ```bash
 $ /Applications/Tailscale.app/Contents/MacOS/Tailscale ping 100.64.0.1
-pong from coredns (100.64.0.1) via xxxx:41641 in 36ms
+# Expected: pong from device-name (100.64.0.1) via ... in Xms
 ```
 
-For Tailscale clients version 1.32.0 or older, just follow the illustrated steps. No further elaboration is needed in this context.
+For older Tailscale versions (before 1.32.0), the setup might be different. Check your Headscale server's `/apple` page for specific instructions.
 
-### Android
+### Connect Android Clients
 
-As of version 1.30.0, Android users have the ability to personalize their control server, also known as the coordination server. The latest version can be downloaded from [Google Play](https://play.google.com/store/apps/details?id=com.tailscale.ipn) or [F-Droid](https://f-droid.org/packages/com.tailscale.ipn/).
+Android Tailscale has supported custom servers like Headscale since version 1.30.0. Download it from [Google Play](https://play.google.com/store/apps/details?id=com.tailscale.ipn) or [F-Droid](https://f-droid.org/packages/com.tailscale.ipn).
 
-Upon completing the installation, opening the Tailscale App reveals this interface:
+Open the Tailscale app. You'll see the login screen:
 
-<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-12-m2IYpv.jpeg">
+![Android Tailscale login screen](https://images.icloudnative.io/uPic/2022-11-22-18-12-m2IYpv.jpeg "Android Tailscale login screen")
 
-By tapping the "three dots" in the top right corner, initially, you'll see only an `About` option:
+Tap the three-dot menu (⋮) in the top right. You'll only see an `About` option at first:
 
-<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-14-ghdl4A.jpeg">
+![Android Tailscale menu](https://images.icloudnative.io/uPic/2022-11-22-18-14-ghdl4A.jpeg "Android Tailscale menu")
 
-The next step involves a clever maneuver: continuously open and close the "three dots" menu in the top right. After repeating this several times, a new `Change server` option becomes available:
+Here's a trick to unlock the custom server option: quickly **tap to open and close** the three-dot menu about 5-7 times. A `Change server` option will appear:
 
-<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-23-mcAexh.jpeg">
+![Android Tailscale with Change server option](https://images.icloudnative.io/uPic/2022-11-22-18-23-mcAexh.jpeg "Change server option unlocked")
 
-Click `Change server` and input the headscale control server's address:
+Tap `Change server` and enter your Headscale URL (e.g., `https://<YOUR_HEADSCALE_DOMAIN>`). **Include `http://` or `https://`**:
 
-<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2022-11-22-18-37-fkRIxW.jpeg">
+![Android server address input](https://images.icloudnative.io/uPic/2022-11-22-18-37-fkRIxW.jpeg "Server address input")
 
-Then, select `Save and restart`. When you press `Sign in with other`, the following page will appear:
+Tap `Save and restart`. After restart, tap `Sign in with other...`. You'll go to your browser for registration:
 
-<img src="https://images.icloudnative.io/uPic/2024-01-07-19-39-fKOCTT.jpg" style="width: 400px;">
+![Android Headscale authentication](https://images.icloudnative.io/uPic/2024-01-07-19-39-fKOCTT.jpg "Headscale authentication page")
 
-Transfer the command shown onto the terminal of your Headscale host, substituting **USER** with the user you had previously set up, then run the command. After a successful registration, close this page to return to the App's main interface, as depicted in the image:
+Copy the machine key from the page. Register it on your Headscale server or via Headplane like before. After registration, go back to the app - it should show as connected:
 
-<img style="width: 400px;" src="https://images.icloudnative.io/uPic/2024-01-07-20-21-2e8CKX.jpg">
+![Android Tailscale connected](https://images.icloudnative.io/uPic/2024-01-07-20-21-2e8CKX.jpg "Android Tailscale connected")
 
-### Windows
+### Connect Windows Clients
 
-To integrate Headscale as the control server with the Windows Tailscale client, simply open `https://<HEADSCALE_PUB_ENDPOINT>/windows` in your browser. This will lead you to an interface as shown below:
+To connect Windows Tailscale to Headscale, follow the instructions on your Headscale server's Windows page. Open `https://<HEADSCALE_PUB_ENDPOINT>/windows` in your browser. This page shows you how to set it up, usually by editing the Windows Registry or using command-line parameters:
 
-![](https://images.icloudnative.io/uPic/2023-12-29-17-19-vSqFK9.png)
+![Headscale Windows setup instructions](https://images.icloudnative.io/uPic/2023-12-29-17-19-vSqFK9.png "Windows setup instructions")
 
-Follow the instructions outlined there to complete the setup.
+Follow the instructions carefully. You'll usually edit registry entries to set the `ControlURL` or use parameters like `/custom-server=<YOUR_HEADSCALE_URL>` when installing or running Tailscale. After making changes, start the Tailscale client. It should open your browser for Headscale authentication, just like Linux and macOS.
 
-### Other Linux Distributions
+### Connect Other Linux Devices
 
-For Linux distributions used in specific scenarios like OpenWrt, QNAP, and Synology, the installation guides have already been prepared by others. Here, I will provide the links to these GitHub repositories for further reference. If you need to install on these platforms, please refer to the respective repository documentation.
+Many people run Linux on routers (OpenWrt) or NAS systems (QNAP, Synology). The community has made tools for installing Tailscale and connecting to Headscale on these devices:
 
-+ OpenWrt: [https://github.com/adyanth/openwrt-tailscale-enabler](https://github.com/adyanth/openwrt-tailscale-enabler)
-+ Synology: [https://github.com/tailscale/tailscale-synology](https://github.com/tailscale/tailscale-synology)
-+ QNAP: [https://github.com/tailscale/tailscale-qpkg](https://github.com/tailscale/tailscale-qpkg)
+*   **OpenWrt:** Check out [adyanth/openwrt-tailscale-enabler](https://github.com/adyanth/openwrt-tailscale-enabler) for scripts and packages.
+*   **Synology NAS:** Tailscale has official packages. See [tailscale/tailscale-synology](https://github.com/tailscale/tailscale-synology).
+*   **QNAP NAS:** Tailscale has official QNAP packages: [tailscale/tailscale-qpkg](https://github.com/tailscale/tailscale-qpkg).
 
-### iOS
+Check the documentation in these repositories or your device's forums for setup instructions. These devices work great as subnet routers.
 
-To install on iOS, simply download from the App Store, ensuring you have a U.S. region account ID.
+### Connect iOS Clients
 
-1. After installing, open Tailscale to verify no accounts are currently logged in. Then head to "Settings", scroll down to locate "Tailscale" below either "Game Center" or "TV Provider", and click to access it.
+To use Tailscale on iPhone/iPad with Headscale, download the official app from the App Store. You might need an Apple ID from a region where Tailscale is available.
 
-   ![Navigating to Tailscale in iOS Settings](https://images.icloudnative.io/uPic/2023-12-29-17-41-byKA02.png)
+1.  Download the [Tailscale iOS app](https://apps.apple.com/app/tailscale/id1475387142).
+2.  Open the app.
+3.  Tap the account icon in the top-right, then "Log in...".
+    ![iOS Tailscale account screen](https://images.icloudnative.io/uPic/2025-05-26-15-22-rkTD7z.png "iOS account screen")
+4.  On the login screen, tap the options menu (three dots or gear) and choose "Use custom coordination server".
+    ![iOS custom server option](https://images.icloudnative.io/uPic/2025-05-26-15-24-6pQeUX.png "Custom server option")
+5.  Enter your Headscale URL (e.g., `https://<YOUR_HEADSCALE_DOMAIN>`) and tap "Log in". You'll go to your Headscale authentication page.
+6.  Register the device like before:
+    *   Copy the machine key from the browser.
+    *   Go to "Machines" in Headplane, click "Add Device," paste the key, pick an Owner, and click "Confirm."
+    *   The iOS app will show the connection status and IP address.
+    ![iOS Tailscale connected](https://images.icloudnative.io/uPic/2025-05-26-15-30-GRkcPG.png "iOS Tailscale connected")
 
-   If your device has been connected to Tailscale server before, activate the "Reset Keychain" feature.
+### Auto-Register Devices with Pre-Auth Keys
 
-2. In the "Alternate Coordination Server URL" field, input your Headscale public domain name.
-3. Close and reopen Tailscale via the iOS app switcher. Next, select "Log in" to trigger a Headscale authentication pop-up.
-   
-   ![Headscale Authentication Interface](https://images.icloudnative.io/uPic/2023-12-29-17-51-mErNCd.png)
+Headscale has "Pre-Authkeys" that let devices join automatically without manual approval each time. This is useful when adding many devices or automating setups.
 
-4. Copy the command from the Headscale authentication page and paste it into the terminal of your headscale container, replacing USERNAME with the user you previously created.
-   
-   ```bash
-   $ headscale nodes register --user default --key mkey:1fbd9696ebb03b9394033949514345bc5dba0e570bc0d778f15f92a02d2dcb66
-   2023-12-29T09:55:38Z TRC DNS configuration loaded dns_config={"Nameservers":["1.1.1.1"],"Proxied":true,"Resolvers":[{"Addr":"1.1.1.1"}]}
-   Node localhost registered
-   ```
-
-5. Successful registration is confirmed with a notification.
-
-   ![Registration Completion Notification](https://images.icloudnative.io/uPic/2023-12-29-18-01-Z2XdzF.png)
-
-### Effortless Access via Pre-Authkeys
-
-Bypassing the more cumbersome server approval methods of the past, this approach offers a seamless way to connect directly without waiting for server consent.
-
-Begin by creating a pre-authkey token on the server. This token can be set to expire after 24 hours:
+Generate a pre-auth key for your user:
 
 ```bash
-$ headscale preauthkeys create -e 24h --user default
+# Create a key for 'default' user that expires in 24 hours
+$ headscale preauthkeys create --user default --expiration 24h
+# Output includes: Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-To view the key you've created:
+List your pre-auth keys:
+```bash
+$ headscale preauthkeys list --user default
+# Shows: ID, Key, Reusable, Ephemeral, Used, Expiration, Created
+```
+
+You can also create keys in Headplane. Go to "Pre-auth keys" and click "Add a new Pre-auth key":
+
+![Headplane pre-auth key creation](https://images.icloudnative.io/uPic/2025-05-26-15-33-PLkUmf.png "Creating pre-auth key")
+
+Set the user, expiration time, and whether it's reusable (multiple devices can use it) or single-use. Click "Confirm":
+
+![New pre-auth key created](https://images.icloudnative.io/uPic/2025-05-26-15-34-9l5p0S.png "Pre-auth key created")
+
+View and manage your keys:
+
+![Pre-auth keys list](https://images.icloudnative.io/uPic/2025-05-26-15-35-tcCORl.png "Pre-auth keys list")
+
+Now devices can join automatically using the `--authkey` parameter:
 
 ```bash
-$ headscale --user default preauthkeys list
-ID | Key                                              | Reusable | Ephemeral | Used  | Expiration          | Created            
-1  | 57e419c40e30b0dxxxxxxxf15562c18a8c6xxxx28ae76f57 | false    | false     | false | 2022-05-30 07:14:17 | 2022-05-29 07:14:17
+# Replace $AUTH_KEY with your actual key
+# Replace <HEADSCALE_PUB_ENDPOINT> with your server address
+$ sudo tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false --authkey=$AUTH_KEY
 ```
 
-You can also generate this key using Headscale-Admin. Simply click on the desired User:
+The device will register automatically under the user associated with the key.
 
-![](https://images.icloudnative.io/uPic/2024-01-07-21-52-baNzjl.jpg)
+## Set Up Subnet Routing
 
-In the interface that appears, hit `Create` next to "PreAuth Keys," set an expiration time (such as 100 years), tick `Reusable` if you plan to reuse this Key, and then click ✅:
+So far, we've built a mesh network where Tailscale devices talk directly using their Tailscale IPs (usually `100.x.x.x`). But Headscale and Tailscale can do more. You can let any Tailscale device access an entire local network behind another Tailscale device. This subnet routing has many uses:
 
-![](https://images.icloudnative.io/uPic/2024-01-07-21-57-nSM3jC.png)
+*   Access your home NAS, printers, and smart devices from anywhere.
+*   Connect to internal work servers remotely.
+*   **Advanced:** Access Kubernetes pod and service IPs by making K8s nodes subnet routers.
 
-After creation, copy the PreAuth Key by clicking the highlighted area in red:
+Say you have a Linux machine on your home network (like an OpenWrt router, Raspberry Pi, or any Linux server) running Tailscale and connected to Headscale. You want other Tailscale clients (like your laptop when you're away) to reach any device on your home network using their local IP addresses (like the `192.168.100.0/24` subnet).
 
-![](https://images.icloudnative.io/uPic/2024-01-07-22-00-ZOw8lm.png)
+Here's how to set up subnet routing:
 
-With this, new nodes can effortlessly connect directly, bypassing the need for server approval:
+1.  **Enable IP forwarding on the router:**
+    On the Linux machine that will route traffic (like your OpenWrt router), enable IP forwarding:
 
-```bash
-$ tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false --authkey $KEY
-```
+    ```bash
+    # Enable IPv4 forwarding
+    $ echo 'net.ipv4.ip_forward = 1' | sudo tee /etc/sysctl.d/ipforwarding.conf
+    # Enable IPv6 forwarding if needed
+    $ echo 'net.ipv6.conf.all.forwarding = 1' | sudo tee -a /etc/sysctl.d/ipforwarding.conf
+    # Apply changes now
+    $ sudo sysctl -p /etc/sysctl.d/ipforwarding.conf
+    ```
 
-## Integrating Local Area Networks
+2.  **Advertise routes from the router:**
+    Add `--advertise-routes=192.168.100.0/24` to tell Headscale this device can route traffic for that subnet. If Tailscale is already running, use `--reset` to apply the new config:
 
-Up to now, we've focused on constructing a point-to-point Mesh network, enabling nodes to connect directly through WireGuard's private network IPs. However, we can aim higher. Recall our initial discussion about accessing in-home network resources? We have the capability to configure each node to access local area network IPs of other nodes. This functionality opens up numerous possibilities. For instance, you can access NAS systems on your home network or any internal network service. **This can be particularly beneficial for advanced users who wish to access Pod IPs and Service IPs within Kubernetes clusters on cloud services.**
+    ```bash
+    # Replace <HEADSCALE_PUB_ENDPOINT> with your server address
+    $ sudo tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false --advertise-routes=192.168.100.0/24 --reset
+    ```
+    For multiple subnets, separate with commas: `--advertise-routes=192.168.100.0/24,10.0.0.0/8`.
 
-Let's say your home network includes a Linux device (such as OpenWrt) equipped with the Tailscale client. The goal is for other Tailscale clients to effortlessly access any device on your home network via its local area network IP, like **192.168.100.0/24**.
+3.  **Enable the routes on Headscale:**
+    After a device advertises routes, you must enable them on the Headscale server before other clients can use them.
 
-The configuration process is straightforward. Your first step is to set up IPv4 and IPv6 routing:
+    **Using Headplane:**
+    Go to the router device's details page, click "Machine Settings" → "Edit route settings":
 
-```bash
-$ echo 'net.ipv4.ip_forward = 1' | tee /etc/sysctl.d/ipforwarding.conf
-$ echo 'net.ipv6.conf.all.forwarding = 1' | tee -a /etc/sysctl.d/ipforwarding.conf
-$ sysctl -p /etc/sysctl.d/ipforwarding.conf
-```
+    ![Headplane route settings](https://images.icloudnative.io/uPic/2025-05-26-15-49-b51DzH.png "Route settings")
 
-To modify the client command for updating registration nodes, add `--advertise-routes=192.168.100.0/24` to the base command. This parameter signals the Headscale server that "this node can reroute to these specified addresses."
+    Find the advertised route (like `192.168.100.0/24`) and toggle it to "Enabled":
 
-```bash
-$ tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false --advertise-routes=192.168.100.0/24 --reset
-```
+    ![Enable route in Headplane](https://images.icloudnative.io/uPic/2025-05-26-15-50-SAPxRd.png "Enable route")
 
-Checking the routes on the Headscale end reveals that these routes are initially disabled.
+    **Using command line:**
+    Find your router node's ID:
 
-```bash
-$ headscale nodes list|grep openwrt
+    ```bash
+    $ headscale nodes list | grep your-router-hostname
+    # Example output:
+    # ID | Hostname             | ...
+    # 6  | openwrt-router       | ...
 
-6 | openwrt | [7LdVc] | default | 100.64.0.6 | false | 2022-03-20 15:50:46 | online | no
+    # List routes for the node
+    $ headscale routes list --node-id 6
+    # Example output:
+    # Route            | Enabled | Node
+    # 192.168.100.0/24 | false   | openwrt-router
+    ```
+    Enable the route:
+    ```bash
+    $ headscale routes enable --node-id 6 --route "192.168.100.0/24"
+    # Output: Route enabled
+    ```
 
-$ headscale routes list -i 6
+    To enable all routes for a node at once:
+    ```bash
+    $ headscale routes enable --node-id 6 -a
+    ```
 
-Route | Enabled
+4.  **Accept routes on client devices:**
+    Make sure client devices that need subnet access use `--accept-routes=true`. If they're already running without this, reconfigure them with `--reset`:
 
-192.168.100.0/24 | false
-```
+    ```bash
+    # On a client that needs subnet access
+    $ sudo tailscale up --login-server=http://<HEADSCALE_PUB_ENDPOINT>:8080 --accept-routes=true --accept-dns=false --reset
+    ```
+    Check the routing table to confirm it's working:
 
-To enable a specific route:
+    ```bash
+    # On a Linux client
+    $ ip route show table 52 | grep "192.168.100.0/24"
+    # Expected output (gateway IP will be your router's Tailscale IP):
+    # 192.168.100.0/24 via <ROUTING_NODE_TAILSCALE_IP> dev tailscale0 scope link
+    ```
 
-```bash
-$ headscale routes enable -i 6 -r "192.168.100.0/24"
-
-Route | Enabled
-
-192.168.100.0/24 | true
-```
-
-For activating multiple routes, use commas to separate them:
-
-```bash
-$ headscale routes enable -i 6 -r "192.168.100.0/24,xxxx"
-```
-
-To enable all routes at once, use the `-a` option:
-
-```bash
-$ headscale routes enable -i 6 -a
-```
-
-Other nodes can inspect the routing:
-
-```bash
-$ ip route show table 52|grep "192.168.100.0/24"
-192.168.100.0/24 dev tailscale0
-```
-
-For these nodes to accept external routes, they must start with the `--accept-routes=true` option, indicating "I accept routes from other nodes."
-
-Now, from any Tailscale client node, you can ping any device within your home network, just as if you were there. Whether at the office or a cafe, you can easily access your home devices using the same IP address, offering remarkable convenience.
+With subnet routing set up, you can now access any device on your home network's `192.168.100.0/24` subnet from any Tailscale client with `--accept-routes` enabled. Whether you're at work, a coffee shop, or traveling, you can reach your home devices using their local IP addresses.
 
 ## Summary
 
-As for stability, Tailscale currently holds a slight advantage over Netmaker. It typically avoids the intermittent connectivity issues that Netmaker encounters. This reliability is largely due to Tailscale's sophisticated optimizations for NAT traversal in user-space. They've also authored an insightful article on the mechanics of [NAT traversal](https://tailscale.com/blog/how-nat-traversal-works/), which comes highly recommended. Here's an illustrative image for better understanding:
+Tailscale and Headscale work well for stability, ease of use, and NAT traversal. They beat many older or more complex VPN options. This comes from Tailscale's work on user-space NAT traversal techniques, especially their DERP server network. They wrote a good article about this: [How NAT traversal works](https://tailscale.com/blog/how-nat-traversal-works/).
 
-![](https://images.icloudnative.io/uPic/2022-03-21-10-52-TzXGEZ.png)
+Here's a simple diagram showing how Tailscale nodes connect, with help from a coordination server (Headscale) and DERP relays for difficult NAT situations:
 
-This piece introduces both Tailscale and Headscale, focusing on the installation and setup of Headscale, the integration with clients across various platforms, and the method to link local networks of different nodes. The subsequent article will delve into how to configure Tailscale to use custom DERP Servers (that is, relay servers). See you in the next one!
+![Tailscale/Headscale network diagram](https://images.icloudnative.io/uPic/2022-03-21-10-52-TzXGEZ.png "Tailscale/Headscale network connectivity")
+
+This guide should help you build your own private, secure VPN with Headscale. You get full control over your network.
+
+My next article will cover how to set up custom DERP servers with Headscale. This will improve connection quality, especially for devices behind difficult firewalls, and give you complete control over your VPN infrastructure.
